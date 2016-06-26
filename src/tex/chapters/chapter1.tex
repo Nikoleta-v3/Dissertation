@@ -1,56 +1,88 @@
 \chapter{Introduction}
 
 The Prisoner's Dilemma(PD) is a well known example in Game Theory and in recent
-years has become the gold standard of understanding evolution of
-co-operative behavior \parencite{Lorberbaum1994}. That is due to the PD's nature.
-In the example of the Prisoner's Dilemma (PD) two criminals have been arrested and
-interrogated, with no ways of communicating,by the police.
-They are given only two choices, to either cooperate with each other or defect.
-By rational selection the outcome of a single run PD will alway be to defect,even
-if by cooperating they can achieve the maximum reward.
+years has become the gold standard of understanding evolution of co-operative
+behavior \parencite{Lorberbaum1994}.
+% Reference not in bibliography.bib
+That is due to the PD's nature.  In the
+example of the Prisoner's Dilemma (PD) two criminals have been arrested and
+interrogated, with no way of communicating, by the police.  They are given only
+two choices, to either cooperate with each other or to defect.  By rational
+selection the outcome of a single run PD will alway be to defect, even though
+mutual cooperation would maximise their reward.
 
 In 1981, much interest was earned by the PD due to the work done by Axelrod and
-Hamilton,\parencite{Axelrod_&_Hamilton1981}, who proved that cooperation dehaviour
-can emerge from PD if there is probability that the players will meet again. The
-Iterated Prisoner's Dilemma (IPD).Various experiments were held using the PD the
-year to comes,such as the second experiment of Robert Axelrod \parencite{Axelrod1980b},
-...add a list...
-Another paper was by Nowak and May \parencite{Nowak_&_May1992} that conducted
-their own tournament in 1992 using a different topology than Axelrod. In their
-experiment they decided to use a spatial topology and come across some not
-anticipated results. They provided proof that cooperational behavior can merge
-from a PD tournament if using the right topology.
+Hamilton, \parencite{Axelrod_&_Hamilton1981}. They proved that cooperation
+behaviour can emerge from the PD if there is a chance that the players will meet
+again.  This is referred to as the Iterated Prisoner's Dilemma (IPD). Various
+experiments were held using the PD the year to comes, such as the second
+experiment of Robert Axelrod \parencite{Axelrod1980b}, ...add a list...  Another
+paper was by Nowak and May \parencite{Nowak_&_May1992} that conducted their own
+tournament in 1992 using a different topology than Axelrod.
+% big gap here: from 1981 and lots of work straight to Nowak's paper. Also
+% strange to mention the 1981 paper and then then 1980b paper skipping over
+% Axelrod's first paper in 1980 (the one with 14 strategies).
+In their experiment
+they decided to use a spatial topology and come across some unanticipated
+results. They provided proof that cooperative behavior can emerge from a PD
+tournament in certain topologies.
+% The jump to spatial tournaments comes to fast. You're going to need a lot more
+% literature and a bit more explanation: why spatial? What does the normal
+% tournament not cover? Also: consider some network literature (not related to
+% the IPD) just to discuss how these things are studied (one of the books I gave
+% you will be a goo place to start for that).
 
 In conclusion, Axelrod's work has set a seed in Game Theory and computer modeling
 illustrating aspects of moral and political philosophy. How cooperation can be
-evolutionarily advantageous has been a topic of focus ever since from various fields,
-such as biology, sociology, ecology and psychology.\parencite{Nowak_&_May1992}.
-Trying to prove that cooperation can be evolutionarily advantageous.
+evolutionarily advantageous has been a topic of focus ever since in various fields,
+such as biology, sociology, ecology and psychology.
 
 \section{Problem Description}
-Axelrod's tournament as many others where conducted using a round robin topology,
-were each player faces all other players. Even so, spatial topology still has
-not been fully explored with only a small number of papers focusing on this
-specific topology, such as \parencite{Nowak_&_May1993}, \parencite{Brauchli_&_Killingback_&_Doebelis1999},
-\parencite{Meng&Xia_etc2015},\parencite{Lindgren_&_Nordahl1994}. A goal of this
-dissertation is understand the current state of the art in spatial prisoner’s dilemma
-tournaments.
 
-In all these papers, their interpretation of spatial structure is a 2D square lattice with
-each player interacting with only their neighbors in their von Neuman or Moore's
-neighborhood. Even so, a formal definition of what a spatial
-structure is not given. Also evolution in all this papers varies from deterministic
-approaches to more stochastic ones. We will be trying to define what a spatial structure
-is and the evolution such topologies could use, such as Mooran process.
+Axelrod's tournament as many others where conducted using a round robin
+topology, were each player faces all other players. Even so, spatial topology
+still has not been fully explored with only a small number of papers focusing on
+this specific topology, such as \parencite{Nowak_&_May1993,
+Brauchli_&_Killingback_&_Doebelis1999, Meng&Xia_etc2015,
+Lindgren_&_Nordahl1994}. A goal of this dissertation is to understand the
+current state of the art in spatial prisoner’s dilemma tournaments.
 
-To be able to accomplish all this we will be using a python library, Axelrod library,
-that will allow me to reproduce tournaments for the IPD using different strategies,
-topologies and evolution. By contributing to the Axelrod library we will be able
-to reproduce some of the tournaments aforementioned and look in more depth in spatial
-IPD tournaments.
+In all of those papers, their interpretation of spatial structure is a 2D square
+% Note that we want you to have a more comprehensive list of such literature so
+% this section will need to be adjusted.
+lattice with each player interacting with only their neighbors in their von
+Neuman or Moore's neighborhood.
+% These two terms need to be referenced and defined.
+
+
+Even so, a formal definition of what a spatial
+structure is not given. Also evolution in all this papers varies from
+deterministic approaches to more stochastic ones. We will be trying to define
+what a spatial structure is and the evolution such topologies could use, such as
+Mooran process.
+% The above paragraph needs a lot more.
+% - No mention of evolution up until now: what do you mean by that? See the
+%   Szabo paper for how they do it (first describing evo in general sense and
+%   then discussing it in spatia throughout the various possible configs).
+%   You'll illustrate that by referencing particular papers.
+% - The formal defitinion goes back to above: I would simply say something like,
+%   these are generally defined on lattice which correspond to Graphs (include
+%   some pictures showing this for the two types of neighbourhoods) and also
+%   reference some of the papers that DO consider graphs, then conclude by
+%   \begin{definition} your actual rigorous definition of a spatial tournament.
+
+To be able to accomplish all this we will be using a python library, the Axelrod
+% see https://github.com/Axelrod-Python/Axelrod/blob/master/CITATION.rst
+library, that will allow the construction of reproducible tournaments for the
+IPD using different strategies, topologies and evolution. Code written for the
+purpose of this dissertation has been contributed to the library: see [you'll
+put your PR urls here].
 
 Finally, another aspect of the IPD tournament will be explored. That is teamwork, that
 was introduced in the IPD competitions in 2004 by a team from the University of Southampton.
+% The work by the Southampton team is quite different to what we have planned.
+% Nevertheless this will be included and discussed (reference).
+% This little sentence could perhaps go in to the previous section.
 
 \section{Structure of Dissertation}
 This dissertation is organized into 7 Chapters. Proceeding this introduction:
