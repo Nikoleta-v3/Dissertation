@@ -5,69 +5,26 @@ have tried to tackle the PD and make their conclusions on cooperation in
 both theoretical and real life behavior. In this chapter we review some of this
 work done in the IPD competitions, in spatial and evolutionary game theory.
 
-\section{The Prisoner's Dilemma}
-The PD was originally formulated by Merril M. Flood and Melvin Dresher,
-who were working on the Flood-Desher Experiment at the RAND cooperation in 1950.
-% include a reference
-Later in 1950, the mathematician Albert W. Tucker presented the first formal
-representation of the PD, titled  A Two-Person Dilemma in a seminar at
-Stanford University \parencite{Gass005}.
-
-A description of the PD, found in \parencite{Li2011} is as follows:
-There are two players that simultaneously have to decide to whether Cooperate (C)
-or Defect (D) with each other, without exchanging information.
-
-\begin{itemize}
-  \item If both players choose to cooperate they will both receive a reward (R)
-  \item If a player defects and the other cooperates then the defector receives
-  a temptation payoff (T) and the cooperator a sucker payoff (S)
-  \item If both players defect they will both receive a penalty (P)
-\end{itemize}
-
-% This should be in chapter 1 I think. Or perhaps some of the stuff that's in
-% chapter 1 should move to here. Let's chat about the general structure of
-% everything.
-
-Fig. 1 illustrates the payoffs matrix.~\ref{fig:pd_payoff}.
-
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.45]{pd_payoff.jpg}
-\caption{The payoff matrix for the Prisoners Dilemma \parencite{Li2011}}
-\label{fig:pd_payoff}
-\end{figure}
-
-Taking into account the assumptions that both players are both rational human
-beings and that there is no way of communication between them, it can be shown
-that in the standard form of the PD a pure Nash Equilibrium exists when both
-players defect.  So the outcome of any one round game will be Defection.
-% You said something very similar to this in chapter 1
-
-The Prisoner’s Dilemma can also be studied for any given number of
-iterations(IPD), where players play each other repeatedly. An extra condition
-% No space before punctuation but space after it.
-for the payoffs in the IPD are : T \(>\) R \(>\) P \(>\) S and R \(>\) 1/2(T+S).
-
 \section{Tournaments}
 
-In 1980, Robert Axelrod held two computer tournaments based on the Iterated
-Prisoner's Dilemma as described above.
-% Have you described this alread? Do you mean chapter 1? If so reference chapter
-% 1 (\ref{}) so that the author knows what you mean. But again: this is a bit
-% disjointed and repetitive.
-In the first tournament 14 different
-strategies written by scientists from different fields competed each other on a
-tournament of 200 turns per game and in a round robin topology. Axelrod also added
-two more strategies: a Random one and a Twin.
-% What do you mean by the Twin?
+In order to get a understanding of how to play the game of the Prisoner's Dilemma
+better, Robert Axelrod held a tournament back in 1980. He invited a number of
+well-known game theorists to submit strategies for a computer tournament.
+Each strategy has to specify whether to cooperate or defect based on the
+history \footnote{The previous moves made by a player.} of both players.
+Strategies played again each other as well as a Random strategy, that would
+randomly choose between C and D and with its own twin. The tournament was of
+round robin and all entries new the exact length (200 moves) of each game.
+Fourteen strategies were submitted and by the end Tit for Tat was announced the
+winner. Surprisingly in the second tournament held where 64 strategies
+competed and all they writes had full knowledge of what have happened in the
+first tournament, Tit for Tat managed to get first place again.\parencite{Axelrod1980a}
 
-A strategy called Tit for Tat was announced the winner of the first tournament.
 Tit for Tat is a deterministic strategy that will always cooperate in the first
 round and afterwards it copies the opponents last move. Surprisingly in the
 second tournament held by Axelrod \parencite{Axelrod1980a} where 64 strategies
 competed and all they writes had full knowledge of what have happened in the
 first tournament, Tit for Tat managed to get first place again.
-
 As explained by Axelrod \parencite{Axelrod1980b}, Tit for Tat, a simple strategy was able to
 win the rest of sophisticated and more complex strategies based on three specific
 characteristics of the strategy:
@@ -87,68 +44,142 @@ Theory and in providing insights in the behavior emerging from simple dynamics.
 Moreover, Axelrod was the first to speak about niceness, forgiveness and gave an
 illustration that cooperation can be a victorious and advantageous strategy.
 
-Add more tournaments and criticisms on Axelrod's work.
+There have been other tournaments, based off of Axelrod’s, exploring different
+environments and submitting new strategies. In 1991 Bendor, Kramer and Stout
+introduced noise to the IPD. Where noisy randomly flip the choice made by a strategy.
+Kerts 2011 conducted a tournament where the payoff matrix was altered though
+satisfying the conditions (1.1), (1.2) . In 1992, Nowak and May reproduced the first
+tournament with a spatial topology. Furthermore, some review tournaments are
+listed below :
+
+% Do you think is a good idea to add a table with tournaments ?
+
+\begin{table}[h]
+\centering
+\caption{An example table using the `booktabs' package}
+\label{fig:exampletable}
+\begin{tabular}{cccccccccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{ABC}} & \multicolumn{3}{c}{\textbf{ABC}} & \multicolumn{3}{c}{\textbf{ABC}} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+\textbf{Example}      & \textbf{A}       & \textbf{B}       & \textbf{C}      & \textbf{A}           & \textbf{B}           & \textbf{C}          & \textbf{A}           & \textbf{B}           & \textbf{C}          \\
+\cmidrule(lr){1-1}\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+0         & 1234      & 1234     & 1234     & 1234          & 1234         & 1234         & 1234        & 1234         & 1234         \\
+1         & 1234      & 1234     & 1234     & 1234          & 1234         & 1234         & 1234        & 1234         & 1234         \\
+2         & 1234      & 1234     & 1234     & 1234          & 1234         & 1234         & 1234        & 1234         & 1234        \\
+3         & 1234      & 1234     & 1234     & 1234          & 1234         & 1234         & 1234        & 1234         & 1234         \\ \bottomrule
+\end{tabular}
+\end{table}
 
 \section{Spatial Structure Tournaments}
 
-Nowak and May in 1992, were the first ones that conducted a PD tournament using
-spatial structure \parencite{Nowak_&_May1992}. Their tournament was a simple and
-purely deterministic spatial version of the PD, with no memories among the
-players and no strategical elaboration, they players could  either always
-cooperate or defect.
-% ...with players having no memory of previous rounds and... Also: This sentence
-% is long. It is ALWAYS better to break sentences up. Short and sharp.
-Most of the work done by various other authors are only
-% You mention other authors: reference them.
-using these two basic strategies. These experiments with spatial tournament were
-the perfect tool to identify the effect that a different topology than a round
-robin would have on previous studies.
-% Given my suggestion in chapter one about clearly defining a spatial
-% tournament. Perhaps here recall that the round robin corresponds to a spatial
-% tournament on the complete graph
-Indeed, Nowak and May manage to show that
-such structure has an important effect as it was shown that cooperation could
-merge for the simple PD.
+A research was spawn in 1992 as to how the Prisoner's Dilemma could shade some
+insight into physics and biology. Where they believed exist potential dynamics
+of spatially extended systems. Their tournament was a simple and purely
+deterministic spatial version of the PD in a two dimensional lattice. With
+players having no memory of the previous rounds and no strategical elaboration.
+Thus, the players could either always cooperate or defect. The local winner of
+each generation would win a territory. His neighbors would follow his strategy.
+This  allowed them generate spatial chaotic patterns, which patterns depended
+on the payoff of Temptation. Nowak and May concluded that co-operational
+behavior is possible in the PD by using a spatial topology.
 
-Similarly, in \parencite{Lindgren_&_Nordahl1994} players were allowed to have
+Similarly, in \parencite{Lindgren1994} players were allowed to have
 memory and therefore added complex strategies to the tournament such as Tit for
 Tat and  Anti Tit for Tat. This was followed  by the work of
-\parencite{Brauchli_&_Killingback_&_Doebelis1999} which introduced even more
+\parencite{Brauchli1999} which introduced even more
 complex strategies.
 
-Furthermore, in the first tournament the spatial structure is defined
-on a 2D square lattice where players can only play their von Neuman or Moore neighbors.
-% Same comment as for chapter 1
-A lattice is defined as a graph, but
-in non paper the author has defined a spatial structure as graph, expect from
-\parencite{Meng&Xia_etc2015} where they defined it as a network.
+Spatial topology has been defined most scholars have as a square lattice where
+the nodes - players only interact with their neighborhoods.Including connections
+between four or eight nearest neighbor sites, Neuman's or Moore's, according to
+Figure~\ref{fig:neighborhood}. A square lattice  is a graph and one could argue
+that a round robin tournament itself is a complete graph. But in the above papers
+none author a spatial structure as graph, expect from \parencite{Meng2015} where
+they defined it as a network.
 
-Another interesting aspect of spatial IPD games is evolution. Nowak and May, in
-both their papers used a deterministic approach, such as the player in a
-neighborhood would mirror the move of the neighbor with the highest payoff of
-all.  An interesting approach in evolute was given by
-\parencite{Meng&Xia_etc2015} where they used a two lattices topology  and a
-player would mimic a random player base on a function that consider the utility
-of the player. Where each player’s utility will not only consider his/her own
-payoff, but also incorporate the payoff of corresponding partner from the other
-lattice.
+Meng et all, was an interesting approach. They presented a new spatial prisoner's
+dilemma game model in which the neighborhood size was increased onto two
+two interdependent lattices. They implement the utility by integrating the payoff
+correlations between two lattices. A player would mimic a random player in his next
+move, base on a function that consider the utility of the player. It was characterized
+as a most realistic scenario.
 
-\section{Evolution and Moran process}
+Real life interactions are more likely to be like any given graph depending on
+the industry than a complete graph. Fatha et all, have considered a numerous of graphs,
+such as :
+\begin{itemize}
+  \item Lattice, the interaction network is defined by the sites of a lattice.
+   the distance between a pair does not exceed a given value.
+   The most frequently used structure is the square lattice with von Neumann
+   neighborhood and Moore neighborhood.
+  \item Small word, a graph that is created from a square lattice by randomly
+   rewiring a fraction of connections in a way that conserve the degree for
+   each site.
+  \item Scale-free graphs, a network that has a power-law degree distribution, regardless of
+   any other structure.
+  \item Evolving networks, networks that change as a function of time.
+\end{itemize}
+
+The major theme of their review was how the graph structure of interactions could
+modify long term behavioral patterns emerging in evolutionary games.
+These graphs compose only a small fraction of graphs that exist. In this
+dissertation we will consider a list of graphs.
+ %add list when i actually know
 
 \section{Axelrod Python Library}
 
-The Axelrod library is an open source Python package that allows for
-reproducible game theoretic research into the Iterated Prisoner's Dilemma.  For
-many of the tournaments aforementioned the original source code is almost never
+The Axelrod library (.ref) is an open source Python package that allows for
+reproducible game theoretic research into the Iterated Prisoner's Dilemma[url].
+For many of the tournaments aforementioned the original source code is almost never
 available and in no cases is the available code well-documented, easily modified
-pr released with significant test suites. Due to that reproducing the results
+or released with significant test suites. Due to that reproducing the results
 has not been an easy task.
 
 However, Axelrod library manages to provide such a resource, with facilities for
 the design of new strategies and interactions between them, as well as
 conducting tournaments and ecological simulations for populations of strategies.
+
+Strategies are implemented as classes which have a single method, strategy().
+It only takes one argument, which is the opponent's previous moves and returns
+an action. These actions can be either to cooperate C or to defect D. At thins
+moment the Axelrod library consists of 131 strategies.Can be found in the Appendix.
+
+Additionally, tournament are classes responsible for running a repetition of a
+round robins. It achieves that by calling a match generator class which
+returns all the single match parameters, such as turns, the game and the noise.
+Axelrod has the capability to write out the results into a csv file and also out
+put plots with the ranks of the strategies.
+
+Furthermore, a basic tournament of 200 turns, 100 repetitions and the 131 strategies
+that exist in the library is being produced continuously. The winner is called
+PSO gambler and it is a look up strategy. It uses a lookup table with probability
+numbers generated using a Particle Swarm Optimisation (PSO) algorithm.
+Here are illustrated the results of the last tournament :
+
+\begin{figure}[h]
+\centering
+    \begin{subfigure}[t]{0.55\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{axl.png}
+    \caption{Ranked violin plot}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.50\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{axl2.png}
+    \caption{Payoffs}
+    \end{subfigure}
+~
+\caption{Result Plots. (a) Ranked violin plot, the mean utility of each player.
+(b) Payoffs, the pair wise utilities of each player.}
+\label{fig:axelrodplots}
+\end{figure}
+
+
 Because is an open source library it makes it easy for us to contribute to it
 make modifications needed for this dissertation.
+
 
 % This section on the library can/will be rewritten. See comment in chapter 1
 % about citation.
