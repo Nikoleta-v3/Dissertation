@@ -3,9 +3,9 @@
 Game theory is a set of analytical tools and solution concepts, which provide
 explanatory and predicting power in interactive decision situations, when the
 aims, goals and preferences of the participating players are potentially in
-conflict, Szabo and Fath (2007)(ref.). The Prisoner's Dilemma(PD) is a well
+conflict, Szabo and Fath (2007) \cite{Szabo2007}. The Prisoner's Dilemma(PD) is a well
 known example in Game Theory and in recent years has become the gold standard of
-understanding evolution of co-operative behavior \parencite{Lorberbaum1994}.
+understanding evolution of co-operative behavior \cite{Lorberbaum1994}.
 Thus, it has been a topic of focus in various fields, such as biology,
 sociology, ecology and psychology. % Some example references here would be good
 % (1 for each field)
@@ -17,49 +17,45 @@ consider that the prisoners would be put back in their cells and would be asked
 the same question tomorrow. Furthermore, let this happen repeatably. This is
 referred to as the Iterated Prisoner's Dilemma(IPD) an example that has been a
 rich source of research material since the 1950s but has earned much interest in
-the 1980s due to the work done by the political scientist Robert Axelrod(ref.).
+the 1980s due to the work done by the political scientist Robert Axelrod
+\cite{Axelrod1980a, Axelrod1980b, Axelrod1981}.
 
-In 1980, Axelrod held the first ever IPD computer tournaments (ref), he invited
+In 1980, Axelrod held the first ever IPD computer tournaments \cite{Axelrod1980a,
+Axelrod1980b}, he invited
 academics from various fields to submit their strategies in computer code. The
-tournaments were of a round robin topology and the first one included sixteen
-strategies and the second one sixty-two. % incorrect numbers, see
-% http://arxiv.org/pdf/1604.00896v3.pdf
-In both tournaments the strategy Tit
+tournaments were of a round robin topology, the first competition included thirteen
+strategies, while the second one sixty-four. In both tournaments the strategy Tit
 for Tat was announced the winner and for many years it  was consider to be the
-most successful strategy.
-% At this point the reader does not know what Tit For Tat is. Either describe it
-% or refer to a later section saying that you'll describe it there.
-A large volume of literature emerged on the topic
-following this, including some criticism about these initial tournaments.
-Scientists questioned
-whether the conditions that the first tournament took place favored
-tit for tat.
+most successful strategy. Tit for Tat is a deterministic strategy that will
+always cooperate in the first round and afterwards it copies the opponents last
+move.
+
+A large volume of literature emerged on the topic following this, including some
+criticism about these initial tournaments. Scientists questioned whether the
+conditions that the first tournament took place favored tit for tat.
 % Include a reference for this statement
 An argument was that the initial tournaments though they included
-a small change of misepercepion
-% I do not know what miseperception is meant to be
+a 1\% chance of players misunderstanding their opponent's move in any round
 they did not examine noise. Noise is the probability
-that the player will submit the wrong move. Bendor, Kramer and Stout 1991 (ref.)
+that the player will submit the wrong move. David and Vivian Kraines \cite{kraines-1989a}
 stated that TFT performed rather poorly when noise was introduced in the tournament.
-Another aspect, is the payoff matrix which according to Kretz 2011 (ref.)
+Another aspect, is the payoff matrix which according to Kretz \cite{Kretz2011}
 the precise choice of the payoff matrix is relevant to the results.
-%I kept the extra things I have written here like I told you. Let me know if
-%the gap between Axelrod to Nowak is still big.
 
 Furthermore, another aspect needed to be taken into account was the network
-topology underlying the tournament. In Nowak ...  (ref.)
-spatial tournament are introduced. In which the nodes represent players, and the
-edges, connecting the nodes, refer to the connection between the corresponding
-players. An example of this is shown in Figure ...
+topology underlying the tournament. In 1992 Nowak's and May's paper \cite{Nowak1992}
+spatial tournament are introduced. In which the players are placed on an two-
+dimensional spatial and allowed to play a game with only the immediate neighbors.
+Thus, squares that are adjoin. An example of this is shown in Figure ...
 
 % Include an image of graph showing the example.
 
 Their tournament considered the PD and the players could only defect or
 cooperate.  They provided proof that cooperative behavior can emerge from a PD
 tournament in spatial topology. Many works on the IPD and spatial tournament
-were held due to their original paper. Such as (ref.).  These tournaments use
-either the PD or IPD and simple to complex strategies.
- %can i reference the thesis of Maciver? VK: Yes you can and should.
+were held due to their original paper. Such as \cite{Grujic2014, Nowak1993,
+Maciver1992, Nowak1992, Brauchli1999, Meng2015, Lindgren1994}.
+These tournaments use either the PD or IPD and simple to complex strategies.
 
 One can argue that the real life interactions are better represented by spatial
 tournament because in real life not all players interact with all opponents.
@@ -76,12 +72,11 @@ strategies.
 
 The PD was originally formulated in Merril \cite{M. Flood and Melvin Dresher},
 who were working on the Flood-Desher Experiment at the RAND cooperation in 1950.
-% include a reference
 Later in 1950, the mathematician Albert W. Tucker presented the first formal
 representation of the PD, titled  A Two-Person Dilemma in a seminar at
-Stanford University \parencite{Gass005}.
+Stanford University \cite{GassAssad2005}.
 
-A description of the PD, found in \parencite{Li2011} is as follows:
+A description of the PD, found in \cite{Li2011} is as follows:
 There are two players that simultaneously have to decide to whether Cooperate (C)
 or Defect (D) with each other, without exchanging information.
 
@@ -92,33 +87,29 @@ or Defect (D) with each other, without exchanging information.
   \item If both players defect they will both receive a penalty (P)
 \end{itemize}
 
-Figure~\ref{fig:pd_payoff} illustrates the payoffs matrix..
-% The whole point of labels is so that you don't 'hard code' figure numbers.
-% Thus if the figure moves you don't have to re number everything. LaTeX handles
-% that for you.
+Figure~\ref{fig:pd_payoff} illustrates the payoffs matrix.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.45]{pd_payoff.jpg}
-    \caption{The payoff matrix for the Prisoners Dilemma \parencite{Li2011}}
+    \caption{The payoff matrix for the Prisoners Dilemma}
     \label{fig:pd_payoff}
 \end{figure}
-% Tabulation helps keep the code clear
 
 Taking into account the assumptions that both players are rational
 and that there is no way of communication between them. No matter what the
 other player does, defecting will be their dominant choice as it yields a higher
 payoff than cooperation.
 Thus a pure Nash Equilibrium exists when both players defect. Even though, both
-players would do better if they were to cooperate.
+players would do better if they were to cooperate.Thus creating the dilemma.
 
 Furthermore, for this to hold there are some extra assumptions for the
 relationship of the four outcomes. The T temptation to defect has to offer the
 highest payoff for a player and the worst he could get has to be the sucker S.
 Likewise, the reward for mutual cooperation should exceed that of mutual
-defection P. Thus the next condition is (ref.):
+defection P. Thus the next condition is~\ref{firstassum}:
 
-\begin{equation}
+\begin{equation}\label{firstassum}
  T > R > P > S
 \end{equation}
 % Same comment about referencing and labelling. Take a brief through the source
@@ -127,18 +118,16 @@ defection P. Thus the next condition is (ref.):
 % https://github.com/Axelrod-Python/An-open-reproducible-framework-for-the-study-of-the-iterated-prisoners-dilemma/blob/jors/tex/paper.tex
 
 Moreover, it is assumed that the average of T and S is less than the reward for
-mutual cooperation (ref.) :
+mutual cooperation~\ref{secondassum} :
 
-\begin{equation}
-    R > (T+S)/2  % 1/2(X) is not clear: is it X/2 or 1/(2X).
+\begin{equation}\label{secondassum}
+    R > (T+S)/2
 \end{equation}
-% Same comment
 
-Same conditions such as rationality, no communication and (1.1), (1.2) apply for
-% Don't hard code (1.1) and (1.2).
-the IPD. An IPD is nothing more than a PD were the players interact for a known
-number of times.
-% Not necessarily known! See probabilistic ending variant.
+Same conditions such as rationality, no communication and (~\ref{firstassum}),
+(~\ref{secondassum}),
+apply for the IPD. An IPD is nothing more than a PD were
+the players interact for an infinite number of times.
 
 \section{Problem Description}
 
@@ -146,7 +135,7 @@ Axelrod's tournaments set a seed for generations of tournaments in the
 Prisoner's using computer modeling. Research has shown that by altering the
 environment of a tournament the effectiveness of some strategies can change
 radically. An aspect that has been investigated as to how the tournament results
-can bee affected was the topology. Nowak and May introduced the spatial topology
+can bee affected was the topology. Nowak and May \cite{Nowak1992} introduced the spatial topology
 only to set yet another seed in the PD tournaments. Even so, spatial topology
 still has not been fully explored with only a small number of papers focusing on
 this specific topology.  A goal of this dissertation is to understand the
@@ -159,8 +148,6 @@ were each edge represents a player which interacting/playing with only his
 neighbors in their von Neuman or Moore's neighborhood. A von Neuman neighborhood
 comprises the four cells orthogonally surrounding a central cell where the
 Moore's neighborhood eight cells. As shown in Figure~\ref{fig:neighborhood}.
-% Never point at figures relative to where you are: always label and refer to
-% them.
 
 \begin{figure}[h]
 \centering
@@ -184,7 +171,8 @@ Moore's neighborhood eight cells. As shown in Figure~\ref{fig:neighborhood}.
 \label{fig:neighborhood}
 \end{figure}
 
-Some further work address the spatial topology in a variate of graphs (ref.).
+Some further work address the spatial topology in a variate of graphs
+\cite{Dresher1992a, Szabo2007}. %add the new ones !
 This dissertation will also follow this approach. Szabo and Fáth dealt with
 numerous graphs such as, lattices, small- world, scale free graphs and evolving
 networks. We will consider a spatial topology to be any given graph  where the
@@ -192,13 +180,14 @@ players are the nodes and only play other nodes that are linked to by
 an edge.
 
 Another disadvantage of the aforementioned work is that it lacked in terms of
-best practice of reproducibility [Include some references: see general ones
-about reproducibility in the Axelrod paper]. Due the work done by Axelrod
-library  (ref.). An open source python Package which allows for the easy
+best practice of reproducibility \cite{Axelrod1980a,Axelrod1980b,Stephens2002,Chong2004,Stewart2013}
+. Due the work done by Axelrod library \cite{axelrodproject}.
+An open source python Package which allows for the easy
 reproducibility of experiments.  As it allow to reproduce an IPD tournament and
-chose bewteen 131 strategies already given by the library.  Code written for the
-purpose of this dissertation has been contributed to the library: see [you'll
-put your PR urls here].
+chose between 131 strategies already given by the library.  Code written for the
+purpose of this dissertation has been contributed to the library: see
+\url{https://github.com/Axelrod-Python}.
+
 
 \section{Structure of Dissertation}
 This dissertation is organized into 7 Chapters. Proceeding this introduction:
