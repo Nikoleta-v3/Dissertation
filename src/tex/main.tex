@@ -38,9 +38,26 @@
 \usepackage{etoolbox}
 \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{chapterstyle}}{}{}
 
-
 % Package to get hyperrlinks
 \usepackage{hyperref}
+
+% For code illustration
+\usepackage{listing}
+\usepackage{minted}
+
+% colouring of code
+\usepackage{xcolor}
+\definecolor{LightGray}{gray}{0.95}
+\definecolor{LightBlue}{rgb}{0.98,0.98,0.92}
+
+\usemintedstyle{pastie}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
 
 % Mathematics packages
 \usepackage{amsmath}
@@ -52,17 +69,9 @@
 \graphicspath{ {../img/} }
 
 % A package that gives more control for bibliographies than the default
-\usepackage[backend=biber,
-			maxcitenames=2,
-			maxbibnames=99,
-			doi=false,
-			url=false,
-			bibstyle=apa,
-			firstinits,
-			uniquename=init,
-			style=authoryear
-            ]{biblatex}
+\usepackage[backend=biber, backref=true, firstinits=true, url=true, isbn=true]{biblatex}
 \addbibresource{bibliography.bib}
+
 
 
 % Package to add features for tables
@@ -79,6 +88,8 @@
 % random text.
 \usepackage{lipsum}
 
+% A package for vector graphics
+\usepackage{tikz}
 
 % ----------------------------------------------------------------------------
 % The actual report
