@@ -1,10 +1,13 @@
 \chapter{Implementation of spatial tournaments}
 \label{chap:Three}
-In this chapter we will discuss the source code committed to the
-axelrod library to implement spatial topology. In addition, some
-initial experiments and results will be discussed.
 
-\section{Code Discussion}
+\section{Introduction}
+In this chapter we will discuss the source code committed to the
+Axelrod-Python library to implement spatial topology. In addition, some
+initial experiments and results will be discussed. These experiments will be
+performed using three chosen topologies and two different competitiros size.
+
+\subsection{Code Discussion}
 
 As analyzed in \autoref{chap:Two}, the Axelrod library uses a
 \texttt{Tournament()} class to run a round robin tournament. The
@@ -75,49 +78,72 @@ results. The tests for the \texttt{SpatialTournament()} can be found here :
 \url{https://github.com/Axelrod-Python/Axelrod/blob/master/axelrod/tests/unit/test_tournament.py}
 under the class \texttt{TestSpatialTournament()}.
 
-In this section we gone through the structure of the source code for implementing
+%%%tha paei pio katw
+In this subsection we gone through the structure of the source code for implementing
 the Spatial Tournament, by adding to the Axelrod-Python library. Furthermore, now
 that the code is usable in the following section we will go though some initial
 analysis.
 
-\section{First Experiment}
+\subsection{Experiment and the three topologies}
 
 In this chapter we will be running some simple examples of spatial topology and
 analyze the behavior of the strategies and the results. This will help us further
 down to tackle the problem of how topology can affect the outcome of an IPD
 competition and which strategies tend to perform well. Some of the most common
-networks, based o literature, are a 2-D square lattice with four degrees
-and a circle. Figure~\ref{fig:networks}, shows an example of these topologies.
+networks, based o literature, are a square lattice with four degrees
+and a cycle.
+
+In a cycle or circular network consist of a signgel cycle. It has
+equal number of edges and nodes, and each node has degree 2. In ~\ref{Szabo2007}
+Szabo et all stated that "For spatial models the fixed interaction network is
+defined by the sites of a lattice and the edges between those pair whose distance
+does not exceed a given value."  The most frequently used structure, and the one
+used in this experiment, is the square lattice with von Neumann neighborhood.
+Also the most common topology used, again based on literature, is that of a
+round robin. A round round topology is nothing else but a complete
+graph were every pair of distinct node is connected by a unique edge.
+Figure~\ref{fig:networks}, shows an example of all the aforementioned topologies.
+Round robin will be mainly used for comparison reasons.
 
 \begin{figure}[h]
 \centering
     \begin{subfigure}[t]{0.45\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{lattice_network.png}
-    \caption{2-D square lattice network.}
+        \includegraphics[width=\linewidth]{circle_network.png}
+    \caption{Cycle network.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.45\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{circle_network.png}
-    \caption{Circle network.}
+        \includegraphics[width=\linewidth]{lattice_network.png}
+    \caption{Square lattice with degree 4 network.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.45\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{complete-network.png}
+    \caption{A complete or round robin network.}
     \end{subfigure}
 \caption{Network topologies.}
 \label{fig:networks}
 \end{figure}
 
-Thus, we will be performing our experiment with two different topologies, that
-of a lattice and a circle. For each topology, 50 strategies out of the 132 of
-Axelrod-Python library are chosen randomly. These 50 strategies create a
-neighborhood. They are allocated on the graph, based on the topology, and they
-compete with their neighbors on a IPD tournament. Once the first game is complete,
+Thus, we will be performing our experiment with three different topologies, that
+of a cycle, a lattice and a complete graph.
+For each topology, a fixed size of strategies out of the 132 of Axelrod-Python
+library are chosen randomly. These strategies create a neighborhood.
+The size of these neighborhoods will range. The first time it will be 5 and
+the second 50. Subsequently, the strategies are allocated on the graph, based
+on the topology, and they compete with their neighbors on a IPD tournament.
+For the circular and lattice topology, o nce the first game is complete,
 the strategies are randomly shuffled and allocated on the graph again.
-They play another game of the IPD but this time with different
-neighbors of they neighborhood. This is repeated 10 times and the random selection
-of 50 players and creation of neighborhood is repeated 100 times.
-Thus we achieve, 1000 tournaments with 100 different neighbors ,where each
-neighborhood exists for 10 tournaments. Furthermore, each game of the IPD consists
-of 200 turns and 10 repetitions.
+Another tournament is performed this time with different neighbors of a
+neighborhood interacting. This is repeated 10 times.
+The selection of strategies and creation of neighborhoods is repeated 100 times
+and each tournament of an IPD consists of 200 turns and 10 repetitions.
+Thus we achieve, 1000 tournaments with 100 different neighbors, where for the
+spatial topologies the neighborhood exists for 10 tournaments.
+
 By setting an axelrod-seed~\footnote{A function used by the library, which sets
 both seeds for Numpy and the standard library.In general, seeds allow us
 reproduce the same players and tournaments.}, the 100 neighborhoods for the topologies
