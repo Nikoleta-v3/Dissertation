@@ -78,11 +78,6 @@ results. The tests for the \texttt{SpatialTournament()} can be found here :
 \url{https://github.com/Axelrod-Python/Axelrod/blob/master/axelrod/tests/unit/test_tournament.py}
 under the class \texttt{TestSpatialTournament()}.
 
-%%%tha paei pio katw
-In this subsection we gone through the structure of the source code for implementing
-the Spatial Tournament, by adding to the Axelrod-Python library. Furthermore, now
-that the code is usable in the following section we will go though some initial
-analysis.
 
 \subsection{Experiment and the three topologies}
 
@@ -93,8 +88,8 @@ competition and which strategies tend to perform well. Some of the most common
 networks, based o literature, are a square lattice with four degrees
 and a cycle.
 
-In a cycle or circular network consist of a signgel cycle. It has
-equal number of edges and nodes, and each node has degree 2. In ~\ref{Szabo2007}
+In a cycle or circular network consist of a single cycle. It has
+equal number of edges and nodes, and each node has degree 2. In ~\cite{Szabo2007}
 Szabo et all stated that "For spatial models the fixed interaction network is
 defined by the sites of a lattice and the edges between those pair whose distance
 does not exceed a given value."  The most frequently used structure, and the one
@@ -109,17 +104,17 @@ Round robin will be mainly used for comparison reasons.
 \centering
     \begin{subfigure}[t]{0.45\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{circle_network.png}
+        \includegraphics[width=\linewidth]{cycle_network.png}
     \caption{Cycle network.}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{0.45\textwidth}\centering
+    \begin{subfigure}[t]{0.52\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{lattice_network.png}
     \caption{Square lattice with degree 4 network.}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{0.45\textwidth}\centering
+    \begin{subfigure}[t]{0.52\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{complete-network.png}
     \caption{A complete or round robin network.}
@@ -132,279 +127,470 @@ Thus, we will be performing our experiment with three different topologies, that
 of a cycle, a lattice and a complete graph.
 For each topology, a fixed size of strategies out of the 132 of Axelrod-Python
 library are chosen randomly. These strategies create a neighborhood.
-The size of these neighborhoods will range. The first time it will be 5 and
-the second 50. Subsequently, the strategies are allocated on the graph, based
+The size of these neighborhoods will range. Let \( s\) be the size of
+the neighborhood, where \(s \textrm{ }\{ s=5 \textrm{and} s=50 \}\).
+Subsequently, the strategies are allocated on the graph, based
 on the topology, and they compete with their neighbors on a IPD tournament.
-For the circular and lattice topology, o nce the first game is complete,
+For the circular and lattice topology, once the first game is complete,
 the strategies are randomly shuffled and allocated on the graph again.
 Another tournament is performed this time with different neighbors of a
 neighborhood interacting. This is repeated 10 times.
 The selection of strategies and creation of neighborhoods is repeated 100 times
 and each tournament of an IPD consists of 200 turns and 10 repetitions.
-Thus we achieve, 1000 tournaments with 100 different neighbors, where for the
-spatial topologies the neighborhood exists for 10 tournaments.
 
 By setting an axelrod-seed~\footnote{A function used by the library, which sets
 both seeds for Numpy and the standard library.In general, seeds allow us
-reproduce the same players and tournaments.}, the 100 neighborhoods for the topologies
-are the same, of course their allocation to the graphs differs because of the
-random shuffle.
+reproduce the same players and tournaments.}, the 100 neighborhoods for the
+topologies are the same, of course their allocation to the graphs differs because
+of the random shuffle.
 
-\subsection{Circle Topology}
-\label{sub:circle}
+\subsection{Initial Analysis}
 
-In the tournament with circle lattice while fifty players participated in each
-of the hundred tournaments all 132 strategies of the Axelrod-Python library were
-used at least once. Moreover, all strategies won, ranked 0, at least one
-tournament. In Figure~\ref{fig:circle_winners}  we can see the number of times
-each strategy has won a tournament in ascending order :
+For each of the experiment we have forced to keep in track for a set of parameters,
+such as the list of players in a neighborhood, the score, normalized score and
+average score for each strategy etc. From a quick look at these data sets
+we can obtain the following informations.
 
-\begin{figure}[h!]
-  \hspace*{-2cm}
-    \includegraphics[scale=.15]{circle_winners.pdf}
-    \caption{Number of winning tournaments by strategy in a circle topology.}
-    \label{fig:circle_winners}
-\end{figure}
+For the spatial tournaments, for both neighborhood sizes (5 and 50)
+we achieved 1000 tournaments. Containing 100 different neighborhoods, where each
+the exists for 10 tournaments.
 
-As shown, %not clear at all, the figures are to large
-the three strategies which achieved the most wins in the 1000 tournaments are :
-Soft Joss: 0.9, Fortress3, Nice Average Copier. Soft Joss : 0.9, is an altered
-version of Tit-For-Tat. The strategy emulates Tit-For-Tat but defects with a
-probability of 0.9 when the opponent defects. Nice average copier will cooperate
-with a probability p if the opponent's cooperation ratio is p. Starts by cooperating.
-All three strategies achieved 14 wins. In a simple round robin tournament
-all these have significant  different cooperating rating. Nice Average Copier,
-is a cooperating strategy
-where Soft Joss: 0.9 has an average cooperating rating and Fortress3 a low one.
-We want to investigate any key factor for these strategies
-achievement of first place even so in the original tournament the score quite
-low.
+Moreover, for the cycle experiment we can see in Table [], that degree is
+fixed at 2 and the payoffs are fixed to \(R=3, P=1, S=0, T=5\) for both
+\( s=5\textrm{ and } s=50 \). For \(s=5\), the mean average score
+is 2.45, with a minimum value of 0.0175 and a maximum value of 4.95. The
+mean average score of the neighbors score is 980.95 with a standard deviation
+of 219.87. Moreover the minimum value is set at 141.55 and the maximum at
+1756.50. The mean average score does not seem to differ for \(s=5\),
+which is at 2.39. Though, in the experiment with a size of fifty a strategy
+achieved a score of 0. Additionally the average score of the neighbors ranges
+from 19.30 to 1884.5. In both cases of size the clustering coefficient is zero
+and the connectivity due to fixed degree is 2.
 
-The number that each strategy participated in the 1000 tournaments
-is not clear. Thus, we can plot the number of participations of each strategy
-as show in Figure ~\ref{fig:circle_freq}. It is shown that the range of participations varies
-from 270 to 570 played tournaments and that Altenator played the most.
-Furthermore, a more clear representation of the participations and strategies is
-given by table in the Appendix. There is clear that the most common played
-strategies were Altenator, ThueMorse, Shubik and Gradual. None of the first ranked
-strategies.
-
-\begin{figure}[h!]
+\begin{table}[!hbtp]
 \centering
-    \includegraphics[scale=.12]{circle-frenquency.pdf}
-    \caption{Number of participations in tournaments of each strategy.}
-    \label{fig:circle_freq}
-\end{figure}
+\begin{adjustbox}{width=1\textwidth}
+\small
+\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
+\toprule
+Cycle & \multicolumn{3}{c}{s=5 and s=50}  & \multicolumn{3}{c}{s=5}                              & \multicolumn{3}{c}{s=50}                             \\\midrule
+       & (R,P,S,T) & degree & connectivity & average score & average neighbors score & clustering & average score & average neighbors score & clustering \\\midrule
+mean   & (3,1,0,5) & 2.0    & 2.0          & 2.456690      & 980.952580              & 0.00       & 2.394577      & 957.238664              & 0.00       \\\midrule
+std    & (0,0,0,0) & 0.0    & 0.0          & 0.748772      & 219.875803              & 0.00       & 0.777189      & 231.321350              & 0.00       \\\midrule
+min    & (3,1,0,5) & 2.0    & 2.0          & 0.017500      & 141.550000              & 0.00       & 0.000000      & 19.300000               & 0.00       \\\midrule
+max    & (3,1,0,5) & 2.0    & 2.0          & 4.950000      & 1756.500000             & 0.00       & 5.000000      & 1884.500000             & 0.00       \\ \bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Summary table for topology circle.}
+\label{sum-cicle}
+\end{table}
 
-Moreover, we can plot the number of participation against the number of times
-the specific strategy has won to identify any correlation between these facts
-Figure ~\ref{fig:circle_part-wins}. Though the strategies with the highest participation
-ratio seem to have won tournaments, it is only a insignificant amount. strategies
-with the highest number of wins see to have place an average number of tournaments.
-By plotting the Frequency of the strategies against average score per turn,
-we anticipated to have a positive correlation. As the more tournaments a strategy
-competes in there is a higher probability that the strategy will be declared
-the winner. Even so, from Figure~\ref{fig:circle_part-wins} we can assume that
-they are is no significant correlation between these two facts.
+For the lattice experiment a table that summarize the data set is shown in Table
+~\ref{sum-lattice}. For both size's values the payoffs are the same (\(R=3, P=1, S=0, T=5\))
+and the degree is fixed at 4. For \(s=50\) the mean average score
+varies between 0.018 and 4.97. The average score of the neighbors varies from
+832.67 and 2895.42. Much higher than both the cycle experiments achieve. Logical
+based on the fact that the number of neighbors is now doubled. For \(s=5\)
+the mean score is 0.57 and the mean average neighbor score 2.45.
+The clustering coefficient is 1 and for \(s=50\) is 0.5.
+This shows that in the lattice example the strategies tend to create groups.
 
-\begin{figure}[h!]
-\hspace*{-4cm}
-    \begin{subfigure}[t]{1.4\textwidth}
+\begin{table}[!hbtp]
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\small
+\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
+\toprule
+Lattice & \multicolumn{3}{c|}{s=5 and s=50} & \multicolumn{3}{c|}{s=5}                             & \multicolumn{3}{c|}{s=50}                            \\ \midrule
+       & (R,P,S,T) & degree & connectivity & average score & average neighbors score & clustering & average score & average neighbors score & clustering \\ \midrule
+mean   & (3,1,0,5) & 4.0    & 4.0          & 2.450782      & 1958.569220             & 1.0        & 2.393000      & 1912.748200             & 0.5        \\ \midrule
+std    & (0,0,0,0) & 0.0    & 0.0          & 0.576812      & 287.638191              & 0.0        & 0.590971      & 268.375436              & 0.00       \\ \midrule
+min    & (3,1,0,5) & 4.0    & 4.0          & 0.527500      & 1059.775000             & 1.0        & 0.018750      & 832.675000              & 0.5        \\ \midrule
+max    & (3,1,0,5) & 4.0    & 4.0          & 4.245000      & 2518.700000             & 1.0        & 4.973750      & 2895.425000             & 0.5        \\ \bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Summary table for topology lattice.}
+\label{sum-lattice}
+\end{table}
+
+Finally, for the round robin tournaments 100 tournaments were performed for both
+neighborhood sizes. Parameters such as neighborhood size and neighbor's score
+were not computed for the round robin topology. Because all players
+interact with each other we would not get any additional information. In
+Table~\ref{sum-rr}, we can see the average score the strategies achieved
+in this topology for both sizes. In a neighborhood of a size 50, the mean average
+score is 2.39 with an standard deviation of 0.335. For \(s=5\) we can notice that the values
+are almost equal to those of the lattice topology with \(s=5\).
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+Round Robin & \multicolumn{1}{c|}{s=5} & \multicolumn{1}{c|}{s=50} \\ \hline
+            & average score            & average score             \\ \hline
+mean        & 2.447105                 & 2.393220                  \\ \hline
+std         & 0.576014                 & 0.335552                  \\ \hline
+min         & 0.527500                 & 1.523673                  \\ \hline
+max         & 4.245000                 & 3.339592                  \\ \hline
+\end{tabular}
+\caption{Summary table for round robin topology.}
+\label{sum-rr}
+\end{table}
+
+\newpage
+In this section we gone through the structure of the source code for implementing
+the Spatial Tournament, by adding to the Axelrod-Python library. Furthermore, now
+that the code is usable various experiments were conducted with different topologies
+and number of players participating in each tournament. An overview of the results
+was done but now in the following sections we will go though some more intense
+analysis.
+
+\section{Analyzing the effect of the topologies}
+\label{sub:effects}
+
+For all experiments all 132 strategies of Axelrod-Python library have participated
+at least in a one tournament. Here we will go through the strategies and their
+performance in each experiment. Not all strategies participated in an equal number
+of tournaments. Forcing the strategies to perform in a uniform number is not an
+option as we want to keep the random effect for validation of the results.
+On could argue that by participating in a larger number of tournaments, the
+probability of winning increases as well. Thus, instead of number of winning
+tournaments our analysis will be using the ratio of wins. By wining ratio we mean
+the number of tournaments a strategy first place divided by the number of tournaments
+the strategy competed in. Additionally, the normalized average score each strategy
+achieved will also be studied. Mainly to study the variation, helping us to make
+conclusions on how the neighborhood could affect the strategy.
+Lastly, having all different factors such as degree, neighbors, clustering, scores
+etc building a regression model could point out effects on the results.
+
+\subsection{Winning Ratio}
+\label{sub:winning-ratio}
+
+The winning rations for all three topologies for a neighborhood size equal to
+5 are shown in Figure~\ref{fig:winning-five}. In the experiment where the
+strategies compete on a cycle topology 124 strategies out of the 132 have a
+winning ration greater than zero. The strategies which did not are ALLCorALLD,
+Tricky Cooperator, ThueMorseInverse, Hard Tit For 2 Tats,	SolutionB5, Cycler DDC,
+Prober and BackStabber.
+In the lattice topology as well, 8 strategies do not have a non- zero winning ratio.
+Fortress4, Bully, Tricky Cooperator, Hard Go By Majority: 40, 5 and 10.
+Also Cycler DDC and ALLCorALLD have a similar performance in this topology as well.
+In the round robin tournament various strategies
+ranked last, among them Fortress4 and the whole family of Hard Go By Majority.
+
+On the other hand the strategies with the highest winning ration for each
+topology are as follow :
+\begin{itemize}
+  \item Cycle topology with a winning ratio of 0.56 ZD-GEN-2, followed by Punisher
+        with 0.55
+  \item Lattice topology with a ratio of 0.45 BackStabber and Meta Majority
+        Memory one
+  \item Round Robin topology with a winning ratio of 1 : Raider, Gradual, Limited
+        Retaliate(0.05/20) and BackStabber
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[t]{1\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{circle-participated_wins.pdf}
-    \caption{Number of participations against the number of winning tournaments.}
+        \includegraphics[width=\linewidth]{winners-cycle_five.pdf}
+    \caption{Winning ration cycle s=5.}
     \end{subfigure}
 \hfill
-\hspace*{-4cm}
-    \begin{subfigure}[t]{1.4\textwidth}\centering
+    \begin{subfigure}[t]{1\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{circle-freq-score.pdf}
-    \caption{Frequency of strategies against winning tournaments.}
+        \includegraphics[width=\linewidth]{winners-lattice_five.pdf}
+    \caption{Winning ration lattice s=5.}
     \end{subfigure}
-\caption{(a) Number of participations against the number of winning tournaments.
-         (b) Frequency of strategies against winning tournaments.}
-\label{fig:circle_part-wins}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{winners-rr_five.pdf}
+    \caption{Winning ration round robin s=5.}
+    \end{subfigure}
+\caption{Winning ratio for all three topologies s=5.}
+\label{fig:winning-five}
 \end{figure}
 
 \newpage
 
-Another factor we can investigate is the score of the neighborhood. Each strategy
-belongs in a neighborhood of 50 strategies during the experiment. Plotting
-the average score per turn against the neighbors overall average score. In
-Figure~\ref{fig:circle-scatter-plot}, see an see as expected that each when the
-higher the average score of the neighborhood the lowest the individuals score
-per turn. Thus, a strategy in a neighborhood with winners is performing poorly.
+Same approach for a neighborhood size of 50. In these experiments
+non strategies have a zero ratio. Figure~\ref{fig:winning-fifty}, illustrates the ratios
+for each topology in ascending order. The strategies with the highest winning ratio
+for each respective topologies are as follow :
 
-\begin{figure}[h!]
+\begin{itemize}
+  \item Cycle topology with a winning ratio of 1.3 Raider
+  \item Lattice topology with a winning ratio of 1.3 Raider
+  \item Round Robin topology with a winning ration of 0.833 EvolvedLookerUp
+\end{itemize}
+
+Unexpectedly, strategy Raider seems to have dominated the first place in both
+the cycle and the lattice topology. It achieved a winning ration of 1.3, 0.5
+more than the strategy ranked second. Another surprise in the results is
+that of the round robin topology. Where almost all strategies have a winning ratio
+of zero. Only 14 strategy managed a ratio higher than hero. The strategy with
+the highest on of all was EvolvedLookerUp.
+
+\begin{figure}[H]
 \centering
-    \includegraphics[scale=.12]{circle-scatter-plot.png}
-    \caption{Scatter plot. Average score per turn and average neighborhood score.
-             Circle topology.}
-    \label{fig:circle-scatter-plot}
+    \begin{subfigure}[t]{1\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{winners-cycle_fifty.pdf}
+    \caption{Winning ration cycle s=50.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{winners-lattice_fifty.pdf}
+    \caption{Winning ration lattice s=50.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{winners-rr_fifty.pdf}
+    \caption{Winning ration round robin s=50.}
+    \end{subfigure}
+\caption{Winning ratio for all three topologies s=50.}
+\label{fig:winning-fifty}
 \end{figure}
 
-Finally, a common methodology is building a regression model. We are building
+The strategies with the highest ratios seem to vary depending on the topology
+and the size. Though for \(s=5\) it did not seemed to be an similarity between
+the highest rank strategies for \(s=50\) is dominated by the strategy Raider.
+To further investigate this behavior, the winning ratio was plotted against
+the numbers of participations the strategy had. Figure~\ref{fig:winning-ratio-five}
+illustrates the plots for \(s=5\) and Figure~\ref{fig:winning-ratio-fifty} for \(s=50\).
+
+For \(s=5\) we observe that for the topologies lattice and round robin there is
+no correlation between the participations and the winning ratio. Thus, the
+number of tournaments that a strategy has competed in does not affect its
+the winning percentage. In a cycle topology, there tends to be a positive
+correlation. Thus, we can
+guess that the strategies that were ranked first in these topology had high
+participating rates as well. Cycle seems to have different results and that could
+be because of the degree number.On the contrary, for \(s=5\) topologies cycle and
+lattice show that the
+number of participations have a negative effect on your winning ratio. Thus, playing
+less in these experiments could help you achieve a better outcome. This results
+were unexpected as well. For the round robin topology, that so little strategies
+achieved a winning ratio of non zero, participating seems to now have any effect.
+
+In conclusion, the only strategy that performed well in more than one experiment
+was the strategy Raider. Raider's winning ratio varies from 1 to 1.3 depending
+on the topology. The only experiment it did not perform as well as the others
+was in that of cycle topology size 5, which is the only topology that has a
+positive correlation between winning ratio and participations. And Raider
+only competed 10 times which could be the reason behind it's lack of performance.
+
+\begin{figure}[H]
+\centering
+
+    \begin{subfigure}[t]{1\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{wining-ratio-cycle_five.pdf}
+    \caption{Winning ration against number of participations cycle s=5.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{wining-ratio-lattice_five.pdf}
+    \caption{Winning ration against number of participations lattice s=5.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{wining-ratio-rr_five.pdf}
+    \caption{Winning ration against number of participations round robin s=5.}
+    \end{subfigure}
+\caption{Winning ratio against number of participating in a tournament
+         for all three topologies s=5.}
+\label{fig:winning-ratio-five}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[t]{1\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{wining-ratio-cycle_fifty.pdf}
+    \caption{Winning ration against number of participations cycle s=50.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{wining-ratio-lattice_fifty.pdf}
+    \caption{Winning ration against number of participations lattice s=50.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{wining-ratio-rr_fifty.pdf}
+    \caption{Winning ration against number of participations round robin s=50.}
+    \end{subfigure}
+\caption{Winning ratio against number of participating in a tournament
+             for all three topologies s=50.}
+\label{fig:winning-ratio-fifty}
+\end{figure}
+
+\subsection{Average Scores}
+
+The normalized average score is calculated by diving the average score
+of each strategy with their participating rates. Then the average score
+is plotted against the strategies. As shown in both Figure~\ref{fig:average-score-five}
+and Figure~\ref{fig:average-score-fifty},
+there is variation everywhere. Thus, all strategy had different levels of
+average score for each experiment. Meaning the performance in your experiments
+was not based so much on the strategy itself. Other reasons could be, participating
+rates, neighborhood or it could even be completely randomized. Furthermore,
+the average score is plotted against participations to identify any hidden effects.
+
+%Change box plots to violin plots
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[t]{1\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{box-plot-cycle_five.pdf}
+    \caption{Normalized average score cycle s=5.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{box-plot-lattice_five.pdf}
+    \caption{Normalized average score cycle s=5.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{box-plot-rr_five.pdf}
+    \caption{Normalized average score cycle s=5.}
+    \end{subfigure}
+\caption{Normalized average score for the three topologies s=5.}
+\label{fig:average-score-five}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[t]{1\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{box-plot-cycle_fifty.pdf}
+    \caption{Normalized average score cycle s=50.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{box-plot-lattice_fifty.pdf}
+    \caption{Normalized average score cycle s=50.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{1\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{box-plot-rr_fifty.pdf}
+    \caption{Normalized average score cycle s=50.}
+    \end{subfigure}
+\caption{Normalized average score for the three topologies s=50.}
+\label{fig:average-score-fifty}
+\end{figure}
+
+\subsection{Regression}
+
+Finally, a common methodology when investing factors as predictors is building a
+regression model. We are building
 a model wanting to identify any factor that can explain the average score of a
 strategy. The model is the following :
+
 \begin{equation}\label{regmodel}
-average\_score = degree + average\_neighboorhood\_score + connectivity + frenquency
+\begin{split}
+normalized\textrm{ }average\textrm{ }score = degree + average\textrm{ }neighborhood\textrm{ }score + \\
+clustering + number\textrm{ }of\textrm{ }participations
+\end{split}
 \end{equation}
 
-and the output produced using python's statistic's tools is shown in Figure
-~\ref{fig:circle-regression}. In the output we can see that Degree, average
-neighborhood score and connectivity
-are significant predictors with a p value less than an 0.00. However, the p-value
-of frequency (0.446) is greater than the common alpha level of 0.05, which
-indicates that frequency is not significant. We could foresee this from the undertaken
-analysis. The coefficients of degree and connectivity point out the positivity
-relationship of these variables and the average score. Average scores, again
-something we could foresee, has a negative effect on the average score.
-Additionally, an R square value of zero indicated that the model explains none of
-the variability of the response data around its mean.
+The round robin topology is not included in this subsection analysis. As explained
+above, parameters as average neighborhood score was not monitored. We believe
+that in a round robin topology factors like do not have significant effects.
+Also round robin topology was mainly used for comparison reasons.
+The model was used to each of the experiments for lattice and cycle topologies.
+The results of models are shown below, Table~\ref{regression} :
 
-\begin{figure}[h!]
+\begin{table}[!hbtp]
 \centering
-    \includegraphics[scale=.5]{circle-regression.png}
-    \caption{Regression for circle topology results.}
-    \label{fig:circle-regression}
-\end{figure}
-\newpage
+\begin{adjustbox}{width=1\textwidth}
+\small
+\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|l|l|l|@{}}
+\toprule
+Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{connectivity} & \multicolumn{2}{l|}{participations} & R-square \\ \midrule
+     &          & coef            & p            & coef          & p           & coef                      & p                    & coef             & p              & coef                & p             &          \\ \midrule
+s=5  & Cycle    & 0.028           & 0.00         & 0.0559        & 0.00        & -3.763e-06                & 0.043                & 0.0              & NA             & -0.0016             & 0.00          & 0.457    \\ \midrule
+     & Lattice  & 0.0064          & 0.00         & 0.0256        & 0.00        & 1.079e-05                 & 0.00                 & 0.0064           & 0.00           & -0.0016             & 0.00          & 0.549    \\ \midrule
+s=50 & Cycle    & 0.0025          & 0.00         & 0.0051        & 0.00        & -2.168e-07                & 0.00                 & 0                & NA             & -1.602e-05          & 0.00          & 0.120    \\ \midrule
+     & Lattice  & 0.0006          & 0.00         & 0.0024        & 0.00        & 1.033e-06                 & 0.00                 & 0.0003           & 0.00           & -1.601e-05          & 0.00          & 0.216    \\ \bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Regression results for model ~\ref{regmodel}}
+\label{regression}
+\end{table}
 
-\subsection{Lattice Topology}
-\label{sub:lattice}
+In the output we can see that Degree, average neighborhood score and participations
+are significant predictors for all the experiments with a \(p\) value less than an 0.00.
+Lower than the common alpha level of 0.05
+For the cycle topology, average neighborhood score and participations have a negative
+coefficients. For example a decrease in participations by one would increase
+the average score by 0.0016. Degree on the other hand has a positive coefficient
+and connectivity has no effect at all. Furthermore the model for \(s=5\) has
+a R-square value of 0.457, thus it only explains 0.4 variation of the data which is
+quite insignificant. For \(s=50\) it is even lower at only 0.12.
 
-A similar approach as described above was taken for an experiment where
-the tournaments had a lattice topology. The most frequented winner this time
-was Adapative Pavlov 2006 (APavlov) with 15 wins ~\ref{fig:lattice-winners}.
-Runner ups with 14 wins were Remorseful
-Prober: 0.1, Fool Me Once and Inverse Punisher. APavlov is a strategy that attempts
-to classify its opponent as one of five strategies: Cooperative, ALLD, STFT,
-PavlovD, or Random. Then responds in a manner intended to achieve mutual
-cooperation or to defect against uncooperative opponents.
-None of this strategies ranked first in the circle topology. Furthermore, all
-132 strategies participated at least on in this experiment and all achieved
-first place at least once.
+Finally, for the lattice topology only participations have a negative coefficients.
+Thus the only factor with a reverse influence on average score in the lattice topology.
+Connectivity is an significant predictor as well with a coefficient 0.0064 and
+0.0003 respectively. Though the R-square value is still significant small,
+with a value 0.547 and 0.216 respectively.
+Even if there are predictors with a significant \(p\) value, the overall
+performance of the model does not give us enough evidence. Thus no validate
+conclusion can be made for the model.
 
-\begin{figure}[h!]
-  \hspace*{-2cm}
-    \includegraphics[scale=.15]{lattice-winners.pdf}
-    \caption{Number of winning tournaments by strategy in a lattice topology.}
-    \label{fig:lattice-winners}
-\end{figure}
+%test winning ratio
 
-\newpage
-
-An analysis to identify and factor for these results was performed.
-The number of participations of each strategy, the ranks and average score
-achieved by them were analyzed one again. Because the neighborhood are the same
-for both topologies and what changes is only the degree, the plot for number of
-participations should remain the same as shown in Figure~\ref{fig:circle_freq}.
-Furthermore, the number of wins against number of participations are plot again
-as well as the frequency against the winning tournaments. In the Participated
-plot, a positive linear relation could exists but in the frequency plot
-we can see no significant variation to the mean.
-
-\newpage
-
-\begin{figure}[h!]
-\hspace*{-2cm}
-    \begin{subfigure}[t]{1.2\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{lattice-participated_wins.pdf}
-    \caption{Number of participations against the number of winning tournaments.}
-    \end{subfigure}
-\hfill
-\hspace*{-2cm}
-    \begin{subfigure}[t]{1.2\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{lattice-freq-score.pdf}
-    \caption{Frequency of strategies against winning tournaments.}
-    \end{subfigure}
-\caption{(a) Number of participations against the number of winning tournaments.
-         (b) Frequency of strategies against winning tournaments. In a lattice
-         topology.}
-\label{fig:lattice-part-wins}
-\end{figure}
-
-\newpage
-
-Moreover, a scatter plot to identify relationship with the average neighborhood
-score is produced as well. Compared to our previous founding this plot shows a positive
-correlation between the two factors~\ref{fig:lattice-scatter-plot}. Meaning, that you are more
-likely to win
-if you are in a winning neighborhood. This could be an affect of the topology.
-More nodes interact with each other in a lattice and can create cluster more easy
-than in circle topology.
-
-\begin{figure}[h!]
-\centering
-    \includegraphics[scale=.12]{lattice-lines.png}
-    \caption{Scatter plot. Average score per turn and average neighborhood score.
-              Lattice topology}
-    \label{fig:lattice-scatter-plot}
-\end{figure}
-
-To test our hypothesis we will again create a regression model, same as
-in ~\ref{regmodel}. The results are shown here~\ref{fig:lattice-regression}.
-Once more, degree, average neighborhood score and connectivity are significant
-predictors with a p-value less than 0.00. Frequency, in the lattice topology
-does not seem to have any effect either. What worth to point out is that
-now all the significant predictors have a positive effect on the average score.
-Finally, the R -square value indicates that only explains 3 \% of the variability
-of the data around its mean.
-
-\begin{figure}[h!]
-\centering
-    \includegraphics[scale=.5]{reg-lattice.png}
-    \caption{Regression for circle topology results.}
-    \label{fig:lattice-regression}
-\end{figure}
-\newpage
-
-\subsection{Round Robin Tournament}
-\label{sub:robin}
-
-Once the experiment with the both topology was performed we wanted to compare
-our results further and make an conclusion on the winning strategies. In order
-to achieve that it was decided to run an experiment with the same 100 neighborhoods.
-In time they strategies would compete on a round robin topology. Again the
-number of turns was set to 200 but the repetitions to 100. All 132 strategies
-compete at least once but only 72 of them achieved first place. In Figure
-the results of this experiment are shown.
-
-to be continuous ...
-
-\subsection{Comparing Results}
+\section{Summary}
 
 In this section we will make a summary of all the previous analysis that was made
-in~\ref{sub:circle, sub:lattice, sub:robin}. Furthermore, we will to compare
-the winning strategies of each topology and identify any further relationship
-between the performance of a strategy and the topology. From the analysis that
-was performed in~\ref{sub:circle}, the winner came out to be 3 strategies that
-performed the same, Soft Joss: 0.9, Fortress3, Nice Average Copier.
-These strategies have not a similar characteristics like cooperating rating.
+in~\ref{sub:effects}. Furthermore, compare the results produced by all
+six experiments. The strategies which managed to get a high winning ratio and
+identify any further relationship between the performance of a strategy and the
+topology.
+
+From the analysis that was performed in~\ref{sub:winning-ratio}, the wining ratio
+for each strategy for all 6 experiments indicated the following :
+\begin{itemize}
+  \item For the cycle topology of \(s=5\) ZD-GEN-2 had the highest winning ratio
+        and for the lattice BackStabber and Meta Majority Memory one
+  \item For round robin s=50, most of the strategies finished the experiment
+        with winning ratio of zero.
+  \item Raider seem to have successful performance in both lattice and cycle \(s=50\)
+        and in round robin \(s=5\).
+        robin
+\end{itemize}
+
 An attempt to find any significant reason as to why these strategies outperform
-the rest return zero findings. Factors such as the connectivity of the graph,
-the average score of the neighbors, the frequency that each strategy participated
-and the degree of the graph had zero or non strongly significant effects.
-In the circle topology the neighborhood score has a negative effect on the performance
-of the strategy and the degree and connectivity of the graph a positive one.
-
-Furthermore, the same approach was taken for~\ref{sub:lattice}. The winning
-strategy of this experiment was announced to be Adapative Pavlov 2006, which
-outperformed all the other strategies. Though the results as to why APavlov
-did not differ much from the circle experiment. The were non strongly significant
-factors identified from the analysis and the regression model. A difference
-that was observed is that in the lattice example the average score of your
-neighbors seem to have a positive effect on you. This is due to the structure of
-the topology. The last experiment that was held was in~\ref{sub:robin}, where
-the neighborhoods competed in an all out round robin tournament.
-
-An illustration of the performance in all three topology for each strategy can
-been seen in Figure.
-
+the rest returned the findings below :
+\begin{itemize}
+  \item Participating rate has a negative effect on the winning ratio for \(s=50\)
+        in lattice and cycle topology and a positive in cycle for \(s=5\)
+  \item There is high variation is the average score of each strategy for all
+        experiments
+  \item Regression model for the normalized average score did not return any
+        significant results.
+\end{itemize}
 
 In conclusion, the network topologies used in these examples seem to have be
-simple and no real results were able to emerge. Moving forwards experiments
-with more complicated and random topologies will be performed with all the 132
-strategies of the Axelrod-Python library.
+simple and no real results were able to emerge. There were quite a few surprises.
+Raider outperforming so many other strategies, the negative effect of participation
+and winning ration. Moving forwards new experiments a list of recommended
+additions would be :
+\begin{itemize}
+  \item More complicated and random topologies
+  \item Different neighborhood sizes. Probably randomize the size as well
+  \item To be able to compare the strategies that ranked high we will keep track
+        of their cooperation rate. Thus we will be able to classify them
+        on how cooperative they are.
+\end{itemize}
