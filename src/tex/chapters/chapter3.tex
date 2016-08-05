@@ -4,20 +4,26 @@
 \section{Introduction}
 In this chapter we will discuss the source code committed to the
 Axelrod-Python library to implement spatial topology. In addition, some
+% I think the main emphasis of this chapter is now these initial results, it
+% might be worth making more of the contribution though... Something to think
+% about...
 initial experiments and results will be discussed. These experiments will be
-performed using three chosen topologies and two different sizes of competitors.
+performed using three chosen topologies and two different sizes of tournaments.
 
 \subsection{Code Discussion}
 
 As analyzed in \autoref{chap:Two}, the Axelrod library uses a
-\texttt{Tournament()} class to run any given tournament. \texttt{Tournament()}
-class itself calls upon another class the \texttt{Match Generator()} which is
-responsible to generate the matches.
-In a round robin case, there is a \texttt{RoundRobinTournament()} class
-and a \texttt{RoundRobinMatches()} class that generates matches for each player
-against the rest. The parameters and the index of the pair are push to it
-by the \texttt{build single match()}. A generator that lives within the class matches.
+\texttt{Tournament} class to run any given tournament. The \texttt{Tournament}
+class itself calls upon another class the \texttt{Match Generator} which is
+responsible for generating matches.
+In the case of a standard round robin, there is a \texttt{RoundRobinTournament} class
+and a \texttt{RoundRobinMatches} class that generates matche parameters for each 2 player
+tuple. The parameters and the indices of the pair are used
+by the \texttt{build\_single\_match} method. A generator that lives within the
+match generator class.
 For a round robin tournament the structure of the code is illustrated in~\ref{fig:rbr}.
+% Use more verbose labels than rbr (when you're rereading this it'll be
+% confusing
 
 \begin{figure}
 \centering
@@ -35,18 +41,18 @@ For a round robin tournament the structure of the code is illustrated in~\ref{fi
   \label{fig:rbr}
 \end{figure}
 
-In order for us to implement a Spatial topology tournament we need to follow a
-similar approach. Firstly a new \texttt{Match Generator()} class was written.
-The \texttt{SpatialMatches()} is a class that generates spatially-structured
-matches. In these matches, players interact only with their neighbors rather
-than the entire population. According to \cite{Archdeacon1996} graphs can be
-represents in many different ways, one of which is by lists of edges.
-Due to a various number of python packages that are used for graph manipulation,
-we want to keep a more generalized representation of the edges. Thus they will
-be passed as a list argument and \texttt{SpatialMatches()} will only create matches
-between the ending nodes of these edges. Finally the class \texttt{SpatialTournament()}
-runs the spatial tournament. A representation of the code structure now, that
-the spatial tournaments have been added, can be seen in Figure~\ref{fig:cds}
+In order for to implement a Spatial topology tournament a similar approach is
+needed. Firstly a new \texttt{Match Generator} class was written.  The
+\texttt{SpatialMatches} is a class that generates spatially-structured matches.
+In these matches, players interact only with their neighbors rather than the
+entire population. According to \cite{Archdeacon1996} graphs can be represented
+in many different ways, one of which is by lists of edges.  Due to a various
+number of python packages that are used for graph manipulation, we want to keep
+a more generalized representation of the edges. Thus they will be passed as a
+list argument and \texttt{SpatialMatches} will only create matches between the
+ending nodes of these edges. Finally the class \texttt{SpatialTournament} runs
+the spatial tournament. A representation of the code structure now, that the
+spatial tournaments have been added, can be seen in Figure~\ref{fig:cds}
 
 \begin{figure}
 \centering
@@ -72,21 +78,42 @@ In Axelrod library all the components are automatically tested using a
 combination of unit, property and integration tests (using \url{travis-ci.org}).
 Once a new feature is added to the library, corresponding test must also be written.
 The test are used to ensure compatibility and ensure that we get the expected
-results. The tests for the \texttt{SpatialTournament()} can be found here :
+results. The tests for the \texttt{SpatialTournament} can be found here :
 \url{https://github.com/Axelrod-Python/Axelrod/blob/master/axelrod/tests/unit/test_tournament.py}
-under the class \texttt{TestSpatialTournament()}. Anything that was applied to the
-library at this point was made possible by using GitHub, a web-based Git repository
-hosting service \url{https://github.com/}.
+%: No include them in the text here. Explain what unittesting is. Geraint might
+%have some helpful references for this.
+under the class \texttt{TestSpatialTournament}.
 
+% Mention version control and discuss what that is as a technique for software
+% development.
+
+% Explain that the code was peer reviewed. Get some screenshots of comments from
+% Marc and Owen.
+
+% Cite the Axelrod paper and show how your contribution has amongst other things
+% resulted in a publication.
+
+% Introduce the next section (just a sentence).
 
 \subsection{Experiment and the three topologies}
 
-In this chapter we will be running some simple examples of spatial topology and
-analyze the behavior of the strategies and the results. This will help us further
-down to tackle the problem of how topology can affect the outcome of an IPD
-competition and which strategies tend to perform well. Some of the most common
-networks, based on literature, are a square lattice with four degrees
-and a cycle.
+% Throughout the English needs a lot of work. Read over it again and again. I
+% will fix and point out what I can but I won't have time to fix everything and
+% I also want to concentrate on the science.
+
+In this chapter three simple spatial topologies are considered, all with
+deterministic neighbourhood size. These will be used to begin to understand how
+topology can affect the outcome of tournaments
+and which strategies tend to perform well. The three topologies considered are
+well represented in the literature \cite{?}:
+
+\begin{itemize}
+    \item A cyclic network: the neighbourhood size is 2. % include specific references
+    \item A periodic lattice: the neighbourhood size is 4. % include specific references
+    \item A complete graph: the neighbourhood size if \(N-1\) (where \(N\) is
+        the number of total strategies. This corresponds to a round robin
+        tournament. % References
+\end{itemize}
 
 In a cycle or circular network consist of a single cycle. It has
 equal number of edges and nodes, and each node has degree 2. In~\cite{Szabo2007}
@@ -99,8 +126,10 @@ round robin. A round round topology is nothing else but a complete
 graph were every pair of distinct node is connected by a unique edge.
 Figure~\ref{fig:networks}, shows an example of all the aforementioned topologies.
 Round robin will be mainly used for comparison reasons.
+% The English needs a lot of work in the above paragraph. I also think it could
+% be condensed in to my bullet points.
 
-\begin{figure}[h]
+\begin{figure}[!hbtp]  % Have a read of http://drvinceknight.blogspot.co.uk/2013/12/explaining-floats-in-latex.html
 \centering
     \begin{subfigure}[t]{0.45\textwidth}
     \centering
@@ -125,34 +154,64 @@ Round robin will be mainly used for comparison reasons.
 
 Thus, we will be performing our experiment with three different topologies, that
 of a cycle, a lattice and a complete graph.
+% Try and avoid 'we', 'I'. So this sentence would become: The experiments are
+% performed on three different topologies: a cycle, a lattice and a complete
+% graph. BUT in the particular case it's repeating what was said above so
+% perhaps just lose this sentence.
+% I'm going to ignore those for the rest of this so read through it all again
+% and try and reword.
 For each topology, a fixed size of strategies out of the 132 of Axelrod-Python
 library are chosen randomly. These strategies create a neighborhood.
 The size of these neighborhoods will range. Let \( s\) be the size of
+% This isn't quite correct: we talk about a neighbourhood of node, here you're
+% taking about the whole set of nodes.
 the neighborhood, where \(s \textrm{ }\{ s=5 \textrm{ and } s=50 \}\).
+% There is no need for this shorthand notation. I would get rid of \(s\). If you
+% wanted to you could talk about \(S_t\) as the set of strategies for a given
+% random tournament and then the size would be \(|S_t|\) but I'm not sure that's
+% necessary.
 Subsequently, the strategies are allocated on the graph, based
 on the topology, and they compete with their neighbors on a IPD tournament.
-For the circular and lattice topology, once the first game is complete,
-the strategies are randomly shuffled and allocated on the graph again.
+For the cyclic and lattice topology, once the first game is complete,
+the strategies are randomly shuffled and allocated on the graph again. This aims
+to ensure that their particular position on the network is taken in to account.
 Another tournament is performed this time with different neighbors of a
-neighborhood interacting. This is repeated 10 times.
+neighborhood interacting.
+% I do not know what this sentence is trying to say.
+This is repeated 10 times.
 The selection of strategies and creation of neighborhoods is repeated 100 times
 and each tournament of an IPD consists of 200 turns and 10 repetitions.
+% I think you should draw a picture of this or perhaps write some pseudo code
+% (kind of like the things we've been writing on my whiteboard):
+% http://tex.stackexchange.com/questions/163768/write-pseudo-code-in-latex
 
 By setting an axelrod-seed~\footnote{A function used by the library, which sets
 both seeds for Numpy and the standard library.In general, seeds allow us
 reproduce the same players and tournaments.}, the 100 neighborhoods for the
 topologies are the same, of course their allocation to the graphs differs because
 of the random shuffle.
+% You're going in to to many details here: the reader could potentially have no
+% idea what Numpy is. If you write this out with pseudo code you can simply say
+% that you're looping over seeds and then include some nice reference/comment
+% about why you're doing that.
 
 For the experiments to run we have created three simple scripts, one for every
 given topology. This code allow us to generate random
 neighborhoods and pass them as nodes on their respective graphs. The tournaments
-then are played and produce results. We want to keep track of some given
+then are played and produce results.
+% The above should be replaced by saying that you're running this on a
+% supercomputer. The fact that they are scripts is not important, and the other
+% details have been said before.
+
+We want to keep track of some given
 parameters and to achieve that, the pandas python library is used. We create
 a data frame and it allow us to pass all the new values of the parameters that
 are produce and afterwards export it to a csv file. Some parameters needed for our
 analysis were not given by the Axelrod-Python library, thus a few simple
 functions for neighbors and their score were also written.
+% The English needs to be fixed here. I think you can have a general paragraph
+% about libraries used for data preparation and analysis: pandas, jupyter and
+% matplotlib used for analysis and networkx used to generate networks.
 
 The Axelrod tournaments themselves make usage of match memory and CPU power and
 by adding
@@ -161,9 +220,20 @@ reason all the tournaments and their results we are run in Raven. Raven is the
 master computer of Cardiff University. All the scripts and pbs file, for
 communicating with Raven, can be found in my personal GitHub account
 \url{https://github.com/Nikoleta-v3}.
+% Yup this is good, see my previous comment. Also: not 'my personal...', can be
+% found on github at <url>.
+
 
 % I have to create a repository with all the files for the dissertation and clean
 % thing up a little bit. Then I will add the new link here. and a message 'Like my page :D'
+
+% Haha: good idea :) We'll also talk about using something like zenodo.org to
+% 'freeze' your data.
+
+% Introduce the next section but also map out what is in each coming section:
+% "In the next section we will ... before in Sections blablbla doing
+% blablabla... and finally summarising and offering further avenues of research
+% in Section blablabla
 
 \subsection{Initial Analysis}
 
