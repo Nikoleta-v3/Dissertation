@@ -205,6 +205,7 @@ moment the Axelrod library consists of 131 strategies.Can be found in the Append
 As an example we can see in Figure  the source code for the
 famous strategy Tit for Tat.
 
+\begin{listing}[H]
 \usemintedstyle{tango}
 \begin{minted}
 [
@@ -249,8 +250,8 @@ class TitForTat(Player):
             return D
         return C
 \end{minted}
-%\caption{Tit for Tat source code.}
-
+\caption{Tit for Tat source code.}
+\end{listing}
 
 Additionally, tournament is a class responsible for coordinating the play of
 generated matches. It achieves that by calling a match generator class which
