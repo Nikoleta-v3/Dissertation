@@ -2,10 +2,13 @@
 \label{chap:Three}
 
 \section{Introduction}
-In this chapter we will discuss some initial experiments and the result.
+In this chapter we will discuss some initial experiments and their results.
 These experiments will be performed using three chosen topologies and two
-different sizes of tournaments. In addition, the source code committed to the
-Axelrod-Python library to implement the spatial topology will be discussed.
+different sizes of tournaments. Emphasis will be given in the analysis of the
+results and identification of strategies behaviors. In addition, the source code
+committed to the Axelrod-Python library to implement the spatial topology will
+be discussed. As well as two important aspects of developing
+test driven development and version control.
 
 \subsection{Code Discussion}
 
@@ -72,12 +75,19 @@ Figure~\ref{fig:spatial_structure}
   \label{fig:spatial_structure}
 \end{figure}
 
-In Axelrod library all the components are automatically tested using a
-combination of unit, property and integration tests (using \url{travis-ci.org}).
-Once a new feature is added to the library, corresponding test must also be written.
-The test are used to ensure compatibility and ensure that we get the expected
-results. The tests for the \texttt{SpatialTournament} can be found below
-~\ref{lst:test_spatial_tournament}.
+The Axelrod-Python library is a Test Driven Development (TDD) software.
+All the components are automatically tested using a combination of unit,
+property and integration tests (using \url{travis-ci.org}).
+Once a new feature is added to the library, corresponding test must also be
+written. The test are used to ensure compatibility and ensure that we get the
+expected results. In~\cite{Developer} Percival explains from his personal
+experiences the importance of TDD and having tests for every single line of code.
+For the spatial tournament
+new unit test have been added. Unit tests are used to invoke a unit of work and
+check that the behavior is expected. A unit of work can be any single logical
+functional use in the system. In summary, unit tests help to write clean and bug
+free code~\cite{Developer}. The unit tests for the \texttt{SpatialTournament} can
+be found below ~\ref{lst:test_spatial_tournament}.
 
 \begin{listing}[H]
 \usemintedstyle{tango}
@@ -124,15 +134,15 @@ class TestSpatialTournament(unittest.TestCase):
 \end{minted}
 \caption{Source code for TestSpatialTournament class, which is for testing the
          spatial tournaments.}
-\label{lst:test_spatial_tournament}
+\label{lst:test_spatial_complete_tournament}
 \end{listing}
 
 \texttt{TestSpatialTournament()} it a simple class for a unittests written for
-the spatial tournaments. In~\ref{lst:test_spatial_tournament}, we are testing
-that the values of the attributes were passed correctly. Also that the score
-is equal to what we anticipated. In~\ref{}, another test is shown. Here we are
-testing that the results of a complete spatial tournament are equal to those
-of a round robin one.
+the spatial tournaments. In~\ref{lst:test_spatial_tournament}, whether
+the values of the attributes were passed correctly is being tested. Also whether
+the scores are as anticipated. In~\ref{lst:test_spatial_complete_tournament},
+another test is shown. Here the results of a complete spatial tournament are
+compared to those of a round robin one.
 
 \begin{listing}[H]
 \usemintedstyle{tango}
@@ -149,13 +159,11 @@ linenos
 @given(strategies=strategy_lists(strategies=deterministic_strategies,
                                      min_size=2, max_size=2),
            turns=integers(min_value=1, max_value=20))
-
     def test_complete_tournament(self, strategies, turns):
         """
         A test to check that a spatial tournament on the complete multigraph
         gives the same results as the round robin.
         """
-
         players = [s() for s in strategies]
         # edges
         edges=[]
@@ -172,41 +180,65 @@ linenos
         self.assertEqual(results.ranked_names, spatial_results.ranked_names)
         self.assertEqual(results.nplayers, spatial_results.nplayers)
         self.assertEqual(results.nrepetitions, spatial_results.nrepetitions)
-        self.assertEqual(results.payoff_diffs_means, spatial_results.payoff_diffs_means)
-        self.assertEqual(results.payoff_matrix, spatial_results.payoff_matrix)
-        self.assertEqual(results.payoff_stddevs, spatial_results.payoff_stddevs)
+        self.assertEqual(results.payoff_diffs_means,
+                                         spatial_results.payoff_diffs_means)
+        self.assertEqual(results.payoff_matrix,
+                                              spatial_results.payoff_matrix)
+        self.assertEqual(results.payoff_stddevs,
+                                             spatial_results.payoff_stddevs)
         self.assertEqual(results.payoffs, spatial_results.payoffs)
-        self.assertEqual(results.cooperating_rating, spatial_results.cooperating_rating)
+        self.assertEqual(results.cooperating_rating,
+                                         spatial_results.cooperating_rating)
         self.assertEqual(results.cooperation, spatial_results.cooperation)
-        self.assertEqual(results.normalised_cooperation, spatial_results.normalised_cooperation)
-        self.assertEqual(results.normalised_scores, spatial_results.normalised_scores)
-        self.assertEqual(results.good_partner_matrix, spatial_results.good_partner_matrix)
-        self.assertEqual(results.good_partner_rating, spatial_results.good_partner_rating)
+        self.assertEqual(results.normalised_cooperation,
+                                     spatial_results.normalised_cooperation)
+        self.assertEqual(results.normalised_scores,
+                                          spatial_results.normalised_scores)
+        self.assertEqual(results.good_partner_matrix,
+                                        spatial_results.good_partner_matrix)
+        self.assertEqual(results.good_partner_rating,
+                                        spatial_results.good_partner_rating)
 \end{minted}
 \caption{Source code for testing a complete spatial tournament.}
 \label{lst:test_spatial_tournament}
 \end{listing}
 
-%: No include them in the text here. Explain what unittesting is. Geraint might
-%have some helpful references for this.
-under the class \texttt{TestSpatialTournament}.
+The source code for the spatial tournaments and the tests can be found
+in the Axelrod-Python library. The library is available at
+\url{https://github.com/Axelrod-Python},
+which is a hosted git repository. This introduce us to another important aspect
+of software development, the version control system (VCS). \cite{Developer} stated
+that TDD and VS go hand in hand. VCS, is a tool that manages and tracks different
+versions of software~\cite{Vogel2014}. Software code is expanding continuously,
+thus it can be an enormous
+complicated system. Lines of codes are deleted, implementing errors occur and
+programmers forget. Thus, having the ability to go back to any given point can be
+very important. Git is a specific powerful and famous VSC. It was
+invented by Linus Torvalds and was span to to life in April 2005.
 
-% Mention version control and discuss what that is as a technique for software
-% development.
+The Axelrod-Python library is a project which includes numerous contributors.
+Any given addition to the
+library has to be submitted by a pull request. Each submission is then
+reviewed by the members. This applies to the spatial tournament as well.
+In Figure~ conversation containing comments and corrections can be seen.
 
-% Explain that the code was peer reviewed. Get some screenshots of comments from
-% Marc and Owen.
+%  screenshots, you said screenshots. I am keeping the proof here.
 
-% Cite the Axelrod paper and show how your contribution has amongst other things
-% resulted in a publication.
+%  add screenshots from home.
 
-% Introduce the next section (just a sentence).
+O.Campbell and M.Harper are the main contributors of the library, alongside V.Knight.
+Their work, in company of other contributors included myself, had an impact on
+the Game Theory society. The project involves various research topics of
+the IPD, such as Noise tournaments, Probabilistic ending and Spatial tournaments.
+Strategies from different works and authors and the capability
+of reproducing any of these given tournaments. A publication was achieved earlier
+in 2016~\cite{Knight2016}.
+
+In the next section an overview and a summary of the initial experiments
+performed is given.
+
 
 \subsection{Experiment and the three topologies}
-
-% Throughout the English needs a lot of work. Read over it again and again. I
-% will fix and point out what I can but I won't have time to fix everything and
-% I also want to concentrate on the science.
 
 In this chapter three simple spatial topologies are considered, all with
 deterministic neighbourhood size. These will be used to begin to understand how
