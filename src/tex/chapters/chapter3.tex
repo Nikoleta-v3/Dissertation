@@ -241,7 +241,7 @@ performed is given.
 \subsection{Experiment and the three topologies}
 
 In this chapter three simple spatial topologies are considered, all with
-deterministic neighbourhood size. These will be used to begin to understand how
+deterministic neighborhood size. These will be used to begin to understand how
 topology can affect the outcome of tournaments
 and which strategies tend to perform well. The three topologies considered are
 well represented in the literature \cite{?}:
@@ -254,35 +254,23 @@ well represented in the literature \cite{?}:
         tournament. % References
 \end{itemize}
 
-In a cycle or circular network consist of a single cycle. It has
-equal number of edges and nodes, and each node has degree 2. In~\cite{Szabo2007}
-Szabo et all stated that "For spatial models the fixed interaction network is
-defined by the sites of a lattice and the edges between those pair whose distance
-does not exceed a given value."  The most frequently used structure, and the one
-used in this experiment, is the square lattice with von Neumann neighborhood.
-Also the most common topology used, again based on literature, is that of a
-round robin. A round round topology is nothing else but a complete
-graph were every pair of distinct node is connected by a unique edge.
 Figure~\ref{fig:networks}, shows an example of all the aforementioned topologies.
-Round robin will be mainly used for comparison reasons.
-% The English needs a lot of work in the above paragraph. I also think it could
-% be condensed in to my bullet points.
 
-\begin{figure}[!hbtp]  % Have a read of http://drvinceknight.blogspot.co.uk/2013/12/explaining-floats-in-latex.html
+\begin{figure}[h]  % http://drvinceknight.blogspot.co.uk/2013/12/explaining-floats-in-latex.html
 \centering
-    \begin{subfigure}[t]{0.45\textwidth}
+    \begin{subfigure}[h]{0.45\textwidth}
     \centering
         \includegraphics[width=\linewidth]{cycle_network.png}
-    \caption{Cycle network.}
+    \caption{Cyclic network.}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{0.52\textwidth}\centering
+    \begin{subfigure}[h]{0.52\textwidth}\centering
     \centering
         \input{chapters/periodic_lattice.tex}
-    \caption{Square lattice with degree 4 network.}
+    \caption{Periodic lattice with degree 4 network.}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{0.52\textwidth}\centering
+    \begin{subfigure}[h]{0.52\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{complete-network.png}
     \caption{A complete or round robin network.}
@@ -291,77 +279,69 @@ Round robin will be mainly used for comparison reasons.
 \label{fig:networks}
 \end{figure}
 
-Thus, we will be performing our experiment with three different topologies, that
-of a cycle, a lattice and a complete graph.
-% Try and avoid 'we', 'I'. So this sentence would become: The experiments are
-% performed on three different topologies: a cycle, a lattice and a complete
-% graph. BUT in the particular case it's repeating what was said above so
-% perhaps just lose this sentence.
-% I'm going to ignore those for the rest of this so read through it all again
-% and try and reword.
-For each topology, a fixed size of strategies out of the 132 of Axelrod-Python
-library are chosen randomly. These strategies create a neighborhood.
-The size of these neighborhoods will range. Let \( s\) be the size of
-% This isn't quite correct: we talk about a neighbourhood of node, here you're
-% taking about the whole set of nodes.
-the neighborhood, where \(s \textrm{ }\{ s=5 \textrm{ and } s=50 \}\).
-% There is no need for this shorthand notation. I would get rid of \(s\). If you
-% wanted to you could talk about \(S_t\) as the set of strategies for a given
-% random tournament and then the size would be \(|S_t|\) but I'm not sure that's
-% necessary.
+For each topology, a fixed number of strategies out of the 132 of Axelrod-Python
+library are chosen randomly. The number of strategies define the size of the
+tournament. In the experiments the tournament size can be either five or fifty.
+
 Subsequently, the strategies are allocated on the graph, based
 on the topology, and they compete with their neighbors on a IPD tournament.
 For the cyclic and lattice topology, once the first game is complete,
 the strategies are randomly shuffled and allocated on the graph again. This aims
 to ensure that their particular position on the network is taken in to account.
-Another tournament is performed this time with different neighbors of a
-neighborhood interacting.
-% I do not know what this sentence is trying to say.
-This is repeated 10 times.
-The selection of strategies and creation of neighborhoods is repeated 100 times
+This shuffle is repeated 10 times. The selection of strategies is repeated 100 times
 and each tournament of an IPD consists of 200 turns and 10 repetitions.
+Listing~ illustrates these rules.
+
+\begin{listing}[H]
+\usemintedstyle{tango}
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightBlue,
+fontsize=\footnotesize,
+linenos
+]
+{python}
+
+\end{minted}
+\caption{Source code for TestSpatialTournament class, which is for testing the
+         spatial tournaments.}
+\label{lst:test_spatial_complete_tournament}
+\end{listing}
+
 % I think you should draw a picture of this or perhaps write some pseudo code
 % (kind of like the things we've been writing on my whiteboard):
 % http://tex.stackexchange.com/questions/163768/write-pseudo-code-in-latex
 
-By setting an axelrod-seed~\footnote{A function used by the library, which sets
-both seeds for Numpy and the standard library.In general, seeds allow us
-reproduce the same players and tournaments.}, the 100 neighborhoods for the
-topologies are the same, of course their allocation to the graphs differs because
-of the random shuffle.
+% seeds allow us
+% reproduce the same players and tournaments.},
 % You're going in to to many details here: the reader could potentially have no
 % idea what Numpy is. If you write this out with pseudo code you can simply say
 % that you're looping over seeds and then include some nice reference/comment
 % about why you're doing that.
 
-For the experiments to run we have created three simple scripts, one for every
-given topology. This code allow us to generate random
-neighborhoods and pass them as nodes on their respective graphs. The tournaments
-then are played and produce results.
-% The above should be replaced by saying that you're running this on a
-% supercomputer. The fact that they are scripts is not important, and the other
-% details have been said before.
-
-We want to keep track of some given
-parameters and to achieve that, the pandas python library is used. We create
-a data frame and it allow us to pass all the new values of the parameters that
-are produce and afterwards export it to a csv file. Some parameters needed for our
-analysis were not given by the Axelrod-Python library, thus a few simple
-functions for neighbors and their score were also written.
-% The English needs to be fixed here. I think you can have a general paragraph
-% about libraries used for data preparation and analysis: pandas, jupyter and
-% matplotlib used for analysis and networkx used to generate networks.
-
 The Axelrod tournaments themselves make usage of match memory and CPU power and
-by adding
-these additional rules to the tournaments was only increasing in usage. For that
-reason all the tournaments and their results we are run in Raven. Raven is the
-master computer of Cardiff University. All the scripts and pbs file, for
-communicating with Raven, can be found in my personal GitHub account
+by adding these additional rules to the tournaments was only increasing in usage.
+For that reason all the tournaments and their results are runned in Raven.
+Raven is the super computer of Cardiff University. All the scripts and pbs file, for
+communicating with Raven, can be found on github :
 \url{https://github.com/Nikoleta-v3}.
-% Yup this is good, see my previous comment. Also: not 'my personal...', can be
-% found on github at <url>.
 
+For the data preparations and analysis the following libraries have been used:
+\begin{multicols}{2}
+  \begin{itemize}
+    \item Numpy 1.11.1:
+    \item Pandas 0.18.1:
+    \item Matplotlib 1.5.1:
+    \item Statsmodels 0.6.1:
+    \item Networkx 1.11:
+  \end{itemize}
+\end{multicols}
+
+Furthermore, some simple functions for measures such as neighborhood scores
+were written.
 
 % I have to create a repository with all the files for the dissertation and clean
 % thing up a little bit. Then I will add the new link here. and a message 'Like my page :D'
@@ -369,44 +349,65 @@ communicating with Raven, can be found in my personal GitHub account
 % Haha: good idea :) We'll also talk about using something like zenodo.org to
 % 'freeze' your data. We should talk about this.
 
-% Introduce the next section but also map out what is in each coming section:
-% "In the next section we will ... before in Sections blablbla doing
-% blablabla... and finally summarising and offering further avenues of research
-% in Section blablabla
+In the next section, an initial analysis of the experiments aforementioned
+is held. Moving on in section~\ref{sub:effects} to a more intense analysis. The
+concept of winning ratio and normalized average score are introduced. Finally,
+summarizing the results in~\ref{sub:summary}, offering further avenues  of research.
+
 
 \subsection{Initial Analysis}
 
 For each of the tournament run, the following parameters are recorded:
 
-\begin{itemize}
-    \item List them all here: bullet points will be easier to read.
-\end{itemize}
+\begin{multicols}{3}
+  \begin{itemize}
+    \item players list
+    \item seed
+    \item parameter
+    \item player index
+    \item player name
+    \item cooperating ratio
+    \item degree
+    \item neighbors
+    \item neighborhood size
+    \item ranking
+    \item scores
+    \item normalized scores
+    \item average score
+    \item R
+    \item P
+    \item S
+    \item T
+    \item connectivity
+    \item clustering
+    \item cliques
+    \item neighbors scores
+    \item normalized neighbors score
+    \item normalized average neighborhood score
+  \end{itemize}
+\end{multicols}
 
 This section will describe the findings of a basic statistical analysis of these
 records.
 
-For the spatial tournaments, for both neighborhood sizes (5 and 50)
-% Not neighbourood sizes: tournament sizes. Also, we have so far used the
+For the spatial tournaments, for both tournament sizes (5 and 50)
+5Also, we have so far used the
 % terminology that the complete graph is a spatial tournament (just a boring
 % topology so this needs to be reworded to fit with that).
 we achieved 1000 tournaments. Containing 100 different strategy sets, where each
 the exists for 10 tournaments.
 
-Moreover, for the cycle experiment we can see in Table~\ref{sum-cicle}, that degree is
+Moreover, for the cyclic experiment we can see in Table~\ref{sum-cicle}, that degree is
 fixed at 2 and the payoffs are fixed to \(R=3, P=1, S=0, T=5\) for both
-\( s=5\textrm{ and } s=50 \). For tournaments of size 5, the mean average score
-% Don't like s, there is no need for it (you're not carrying out algebraic
-% manipulations with it). Fix this throughout.
+tournament sizes. For tournaments of size 5, the mean average score
 is 2.45, with a minimum value of 0.0175 and a maximum value of 4.95. The
 mean average score of the neighbors score is 980.95 with a standard deviation
 of 219.87. Moreover the minimum value is set at 141.55 and the maximum at
-1756.50. The mean average score does not seem to differ for \(s=5\),
+1756.50. The mean average score does not seem to differ for size equal 5,
 which is at 2.39. Though, in the experiment with a size of fifty a strategy
 achieved a score of 0. Additionally the average score of the neighbors ranges
-from 19.30 to 1884.5. In both cases of size the clustering coefficient is zero
-and the connectivity due to fixed degree is 2.
-% and the connectivity?... (something missing here, do you mean the clustering
-% coefficient and the connectivity are 0 as the degree is fixed?
+from 19.30 to 1884.5. Concerning the graph measures, as explained in [chapter 2],
+clustering coefficient is zero and connectivity fixed to 2.
 % Also I forget, but assuming you have described what these things mean in C2,
 % you should remind the reader and just point them to C2.
 
@@ -421,31 +422,27 @@ and the connectivity due to fixed degree is 2.
 \small
 \begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
 \toprule
-Cycle & \multicolumn{3}{c}{s=5 and s=50}  & \multicolumn{3}{c}{s=5}                              & \multicolumn{3}{c}{s=50}                             \\\midrule
-% No s
+Cyclic & \multicolumn{3}{c|}{tournament size 5 and 50} & \multicolumn{3}{c|}{tournament size 5} & \multicolumn{3}{c|}{tournament size 50}                             \\\midrule
+
        & (R,P,S,T) & degree & connectivity & average score & average neighbors score & clustering & average score & average neighbors score & clustering \\\midrule
-mean   & (3,1,0,5) & 2.0    & 2.0          & 2.456690      & 980.952580              & 0.00       & 2.394577      & 957.238664              & 0.00       \\\midrule
-std    & (0,0,0,0) & 0.0    & 0.0          & 0.748772      & 219.875803              & 0.00       & 0.777189      & 231.321350              & 0.00       \\\midrule
-min    & (3,1,0,5) & 2.0    & 2.0          & 0.017500      & 141.550000              & 0.00       & 0.000000      & 19.300000               & 0.00       \\\midrule
-max    & (3,1,0,5) & 2.0    & 2.0          & 4.950000      & 1756.500000             & 0.00       & 5.000000      & 1884.500000             & 0.00       \\ \bottomrule
+mean   & (3,1,0,5) & 2.0    & 2.0          & 2.45      & 980.95            & 0.00       & 2.39     & 957.23             & 0.00       \\\midrule
+std    & (0,0,0,0) & 0.0    & 0.0          & 0.74      & 219.87             & 0.00       & 0.77    & 231.32              & 0.00       \\\midrule
+min    & (3,1,0,5) & 2.0    & 2.0          & 0.01      & 141.55             & 0.00       & 0.00    & 19.30              & 0.00       \\\midrule
+max    & (3,1,0,5) & 2.0    & 2.0          & 4.95     & 1756.50             & 0.00       & 5.00    & 1884.50             & 0.00       \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
 \caption{Summary table for topology circle.}
 \label{sum-cicle}
 \end{table}
-% No nee for this level of precision (use less decimal places, 2 or 3 are
-% sufficient.
 
 For the lattice topologies a table that summarizes the data set is shown in Table
 ~\ref{sum-lattice}. For both size values the payoffs are the same (\(R=3, P=1, S=0, T=5\))
-and the degree is fixed at 4. For \(s=50\) the mean average score
-% No s (just commenting to remind you: find them all).
+and the degree is fixed at 4. For size 5 the mean average score
 varies between 0.018 and 4.97. The average score of the neighbors varies between
-832.67 and 2895.42. Much higher than both the cycle experiments achieved. This
-is understood to be
-based on the fact that the number of neighbors is now doubled. For \(s=5\)
-the mean score is 0.57 and the mean average neighbor score 2.45.
-The clustering coefficient is 1 and for \(s=50\) is 0.5.
+832.67 and 2895.42. Much higher than both the cyclic experiments achieved. This
+is understood to be based on the fact that the number of neighbors is now doubled.
+For size 5 the mean score is 0.57 and the mean average neighbor score 2.45.
+The clustering coefficient is 1 and for size 50 is 0.5.
 This shows that in the lattice example the strategies tend to create groups.
 % What do you mean about 'groups'. I don't disagree, just curious.
 
@@ -455,12 +452,12 @@ This shows that in the lattice example the strategies tend to create groups.
 \small
 \begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
 \toprule
-Lattice & \multicolumn{3}{c|}{s=5 and s=50} & \multicolumn{3}{c|}{s=5}                             & \multicolumn{3}{c|}{s=50}                            \\ \midrule
+Lattice & \multicolumn{3}{c|}{tournament size 5 and 50} & \multicolumn{3}{c|}{tournament size 5} & \multicolumn{3}{c|}{tournament size 50}                            \\ \midrule
        & (R,P,S,T) & degree & connectivity & average score & average neighbors score & clustering & average score & average neighbors score & clustering \\ \midrule
-mean   & (3,1,0,5) & 4.0    & 4.0          & 2.450782      & 1958.569220             & 1.0        & 2.393000      & 1912.748200             & 0.5        \\ \midrule
-std    & (0,0,0,0) & 0.0    & 0.0          & 0.576812      & 287.638191              & 0.0        & 0.590971      & 268.375436              & 0.00       \\ \midrule
-min    & (3,1,0,5) & 4.0    & 4.0          & 0.527500      & 1059.775000             & 1.0        & 0.018750      & 832.675000              & 0.5        \\ \midrule
-max    & (3,1,0,5) & 4.0    & 4.0          & 4.245000      & 2518.700000             & 1.0        & 4.973750      & 2895.425000             & 0.5        \\ \bottomrule
+mean   & (3,1,0,5) & 4.0    & 4.0          & 2.45      & 1958.56           & 1.0        & 2.39      & 1912.74             & 0.5        \\ \midrule
+std    & (0,0,0,0) & 0.0    & 0.0          & 0.57      & 287.63            & 0.0        & 0.59      & 268.37              & 0.00       \\ \midrule
+min    & (3,1,0,5) & 4.0    & 4.0          & 0.52      & 1059.77           & 1.0        & 0.01      & 832.67              & 0.5        \\ \midrule
+max    & (3,1,0,5) & 4.0    & 4.0          & 4.24     & 2518.70            & 1.0        & 4.97      & 2895.42             & 0.5        \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
 \caption{Summary table for the lattice topology.}
@@ -470,21 +467,19 @@ max    & (3,1,0,5) & 4.0    & 4.0          & 4.245000      & 2518.700000        
 \newpage
 
 Finally, for the round robin tournaments, 100 tournaments were performed for both
- sizes. Parameters such as neighborhood size and neighbor's score
+sizes. Parameters such as neighborhood size and neighbor's score
 were not computed for the round robin topology. This is because all players
-interact with each other and so we would not get any additional information. In
-Table~\ref{sum-rr}, we can see the average score the strategies achieved
-in this topology for both sizes. In a tournament of size 50, the mean average
-score is 2.39 with a standard deviation of 0.335. For \(s=5\) we can notice that the values
-are almost equal to those of the lattice topology with \(s=5\). % So what?
-% What's interesting about this?
+interact with each other thus there were not any additional information to be
+gained. In Table~\ref{sum-rr}, the average score the strategies achieved
+in this topology for both sizes is shown. In a tournament of size 50, the mean average
+score is 2.39 with a standard deviation of 0.335.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
-Round Robin & \multicolumn{1}{c|}{s=5} & \multicolumn{1}{c|}{s=50} \\ \hline
-% No s
+Round Robin & \multicolumn{1}{c|}{tournament size 5} & \multicolumn{1}{c|}{tournament size 50} \\ \hline
+
             & average score            & average score             \\ \hline
 mean        & 2.447105                 & 2.393220                  \\ \hline
 std         & 0.576014                 & 0.335552                  \\ \hline
@@ -495,60 +490,54 @@ max         & 4.245000                 & 3.339592                  \\ \hline
 \label{sum-rr}
 \end{table}
 
-In this section we gone through the structure of the source code for implementing
-the Spatial Tournament, by adding to the Axelrod-Python library. Furthermore, now
-that the code is usable various experiments were conducted with different topologies
+In this section the structure of the source code for implementing the Spatial
+Tournament, by adding to the Axelrod-Python library was analyzed. Furthermore,
+now that the code is usable various experiments were conducted with different
+topologies
 and number of players participating in each tournament. An overview of the
-data sets produced was done but now in the following sections we will go though
-some more analysis on the results.
-% Good paragraph (just get rid of 'we').
-% From a language point of view is writing in that form (so not with 'we') more
-% difficult? Just asking in case you would like more support. (You'll need to
-% write that way anyway).
+data sets produced was done but now in the following sections
+some more analysis on the results will be performed.
 
 \newpage
 \section{Analyzing the effect of the topologies}
-\label{sub:effects}
-% No points for short variable names so
-% \label{sub:analyzing_the_effect_of_the_topologies} would be fine. Not telling
-% you to change it just saying you can use nice long label names to help you
-% when you come back to these things.
+\label{sub:analyzing_the_effect_of_the_topologies}
 
 In the data all 132 strategies of Axelrod-Python library have participated at
-least in one tournament. Here we will go through the strategies and their
-performance in each experiment. Not all strategies participated in an equal
-number of tournaments. Forcing the strategies to perform in a uniform number is
-not an option as we want to keep the random effect for validation of the
-results. On could argue that by participating in a larger number of tournaments,
-the probability of winning increases as well. Thus, for a measure of
+least in one tournament. Not all strategies participated in an equal
+number of tournaments.
+Forcing the strategies to perform in a uniform number is
+not an option because the random effect is needed for validation of the
+results. But one could argue that by participating in a larger number of
+tournaments, the probability of winning increases as well.
+Thus, for a measure of
 performance, instead of using the number of tournaments won, the analysis will
-be using the ratio of wins. By wining ratio we mean the number of tournaments a
-% The winning ratio is defined as...
-strategy got first place divided by the number of tournaments the strategy
-competed in. Additionally, the normalized average score each strategy achieved
-will also be studied. Mainly to study the variation, helping us to make
-conclusions on the performance of a strategy.  Lastly, having all different
+be using the ratio of wins in subsection~\ref{sub:winning-ratio}.
+The winning ratio is defined as the number of tournaments a strategy was ranked
+first divided by the number of tournaments the strategy competed in.
+Additionally, the normalized average score each strategy
+achieved will also be studied in subsection~\ref{sub:normalized_av_score}. Mainly to study
+the variation, helping with conclusions on the performance of a strategy.
+Lastly in subsection~\ref{sub:regression}, having all different
 factors such as degree, neighbors, clustering, scores etc building a regression
 model could point out effects on the results.
-% This last part is good (saying what you're going to do) just include some
-% pointers to the actual sections.
+
 
 \subsection{Winning Ratio}
 \label{sub:winning-ratio}
 
 The winning rations for all three topologies for tournaments of size 5
 are shown in Figure~\ref{fig:winning-five}. In the experiment where the
-strategies compete on a cycle 124 strategies out of the 132 have a
+strategies compete on a cyclic 124 strategies out of the 132 have a
 winning ration greater than zero. In other words 8 strategies won no
 tournaments. These strategies are ALLCorALLD,
-Tricky Cooperator, ThueMorseInverse, Hard Tit For 2 Tats, SolutionB5, Cycler DDC,
+Tricky Cooperator, ThueMorseInverse, Hard Tit For 2 Tats, SolutionB5, cyclicr DDC,
 Prober and BackStabber.
 % Put these in a bullet point list or a table with a VERY brief description of
 % what they do.
 % I'm really surprised that BackStabber won no tournaments...
 In the lattice topology as well, 8 strategies do not have
 a non-zero winning ratio. Fortress4, Bully, Tricky Cooperator, Hard Go
-By Majority: 5, 10 and 40. Also Cycler DDC and ALLCorALLD have a similar
+By Majority: 5, 10 and 40. Also cyclicr DDC and ALLCorALLD have a similar
 performance in this topology as well.
 % Same comment about putting the strategies in a table.
 In the round robin tournament various strategies  % How many?
@@ -559,7 +548,7 @@ On the other hand the strategies with the highest winning ratio for each
 topology are as follows:
 
 \begin{itemize}
-  \item Cycle topology with a winning ratio of 0.56 ZD-GEN-2, followed by Punisher
+  \item Cyclic topology with a winning ratio of 0.56 ZD-GEN-2, followed by Punisher
         with 0.55
   \item Lattice topology with a ratio of 0.45 BackStabber and Meta Majority
         Memory one
@@ -585,14 +574,14 @@ for each topology in ascending order. The strategies with the highest winning ra
 for each respective topologies are as follow :
 
 \begin{itemize}
-  \item Cycle topology with a winning ratio of 1.3 Raider
+  \item cyclic topology with a winning ratio of 1.3 Raider
       % Winning ratio of 1.3? 1.3 > 1
   \item Lattice topology with a winning ratio of 1.3 Raider
   \item Round Robin topology with a winning ration of 0.833 EvolvedLookerUp
 \end{itemize}
 
 Unexpectedly, strategy Raider seems to have first place in both
-the cycle and the lattice topology. It achieved a winning ration of 1.3, 0.5
+the cyclic and the lattice topology. It achieved a winning ration of 1.3, 0.5
 more than the strategy ranked second. Another surprise in the results is
 that of the round robin topology. Where a large number of strategies have a
 winning ratio
@@ -642,7 +631,7 @@ seem to get zero.
     \begin{subfigure}[t]{1\textwidth}
     \centering
         \includegraphics[width=\linewidth]{winners-cycle_fifty.pdf}
-    \caption{Winning ration cycle s=50.}
+    \caption{Winning ration cyclic s=50.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{1\textwidth}\centering
@@ -680,13 +669,13 @@ For \(s=5\) we observe that for the topologies lattice and round robin
 the regression line is flat. Indicating that there is no correlation between the
 participations and the winning ratio. Thus, for these topologies strategies
 that participated for a different number of tournaments could have achieved the
-same winning ratio. In the cycle topology, the graph indicates a positive
-correlation. For the cycle,
+same winning ratio. In the cyclic topology, the graph indicates a positive
+correlation. For the cyclic,
 it could be suggested that that the strategies that were ranked first in these
 topology had high
 participating rates as well. This seems to apply for only the specific experiment.
 
-On the contrary, for \(s=50\) cycle and lattice show to have a negative
+On the contrary, for \(s=50\) cyclic and lattice show to have a negative
 effect between participations and winning ratio. An unexpected results. Thus, playing
 less in these experiments could help you achieve a better outcome. This results
 could be fixed because of the neighborhoods. For a round robin topology
@@ -744,8 +733,8 @@ participation does not seem to have any effect.
 
 % Summarise and introduce the next section.
 
-\subsection{Average Scores}
-
+\subsection{Normalized Average Scores}
+\label{sub:normalized_av_score}
 The normalized average score is calculated by dividing the average score per
 turn per opponent
 of each strategy with their participation counts. Then the average score
@@ -817,7 +806,7 @@ possible to ensure a good performance.
 % average score against participations can be added
 
 \subsection{Regression Analysis}
-
+\label{sub:regression}
 Finally, a common methodology when investing factors as predictors is building a
 regression model. We are building a model wanting to identify any factor that can
 explain the winning ratio and  average score of a strategy. The round robin
@@ -851,9 +840,9 @@ The results of models are shown below, Table~\ref{regression} :
 \toprule
 Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{connectivity} & \multicolumn{2}{l|}{participations} & R-square \\ \midrule
      &          & coef            & p            & coef          & p           & coef                      & p                    & coef             & p              & coef                & p             &          \\ \midrule
-s=5  & Cycle    & 0.028           & 0.00         & 0.0559        & 0.00        & -3.763e-06                & 0.043                & 0.0              & NA             & -0.0016             & 0.00          & 0.457    \\ \midrule
+s=5  & Cyclic    & 0.028           & 0.00         & 0.0559        & 0.00        & -3.763e-06                & 0.043                & 0.0              & NA             & -0.0016             & 0.00          & 0.457    \\ \midrule
      & Lattice  & 0.0064          & 0.00         & 0.0256        & 0.00        & 1.079e-05                 & 0.00                 & 0.0064           & 0.00           & -0.0016             & 0.00          & 0.549    \\ \midrule
-s=50 & Cycle    & 0.0025          & 0.00         & 0.0051        & 0.00        & -2.168e-07                & 0.00                 & 0                & NA             & -1.602e-05          & 0.00          & 0.120    \\ \midrule
+s=50 & Cyclic    & 0.0025          & 0.00         & 0.0051        & 0.00        & -2.168e-07                & 0.00                 & 0                & NA             & -1.602e-05          & 0.00          & 0.120    \\ \midrule
      & Lattice  & 0.0006          & 0.00         & 0.0024        & 0.00        & 1.033e-06                 & 0.00                 & 0.0003           & 0.00           & -1.601e-05          & 0.00          & 0.216    \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -865,7 +854,7 @@ In the output we can see that Degree, average neighborhood score and participati
 are significant predictors for all the experiments with a \(p\) value less than
 an 0.05.
 % Less than 0 means negative.
-For the cycle topology, average neighborhood score and participations have negative
+For the cyclic topology, average neighborhood score and participations have negative
 coefficients. For example a decrease in participations by one would increase
 the average score by 0.0016. Degree on the other hand has a positive coefficient
 and connectivity has no effect at all. Furthermore the model for \(s=5\) has
@@ -889,7 +878,7 @@ performance of the model is moderate.
 % This is fixed now yes?
 
 \section{Summary}
-
+\label{sub:summary}
 In this section we will make a summary of all the previous analysis that was made
 in~\ref{sub:effects} and list further research that could be performed.
 
@@ -897,12 +886,12 @@ From the analysis that was performed in~\ref{sub:winning-ratio}, the wining rati
 for each strategy for all 6 experiments indicated the following :
 
 \begin{itemize}
-  \item For the cycle topology of \(s=5\) ZD-GEN-2 had the highest winning ratio
+  \item For the cyclic topology of \(s=5\) ZD-GEN-2 had the highest winning ratio
       % No s
         and for the lattice BackStabber and Meta Majority Memory one
   \item For round robin s=50, most of the strategies finished the experiment
         with winning ratio of zero.
-  \item Raider seem to have successful performance in both the lattice and cycle \(s=50\)
+  \item Raider seem to have successful performance in both the lattice and cyclic \(s=50\)
         and in the round robin \(s=5\).
 \end{itemize}
 
@@ -911,7 +900,7 @@ the rest gave the findings below:
 
 \begin{itemize}
   \item Participating rate has a negative effect on the winning ratio for \(s=50\)
-        in lattice and cycle topology and a positive in cycle for \(s=5\)
+        in lattice and cyclic topology and a positive in cyclic for \(s=5\)
   \item There is high variation is the average score of each strategy for all
         experiments
   \item A regression model for the normalized average score did not return any
