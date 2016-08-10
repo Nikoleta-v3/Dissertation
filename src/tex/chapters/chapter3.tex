@@ -324,7 +324,7 @@ linenos
 
 The Axelrod tournaments themselves make usage of match memory and CPU power and
 by adding these additional rules to the tournaments was only increasing in usage.
-For that reason all the tournaments and their results are runned in Raven.
+For that reason all the tournaments and their results are run in Raven.
 Raven is the super computer of Cardiff University. All the scripts and pbs file, for
 communicating with Raven, can be found on github :
 \url{https://github.com/Nikoleta-v3}.
@@ -529,29 +529,71 @@ The winning rations for all three topologies for tournaments of size 5
 are shown in Figure~\ref{fig:winning-five}. In the experiment where the
 strategies compete on a cyclic 124 strategies out of the 132 have a
 winning ration greater than zero. In other words 8 strategies won no
-tournaments. These strategies are ALLCorALLD,
-Tricky Cooperator, ThueMorseInverse, Hard Tit For 2 Tats, SolutionB5, cyclicr DDC,
-Prober and BackStabber.
-% Put these in a bullet point list or a table with a VERY brief description of
-% what they do.
+tournaments. These strategies are shown in Table~\ref{winning-ratio-zero-cyclic-five} :
+
+\begin{table}[h]
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\small
+\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
+\toprule
+\hline
+Strategies list & \multicolumn{1}{c|}{Description}                                                                                                                    \\ \hline
+ALLCorALLD          & Simply repeats its last move, and so mimics ALLC or ALLD after round one.                                                                           \\ \hline
+Tricky Cooperator   & Almost always cooperates, but will try to trick the opponent by defecting.                                                                          \\ \hline
+ThueMorseInverse    & Defects or cooperates according to the Thue-Morse sequence (Inverse of ThueMorse).                        \\ \hline
+SolutionB5          &                                                                                                                                                     \\ \hline
+Hard Tit For 2 Tats & A variant of Tit For Two Tats that uses a longer history for retaliation.                                \\ \hline
+BackStabber         & Forgives the first 3 defections but on the fourth,will defect forever. Defects on the last 2 rounds unconditionally.                                \\ \hline
+Prober              & Plays D, D, C, C initially. Defects forever if opponent cooperated in moves 2 and 3. Otherwise plays TFT. \\ \hline
+Cycler DDC          & A player that repeats the sequence DDC indefinitely.                                                                                                \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{Strategies with winning ratio 0 in the cyclic experiment with tournament
+         size 5.}
+\label{winning-ratio-zero-cyclic-five}
+\end{table}
+% I run the tournaments that he participated again and had the same results
 % I'm really surprised that BackStabber won no tournaments...
+
 In the lattice topology as well, 8 strategies do not have
-a non-zero winning ratio. Fortress4, Bully, Tricky Cooperator, Hard Go
-By Majority: 5, 10 and 40. Also cyclicr DDC and ALLCorALLD have a similar
-performance in this topology as well.
-% Same comment about putting the strategies in a table.
-In the round robin tournament various strategies  % How many?
-ranked last, among them Fortress4 and the whole family of Hard Go By Majority.
-% If the number is not stupid perhaps put them in a table also.
+a non-zero winning ratio. Among them Tricky Cooperator, Cycle DDC and AllCorAllD
+again. The rest strategies and a simple explanation of them can be found in
+Table~\ref{winning-ratio-zero-lattice-five}.
+
+\begin{table}[h]
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\small
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Strategies list         & \multicolumn{1}{c|}{Description}                                                                                                                                                                           \\ \hline
+Bully                   & A player that behaves opposite to Tit For Tat, including first move.                                                                                                                                       \\ \hline
+Fortress4               & A finite state machine player                                                                                                                                                                              \\ \hline
+Hard Go By Majority: 5  & A player examines the history of the opponent: if the opponent has more defections than cooperations then the player defects. Here the player has a memory of 5.                                            \\ \hline
+Hard Go By Majority: 40 & A Hard Go By Majority player, with memory 40.                                                                                                                                                              \\ \hline
+Sneaky Tit For Tat      & Tries defecting once and repents if punished.                                                                                                                                                              \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{Strategies with winning ratio 0 in the periodic lattice experiment with
+         tournament size 5.}
+\label{winning-ratio-zero-lattice-five}
+\end{table}
+
+In the round robin tournament 61 strategies ranked a winning ratio of zero.
+Among them Cycler CCD, Tricky Cooperator, Fortress4, Bully, and the whole family
+of Hard Go By Majority.
 
 On the other hand the strategies with the highest winning ratio for each
 topology are as follows:
 
 \begin{itemize}
   \item Cyclic topology with a winning ratio of 0.56 ZD-GEN-2, followed by Punisher
-        with 0.55
+        with 0.55 and Soft Grudger with 0.53
   \item Lattice topology with a ratio of 0.45 BackStabber and Meta Majority
-        Memory one
+        Memory one. Followed by Cycler CCD with 0.44, Limited Retaliate(0.05/20)
+        and Stochastic WSLS with 0.43 winning ratio
   \item Round Robin topology with a winning ratio of 1 : Raider, Gradual, Limited
         Retaliate(0.05/20) and BackStabber.
         % See how well Backstabber does here and on the lattice...
@@ -560,46 +602,105 @@ topology are as follows:
 \end{itemize}
 
 In every topology the highest ranking strategy between the size five experiments
-are different. Only BackStabber seems to be repeated, even so in the cyclic topology
- it had a winning ratio of zero. ALLCorALLD, did badly in all
+are different. Only BackStabber seems to be repeated, even so in the cyclic
+topology it had a winning ratio of zero. BackStabber is one of highest ranking
+strategies in the overall round robin tournament performed by the Axelrod-Python
+library. ALLCorALLD, Cycler CCD, Tricky Cooperator and Bully did badly in all
 three topologies.
 
-When considering tournaments of size 50
-no strategies have a zero ratio (in any topology).
+When considering tournaments of size 50 no strategies have a zero ratio
+(in any topology). The number of tournaments participated in tournament size 5
+ranges from 10 to 90, where in the tournament size 50 from 270 to 570. The higher
+the number of tournaments participated the higher probabilities of winning at
+least one. This could explain the existence of only non zero winning ratios.
 % Give a little explanation for this: why do we think that is? Does this perhaps
 % mean we need to run the size 5 strategies more? To get more diversity in the
 % strategy sets? What do you think?
-Figure~\ref{fig:winning-fifty}, illustrates the ratios
-for each topology in ascending order. The strategies with the highest winning ratio
+
+Figure~\ref{fig:winning-fifty}, illustrates the ratios for each topology in
+ascending order. The strategies with the highest winning ratio
 for each respective topologies are as follow :
 
 \begin{itemize}
-  \item cyclic topology with a winning ratio of 1.3 Raider
-      % Winning ratio of 1.3? 1.3 > 1
-  \item Lattice topology with a winning ratio of 1.3 Raider
-  \item Round Robin topology with a winning ration of 0.833 EvolvedLookerUp
+  \item Cyclic topology with a winning ratio of 0.038 Soft Go By Majority:10.
+        Followed by Nice Average Copier with 0.037 and \(e\) with 0.036. Raider
+        has the fourth higher winning ratio on 0.034
+  \item Lattice topology with a winning ratio of 0.037 Adapative Pavlov 2006.
+        Followed by Fool Me Once with 0.036 and Raider with 0.035. Inverse
+        Punisher had a winning ratio of 0.033, the fourth highest of all
+  \item Round Robin topology with a winning ration of 0.86 PSO Gambler, followed
+        by EvolvedLookerUp with 0.60
 \end{itemize}
 
-Unexpectedly, strategy Raider seems to have first place in both
-the cyclic and the lattice topology. It achieved a winning ration of 1.3, 0.5
-more than the strategy ranked second. Another surprise in the results is
-that of the round robin topology. Where a large number of strategies have a
-winning ratio
-of zero. Only 14 strategy managed a ratio higher than zero. The strategy with
-the highest one of all was EvolvedLookerUp.
+In the cyclic and periodic lattice topology the highest winning ration achieved
+was 0.038. The number is lower than any other experiment due the range of
+tournaments participated. In the round robin experiment the maximum number of
+participations was 57, explaining the big difference in the winning ration between
+these experiments. PSO Gambler that achieved the highest ratio is also the current
+winner of the Axelrod-Python tournament.
 
-Overall, in all six experiments the only strategy that seems to be repeatedly
-have a high performance is
-Raider. Compared to all the other strategies that outperformed the rest the seem
-to be no similarity in their way of structure and play. Here we could use
-a characterization to compare the strategies more efficiently. The winning ratio
-seems to vary from zero to 1.3 and in the round robin topology many strategies
-seem to get zero.
-% winning ratio higher than 1?
+Overall, for the results of all six experiments no similarities stick out.
+A more appropriate visualization of the top ranking strategies for both
+sizes are shown in Figure~\ref{fig:winning-rankings-five} and Figure~\ref{fig:winning-rankings-fifty} .
+This will improve the understanding on the correlation of the top ranking strategies.
+For experiments of tournament size 5,Figure~\ref{fig:winning-rankings-five}, 3
+pairs for the experiments are illustrated. Overall, the strategies with an
+average good ranking in all experiments were Punisher, Raider and BackStabber.
+A similarly approach for experiments of size 50, Figure~\ref{fig:winning-rankings-fifty}.
+The overall successful strategies are Nice Average Copier, Raider and Fool Me Once.
 
-% add plot
-% The line plot yes? I think this will be 3 line plots, one for each comparison
-% of topology. This will be very good to have.
+Raider is a repeatedly successful strategies for more than one experiment.
+It is a finite state machine strategy found in~\cite{DBLP:conf/foci/AshlockTA14}. 
+
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[t]{0.4\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{lines-cyclic-lattice.pdf}
+    \caption{Cyclic vs Periodic Lattice Topologies.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.4\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{lines-cyclic-round-robin.pdf}
+    \caption{Cyclic vs Round Robin Topologies.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.4\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{lines-lattice-round-robin.pdf}
+    \caption{Periodic Lattice vs Round
+             Robin Topologies}
+    \end{subfigure}
+\caption{Player Rankings by Winning Ration Tournament size 5.}
+\label{fig:winning-rankings-five}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[t]{0.4\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{lines-cyclic-lattice-fifty.pdf}
+    \caption{Cyclic vs Periodic Lattice Topologies.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.4\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{lines-cyclic-round-robin-fifty.pdf}
+    \caption{Cyclic vs Round Robin Topologies.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.4\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{lines-lattice-round-robin-fifty.pdf}
+    \caption{Periodic Lattice vs Round
+             Robin Topologies}
+    \end{subfigure}
+\caption{Player Rankings by Winning Ration Tournament size 50.}
+\label{fig:winning-rankings-fifty}
+\end{figure}
+
 
 \begin{figure}[!hbtp]
 \centering
