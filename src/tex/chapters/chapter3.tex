@@ -650,24 +650,26 @@ A similarly approach for experiments of size 50, Figure~\ref{fig:winning-ranking
 The overall successful strategies are Nice Average Copier, Raider and Fool Me Once.
 
 Raider is a repeatedly successful strategies for more than one experiment.
-It is a finite state machine strategy found in~\cite{DBLP:conf/foci/AshlockTA14}. 
+It is a finite state machine strategy found in~\cite{DBLP:conf/foci/AshlockTA14}.
+For now
+Raider strategy seems to be a strategy for any
+given random situation. Further investigation will be .
 
-
-\begin{figure}[H]
+\begin{figure}[ht]
 \centering
-    \begin{subfigure}[t]{0.4\textwidth}
+    \begin{subfigure}[t]{1\textwidth}
     \centering
         \includegraphics[width=\linewidth]{lines-cyclic-lattice.pdf}
     \caption{Cyclic vs Periodic Lattice Topologies.}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{0.4\textwidth}\centering
+    \begin{subfigure}[t]{1\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{lines-cyclic-round-robin.pdf}
     \caption{Cyclic vs Round Robin Topologies.}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{0.4\textwidth}\centering
+    \begin{subfigure}[t]{1\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{lines-lattice-round-robin.pdf}
     \caption{Periodic Lattice vs Round
@@ -750,10 +752,7 @@ It is a finite state machine strategy found in~\cite{DBLP:conf/foci/AshlockTA14}
 \label{fig:winning-fifty}
 \end{figure}
 
-Now that the winning strategy seem to give us no hind as to how to perform
-well in any given random situation we will do further investigation.
-% What do you mean? I thought it did? Once we see those line plots it will be
-% easier to see...
+
 The winning ratio was plotted against the number of participations of each
 strategy and the results are shown in Figures~\ref{fig:winning-ratio-five}
 and~\ref{fig:winning-ratio-fifty}. A regression line was added to the scatter plots
