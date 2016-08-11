@@ -260,7 +260,7 @@ Figure~\ref{fig:networks}, shows an example of all the aforementioned topologies
 \centering
     \begin{subfigure}[h]{0.45\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{cycle_network.png}
+        \includegraphics[width=\linewidth]{chapter-three/cycle_network.png}
     \caption{Cyclic network.}
     \end{subfigure}
 \hfill
@@ -272,7 +272,7 @@ Figure~\ref{fig:networks}, shows an example of all the aforementioned topologies
 \hfill
     \begin{subfigure}[h]{0.52\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{complete-network.png}
+        \includegraphics[width=\linewidth]{chapter-three/complete-network.png}
     \caption{A complete or round robin network.}
     \end{subfigure}
 \caption{Network topologies.}
@@ -525,8 +525,7 @@ model could point out effects on the results.
 \subsection{Winning Ratio}
 \label{sub:winning-ratio}
 
-The winning rations for all three topologies for tournaments of size 5
-are shown in Figure~\ref{fig:winning-five}. In the experiment where the
+In the experiment where the
 strategies compete on a cyclic 124 strategies out of the 132 have a
 winning ration greater than zero. In other words 8 strategies won no
 tournaments. These strategies are shown in Table~\ref{winning-ratio-zero-cyclic-five} :
@@ -571,7 +570,7 @@ Table~\ref{winning-ratio-zero-lattice-five}.
 Strategies list         & \multicolumn{1}{c|}{Description}                                                                                                                                                                           \\ \hline
 Bully                   & A player that behaves opposite to Tit For Tat, including first move.                                                                                                                                       \\ \hline
 Fortress4               & A finite state machine player                                                                                                                                                                              \\ \hline
-Hard Go By Majority: 5  & A player examines the history of the opponent: if the opponent has more defections than cooperations then the player defects. Here the player has a memory of 5.                                            \\ \hline
+Hard Go By Majority: 5  & \begin{tabular}[c]{@{}l@{}}A player examines the history of the opponent: if the opponent has more defections \\ than cooperations then the player defects. Here the player has a memory of 5.\end{tabular}                                            \\ \hline
 Hard Go By Majority: 40 & A Hard Go By Majority player, with memory 40.                                                                                                                                                              \\ \hline
 Sneaky Tit For Tat      & Tries defecting once and repents if punished.                                                                                                                                                              \\ \hline
 \end{tabular}
@@ -601,8 +600,8 @@ topology are as follows:
         % Will be good to get those line plot things.
 \end{itemize}
 
-In every topology the highest ranking strategy between the size five experiments
-are different. Only BackStabber seems to be repeated, even so in the cyclic
+In every topology the highest ranking strategy is different.
+Only BackStabber seems to be repeated, even so in the cyclic
 topology it had a winning ratio of zero. BackStabber is one of highest ranking
 strategies in the overall round robin tournament performed by the Axelrod-Python
 library. ALLCorALLD, Cycler CCD, Tricky Cooperator and Bully did badly in all
@@ -617,9 +616,8 @@ least one. This could explain the existence of only non zero winning ratios.
 % mean we need to run the size 5 strategies more? To get more diversity in the
 % strategy sets? What do you think?
 
-Figure~\ref{fig:winning-fifty}, illustrates the ratios for each topology in
-ascending order. The strategies with the highest winning ratio
-for each respective topologies are as follow :
+The strategies with the highest winning ratio for each respective topologies are
+as follow :
 
 \begin{itemize}
   \item Cyclic topology with a winning ratio of 0.038 Soft Go By Majority:10.
@@ -641,200 +639,194 @@ winner of the Axelrod-Python tournament.
 
 Overall, for the results of all six experiments no similarities stick out.
 A more appropriate visualization of the top ranking strategies for both
-sizes are shown in Figure~\ref{fig:winning-rankings-five} and Figure~\ref{fig:winning-rankings-fifty} .
+sizes are shown in Figures~\ref{fig:winning-rankings-five-c-l}~\ref{fig:winning-rankings-five-c-r}
+~\ref{fig:winning-rankings-five-l-r} and Figures~\ref{fig:winning-rankings-fifty-c-l}
+~\ref{fig:winning-rankings-fifty-c-r}~\ref{fig:winning-rankings-fifty-l-r}.
 This will improve the understanding on the correlation of the top ranking strategies.
-For experiments of tournament size 5,Figure~\ref{fig:winning-rankings-five}, 3
+For experiments of tournament size 5, 3
 pairs for the experiments are illustrated. Overall, the strategies with an
 average good ranking in all experiments were Punisher, Raider and BackStabber.
-A similarly approach for experiments of size 50, Figure~\ref{fig:winning-rankings-fifty}.
+A similarly approach for experiments of size 50.
 The overall successful strategies are Nice Average Copier, Raider and Fool Me Once.
 
 Raider is a repeatedly successful strategies for more than one experiment.
 It is a finite state machine strategy found in~\cite{DBLP:conf/foci/AshlockTA14}.
-For now
-Raider strategy seems to be a strategy for any
-given random situation. Further investigation will be .
+For now Raider strategy seems to be a well performed strategy for any
+given random situation. Further investigation will be conducted.
 
-\begin{figure}[ht]
-\centering
-    \begin{subfigure}[t]{1\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{lines-cyclic-lattice.pdf}
-    \caption{Cyclic vs Periodic Lattice Topologies.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{lines-cyclic-round-robin.pdf}
-    \caption{Cyclic vs Round Robin Topologies.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{lines-lattice-round-robin.pdf}
-    \caption{Periodic Lattice vs Round
-             Robin Topologies}
-    \end{subfigure}
-\caption{Player Rankings by Winning Ration Tournament size 5.}
-\label{fig:winning-rankings-five}
+Illustration of the ratios for each experiment in asceding order can be found
+in Appendix A, Figure~\ref{fig:winning-fifty} and Figure~\ref{fig:winning-five}.
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\linewidth]{chapter-three/lines-cyclic-lattice-5.pdf}
+  \caption{Cyclic vs Periodic Lattice Topologies Size 5.}
+  \label{fig:winning-rankings-five-c-l}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-    \begin{subfigure}[t]{0.4\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{lines-cyclic-lattice-fifty.pdf}
-    \caption{Cyclic vs Periodic Lattice Topologies.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{0.4\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{lines-cyclic-round-robin-fifty.pdf}
-    \caption{Cyclic vs Round Robin Topologies.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{0.4\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{lines-lattice-round-robin-fifty.pdf}
-    \caption{Periodic Lattice vs Round
-             Robin Topologies}
-    \end{subfigure}
-\caption{Player Rankings by Winning Ration Tournament size 50.}
-\label{fig:winning-rankings-fifty}
-\end{figure}
-
-
-\begin{figure}[!hbtp]
-\centering
-    \begin{subfigure}[t]{1\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{winners-cycle_five.pdf}
-    \caption{Winning ration cycle s=5.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{winners-lattice_five.pdf}
-    \caption{Winning ration lattice s=5.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{winners-rr_five.pdf}
-    \caption{Winning ration round robin s=5.}
-    \end{subfigure}
-\caption{Winning ratio for all three topologies s=5.}
-\label{fig:winning-five}
-% Why are these plots bar plots? Should they just be scatter plots?
-% Same comment for all of them.
+    \includegraphics[width=\linewidth]{chapter-three/lines-cyclic-round-robin-5.pdf}\
+\caption{Cyclic vs Round Robin Topologies Size 5.}
+\label{fig:winning-rankings-five-c-r}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-    \begin{subfigure}[t]{1\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{winners-cycle_fifty.pdf}
-    \caption{Winning ration cyclic s=50.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{winners-lattice_fifty.pdf}
-    \caption{Winning ration lattice s=50.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{winners-rr_fifty.pdf}
-    \caption{Winning ration round robin s=50.}
-    \end{subfigure}
-\caption{Winning ratio for all three topologies s=50.}
-\label{fig:winning-fifty}
-\end{figure}
-
-
-The winning ratio was plotted against the number of participations of each
-strategy and the results are shown in Figures~\ref{fig:winning-ratio-five}
-and~\ref{fig:winning-ratio-fifty}. A regression line was added to the scatter plots
-to be able to visualize and point out any hidden trend.
-% So linear regression can't be applied here as the dependent variable is
-% discrete. You want to draw violin plots (one for each group) category of
-% participation size (and for other similar plots) and then instead of a
-% regression line on the whole data: add a regression line going through the
-% median (and clearly state that that's what you're doing) and also report the
-% output of an ANOVA (which I expect will show no variance between the groups).
-
-For \(s=5\) we observe that for the topologies lattice and round robin
-% No s.
-the regression line is flat. Indicating that there is no correlation between the
-participations and the winning ratio. Thus, for these topologies strategies
-that participated for a different number of tournaments could have achieved the
-same winning ratio. In the cyclic topology, the graph indicates a positive
-correlation. For the cyclic,
-it could be suggested that that the strategies that were ranked first in these
-topology had high
-participating rates as well. This seems to apply for only the specific experiment.
-
-On the contrary, for \(s=50\) cyclic and lattice show to have a negative
-effect between participations and winning ratio. An unexpected results. Thus, playing
-less in these experiments could help you achieve a better outcome. This results
-could be fixed because of the neighborhoods. For a round robin topology
-participation does not seem to have any effect.
-% Let's see what Anova and the new regression line say about this.
-
-\begin{figure}[!hbtp]
-\centering
-
-    \begin{subfigure}[t]{1\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{wining-ratio-cycle_five.pdf}
-    \caption{Winning ration against number of participations cycle s=5.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{wining-ratio-lattice_five.pdf}
-    \caption{Winning ration against number of participations lattice s=5.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{wining-ratio-rr_five.pdf}
-    \caption{Winning ration against number of participations round robin s=5.}
-    \end{subfigure}
-\caption{Winning ratio against number of participating in a tournament
-         for all three topologies s=5.}
-\label{fig:winning-ratio-five}
+    \includegraphics[width=\linewidth]{chapter-three/lines-lattice-round-robin-5.pdf}\
+\caption{Periodic Lattice vs Round
+         Robin Topologies Size 5.}
+\label{fig:winning-rankings-five-l-r}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-    \begin{subfigure}[t]{1\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{wining-ratio-cycle_fifty.pdf}
-    \caption{Winning ration against number of participations cycle s=50.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{wining-ratio-lattice_fifty.pdf}
-    \caption{Winning ration against number of participations lattice s=50.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{wining-ratio-rr_fifty.pdf}
-    \caption{Winning ration against number of participations round robin s=50.}
-    \end{subfigure}
-\caption{Winning ratio against number of participating in a tournament
-             for all three topologies s=50.}
-\label{fig:winning-ratio-fifty}
+    \includegraphics[width=\linewidth]{chapter-three/lines-cyclic-lattice-50.pdf}
+\caption{Cyclic vs Periodic Lattice Topologies Size 50.}
+\label{fig:winning-rankings-fifty-c-l}
 \end{figure}
 
-% Summarise and introduce the next section.
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\linewidth]{chapter-three/lines-cyclic-round-robin-50.pdf}
+\caption{Cyclic vs Round Robin Topologies Size 50.}
+\label{fig:winning-rankings-fifty-c-r}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\linewidth]{chapter-three/lines-lattice-round-robin-50.pdf}
+\caption{Periodic Lattice vs Round
+             Robin Topologies Size 50.}
+             \label{fig:winning-rankings-fifty-l-r}
+\end{figure}
+
+\newpage
+
+The strategies can be classified based on the number of tournament
+participations. For tournament size 5, 9 classes have been created for
+the cyclic and lattice, [10, 20, 30, 40, 50, 60, 70, 80, 90]. For tournament
+size 50, [270, 280, 290, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410,
+420, 430, 440, 450, 460, 470, 570]. Round robin topology
+experiments were classified as [1, 2, 3, 4, 5, 6, 7, 8, 9] and
+[27, 28, 29, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 57],
+respectively. The winning rations were plotted against participation number
+in Figures~\ref{fig:winning-ratio-participations-five} and~\ref{fig:winning-ratio-participations-fifty}.
+An ANOVA analysis was used to analyze the importance of the
+differences in the winning ratios among the participating groups.
+
+In Figure~\ref{fig:winning-ratio-participations-five}, for all topologies, a
+significant variation does seems to be pointed out. Though the Anova results~\ref{anova-size-five}
+indicate that for the topologies cyclic and periodic lattice the difference
+of rations between the participations group is significant (\(p\) values
+are lower that 0.05). Equivalent, in ~\ref{fig:winning-ratio-participations-fifty}
+for tournament size 50. For topologies cyclic and periodic lattices there is
+variation. Compared to that of a round robin topology, where there seems to be
+no variation at all. In the Anova results from Table~\ref{anova-size-fifty},
+\(p\) value of round robin and cyclic topology are greater that 0.05. For a lattice
+topology is below 0.05. and, therefore, there is a statistically significant difference.
+Thus, participating number affects the winning ratios for only two out of the six
+experiments.
+The specific groups that differed are not clear. Post-hoc tests could be performed
+but for now is not needed.
+
+\begin{table}[H]
+\centering
+\begin{adjustbox}{width=0.5\textwidth}
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+Topology         & \multicolumn{3}{l|}{Anova results tournament size 5} \\ \hline
+                 & Sum of Squares      & F ratio     & p value          \\ \hline
+Cyclic           & 0.41                & 33.83       & 6.379416e-09     \\ \hline
+Periodic Lattice & 0.04                & 4.24        & 0.039            \\ \hline
+Round Robin      & 0.008               & 0.18        & 0.66             \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{Anova results tournament size 5}
+\label{anova-size-five}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{adjustbox}{width=0.5\textwidth}
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+Topology         & \multicolumn{3}{l|}{Anova results tournament size 5} \\ \hline
+                 & Sum of Squares     & F ratio     & p value           \\ \hline
+Cyclic           & 0.000056           & 1.12        & 0.28              \\ \hline
+Periodic Lattice & 0.045              & 1110.45     & 7.777650e-241     \\ \hline
+Round Robin      & 0.00098            & 0.10        & 0.74              \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{Anova results tournament size 50}
+\label{anova-size-fifty}
+\end{table}
+
+\begin{figure}[H]
+\centering
+
+    \begin{subfigure}[t]{0.75\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Cyclic-5.pdf}
+    \caption{Winning Ration vs Number of Participations Cyclic Tournament Size 5.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.75\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Periodic-Lattice-5.pdf}
+    \caption{Winning Ration vs Number of Participations Periodic Lattice Tournament Size 5.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.75\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Round-Robin-5.pdf}
+    \caption{Winning Ration vs Number of Participations Round Robin Tournament Size 5.}
+    \end{subfigure}
+\caption{Winning Ration vs Number of Participations Tournament Size 5.}
+\label{fig:winning-ratio-participations-five}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+
+    \begin{subfigure}[t]{0.75\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Cyclic-50.pdf}
+    \caption{Winning Ration vs Number of Participations Cyclic Tournament Size 50.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.75\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Periodic-Lattice-50.pdf}
+    \caption{Winning Ration vs Number of Participations Periodic Lattice Tournament Size 50.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[t]{0.75\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Round-Robin-50.pdf}
+    \caption{Winning Ration vs Number of Participations Round Robin Tournament Size 50.}
+    \end{subfigure}
+\caption{Winning Ration vs Number of Participations Tournament Size 50.}
+\label{fig:winning-ratio-participations-fifty}
+\end{figure}
+
+\newpage
+In this subsection the winning ratio has been covered. The winning ratio is defined
+as the number of ranking first in a tournament divided by the number you participated
+in one. The strategies were ranked based on their winning ratio in each of the
+six experiments. Line plots that illustrate the devolution in the strategies
+rankings, were conducted. Indicating that Raider could be an overall well performed
+strategy. Reasons as to why are being investigated. For example the correlation
+of the winning ratio and number of participation has been examined. Though
+they were not many significant results, connecting winning ratio and participation.
+In the next subsection, the Normalized Average Score achieved by the strategies
+will be investigated.
 
 \subsection{Normalized Average Scores}
 \label{sub:normalized_av_score}
+
 The normalized average score is calculated by dividing the average score per
 turn per opponent
 of each strategy with their participation counts. Then the average score
@@ -846,91 +838,79 @@ of variation. Which indicates each strategy performed differently at given
 points of the same experiment. These could be because of the opponent or the
 whole neighborhood.
 
-Not many conclusions can be made out of this. The high variation could indicate
-that the results are completely random. Unfortunately, this could mean that for
-any random situation there does not seem to be a strategy that could
-achieve a particularly high score although as described in Section~\ref{?} it is
-possible to ensure a good performance.
-% Move this till after the plots (no problem if they float)
-
-%Change box plots to violin plots
-\begin{figure}[!hbtp]
+\begin{figure}[H]
 \centering
-    \begin{subfigure}[t]{1\textwidth}
+    \begin{subfigure}[t]{0.8\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{box-plot-cycle_five.pdf}
-    \caption{Normalized average score cycle s=5.}
+        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Cyclic-5.pdf}
+    \caption{Normalized Average Score Cyclic Topology Size 5.}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
+    \begin{subfigure}[t]{0.8\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{box-plot-lattice_five.pdf}
-    \caption{Normalized average score cycle s=5.}
+        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Periodic-Lattice-5.pdf}
+    \caption{Normalized Average Score Periodic Lattice Topology Size 5.}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
+    \begin{subfigure}[t]{0.8\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{box-plot-rr_five.pdf}
-    \caption{Normalized average score cycle s=5.}
+        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Round-Robin-5.pdf}
+    \caption{Normalized Average Score Round Robin Topology Size 5.}
     \end{subfigure}
-    % When you make these figures, include a `bbox_inches='tight'` argument in
-    % the save call (it will make sure your legend isn't cut off). Let me know
-    % if that doesn't make sense. You might need to do that on a few of these.
-\caption{Normalized average score for the three topologies s=5.}
+\caption{Normalized Average Score for all Three Topologies Size 5.}
 \label{fig:average-score-five}
 \end{figure}
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
     \begin{subfigure}[t]{1\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{box-plot-cycle_fifty.pdf}
+        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Cyclic-50.pdf}
     \caption{Normalized average score cycle s=50.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{1\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{box-plot-lattice_fifty.pdf}
+        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Periodic-Lattice-50.pdf}
     \caption{Normalized average score cycle s=50.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{1\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{box-plot-rr_fifty.pdf}
-    \caption{Normalized average score cycle s=50.}
+        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Round-Robin-50.pdf}
+    \caption{Normalized Average Score Round Robin Topology Size 50.}
     \end{subfigure}
-\caption{Normalized average score for the three topologies s=50.}
+\caption{Normalized Average Score for all Three Topologies Size 50.}
 \label{fig:average-score-fifty}
 \end{figure}
 
-% average score against participations can be added
+Not many conclusions can be made out of this. The high variation could indicate
+that the results are completely random. Unfortunately, this could mean that for
+any random situation there does not seem to be a strategy that could
+achieve a particularly high score although as described in Section~\ref{sub:winning-ratio}
+it is possible to ensure a good performance. In the following subsection, a linear
+regression model is build for more conclusions.
+
 
 \subsection{Regression Analysis}
 \label{sub:regression}
 Finally, a common methodology when investing factors as predictors is building a
-regression model. We are building a model wanting to identify any factor that can
-explain the winning ratio and  average score of a strategy. The round robin
-topology is not included in this subsection analysis as this investigation aims
-to understand the effect of network topology. We believe
-that in a round robin topology factors like do not have significant effects.
-% Fix the we's
+regression model. In this subsection two regression models are used to identify
+any
+factor that can explain the winning ratio and average score of a strategy.
+The round robin topology is not included in this subsection analysis as this
+investigation aims to understand the effect of network topology.
 
-The second model using the normalized average score is the following :
-% What do you mean by second model?
+The first model was build with the winning ratio as the depended variable,
+shown here:
 
-\begin{equation}\label{regmodel}
-\begin{split}
-normalized\textrm{ }average\textrm{ }score = degree + average\textrm{ }neighborhood\textrm{ }score + \\
-clustering + number\textrm{ }of\textrm{ }participations
-% Take a look at:
-% http://tex.stackexchange.com/questions/218599/multiline-regression-equation-in-latex
-% Fix this (in particular the dependent variables should not be in italics).
-\end{split}
-\end{equation}
-
-The model was used to each of the experiments for lattice and cycle topologies.
-% Do you just mean it was used on the total data set?
-The results of models are shown below, Table~\ref{regression} :
+\begin{align}
+\mathrm{winning.ratio}_{t} = \alpha
+    &+ \beta_{1}  \mathrm{degree}_{t} \\
+    &+ \beta_{2}  \mathrm{average.neighborhood.score}_{t}    \\
+    &+ \beta_{3}  \mathrm{clustering}_{t} \\
+    &+ \beta_{4}  \mathrm{number.of.participations}_{t} + \epsilon
+\end{align}
 
 \begin{table}[!hbtp]
 \centering
@@ -938,29 +918,74 @@ The results of models are shown below, Table~\ref{regression} :
 \small
 \begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|l|l|l|@{}}
 \toprule
-Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{connectivity} & \multicolumn{2}{l|}{participations} & R-square \\ \midrule
+Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & R-square \\ \midrule
      &          & coef            & p            & coef          & p           & coef                      & p                    & coef             & p              & coef                & p             &          \\ \midrule
-s=5  & Cyclic    & 0.028           & 0.00         & 0.0559        & 0.00        & -3.763e-06                & 0.043                & 0.0              & NA             & -0.0016             & 0.00          & 0.457    \\ \midrule
-     & Lattice  & 0.0064          & 0.00         & 0.0256        & 0.00        & 1.079e-05                 & 0.00                 & 0.0064           & 0.00           & -0.0016             & 0.00          & 0.549    \\ \midrule
-s=50 & Cyclic    & 0.0025          & 0.00         & 0.0051        & 0.00        & -2.168e-07                & 0.00                 & 0                & NA             & -1.602e-05          & 0.00          & 0.120    \\ \midrule
-     & Lattice  & 0.0006          & 0.00         & 0.0024        & 0.00        & 1.033e-06                 & 0.00                 & 0.0003           & 0.00           & -1.601e-05          & 0.00          & 0.216    \\ \bottomrule
+size 5  & Cyclic& 0.0344          & 0.00         & 0.0688        & 0.00        & 3.239e-06                 & 0.651                & 0.0              & NA             & 0.0006             & 0.00           & 0.007    \\ \midrule
+     & Lattice  & 0.0108          & 0.00         & 0.0431        & 0.00        & 7.447e-06                 & 0.159                 & 0.0108           & 0.00           & -0.0002             & 0.036          & 0.001    \\ \midrule
+size 50 & Cyclic& 0.0043          & 0.00         & 0.0087        & 0.00        & -1.386e-06                & 0.00                 & 0                & NA             & -8.156e-07          & 0.216          & 0.002    \\ \midrule
+     & Lattice  & 0.0008          & 0.00         & 0.0031        & 0.00        & -4.549e-07                 & 0.00                 & 0.0004           & 0.00           & 2.005e-05          & 0.00          & 0.022    \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{Regression results for model ~\ref{regmodel}}
-\label{regression}
+\caption{Regression Results for Winning Ratio Model.}
+\label{regression-winning}
+\end{table}
+
+From the results it is shown that only degree seems to be a stable significant
+predictor for all three experiments. With a \(p\) value less that 0.001. Average
+neighborhood score affects only the size 50 experiments. In both experiments,
+of size 50, it has a negative correlation with the winning ratio. Thus, the
+better the neighbors score the less score will a strategy achieve.
+
+Periodic lattice experiments are affected by clustering. Both \(p\) values
+are less than 0.05 but are affected with an insignificant amount, less that 0.1.
+Participations seems to have a negative effect on the lattice size 5 experiment
+but a positive one for the cyclic size 5 and lattice size 50.
+
+Overall, all R-square values  are really low. With the highest R- value of a
+model being 0.022 for lattice size 50. Thus, the performance of the model can
+be characterized as insignificant,
+
+The second model using the normalized average score is the following.
+
+\begin{align}
+\mathrm{average.normalised.score}_{t} = \alpha
+    &+ \beta_{1}  \mathrm{degree}_{t} \\
+    &+ \beta_{2}  \mathrm{average.neighborhood.score}_{t}    \\
+    &+ \beta_{3}  \mathrm{clustering}_{t} \\
+    &+ \beta_{4}  \mathrm{number.of.participations}_{t} + \epsilon
+\end{align}
+
+The model was used to each of the experiments for lattice and cycle topologies
+individually. The results of models are shown below, Table~\ref{regression-average} :
+% Do you just mean it was used on the total data set? % No, this will go to ch4
+\begin{table}[H]
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\small
+\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|l|l|l|@{}}
+\toprule
+Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{connectivity} & \multicolumn{2}{l|}{participations} & R-square \\ \midrule
+        &          & coef            & p            & coef          & p           & coef                      & p                    & coef             & p              & coef                & p             &          \\ \midrule
+size 5  & Cyclic    & 0.028           & 0.00         & 0.0559        & 0.00        & -3.763e-06                & 0.043                & 0.0              & NA             & -0.0016             & 0.00          & 0.457    \\ \midrule
+        & Lattice  & 0.0064          & 0.00         & 0.0256        & 0.00        & 1.079e-05                 & 0.00                 & 0.0064           & 0.00           & -0.0016             & 0.00          & 0.549    \\ \midrule
+size 50 & Cyclic    & 0.0025          & 0.00         & 0.0051        & 0.00        & -2.168e-07                & 0.00                 & 0                & NA             & -1.602e-05          & 0.00          & 0.120    \\ \midrule
+        & Lattice  & 0.0006          & 0.00         & 0.0024        & 0.00        & 1.033e-06                 & 0.00                 & 0.0003           & 0.00           & -1.601e-05          & 0.00          & 0.216    \\ \bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Regression Results for Average Score Model.}
+\label{regression-average}
 \end{table}
 
 In the output we can see that Degree, average neighborhood score and participations
 are significant predictors for all the experiments with a \(p\) value less than
-an 0.05.
-% Less than 0 means negative.
+an 0.0001.
+% Less than 0 means negative. % we did that in statistics , less than 0.0001.
 For the cyclic topology, average neighborhood score and participations have negative
 coefficients. For example a decrease in participations by one would increase
 the average score by 0.0016. Degree on the other hand has a positive coefficient
-and connectivity has no effect at all. Furthermore the model for \(s=5\) has
-% No s (find any that I've missed)
+and connectivity has no effect at all. Furthermore the model for size 5 has
 a R-square value of 0.457, thus it only explains 0.4 variation of the data which is
-quite low. For \(s=50\) it is even lower at only 0.12.
+quite low. For size 50 it is even lower at only 0.12.
 
 Finally, for the lattice topology only participations have a negative coefficients.
 Thus the only factor with a reverse influence on average score in the lattice topology.
@@ -970,15 +995,15 @@ with a value 0.547 and 0.216 respectively.
 Even if there are predictors with a significant \(p\) value, the overall
 performance of the model is moderate.
 
-% Can you include a 1 or 2 sentence summary that breaks down the main findings
-% of this regression model? Say you walked up to some random person in the
-% street and they wanted to know: what would you tell them?
-
-%couldnt get winning ration in data frame
-% This is fixed now yes?
+For both models and all set of 6 experiments some predictors can e characterized
+as significant. More than one factors have a p value less than a 0.05, the aplha
+that has been set. Even so, the coefficients and the overall R square values are
+quite low. Thus, it can not be said that any of this model can predict the
+winning ratio neither the average score of a strategy.
 
 \section{Summary}
 \label{sub:summary}
+
 In this section we will make a summary of all the previous analysis that was made
 in~\ref{sub:effects} and list further research that could be performed.
 
@@ -986,40 +1011,47 @@ From the analysis that was performed in~\ref{sub:winning-ratio}, the wining rati
 for each strategy for all 6 experiments indicated the following :
 
 \begin{itemize}
-  \item For the cyclic topology of \(s=5\) ZD-GEN-2 had the highest winning ratio
-      % No s
-        and for the lattice BackStabber and Meta Majority Memory one
-  \item For round robin s=50, most of the strategies finished the experiment
+  \item For the size 5 experiments, the well performed strategies were Punisher,
+        Raider and BackStabber
+  \item For the size 50 experiments, the well performed strategies were Nice
+        Average Copier, Raider and Fool Me Once
+  \item BackStabber, which is one of the highest ranked strategies in the
+        Axelrod- Python tournament. Did not win a single tournament in the cyclic
+        5 experiment
+  \item PSO Gambler, the current winner of the Axelrod-Python tournament had the
+        highest winning ratio only in the Round Robin 50 experiment
+  \item For a Round Robin size 50, most of the strategies finished the experiment
         with winning ratio of zero.
-  \item Raider seem to have successful performance in both the lattice and cyclic \(s=50\)
-        and in the round robin \(s=5\).
+  \item Raider seem to have successful performance in general
 \end{itemize}
 
 An attempt to find any significant reason as to why these strategies outperform
 the rest gave the findings below:
 
 \begin{itemize}
-  \item Participating rate has a negative effect on the winning ratio for \(s=50\)
-        in lattice and cyclic topology and a positive in cyclic for \(s=5\)
+  \item Winning ratio has a significant difference based on the participations
+        number only for the cyclic and lattice topologies of size 5
   \item There is high variation is the average score of each strategy for all
         experiments
-  \item A regression model for the normalized average score did not return any
-        significant results.
+  \item Both regression models for the winning ratio and the normalized average
+        score did not return any significant results.
 \end{itemize}
 
-Even so, Raider stand out we could not produce any valid facts as to why this
-was not random and the Raider base on a number of reasons performed so well.
-Numerous actions could solve this. Actions that will be taking into consideration
-in the experiments to follow. Firstly, the network topologies used have been
-simple examples of graph, thus more sophisticated graphs will be used
-with different range of neighborhood sizes. Additionally, having a measure of
-comparing strategies will be useful. Thus, we will keep track of the cooperating
-rate of the strategies in the future.
-% The English isn't great in this paragraph. You should take a look at what
-% these strategies (RAider, etc) do, and comment on that.
+In conclusion, the strategies winning ratio differs in every topology and
+tournament size.
+Between the two sizes experiments only Raider seems a repeating strategy in the
+high ranked winning rations. Even so, valid arguments as to how to
+successful perform to any given experiment returned zero fundings.
 
-% Could you (possibly not) also mention how this compares to the literature?
-% Even if you just say that it doesn't compare, that there's nothing similar out
-% there...
+Comparing the results to any other work done in the literature is not possible.
+Because this kind experiments have not be conducted before.
+The Axelrod- Python library tournament could be used  a measure of comparison.
+Still two of the best overall strategies of that tournament have only made a
+brief appearance.
 
-% Final comment should be about what will be in the next chapter.
+Further actions to the experiments and can be taken for this point on.
+Producing a more complete data set for each experiment and making a more
+deep analysis. One could argue that all above experiments
+were conducted in simple topologies and small number of repetitions. Thus, the next
+step is to use more complex networks for topologies and conduct a larger number
+of tournaments.
