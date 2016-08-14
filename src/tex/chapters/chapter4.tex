@@ -1,3 +1,109 @@
-\chapter{Title of Chapter 3}
+\chapter{Complex Networks Experiments}
+\label{chap:Four}
 
-\lipsum[1-10]
+\section{Introduction}
+In this chapter experiments with more complex networks will be performed.
+Explaining these networks and the reasons behind their selection will be covered
+in the beginning. Moreover, the experiment structure itself will be discussed.
+Finally going through an analysis on the results. Using again the winning
+ratio to rank the strategies and the normalized average score. Also performing
+a classification on the strategies and building a regression model.
+
+In comparison to the work done in ~\ref{chap:Three}, in this chapter few things will
+be altered. A complete network spatial tournament will act instead of a round
+robin one. As be explained in a previous chapter they are one and the same. But
+
+
+
+Instead of a round robin tournament a complete network spatial
+tournament will be implemenet.
+
+\subsection{Networks}
+
+Helping us produce better full data sets and giving to possibility of a
+more intense research. Actions such as. ROund robin tournament should be
+behaved as a spatial complete tournament for comparison reason. Classifing the
+strategies to give us ny hind of the game play. An analysis on regression
+for an overall data set will all topologies. One could argue that all above experiments
+were conducted in simple topologies and small number of repititions. Thus the first thing we will
+do is fix this .
+
+\begin{itemize}
+  \item Small world
+  \item Binomial
+  \item Complete Graph
+\end{itemize}
+
+\subsection{Experiments Structure}
+
+
+\begin{algorithm}
+  \caption{Complex Experiments Rules}\label{simple-experiment-rules}
+  \begin{algorithmic}
+  \Procedure{Small World}{}
+  \BState \emph{loop}:
+  \For {$\textit{i} \gets \textit{ 0 to 100}$}
+  \State $player \gets \textit{random.strategies}$.
+  \For {$i \gets \textit{0 to 10}$}
+  \State $G \gets \textit{create.graph}$.
+  \State $edges \gets \textit{G.egdes}$
+  \State $results \gets \textit{play.tournament}$.
+  \emph{loop}.
+  \EndFor
+  \EndFor
+  \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+  \caption{Complex Experiments Rules}\label{simple-experiment-rules}
+  \begin{algorithmic}
+  \Procedure{Binomial}{}
+  \BState \emph{loop}:
+  \For {$\textit{i} \gets \textit{ 0 to 100}$}
+  \State $player \gets \textit{random.strategies}$.
+  \For {$i \gets \textit{0 to 10}$}
+  \State $G \gets \textit{create.graph}$.
+  \State $edges \gets \textit{G.egdes}$
+  \State $results \gets \textit{play.tournament}$.
+  \emph{loop}.
+  \EndFor
+  \EndFor
+  \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+  \caption{Complex Experiments Rules}\label{simple-experiment-rules}
+  \begin{algorithmic}
+  \Procedure{Complete}{}
+  \BState \emph{loop}:
+  \For {$\textit{i} \gets \textit{ 0 to 100}$}
+  \State $player \gets \textit{random.strategies}$.
+  \For {$i \gets \textit{0 to 10}$}
+  \State $G \gets \textit{create.graph}$.
+  \State $edges \gets \textit{G.egdes}$
+  \State $results \gets \textit{play.tournament}$.
+  \emph{loop}.
+  \EndFor
+  \EndFor
+  \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+\subsection{Network Analysis}
+\setion{Analysis}
+
+\subsection{Preliminary Analysis}
+
+\subsection{Classification}
+
+\subsection{Winning Ratio}
+
+\subsection{Median Rank}
+
+\subsection{Normalized Average Score}
+
+\subsection{Regression}
+
+\section{Summary}
