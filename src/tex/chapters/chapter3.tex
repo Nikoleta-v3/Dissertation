@@ -2,7 +2,7 @@
 \label{chap:Three}
 
 \section{Introduction}
-In this chapter we will discuss some initial experiments and their results.
+In this chapter some initial experiments and their results will be discussed.
 These experiments will be performed using three chosen topologies and two
 different sizes of tournaments. Emphasis will be given in the analysis of the
 results and identification of strategies behaviors. In addition, the source code
@@ -47,8 +47,9 @@ needed. Firstly a new \texttt{Match Generator} class was written.  The
 In these matches, players interact only with their neighbors rather than the
 entire population. According to \cite{Archdeacon1996} graphs can be represented
 in many different ways, one of which is by lists of edges.  Due to a various
-number of python packages that are used for graph manipulation, we want to keep
-a more generalized representation of the edges. Thus they will be passed as a
+number of python packages that are used for graph manipulation,
+a more generalized representation of the edges should be selected. Thus edges
+will be passed as a
 list argument and \texttt{SpatialMatches} will only create matches between the
 ending nodes of these edges. Finally the class \texttt{SpatialTournament} runs
 the spatial tournament. A representation of the code structure now, that the
@@ -79,8 +80,9 @@ The Axelrod-Python library is a Test Driven Development (TDD) software.
 All the components are automatically tested using a combination of unit,
 property and integration tests (using \url{travis-ci.org}).
 Once a new feature is added to the library, corresponding test must also be
-written. The test are used to ensure compatibility and ensure that we get the
-expected results. In~\cite{Developer} Percival explains from his personal
+written. The test are used to ensure compatibility and ensure that the expected
+results are returned.
+In~\cite{Developer} Percival explains from his personal
 experiences the importance of TDD and having tests for every single line of code.
 For the spatial tournament
 new unit test have been added. Unit tests are used to invoke a unit of work and
@@ -220,10 +222,28 @@ The Axelrod-Python library is a project which includes numerous contributors.
 Any given addition to the
 library has to be submitted by a pull request. Each submission is then
 reviewed by the members. This applies to the spatial tournament as well.
-In Figure~ conversation containing comments and corrections can be seen.
+In Figure~\ref{github-comments} conversation containing comments and corrections
+can be seen.
+
+\begin{figure}[H]
+\centering
+    \begin{subfigure}[H]{0.7\textwidth}
+    \centering
+        \includegraphics[width=\linewidth]{chapter-three/comments.jpeg}
+    \caption{Comments and corrections.}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[H]{0.7\textwidth}\centering
+    \centering
+        \includegraphics[width=\linewidth]{chapter-three/merging.jpeg}
+    \caption{Merging a pull request after reviews.}
+    \end{subfigure}
+\caption{On line communication and reviews, through GitHub,
+         with members of the Axelrod-Python library.}
+\label{fig:github}
+\end{figure}
 
 %  screenshots, you said screenshots. I am keeping the proof here.
-
 %  add screenshots from home.
 
 O.Campbell and M.Harper are the main contributors of the library, alongside V.Knight.
@@ -290,26 +310,25 @@ the strategies are randomly shuffled and allocated on the graph again. This aims
 to ensure that their particular position on the network is taken in to account.
 This shuffle is repeated 10 times. The selection of strategies is repeated 100 times
 and each tournament of an IPD consists of 200 turns and 10 repetitions.
-Listing~ illustrates these rules.
+~\ref{simple-experiment-rules} illustrates these rules.
 
-\begin{listing}[H]
-\usemintedstyle{tango}
-\begin{minted}
-[
-frame=lines,
-framesep=2mm,
-baselinestretch=1.2,
-bgcolor=LightBlue,
-fontsize=\footnotesize,
-linenos
-]
-{python}
-
-\end{minted}
-\caption{Source code for TestSpatialTournament class, which is for testing the
-         spatial tournaments.}
-\label{lst:test_spatial_complete_tournament}
-\end{listing}
+\begin{algorithm}
+  \caption{Simple Experiments Rules}\label{simple-experiment-rules}
+  \begin{algorithmic}
+  \Procedure{Running Experiment}{}
+  \BState \emph{loop}:
+  \For {$\textit{i} \gets \textit{ 0 to 100}$}
+  \State $player \gets \textit{random.strategies}$.
+  \For {$i \gets \textit{0 to 10}$}
+  \State $G \gets \textit{create.graph}$.
+  \State $edges \gets \textit{G.egdes}$
+  \State $results \gets \textit{play.tournament}$.
+  \emph{loop}.
+  \EndFor
+  \EndFor
+  \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
 
 % I think you should draw a picture of this or perhaps write some pseudo code
 % (kind of like the things we've been writing on my whiteboard):
