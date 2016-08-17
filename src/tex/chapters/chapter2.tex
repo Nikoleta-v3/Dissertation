@@ -202,7 +202,7 @@ Strategies are implemented as classes which have a single method, \texttt{strate
 It only takes one argument, which is the opponent's previous moves and returns
 an action. These actions can be either to cooperate C or to defect D. At thins
 moment the Axelrod library consists of 131 strategies.Can be found in the Appendix.
-As an example we can see in Figure  the source code for the
+As an example we can see in Listing~\ref{lst:tit_for_tat} the source code for the
 famous strategy Tit for Tat.
 
 \begin{listing}[H]
@@ -251,9 +251,10 @@ class TitForTat(Player):
         return C
 \end{minted}
 \caption{Tit for Tat source code.}
+\label{lst:tit_for_tat}
 \end{listing}
 
-Additionally, tournament is a class responsible for coordinating the play of
+Additionally, the tournament class is responsible for coordinating the play of
 generated matches. It achieves that by calling a match generator class which
 returns all the single match parameters, such as turns, the game and the noise.
 Axelrod has the capability to write out the results into a csv file and also out
