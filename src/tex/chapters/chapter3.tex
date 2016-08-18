@@ -6,7 +6,7 @@ In this chapter some initial experiments and their results are discussed.
 These experiments have been performed using three chosen topologies and two
 different sizes of tournaments. Emphasis is given in the analysis of the
 results and identification of strategies behaviors. In addition, the source code
-committed to the Axelrod-Python library to implement the spatial topology are
+committed to the Axelrod-Python library to implement a spatial topology are
 discussed, as well as two important aspects of developing
 test driven development and version control.
 
@@ -41,15 +41,15 @@ in~\ref{fig:round_robin_structure}.
   \label{fig:round_robin_structure}
 \end{figure}
 
-In order for to implement a Spatial topology tournament a similar approach is
+In order to implement a Spatial topology tournament a similar approach is
 needed. Firstly a new \texttt{Match Generator} class was written.  The
 \texttt{SpatialMatches} is a class that generates spatially-structured matches.
 In these matches, players interact only with their neighbors rather than the
 entire population. According to \cite{Archdeacon1996} graphs can be represented
 in many different ways, one of which is by lists of edges.  Due to a various
 number of python packages that are used for graph manipulation,
-a more generalized representation of the edges should be selected. Thus edges
-are passed as a list argument and \texttt{SpatialMatches} only creates matches
+a more generalized representation of the edges has be selected. Thus edges
+are passed as an argument and \texttt{SpatialMatches} only creates matches
 between the
 ending nodes of these edges. Finally the class \texttt{SpatialTournament} runs
 the spatial tournament. A representation of the code structure now, that the
@@ -76,15 +76,15 @@ Figure~\ref{fig:spatial_structure}
   \label{fig:spatial_structure}
 \end{figure}
 
-The Axelrod-Python library is a Test Driven Development (TDD) software.
+The Axelrod-Python library is developed using a Test Driven Development (TDD) approach.
 All the components are automatically tested using a combination of unit,
 property and integration tests (using \url{travis-ci.org}).
-Once a new feature is added to the library, corresponding test must also be
-written. The test are used to ensure compatibility and ensure that the expected
+Once a new feature is added to the library, a corresponding test must also be
+written. The tests are used to ensure compatibility and ensure that the expected
 results are returned.
 In~\cite{Developer} Percival explains from his personal
 experiences the importance of TDD and having tests for every single line of code.
-For the spatial tournament
+For the spatial tournament a
 new unit test have been added. Unit tests are used to invoke a unit of work and
 check that the behavior is expected. A unit of work can be any single logical
 functional use in the system. In summary, unit tests help to write clean and bug
@@ -139,12 +139,12 @@ class TestSpatialTournament(unittest.TestCase):
 \label{lst:test_spatial_complete_tournament}
 \end{listing}
 
-\texttt{TestSpatialTournament()} it a simple class for a unittests written for
+\texttt{TestSpatialTournament()} it a simple class for a unittest written for
 the spatial tournaments. In~\ref{lst:test_spatial_tournament}, whether
 the values of the attributes were passed correctly is being tested. Also whether
 the scores are as anticipated. In~\ref{lst:test_spatial_complete_tournament},
-another test is shown. Here the results of a complete spatial tournament are
-compared to those of a round robin one.
+another test is shown. Here the results of a spatial tournament on a complete graph
+are compared to those of a round robin one.
 
 \begin{listing}[H]
 \usemintedstyle{tango}
@@ -208,21 +208,19 @@ linenos
 The source code for the spatial tournaments and the tests can be found
 in the Axelrod-Python library. The library is available at
 \url{https://github.com/Axelrod-Python},
-which is a hosted git repository. This introduces us to another important aspect
-of software development, the version control system (VCS). \cite{Developer} stated
-that TDD and VS go hand in hand. VCS, is a tool that manages and tracks different
-versions of software~\cite{Vogel2014}. Software code is expanding continuously,
-thus it can be an enormous
-complicated system. Lines of codes are deleted, implementing errors occur and
-programmers forget. Thus, having the ability to go back to any given point can be
-very important. Git is a specific powerful and famous VSC. It was
-invented by Linus Torvalds and span to life in April 2005.
+which is a hosted git repository. This introduces another important aspect
+of software development: version control systems (VCS). As stated in \cite{Developer}
+TDD and VCS go hand in hand. VCS, is a tool that manages and tracks different
+versions of software~\cite{Vogel2014}. Lines of codes are deleted, implementing
+errors occur and programmers forget. Thus, having the ability to go back to any
+given point can be very important. Git is a specific powerful and famous VCS. It
+was invented by Linus Torvalds and span to life in April 2008.
 
 The Axelrod-Python library is a project which includes numerous contributors.
 Any given addition to the
 library has to be submitted by a pull request. Each submission is then
-reviewed by the members. This applies to the spatial tournament as well.
-In Figure~\ref{fig:github} conversation containing comments and corrections
+reviewed by members of the core team. This applies to the spatial tournament as well.
+In Figure~\ref{fig:github} a conversation containing comments and corrections
 can be seen.
 
 \begin{figure}[H]
@@ -243,18 +241,13 @@ can be seen.
 \label{fig:github}
 \end{figure}
 
-%  screenshots, you said screenshots. I am keeping the proof here.
-%  add screenshots from home.
-
-O.Campbell and M.Harper are the main contributors of the library, alongside V.Knight.
+O. Campbell and M. Harper are 2 of the 4 core contributors of the library.
 Their work, in company to other contributors included myself, had an impact on
 the Game Theory society. The project involves various research topics of
 the IPD, such as Noise tournaments, Probabilistic ending, Spatial tournaments,
 strategies from different works and authors and the capability
 of reproducing any of these given tournaments. This led to a publication to be
 achieved earlier in 2016~\cite{Knight2016}.
-
-\newpage
 
 In the next section an overview and a summary of the initial experiments
 performed is given.
@@ -278,7 +271,7 @@ well represented in the literature :  %\cite{}:
 
 Figure~\ref{fig:networks}, shows an example of all the aforementioned topologies.
 
-\begin{figure}[h]  % http://drvinceknight.blogspot.co.uk/2013/12/explaining-floats-in-latex.html
+\begin{figure}[!hbtp]  % http://drvinceknight.blogspot.co.uk/2013/12/explaining-floats-in-latex.html
 \centering
     \begin{subfigure}[h]{0.45\textwidth}
     \centering
@@ -301,16 +294,17 @@ Figure~\ref{fig:networks}, shows an example of all the aforementioned topologies
 \label{fig:networks}
 \end{figure}
 
-\newpage
+
 For each topology, a fixed number of strategies out of the 132 of Axelrod-Python
-library are chosen randomly. The number of strategies define the size of the
+library (1.7.0) are chosen randomly. The number of strategies define the size of the
 tournament. In the following experiments, the tournament size can be either
-five or fifty.
+five or fifty. In chapter~\ref{chap:Four} a more expansive tournament size range is
+considered for the corresponding analysis. %replace when merge chapter 4
 
 Subsequently, the strategies are allocated on the graph, based
-on the topology, and they compete with their neighbors on a IPD tournament.
+on the topology, and they compete with their neighbors in a IPD tournament.
 For the cyclic and lattice topology, once the first game is complete,
-the strategies are randomly shuffled and allocated on the graph again. This aims
+the strategies are randomly shuffled and allocated on a graph again. This aims
 to ensure that their particular position on the network is taken in to account.
 This shuffle is repeated 10 times. The selection of strategies is repeated 100 times
 and each tournament of an IPD consists of 200 turns and 10 repetitions.
@@ -334,10 +328,6 @@ Algorithm~\ref{simple-experiment-rules} illustrates these rules.
   \end{algorithmic}
 \end{algorithm}
 
-% I think you should draw a picture of this or perhaps write some pseudo code
-% (kind of like the things we've been writing on my whiteboard):
-% http://tex.stackexchange.com/questions/163768/write-pseudo-code-in-latex
-
 % seeds allow us
 % reproduce the same players and tournaments.},
 % You're going in to to many details here: the reader could potentially have no
@@ -345,12 +335,10 @@ Algorithm~\ref{simple-experiment-rules} illustrates these rules.
 % that you're looping over seeds and then include some nice reference/comment
 % about why you're doing that.
 
-The Axelrod tournaments themselves make usage of match memory and CPU power and
-by adding these additional rules to the tournaments was only increasing their usage.
-For that reason all the tournaments and their results are run in Raven, which
-is the super computer of Cardiff University. All the scripts and pbs file, for
+Due to the high computational cost of the analysis considered, the Cardiff
+University's super computer is used. All the scripts and pbs file, for
 communicating with Raven, can be found on github :
-\url{https://github.com/Nikoleta-v3}.
+\url{https://github.com/jobs/Nikoleta-v3}.
 
 For the data preparations and analysis the following libraries have been used:
 \begin{multicols}{2}
@@ -372,16 +360,16 @@ have been written.
 % Haha: good idea :) We'll also talk about using something like zenodo.org to
 % 'freeze' your data. We should talk about this.
 
-In the next section, an preliminary analysis of the experiments aforementioned
-has been held. Followed by, an intense analysis in section~\ref{sub:analyzing_the_effect_of_the_topologies}.
+In the next section, preliminary analysis of the experiments aforementioned
+is described. Followed by, an intense analysis in section~\ref{sub:analyzing_the_effect_of_the_topologies}.
 There, the concept of winning ratio and normalized average score are introduced.
 Finally, the results have been summarized in~\ref{sub:summary}, offering further
-avenues  of research.
+avenues of research.
 
 
 \subsection{Initial Analysis}
 \label{sub:initial_analysis}
-For each of the tournament run, the following parameters are recorded:
+For each of the tournaments run, the following parameters are recorded:
 
 \begin{multicols}{3}
   \begin{itemize}
@@ -417,9 +405,6 @@ records.
 For the spatial tournaments, for both tournament sizes (5 and 50),
 1000 tournaments have been played. Containing 100 different strategy sets, each of
 which playing 10 tournaments.
-% terminology that the complete graph is a spatial tournament (just a boring
-% topology so this needs to be reworded to fit with that).
-
 
 Moreover, for the cyclic experiments as shown in Table~\ref{sum-cicle}, the degree is
 and the payoffs are fixed for both tournament sizes. For tournaments of size 5,
@@ -428,7 +413,7 @@ value of 4.95. The mean average score of the neighbors score is 980.95 with a
 standard deviation of 219.87.
 The mean average score does not seem to differ for size equal to 50, which is at
 2.39. Though, in the experiment with a size of fifty a strategy
-achieved a score of 0. Additionally the average score of the neighbors ranges
+achieved an average score of 0. Additionally the average score of the neighbors ranges
 from 19.30 to 1884.5. Concerning the graph measures, as explained in [chapter 2],
 clustering coefficient is zero and connectivity fixed to 2.
 % Also I forget, but assuming you have described what these things mean in C2,
@@ -458,7 +443,7 @@ max    & (3,1,0,5) & 2.0    & 2.0          & 4.95     & 1756.50             & 0.
 \label{sum-cicle}
 \end{table}
 
-For the lattice topologies a table that summarizes the data set is shown in Table
+For the lattice topologies a table that summarizes the data is shown in Table
 ~\ref{sum-lattice}. For both size values the payoffs are the same (\(R=3, P=1, S=0, T=5\))
 and the degree is fixed at 4. For size 5 the mean average score
 varies between 0.018 and 4.97. The average score of the neighbors varies between
@@ -518,9 +503,10 @@ using the verified code, various experiments were conducted with different
 topologies
 and number of players participating in each tournament. An overview of the
 data sets produced was done but now in the following sections
-some more analysis on the results will be performed.
+some more analysis on the results will be performed that aim to understand
+the performance of the strategies.
 
-\newpage
+
 \section{Analyzing the effect of the topologies}
 \label{sub:analyzing_the_effect_of_the_topologies}
 
@@ -528,27 +514,23 @@ In the data all 132 strategies of Axelrod-Python library have participated in at
 least one tournament. Not all strategies participated in an equal number of tournaments.
 Forcing the strategies to perform in a uniform number is
 not an option because the random effect is needed for validation of the
-results. However, one could argue that by participating in a larger number of
-tournaments, the probability of winning increases as well.
-Thus, for a measure of
+results. For a measure of
 performance, instead of using the number of tournaments won, the analysis will
 be using the ratio of wins in subsection~\ref{sub:winning-ratio}.
 The winning ratio is defined as the number of tournaments a strategy was ranked
 first divided by the number of tournaments the strategy competed in.
 Additionally, the normalized average score each strategy
-achieved will also be studied in subsection~\ref{sub:normalized_av_score}. Mainly to study
-the variation, helping with conclusions on the performance of a strategy.
-Lastly in subsection~\ref{sub:regression}, having all different
-factors such as degree, neighbors, clustering, scores etc building a regression
-model could point out effects on the results.
-
+achieved will also be studied in subsection~\ref{sub:normalized_av_score}.
+Lastly in subsection~\ref{sub:regression}, a regression model is considered to
+attempt to identify the important factors relevant to performance in various
+topologies.
 
 \subsection{Winning Ratio}
 \label{sub:winning-ratio}
 
 In the experiment where the
 strategies compete on a cyclic network, 124 strategies out of the 132 have a
-winning ration greater than zero. In other words, 8 strategies won no
+winning ratio greater than zero. In other words, 8 strategies won no
 tournaments. These strategies are shown in Table~\ref{winning-ratio-zero-cyclic-five} :
 
 \begin{table}[h]
@@ -573,12 +555,10 @@ Cycler DDC          & A player that repeats the sequence DDC indefinitely.      
          size 5.}
 \label{winning-ratio-zero-cyclic-five}
 \end{table}
-% I run the tournaments that he participated again and had the same results
-% I'm really surprised that BackStabber won no tournaments...
 
 In the lattice topology as well, 8 strategies do not have
 a non-zero winning ratio. Among them Tricky Cooperator, Cycle DDC and AllCorAllD
-again. The rest strategies and a simple explanation of them can be found in
+again. The rest of the strategies and a simple explanation of them can be found in
 Table~\ref{winning-ratio-zero-lattice-five}.
 
 \begin{table}[h]
@@ -602,8 +582,8 @@ Sneaky Tit For Tat      & Tries defecting once and repents if punished.         
 \end{table}
 
 In the round robin tournament 61 strategies ranked a winning ratio of zero.
-Among them Cycler CCD, Tricky Cooperator, Fortress4, Bully, and the whole family
-of Hard Go By Majority.
+Among them Cycler CCD, Tricky Cooperator, Fortress4, Bully, and the Majority
+strategies.
 
 On the other hand the strategies with the highest winning ratio for each
 topology are as follows:
@@ -616,9 +596,6 @@ topology are as follows:
         and Stochastic WSLS with 0.43 winning ratio
   \item Round Robin topology with a winning ratio of 1 : Raider, Gradual, Limited
         Retaliate(0.05/20) and BackStabber.
-        % See how well Backstabber does here and on the lattice...
-        % I wonder what's going on... Interesting...
-        % Will be good to get those line plot things.
 \end{itemize}
 
 In every topology the highest ranking strategy is different.
@@ -633,9 +610,6 @@ When considering tournaments of size 50 no strategies have a zero ratio
 ranges from 10 to 90, where in the tournament size 50 from 270 to 570. The higher
 the number of tournaments participated the higher probabilities of winning at
 least one. This could explain the existence of only non zero winning ratios.
-% Give a little explanation for this: why do we think that is? Does this perhaps
-% mean we need to run the size 5 strategies more? To get more diversity in the
-% strategy sets? What do you think?
 
 The strategies with the highest winning ratio for each respective topologies are
 as follow :
@@ -647,14 +621,14 @@ as follow :
   \item Lattice topology with a winning ratio of 0.037 Adapative Pavlov 2006.
         Followed by Fool Me Once with 0.036 and Raider with 0.035. Inverse
         Punisher had a winning ratio of 0.033, the fourth highest of all
-  \item Round Robin topology with a winning ration of 0.86 PSO Gambler, followed
+  \item Round Robin topology with a winning ratio of 0.86 PSO Gambler, followed
         by EvolvedLookerUp with 0.60
 \end{itemize}
 
-In the cyclic and periodic lattice topology the highest winning ration achieved
-was 0.038. The number is lower than any other experiment due the range of
+In the cyclic and periodic lattice topology the highest winning ratio achieved
+was 0.038. The number is lower than any other experiment due to the range of
 tournaments participated. In the round robin experiment the maximum number of
-participations was 57, explaining the big difference in the winning ration between
+participations was 57, explaining the big difference in the winning ratio between
 these experiments. PSO Gambler that achieved the highest ratio is also the current
 winner of the Axelrod-Python tournament.
 
@@ -674,7 +648,7 @@ The overall successful strategies are Nice Average Copier, Raider and Fool Me On
 Raider is a repeatedly successful strategies for more than one experiment.
 It is a finite state machine strategy found in~\cite{DBLP:conf/foci/AshlockTA14}.
 For now Raider strategy seems to be a well performed strategy for any
-given random situation. Further investigation will be conducted.
+given random situation.
 
 Illustration of the ratios for each experiment in asceding order can be found
 in Appendix A, Figure~\ref{fig:winning-fifty} and Figure~\ref{fig:winning-five}.
@@ -723,36 +697,35 @@ in Appendix A, Figure~\ref{fig:winning-fifty} and Figure~\ref{fig:winning-five}.
              \label{fig:winning-rankings-fifty-l-r}
 \end{figure}
 
-\newpage
-
 The strategies can be classified based on the number of tournament
 participations. For tournament size 5, 9 classes have been created for
-the cyclic and lattice, [10, 20, 30, 40, 50, 60, 70, 80, 90]. For tournament
+the cyclic and the periodic lattice topologies, [10, 20, 30, 40, 50, 60, 70, 80, 90].
+For tournament
 size 50, [270, 280, 290, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410,
 420, 430, 440, 450, 460, 470, 570]. Round robin topology
 experiments were classified as [1, 2, 3, 4, 5, 6, 7, 8, 9] and
 [27, 28, 29, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 57],
-respectively. The winning rations were plotted against participation number
+respectively. The winning ratios were plotted against participation number
 in Figures~\ref{fig:winning-ratio-participations-five} and~\ref{fig:winning-ratio-participations-fifty}.
 An ANOVA analysis was used to analyze the importance of the
 differences in the winning ratios among the participating groups.
 
 The anova results, for a tournament of size equal to 5,
 indicate that for the topologies cyclic and periodic lattice the difference
-of rations between the participations group is significant(\(p\) values
+of ratios between the participations groups is significant (\(p\) values
 are lower that 0.05). Shown in Figure~\ref{fig:winning-ratio-participations-five},
 are violin plots of the winning ratio against number of participations. A positive
 trend can be spotted for the lattice and cyclic topology. For the round robin
 topology, the anova test suggests no correlation between ratio and participating.
 
-Equivalent, in ~\ref{fig:winning-ratio-participations-fifty}, violin plots for
+Equivalently, in ~\ref{fig:winning-ratio-participations-fifty}, violin plots for
 tournament size 50 are displayed.  In the anova results from Table~\ref{anova-size-fifty},
 \(p\) values of a round robin and of a cyclic topology are greater that 0.05.
 Compared to that of a lattice, where the \(p\) values is below 0.05 and, therefore,
 there is a statistically significant difference.
 Thus, participating number affects the winning ratios for only two out of the six
-experiments. The specific groups that differed are not clear.
-Post-hoc tests could be performed there will be no more investigation to this.
+experiments. The specific groups that different are not clear.
+Post-hoc analysis could be performed but will not be considered here.
 
 \begin{table}[H]
 \centering
@@ -761,7 +734,7 @@ Post-hoc tests could be performed there will be no more investigation to this.
 \begin{tabular}{|l|l|l|l|}
 \hline
 Topology         & \multicolumn{3}{l|}{Anova results tournament size 5} \\ \hline
-                 & Sum of Squares      & F ratio     & p value          \\ \hline
+                 & Sum of Squares      & F ratio     & \(p\) value          \\ \hline
 Cyclic           & 0.41                & 33.83       & 6.379416e-09     \\ \hline
 Periodic Lattice & 0.04                & 4.24        & 0.039            \\ \hline
 Round Robin      & 0.008               & 0.18        & 0.66             \\ \hline
@@ -778,7 +751,7 @@ Round Robin      & 0.008               & 0.18        & 0.66             \\ \hlin
 \begin{tabular}{|l|l|l|l|}
 \hline
 Topology         & \multicolumn{3}{l|}{Anova results tournament size 5} \\ \hline
-                 & Sum of Squares     & F ratio     & p value           \\ \hline
+                 & Sum of Squares     & F ratio     & \(p\) value           \\ \hline
 Cyclic           & 0.000056           & 1.12        & 0.28              \\ \hline
 Periodic Lattice & 0.045              & 1110.45     & 7.777650e-241     \\ \hline
 Round Robin      & 0.00098            & 0.10        & 0.74              \\ \hline
@@ -794,21 +767,21 @@ Round Robin      & 0.00098            & 0.10        & 0.74              \\ \hlin
     \begin{subfigure}[t]{0.75\textwidth}
     \centering
         \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Cyclic-5.pdf}
-    \caption{Winning Ration vs Number of Participations Cyclic Tournament Size 5.}
+    \caption{Winning Ratio vs Number of Participations Cyclic Tournament Size 5.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.75\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Periodic-Lattice-5.pdf}
-    \caption{Winning Ration vs Number of Participations Periodic Lattice Tournament Size 5.}
+    \caption{Winning Ratio vs Number of Participations Periodic Lattice Tournament Size 5.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.75\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Round-Robin-5.pdf}
-    \caption{Winning Ration vs Number of Participations Round Robin Tournament Size 5.}
+    \caption{Winning Ratio vs Number of Participations Round Robin Tournament Size 5.}
     \end{subfigure}
-\caption{Winning Ration vs Number of Participations Tournament Size 5.}
+\caption{Winning Ratio vs Number of Participations Tournament Size 5.}
 \label{fig:winning-ratio-participations-five}
 \end{figure}
 
@@ -818,28 +791,26 @@ Round Robin      & 0.00098            & 0.10        & 0.74              \\ \hlin
     \begin{subfigure}[t]{0.75\textwidth}
     \centering
         \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Cyclic-50.pdf}
-    \caption{Winning Ration vs Number of Participations Cyclic Tournament Size 50.}
+    \caption{Winning Ratio vs Number of Participations Cyclic Tournament Size 50.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.75\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Periodic-Lattice-50.pdf}
-    \caption{Winning Ration vs Number of Participations Periodic Lattice Tournament Size 50.}
+    \caption{Winning Ratio vs Number of Participations Periodic Lattice Tournament Size 50.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.75\textwidth}\centering
     \centering
         \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Round-Robin-50.pdf}
-    \caption{Winning Ration vs Number of Participations Round Robin Tournament Size 50.}
+    \caption{Winning Ratio vs Number of Participations Round Robin Tournament Size 50.}
     \end{subfigure}
-\caption{Winning Ration vs Number of Participations Tournament Size 50.}
+\caption{Winning Ratio vs Number of Participations Tournament Size 50.}
 \label{fig:winning-ratio-participations-fifty}
 \end{figure}
 
-\newpage
-In this subsection the winning ratio has been covered. The winning ratio is defined
-as the number of ranking first in a tournament divided by the number you participated
-in one. The strategies were ranked based on their winning ratio in each of the
+In this subsection the winning ratio has been covered. The strategies were ranked
+based on their winning ratio in each of the
 six experiments. Line plots that illustrate the devolution in the strategies
 rankings, were conducted. Indicating that Raider could be an overall well performed
 strategy. Reasons as to why are being investigated. For example the correlation
@@ -925,7 +896,7 @@ factor that can explain the winning ratio and average score of a strategy.
 The round robin topology is not included in this subsection analysis as this
 investigation aims to understand the effect of network topology.
 
-The first model was build with the winning ratio as the depended variable,
+The first model was built with the winning ratio as the depended variable,
 shown here:
 
 \begin{align}
@@ -942,7 +913,7 @@ shown here:
 \small
 \begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|l|l|l|@{}}
 \toprule
-Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & R-square \\ \midrule
+Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & \(R\) - square \\ \midrule
      &          & coef            & p            & coef          & p           & coef                      & p                    & coef             & p              & coef                & p             &          \\ \midrule
 size 5  & Cyclic& 0.0344          & 0.00         & 0.0688        & 0.00        & 3.239e-06                 & 0.651                & 0.0              & NA             & 0.0006             & 0.00           & 0.007    \\ \midrule
      & Lattice  & 0.0108          & 0.00         & 0.0431        & 0.00        & 7.447e-06                 & 0.159                 & 0.0108           & 0.00           & -0.0002             & 0.036          & 0.001    \\ \midrule
@@ -955,9 +926,11 @@ size 50 & Cyclic& 0.0043          & 0.00         & 0.0087        & 0.00        &
 \label{regression-winning}
 \end{table}
 
-From the results it is shown that only degree seems to be a stable significant
-predictor for all three experiments. With a \(p\) value less that 0.001. Average
-of size 50, it has a negative correlation with the winning ratio. Thus, the
+
+For tournaments of size 50, the results it is shown that only the degree seems
+to be a stable significant predictor for all three experiments. With a \(p\)
+value less that 0.001. Average neighborhood score, has a negative correlation
+with the winning ratio. Thus, the
 better the neighbors score the less score will a strategy achieve.
 
 Periodic lattice experiments are affected by clustering. Both \(p\) values
@@ -965,7 +938,7 @@ are less than 0.05 but are affected with an insignificant amount, less that 0.1.
 Participations seems to have a negative effect on the lattice size 5 experiment
 but a positive one for the cyclic size 5 and lattice size 50.
 
-Overall, all R-square values  are really low. With the highest R- value of a
+Overall, all \(R\) - squaresquare values  are really low. With the highest R- value of a
 model being 0.022 for lattice size 50. Thus, the performance of the model can
 be characterized as insignificant,
 
@@ -988,7 +961,7 @@ individually. The results of models are shown below, Table~\ref{regression-avera
 \small
 \begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|l|l|l|@{}}
 \toprule
-Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{connectivity} & \multicolumn{2}{l|}{participations} & R-square \\ \midrule
+Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{connectivity} & \multicolumn{2}{l|}{participations} & \(R\) - square \\ \midrule
         &          & coef            & p            & coef          & p           & coef                      & p                    & coef             & p              & coef                & p             &          \\ \midrule
 size 5  & Cyclic    & 0.028           & 0.00         & 0.0559        & 0.00        & -3.763e-06                & 0.043                & 0.0              & NA             & -0.0016             & 0.00          & 0.457    \\ \midrule
         & Lattice  & 0.0064          & 0.00         & 0.0256        & 0.00        & 1.079e-05                 & 0.00                 & 0.0064           & 0.00           & -0.0016             & 0.00          & 0.549    \\ \midrule
@@ -1004,25 +977,24 @@ In the output, Table~\ref{regression-average}, is shown that degree, average
 neighborhood score and participations
 are significant predictors for all the experiments with a \(p\) value less than
 an 0.0001.
-% Less than 0 means negative. % we did that in statistics , less than 0.0001.
 For the cyclic topology, average neighborhood score and participations have negative
-coefficients. For example a decrease in participations by one would increase
+coefficient. For example a decrease in participations by one would increase
 the average score by 0.0016. Degree on the other hand has a positive coefficient
 and connectivity has no effect at all. Furthermore the model for size 5 has
-a R-square value of 0.457, thus it only explains 0.4 variation of the data which is
+a \(R\) - square value of 0.457, thus it only explains 0.4 variation of the data which is
 quite low. For size 50 it is even lower at only 0.12.
 
-Finally, for the lattice topology only participations have a negative coefficients.
+Finally, for the lattice topology only participations have a negative coefficient.
 Thus the only factor with a reverse influence on average score in the lattice topology.
 Connectivity is a significant predictor as well with a coefficient 0.0064 and
-0.0003 respectively. Though the R-square value is still  small,
+0.0003 respectively. Though the \(R\) - square value is still  small,
 with a value 0.547 and 0.216 respectively.
 Even if there are predictors with a significant \(p\) value, the overall
 performance of the model is moderate.
 
-For both models and all set of 6 experiments some predictors can e characterized
-as significant. More than one factors have a p value less than a 0.05, the alpha
-that has been set. Even so, the coefficients and the overall R square values are
+For both models and all set of 6 experiments some predictors can be characterized
+as significant. More than one factors have a \(p\) value less than a 0.05, the alpha
+that has been set. Even so, the coefficient and the overall R square values are
 quite low. Thus, it can not be said that any of this model can predict the
 winning ratio neither the average score of a strategy.
 
@@ -1031,24 +1003,24 @@ winning ratio neither the average score of a strategy.
 
 A summary of all the analysis previously made, ~\ref{sub:initial_analysis} and
 ~\ref{sub:analyzing_the_effect_of_the_topologies}, is given in this section.
-Moreover, it lists topic for further research to be conduct.
+Moreover, it lists topic for further research to be conducted.
 
 From the analysis that was performed in~\ref{sub:winning-ratio}, the wining ratio
 for each strategy for all 6 experiments indicated the following :
 
 \begin{itemize}
-  \item For the size 5 experiments, the well performed strategies were Punisher,
+  \item For the size 5 experiments, the well performing strategies were Punisher,
         Raider and BackStabber
-  \item For the size 50 experiments, the well performed strategies were Nice
+  \item For the size 50 experiments, the well performing strategies were Nice
         Average Copier, Raider and Fool Me Once
   \item BackStabber, which is one of the highest ranked strategies in the
-        Axelrod- Python tournament. Did not win a single tournament in the cyclic
+        Axelrod-Python tournament. Did not win a single tournament in the cyclic
         tournament size 5 experiment
   \item PSO Gambler, the current winner of the Axelrod-Python tournament had the
         highest winning ratio only in the Round Robin 50 experiment
   \item For a Round Robin size 50, most of the strategies finished the experiment
         with winning ratio of zero.
-  \item Raider seem to have successful performance in general
+  \item Raider seems to perform highly
 \end{itemize}
 
 An attempt to find any significant reason as to why these strategies outperform
@@ -1057,7 +1029,7 @@ the rest gave the findings below:
 \begin{itemize}
   \item Winning ratio has a significant difference based on the participations
         number only for the cyclic and lattice topologies of size 5
-  \item There is high variation is the average score of each strategy for all
+  \item There is high variation in the average score of each strategy for all
         experiments
   \item Both regression models for the winning ratio and the normalized average
         score did not return any significant results.
@@ -1066,18 +1038,19 @@ the rest gave the findings below:
 In conclusion, the strategies winning ratio differs in every topology and
 tournament size.
 Between the two sizes experiments only Raider seems a repeating strategy in the
-high ranked winning rations. Even so, valid arguments as to how to
+high ranked winning ratios. Even so, valid arguments as to how to
 successful perform to any given experiment returned zero fundings.
 
 Comparing the results to any other work done in the literature is not possible.
-Because this kind experiments have not be conducted before.
-The Axelrod- Python library tournament could be used  a measure of comparison.
-Still two of the best overall strategies of that tournament have only made a
-brief appearance.
+Because this this kind of experiments (which compare a large number of tournaments)
+have not been conducted before.
+The Axelrod-Python library tournament could be used  a measure of comparison.
+Still two (PSO Gambler, BackStabber) of the best overall strategies of that
+tournament have only made a brief appearance.
 
 Further actions to the experiments and can be taken for this point on.
-Producing a more complete data set for each experiment and making a more
-deep analysis. One could argue that all above experiments
-were conducted in simple topologies and small number of repetitions. Thus, the next
-step is to use more complex networks for topologies and conduct a larger number
-of tournaments.
+Producing a more complete data set for each experiment and carrying out a more
+in depth analysis. One could argue that all above experiments
+were conducted in simple topologies and a small number of repetitions. Thus, the
+next step is to use more complex networks for topologies and conduct a larger
+number of tournaments.
