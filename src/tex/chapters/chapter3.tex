@@ -311,6 +311,8 @@ Algorithm~\ref{simple-experiment-rules} illustrates these rules.
   \Procedure{Running Experiment}{}
   \BState \emph{loop}:
   \For {$\textit{i} \gets \textit{ 0 to 100}$}
+  \State $seed$ \Comment{by setting a seed here, the program allows the reproduction
+                          of the same players list, for each experiment}
   \State $player \gets \textit{random.strategies}$.
   \For {$i \gets \textit{0 to 10}$}
   \State $G \gets \textit{create.graph}$.
