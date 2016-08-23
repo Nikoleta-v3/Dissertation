@@ -2,97 +2,136 @@
 \label{chap:Four}
 
 \section{Introduction}
-In this chapter experiments with more complex networks will be performed.
-Explaining these networks and the reasons behind their selection will be covered
-in the beginning. Moreover, the experiment structure itself will be discussed.
-Finally going through an analysis on the results. Using again the winning
-ratio to rank the strategies and the normalized average score. Also performing
-a classification on the strategies and building a regression model.
+In this chapter experiments with more complex networks have been performed.
+An introduction to these networks and the reasons behind their selection has been
+covered in the begging of the chapter. The experiments structure, for each topology,
+have also been analyzed. Finally, an analysis on the data produced for these
+experiments, has been performed. The winning ratio as well as the normalized
+average score have been examined.
 
-In comparison to the work done in ~\ref{chap:Three}, in this chapter few things will
-be altered. A complete network spatial tournament will act instead of a round
-robin one. As be explained in a previous chapter they are one and the same. But
-
-
-
-Instead of a round robin tournament a complete network spatial
-tournament will be implemenet.
+The issues raised in~\ref{ch:Three}, have been address in the current chapter,
+altering various approaches. For example, a measure of similarity between the
+strategies has been used. The measure used, is based on the average cooperating
+ratio of the strategies. Furthermore, median ranking of each strategy has been
+looked into, for it is believed to be a more appropriate measure of performance.
+Compared to winning ratio. Regression models for winning ratio, average score
+and median rank have been build. Furthermore, round robin in treated as
+a spatial tournament of a complete topology.
 
 \subsection{Networks}
 
-Helping us produce better full data sets and giving to possibility of a
-more intense research. Actions such as. ROund robin tournament should be
-behaved as a spatial complete tournament for comparison reason. Classifing the
-strategies to give us ny hind of the game play. An analysis on regression
-for an overall data set will all topologies. One could argue that all above experiments
-were conducted in simple topologies and small number of repititions. Thus the first thing we will
-do is fix this .
+A complex network is a graph with non-trivial topological features;
+features that can not occur in networks such as the one studied in ~\ref{}.
+Such features include, a heavy tail in the degree distribution, a high
+clustering coefficient, and hierarchical structure. Complex networks are commonly
+used to study computer network, technological networks and social networks.
+
+They will also be used in the experiment conducted in this dissertation. Small
+world and random graphs, and more specifically, the following networks are
+studied :
 
 \begin{itemize}
-  \item Small world
-  \item Binomial
-  \item Complete Graph
+  \item Watts-Strogatz, a model for generating graphs with small-world properties
+  \item Erdős–Rényi, a model for generating random graphs
+  \item Complete Graph, a graph with the properties of a round robin topology
 \end{itemize}
 
-\subsection{Experiments Structure}
+Each of the experiment has a different set of parameters, thus the size of
+data produced by each experiment is different. The structure of each experiment
+is analyzed on the following subsection.
 
+\subsection{Experiments Structure}
+\subsubsection{Small-world}
+
+Watts-Strogatz, is the graph generator model used in this experiment. Networkx,
+provide us with a function for such graphs. The documentation for the
+Watts-Strogatz function, can be found here
+\url{https://networkx.github.io/documentation/development/reference/generated/networkx.generators.random_graphs.watts_strogatz_graph.html#networkx.generators.random_graphs.watts_strogatz_graph}
+, and it takes \(n\), \(k\) and \(p\) as arguments. Where \(n\) is the number
+of nodes, \(k\) is nearest neighbors each node is connected to, and \(p\) the
+he probability of rewiring each edge. Moreover, the tournament size is not
+going to be deterministic. The tournament size will range from 2 to 50.
+Same will be done of the initial size, it will range from 2 to tournament size
+minus one. The chosen players are also shuffled and re placed on the graph.
+A pseudo code illustrating the structure of the experiment is shown in~\ref{small-world-experiment}:
 
 \begin{algorithm}
-  \caption{Complex Experiments Rules}\label{simple-experiment-rules}
+  \caption{Small-world Experiment}\label{small-world-experiment}
   \begin{algorithmic}
   \Procedure{Small World}{}
   \BState \emph{loop}:
+  \For {$\textit{tournament_size} \gets \textit{2 to 50}$}
+  \For {$\textit{initial_neighborhood_size} \gets \textit{1 to tournament_size-1}$}
   \For {$\textit{i} \gets \textit{ 0 to 100}$}
   \State $player \gets \textit{random.strategies}$.
-  \For {$i \gets \textit{0 to 10}$}
-  \State $G \gets \textit{create.graph}$.
+  \For {$p \gets \textit{0 to 10}$}
+  \State $G \gets \textit{create.watts.strogatz.graph}$.
   \State $edges \gets \textit{G.egdes}$
   \State $results \gets \textit{play.tournament}$.
   \emph{loop}.
   \EndFor
   \EndFor
+  \EndFor
+  \EndFor
   \EndProcedure
   \end{algorithmic}
 \end{algorithm}
+
+\subsubsection{Random}
+
+For recreating a random network experiment, Erdős–Rényi has been used.
+Again networkx provide a function to easily generate such graph\url{https://networkx.github.io/documentation/development/reference/generated/networkx.generators.random_graphs.binomial_graph.html#networkx.generators.random_graphs.binomial_graph}.
+The arguments taken but the function are the following : \(n\) as the number
+of nodes and \(p\) as the probability for edge creation. Again, the tournament
+size is not going to be deterministic. The tournament size will range from 2 to 50.
+The chosen players are also shuffled and re placed on the graph.
+A pseudo code illustrating the structure of the experiment is shown in~\ref{small-world-experiment}:
 
 \begin{algorithm}
-  \caption{Complex Experiments Rules}\label{simple-experiment-rules}
+  \caption{Random Experiment}\label{simple-experiment-rules}
   \begin{algorithmic}
-  \Procedure{Binomial}{}
+  \Procedure{Random}{}
   \BState \emph{loop}:
+  \For {$\textit{initial_neighborhood_size} \gets \textit{1 to tournament_size-1}$}
   \For {$\textit{i} \gets \textit{ 0 to 100}$}
   \State $player \gets \textit{random.strategies}$.
-  \For {$i \gets \textit{0 to 10}$}
-  \State $G \gets \textit{create.graph}$.
+  \For {$p \gets \textit{0 to 10}$}
+  \State $G \gets \textit{create.watts.strogatz.graph}$.
   \State $edges \gets \textit{G.egdes}$
   \State $results \gets \textit{play.tournament}$.
   \emph{loop}.
+  \EndFor
   \EndFor
   \EndFor
   \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
+\subsubsection{Complete}
 \begin{algorithm}
   \caption{Complex Experiments Rules}\label{simple-experiment-rules}
   \begin{algorithmic}
   \Procedure{Complete}{}
   \BState \emph{loop}:
+  \For {$\textit{initial_neighborhood_size} \gets \textit{1 to tournament_size-1}$}
   \For {$\textit{i} \gets \textit{ 0 to 100}$}
   \State $player \gets \textit{random.strategies}$.
-  \For {$i \gets \textit{0 to 10}$}
-  \State $G \gets \textit{create.graph}$.
+  \For {$p \gets \textit{0 to 10}$}
+  \State $G \gets \textit{create.watts.strogatz.graph}$.
   \State $edges \gets \textit{G.egdes}$
   \State $results \gets \textit{play.tournament}$.
   \emph{loop}.
+  \EndFor
   \EndFor
   \EndFor
   \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
-\subsection{Network Analysis}
+
 \setion{Analysis}
+
+\subsection{Network Analysis}
 
 \subsection{Preliminary Analysis}
 
