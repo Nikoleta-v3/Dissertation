@@ -1,52 +1,153 @@
 \chapter{First Appendix Title}
 
-\begin{figure}[!hbtp]
-\centering
-    \begin{subfigure}[t]{1\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{appendix/winners-cycle_five.pdf}
-    \caption{Winning ration cycle s=5.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{appendix/winners-lattice_five.pdf}
-    \caption{Winning ration lattice s=5.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{appendix/winners-rr_five.pdf}
-    \caption{Winning ration round robin s=5.}
-    \end{subfigure}
-\caption{Winning ratio for all three topologies s=5.}
-\label{fig:winning-five}
-% Why are these plots bar plots? Should they just be scatter plots?
-% Same comment for all of them.
-\end{figure}
+\section{Cooperating Ratio Classification}
+\label{append:class-categories}
+Here the table with the list of strategies and their respective cooperating
+category, as explained in ~\ref{sub:four-classification}, are illustrated.
 
-\begin{figure}[H]
-\centering
-    \begin{subfigure}[t]{1\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{appendix/winners-cycle_fifty.pdf}
-    \caption{Winning ration cyclic s=50.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{appendix/winners-lattice_fifty.pdf}
-    \caption{Winning ration lattice s=50.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{appendix/winners-rr_fifty.pdf}
-    \caption{Winning ration round robin s=50.}
-    \end{subfigure}
-\caption{Winning ratio for all three topologies s=50.}
-\label{fig:winning-fifty}
-\end{figure}
+\begin{longtable}{|p{0.5cm}||p{6cm}||p{4cm}||p{2cm}|}
+			\hline
+			\multicolumn{4}{|c|}{Categories based on cooperating ratio}           \\ \hline
+			    & strategy                    & cooperating ratio & category \\  \hline
+			0   & $\phi$                      & 0.622042          & moderate \\ \hline
+			1   & $\pi$                       & 0.786273          & low      \\ \hline
+			2   & $e$                         & 0.769091          & low      \\ \hline
+			3   & ALLCorALLD                  & 0.597729          & moderate \\ \hline
+			4   & Adapative Pavlov 2006       & 0.591843          & moderate \\ \hline
+			5   & Adapative Pavlov 2011       & 0.794202          & low      \\ \hline
+			6   & Adaptive                    & 0.603062          & moderate \\ \hline
+			7   & Aggravater                  & 0.092448          & mid      \\ \hline
+			8   & Alternator                  & 0.500000          & weak     \\ \hline
+			9   & Alternator Hunter           & 0.999616          & low      \\ \hline
+			10  & Anti Tit For Tat            & 0.593823          & moderate \\ \hline
+			11  & AntiCycler                  & 0.910000          & low      \\ \hline
+			12  & Appeaser                    & 0.614020          & moderate \\ \hline
+			13  & Arrogant QLearner           & 0.821084          & low      \\ \hline
+			14  & Average Copier              & 0.350241          & high     \\ \hline
+			15  & BackStabber                 & 0.690611          & moderate \\ \hline
+			16  & Bully                       & 0.510216          & weak     \\ \hline
+			17  & Calculator                  & 0.230031          & high     \\ \hline
+			18  & Cautious QLearner           & 0.834256          & low      \\ \hline
+			19  & Champion                    & 0.878732          & low      \\ \hline
+			20  & Contrite Tit For Tat        & 0.848997          & low      \\ \hline
+			21  & Cooperator                  & 1.000000          & low      \\ \hline
+			22  & Cooperator Hunter           & 0.959154          & low      \\ \hline
+			23  & Cycle Hunter                & 0.987100          & low      \\ \hline
+			24  & Cycler CCCCCD               & 0.835000          & low      \\ \hline
+			25  & Cycler CCCD                 & 0.750000          & moderate \\ \hline
+			26  & Cycler CCD                  & 0.670000          & moderate \\ \hline
+			27  & Cycler DC                   & 0.500000          & weak     \\ \hline
+			28  & Cycler DDC                  & 0.330000          & high     \\ \hline
+			29  & Davis                       & 0.402531          & high     \\ \hline
+			30  & Defector                    & 0.000000          & mid      \\ \hline
+			31  & Defector Hunter             & 0.993341          & low      \\ \hline
+			32  & DoubleCrosser               & 0.625702          & moderate \\ \hline
+			33  & Eatherley                   & 0.941412          & low      \\ \hline
+			34  & Eventual Cycle Hunter       & 0.775378          & low      \\ \hline
+			35  & EvolvedLookerUp             & 0.700659          & moderate \\ \hline
+			36  & Feld                        & 0.293793          & high     \\ \hline
+			37  & Firm But Fair               & 0.853547          & low      \\ \hline
+			38  & Fool Me Forever             & 0.904576          & low      \\ \hline
+			39  & Fool Me Once                & 0.620283          & moderate \\ \hline
+			40  & Forgetful Fool Me Once      & 0.820023          & low      \\ \hline
+			41  & Forgetful Grudger           & 0.624388          & moderate \\ \hline
+			42  & Forgiver                    & 0.435188          & weak     \\ \hline
+			43  & Forgiving Tit For Tat       & 0.866466          & low      \\ \hline
+			44  & Fortress3                   & 0.253173          & high     \\ \hline
+			45  & Fortress4                   & 0.201929          & mid      \\ \hline
+			46  & GTFT: 0.33                  & 0.902416          & low      \\ \hline
+			47  & Gradual                     & 0.839741          & low      \\ \hline
+			48  & Grofman                     & 0.925631          & low      \\ \hline
+			49  & Grudger                     & 0.541712          & weak     \\ \hline
+			50  & Grumpy                      & 0.803507          & low      \\ \hline
+			51  & Handshake                   & 0.071420          & mid      \\ \hline
+			52  & Hard Go By Majority         & 0.434785          & weak     \\ \hline
+			53  & Hard Go By Majority: 10     & 0.316090          & high     \\ \hline
+			54  & Hard Go By Majority: 20     & 0.302703          & high     \\ \hline
+			55  & Hard Go By Majority: 40     & 0.461587          & weak     \\ \hline
+			56  & Hard Go By Majority: 5      & 0.419470          & weak     \\ \hline
+			57  & Hard Prober                 & 0.558885          & weak     \\ \hline
+			58  & Hard Tit FormidTats         & 0.856890          & low      \\ \hline
+			59  & Hard Tit For Tat            & 0.674626          & moderate \\ \hline
+			60  & Hesitant QLearner           & 0.807483          & low      \\ \hline
+			61  & Inverse                     & 0.681649          & moderate \\ \hline
+			62  & Inverse Punisher            & 0.579137          & moderate \\ \hline
+			63  & Joss: 0.9                   & 0.477184          & weak     \\ \hline
+			64  & Limited Retaliate (0.05/20) & 0.599711          & moderate \\ \hline
+			65  & Limited Retaliate (0.08/15) & 0.675263          & moderate \\ \hline
+			66  & Limited Retaliate (0.1/20)  & 0.547303          & weak     \\ \hline
+			67  & Math Constant Hunter        & 0.636059          & moderate \\ \hline
+			68  & Meta Hunter                 & 0.571483          & weak     \\ \hline
+			69  & Meta Majority               & 0.806281          & low      \\ \hline
+			70  & Meta Majority Finite Memory & 0.782167          & low      \\ \hline
+			71  & Meta Majority Long Memory   & 0.607384          & moderate \\ \hline
+			72  & Meta Majority Memory One    & 0.844402          & low      \\ \hline
+			73  & Meta Minority               & 0.600192          & moderate \\ \hline
+			74  & Meta Mixer                  & 0.465104          & weak     \\ \hline
+			75  & Meta Winner                 & 0.454301          & weak     \\ \hline
+			76  & Meta Winner Finite Memory   & 0.631975          & moderate \\ \hline
+			77  & Meta Winner Long Memory     & 0.369008          & high     \\ \hline
+			78  & Meta Winner Memory One      & 0.513786          & weak     \\ \hline
+			79  & Naive Prober: 0.1           & 0.384372          & high     \\ \hline
+			80  & Nice Average Copier         & 0.494468          & weak     \\ \hline
+			81  & Nydegger                    & 0.896419          & low      \\ \hline
+			82  & Omega TFT                   & 0.819010          & low      \\ \hline
+			83  & Once Bitten                 & 0.776105          & low      \\ \hline
+			84  & Opposite Grudger            & 0.887569          & low      \\ \hline
+			85  & PSO Gambler                 & 0.697883          & moderate \\ \hline
+			86  & Predator                    & 0.287886          & high     \\ \hline
+			87  & Prober                      & 0.334014          & high     \\ \hline
+			88  & Probermid                   & 0.658765          & moderate \\ \hline
+			89  & Probermoderate              & 0.101165          & mid      \\ \hline
+			90  & Punisher                    & 0.674391          & moderate \\ \hline
+			91  & Raider                      & 0.389103          & high     \\ \hline
+			92  & Random Hunter               & 0.961781          & low      \\ \hline
+			93  & Random: 0.5                 & 0.500214          & weak     \\ \hline
+			94  & Remorseful Prober: 0.1      & 0.519303          & weak     \\ \hline
+			95  & Retaliate (0.05)            & 0.628877          & moderate \\ \hline
+			96  & Retaliate (0.08)            & 0.747511          & moderate \\ \hline
+			97  & Retaliate (0.1)             & 0.688798          & moderate \\ \hline
+			98  & Ripoff                      & 0.444200          & weak     \\ \hline
+			99  & Risky QLearner              & 0.886197          & low      \\ \hline
+			100 & Shubik                      & 0.534640          & weak     \\ \hline
+			101 & Slow Tit For Two Tats       & 0.899662          & low      \\ \hline
+			102 & Sneaky Tit For Tat          & 0.669040          & moderate \\ \hline
+			103 & Soft Go By Majority         & 0.869060          & low      \\ \hline
+			104 & Soft Go By Majority: 10     & 0.838410          & low      \\ \hline
+			105 & Soft Go By Majority: 20     & 0.852889          & low      \\ \hline
+			106 & Soft Go By Majority: 40     & 0.820777          & low      \\ \hline
+			107 & Soft Go By Majority: 5      & 0.838984          & low      \\ \hline
+			108 & Soft Grudger                & 0.757100          & moderate \\ \hline
+			109 & Soft Joss: 0.9              & 0.855790          & low      \\ \hline
+			110 & SolutionB1                  & 0.924119          & low      \\ \hline
+			111 & SolutionB5                  & 0.322532          & high     \\ \hline
+			112 & Stochastic WSLS             & 0.562218          & weak     \\ \hline
+			113 & Suspicious Tit For Tat      & 0.442323          & weak     \\ \hline
+			114 & Tester                      & 0.569160          & weak     \\ \hline
+			115 & ThueMorse                   & 0.500000          & weak     \\ \hline
+			116 & ThueMorseInverse            & 0.500000          & weak     \\ \hline
+			117 & Thumper                     & 0.682443          & moderate \\ \hline
+			118 & Tit FormidTats              & 0.944449          & low      \\ \hline
+			119 & Tit For Tat                 & 0.762837          & low      \\ \hline
+			120 & Tricky Cooperator           & 0.789430          & low      \\ \hline
+			121 & Tricky Defector             & 0.286726          & high     \\ \hline
+			122 & Tullock                     & 0.504201          & weak     \\ \hline
+			123 & Two Tits For Tat            & 0.586879          & moderate \\ \hline
+			124 & Win-Shift Lose-Stay         & 0.558327          & weak     \\ \hline
+			125 & Win-Stay Lose-Shift         & 0.697654          & moderate \\ \hline
+			126 & ZD-Extort-2                 & 0.299234          & high     \\ \hline
+			127 & ZD-Extort-2 v2              & 0.360133          & high     \\ \hline
+			128 & ZD-Extort-4                 & 0.154946          & mid      \\ \hline
+			129 & ZD-GEN-2                    & 0.899807          & low      \\ \hline
+			130 & ZD-GTFT-2                   & 0.862014          & low      \\ \hline
+			131 & ZD-SET-2                    & 0.452609          & weak     \\ \hline
+		\end{longtable}
+
+\section{Classification Tables for Nydegger, QLearner and Gradual}
+\label{append:class-top-strategies}
+In this section, tables for the classes of clustering and cooperating ratio,
+for the top three ranking strategies of the complex networks experiments, are
+illustrated.
 
 \chapter{Second Appendix Title}
 
