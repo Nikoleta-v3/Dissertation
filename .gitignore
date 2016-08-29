@@ -27,3 +27,7 @@
 *bcf
 *fdb_latexmk
 *fls
+
+src/tex/_minted-main/
+src/tex/main.pdf
+src/text/main.run.xml
