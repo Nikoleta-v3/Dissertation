@@ -612,7 +612,7 @@ Thus, their scores have been affected by the connectivity  of the topology the
 strategy played in. Even so, 45 strategies did not. These 45 strategies include,
 Cycler DDC, Raider, Inverse Punisher, Hard Go By Majority and more. Randomly
 chosen strategies, out of 132, have been chosen and the variation in their average
-score is illustrated in the violin plots, in Figure :
+score is illustrated in the violin plots, in Figure~\ref{normalized-av-scr}:
 
 \begin{figure}[!hbtp]
 	\centering
@@ -639,6 +639,8 @@ score is illustrated in the violin plots, in Figure :
 		\includegraphics[width=\linewidth]{chapter-four/normalized-['TrickyCooperator'].pdf}
 		\caption{Normalized Average Score Tricky Cooperator}
 	\end{subfigure}
+	\caption{Normalized Average Score}
+	\label{normalized-av-scr}
 \end{figure}
 
 The fact that numerous, Kruskal Wallis tests return that there was no significant
@@ -855,13 +857,13 @@ predictors are significant. The findings of these approach are the following,
 
 \begin{table}[!hbtp]
 	\centering
-	\begin{adjustbox}{width=0.5\textwidth}
+	\begin{adjustbox}{width=0.7\textwidth}
 		\small
 		\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
 			\hline
 			\multicolumn{10}{|c|}{Regression Results}                                                                       \\ \hline
 			& \multicolumn{3}{l|}{Nydegger} & \multicolumn{3}{l|}{Cautious QLearner} & \multicolumn{3}{l|}{Gradual} \\ \hline
-			  & coefficient & \(p\) value & R-squared & coefficient & \(p\) value & R-squared & coefficient & \(p\) value & R-squared &   \\ \hline
+			  & coefficient & \(p\) value & R-squared & coefficient & \(p\) value & R-squared & coefficient & \(p\) value & R-squared    \\ \hline
 
 			Intercept                  &  2.729e-09   & 0.269    & 0.042 		& 1.508e-08  &    0.114   & 0.129		& 8.626e-08   &  0.058 &  0.020       \\ \hline
 			average.neighborhood.score &     0.0475   & 0.043    & - 				&    0.1716  &    0.000   & -  			&   -0.0301   &  0.478 &  -					\\ \hline
