@@ -399,13 +399,14 @@ which playing 10 tournaments.
 
 Moreover, for the cyclic experiments as shown in Table~\ref{sum-cicle}, the degree is
 and the payoffs are fixed for both tournament sizes. For tournaments of size 5,
-the mean average score is 2.45, with a minimum value of 0.0175 and a maximum
-value of 4.95. The mean average score of the neighbors score is 980.95 with a
-standard deviation of 219.87.
+the mean average score is 2.45, with a minimum value of 0.0175 (Bully) and a maximum
+value of 4.95 (Anti Tit For Tat). The mean average score of the neighbors score
+is 2.45 with a standard deviation of 0.55.
 The mean average score does not seem to differ for size equal to 50, which is at
 2.39. Though, in the experiment with a size of fifty a strategy
-achieved an average score of 0. Additionally the average score of the neighbors ranges
-from 19.30 to 1884.5. Concerning the graph measures, as explained in ~\ref{chap:Two},
+achieved an average score of 0 ($phi$). The maximum average score is equal to
+5 (Meta Minority). Additionally the average score of the neighbors ranges
+from 0.05 to 4.71. Concerning the graph measures, as explained in ~\ref{chap:Two},
 clustering coefficient is zero and connectivity fixed to 2.
 % This table looks good BUT (IMPORTANT) Read these (and then improve all your
 % tables)
@@ -421,26 +422,27 @@ clustering coefficient is zero and connectivity fixed to 2.
 Cyclic & \multicolumn{3}{c|}{tournament size 5 and 50} & \multicolumn{3}{c|}{tournament size 5} & \multicolumn{3}{c|}{tournament size 50}                             \\\midrule
 
        & (R,P,S,T) & degree & connectivity & average score & average neighbors score & clustering & average score & average neighbors score & clustering \\\midrule
-mean   & (3,1,0,5) & 2.0    & 2.0          & 2.45      & 980.95            & 0.00       & 2.39     & 957.23             & 0.00       \\\midrule
-std    & (0,0,0,0) & 0.0    & 0.0          & 0.74      & 219.87             & 0.00       & 0.77    & 231.32              & 0.00       \\\midrule
-min    & (3,1,0,5) & 2.0    & 2.0          & 0.01      & 141.55             & 0.00       & 0.00    & 19.30              & 0.00       \\\midrule
-max    & (3,1,0,5) & 2.0    & 2.0          & 4.95     & 1756.50             & 0.00       & 5.00    & 1884.50             & 0.00       \\ \bottomrule
+mean   & (3,1,0,5) & 2.0    & 2.0          & 2.45      & 2.45            & 0.00       & 2.39     & 2.39             & 0.00       \\\midrule
+std    & (0,0,0,0) & 0.0    & 0.0          & 0.74      & 0.55            & 0.00       & 0.77     & 0.57             & 0.00       \\\midrule
+min    & (3,1,0,5) & 2.0    & 2.0          & 0.01      & 0.35            & 0.00       & 0.00     & 0.05             & 0.00       \\\midrule
+max    & (3,1,0,5) & 2.0    & 2.0          & 4.95      & 4.39            & 0.00       & 5.00     & 4.71             & 0.00       \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
 \caption{Summary table for topology circle.}
 \label{sum-cicle}
 \end{table}
 
-For the lattice topologies a table that summarizes the data is shown in Table
-~\ref{sum-lattice}. For both size values the payoffs are the same (\(R=3, P=1, S=0, T=5\))
-and the degree is fixed at 4. For size 5 the mean average score
-varies between 0.018 and 4.97. The average score of the neighbors varies between
-832.67 and 2895.42. Much higher than both the cyclic experiments achieved. This
-is understood to be based on the fact that the number of neighbors is now doubled.
-For size 5 the mean score is 0.57 and the mean average neighbor score 2.45.
-The clustering coefficient is 1 and for size 50 is 0.5.
-This shows that in the lattice example the strategies tend to create groups, complete
-subgraphs.
+For the lattice topologies, a table that summarizes the data is shown in Table
+~\ref{sum-lattice}. For both size values the payoffs are the same (\(R=3, P=1,
+S=0, T=5\)) and the degree is fixed at 4. For size 5 the average score
+varies between 0.52 (Cycler CCD) and 4.24 ($pi$). The average score of the neighbors
+varies between 1.32 and 3.15. Much higher, compared to both the cyclic experiments.
+This is understood to be based on the fact that the number of neighbors is now
+doubled. For size 50, the mean average score is 2.39 and the mean average neighbor
+score 2.39. The maximum average score was achieved by Fortress3, 4.97 and the
+minimum, 0.01, by strategy $e$. The clustering coefficient is 1 and for size
+50 is 0.5. This shows that in the lattice example the strategies tend to create
+groups, complete subgraphs.
 
 \begin{table}[!hbtp]
 \centering
@@ -450,16 +452,15 @@ subgraphs.
 \toprule
 Lattice & \multicolumn{3}{c|}{tournament size 5 and 50} & \multicolumn{3}{c|}{tournament size 5} & \multicolumn{3}{c|}{tournament size 50}                            \\ \midrule
        & (R,P,S,T) & degree & connectivity & average score & average neighbors score & clustering & average score & average neighbors score & clustering \\ \midrule
-mean   & (3,1,0,5) & 4.0    & 4.0          & 2.45      & 1958.56           & 1.0        & 2.39      & 1912.74             & 0.5        \\ \midrule
-std    & (0,0,0,0) & 0.0    & 0.0          & 0.57      & 287.63            & 0.0        & 0.59      & 268.37              & 0.00       \\ \midrule
-min    & (3,1,0,5) & 4.0    & 4.0          & 0.52      & 1059.77           & 1.0        & 0.01      & 832.67              & 0.5        \\ \midrule
-max    & (3,1,0,5) & 4.0    & 4.0          & 4.24     & 2518.70            & 1.0        & 4.97      & 2895.42             & 0.5        \\ \bottomrule
+mean   & (3,1,0,5) & 4.0    & 4.0          & 2.45      & 2.44           & 1.0        & 2.39      & 2.39             & 0.5        \\ \midrule
+std    & (0,0,0,0) & 0.0    & 0.0          & 0.57      & 0.36           & 0.0        & 0.59      & 0.33             & 0.00       \\ \midrule
+min    & (3,1,0,5) & 4.0    & 4.0          & 0.52      & 1.32           & 1.0        & 0.01      & 1.04             & 0.5        \\ \midrule
+max    & (3,1,0,5) & 4.0    & 4.0          & 4.24      & 3.15           & 1.0        & 4.97      & 3.61             & 0.5        \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
 \caption{Summary table for the lattice topology.}
 \label{sum-lattice}
 \end{table}
-
 
 Finally, for the round robin tournaments, 100 tournaments were performed for both
 sizes. Parameters such as neighborhood size and neighbor's score
@@ -475,11 +476,11 @@ score is 2.39 with a standard deviation of 0.335.
 \hline
 Round Robin & \multicolumn{1}{c|}{tournament size 5} & \multicolumn{1}{c|}{tournament size 50} \\ \hline
 
-            & average score            & average score             \\ \hline
-mean        & 2.447105                 & 2.393220                  \\ \hline
-std         & 0.576014                 & 0.335552                  \\ \hline
-min         & 0.527500                 & 1.523673                  \\ \hline
-max         & 4.245000                 & 3.339592                  \\ \hline
+            & average score        & average score             \\ \hline
+mean        & 2.44                 & 2.39                  \\ \hline
+std         & 0.57                 & 0.33                  \\ \hline
+min         & 0.52                 & 1.52                  \\ \hline
+max         & 4.24                 & 3.33                  \\ \hline
 \end{tabular}
 \caption{Summary table for round robin topology.}
 \label{sum-rr}
