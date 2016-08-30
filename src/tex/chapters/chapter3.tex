@@ -527,7 +527,6 @@ tournaments. These strategies are shown in Table~\ref{winning-ratio-zero-cyclic-
 \begin{adjustbox}{width=1\textwidth}
 \small
 \begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
-\toprule
 \hline
 Strategies list & \multicolumn{1}{c|}{Description}                                                                                                                    \\ \hline
 ALLCorALLD          & Simply repeats its last move, and so mimics ALLC or ALLD after round one.                                                                           \\ \hline
@@ -639,7 +638,7 @@ It is a finite state machine strategy found in~\cite{DBLP:conf/foci/AshlockTA14}
 For now Raider strategy seems to be a well performed strategy for any
 given random situation.
 
-Illustration of the ratios for each experiment in asceding order can be found
+Illustration of the ratios for each experiment in ascending order can be found
 in Appendix A, Figure~\ref{fig:winning-fifty} and Figure~\ref{fig:winning-five}.
 
 \begin{figure}[H]
@@ -681,9 +680,8 @@ in Appendix A, Figure~\ref{fig:winning-fifty} and Figure~\ref{fig:winning-five}.
 \begin{figure}[H]
 \centering
     \includegraphics[width=\linewidth]{chapter-three/lines-lattice-round-robin-50.pdf}
-\caption{Periodic Lattice vs Round
-             Robin Topologies Size 50.}
-             \label{fig:winning-rankings-fifty-l-r}
+\caption{Periodic Lattice vs Round Robin Topologies Size 50.}
+\label{fig:winning-rankings-fifty-l-r}
 \end{figure}
 
 The strategies can be classified based on the number of tournament
@@ -699,75 +697,44 @@ in Figures~\ref{fig:winning-ratio-participations-five} and~\ref{fig:winning-rati
 An ANOVA analysis was used to analyze the importance of the
 differences in the winning ratios among the participating groups.
 
-The anova results, for a tournament of size equal to 5,
-indicate that for the topologies cyclic and periodic lattice the difference
+Primarily, the normality of the ration has been tested. For all 6 experiments,
+the winning ratio, is not normally distributed. As all \(p\) values are
+less that 0.05. Thus, a non parametric test has been used instead. The equivelent
+non parametric ANOVA test is the Kruskal Wallis test. The python library
+\texttt{scipy}, provided the functions necessary for the tests.
+
+
+The results, for a tournament of size equal to 5, the difference
 of ratios between the participations groups is significant (\(p\) values
 are lower that 0.05). Shown in Figure~\ref{fig:winning-ratio-participations-five},
-are violin plots of the winning ratio against number of participations. A positive
-trend can be spotted for the lattice and cyclic topology. For the round robin
-topology, the anova test suggests no correlation between ratio and participating.
+are violin plots of the winning ratio against number of participations.
+A positive trend can be spotted for the lattice and a negative for the cyclic
+and round robin topologies.
 
 Equivalently, in ~\ref{fig:winning-ratio-participations-fifty}, violin plots for
-tournament size 50 are displayed.  In the anova results from Table~\ref{anova-size-fifty},
-\(p\) values of a round robin and of a cyclic topology are greater that 0.05.
-Compared to that of a lattice, where the \(p\) values is below 0.05 and, therefore,
-there is a statistically significant difference.
-Thus, participating number affects the winning ratios for only two out of the six
-experiments. The specific groups that different are not clear.
-Post-hoc analysis could be performed but will not be considered here.
-
-\begin{table}[H]
-\centering
-\begin{adjustbox}{width=0.5\textwidth}
-\small
-\begin{tabular}{|l|l|l|l|}
-\hline
-Topology         & \multicolumn{3}{l|}{Anova results tournament size 5} \\ \hline
-                 & Sum of Squares      & F ratio     & \(p\) value          \\ \hline
-Cyclic           & 0.41                & 33.83       & 6.379416e-09     \\ \hline
-Periodic Lattice & 0.04                & 4.24        & 0.039            \\ \hline
-Round Robin      & 0.008               & 0.18        & 0.66             \\ \hline
-\end{tabular}
-\end{adjustbox}
-\caption{Anova results tournament size 5}
-\label{anova-size-five}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{adjustbox}{width=0.5\textwidth}
-\small
-\begin{tabular}{|l|l|l|l|}
-\hline
-Topology         & \multicolumn{3}{l|}{Anova results tournament size 5} \\ \hline
-                 & Sum of Squares     & F ratio     & \(p\) value           \\ \hline
-Cyclic           & 0.000056           & 1.12        & 0.28              \\ \hline
-Periodic Lattice & 0.045              & 1110.45     & 7.777650e-241     \\ \hline
-Round Robin      & 0.00098            & 0.10        & 0.74              \\ \hline
-\end{tabular}
-\end{adjustbox}
-\caption{Anova results tournament size 50}
-\label{anova-size-fifty}
-\end{table}
+tournament size 50 are displayed. For all three topologies, there is there  a s
+statistically significant difference. The specific groups that different are not
+clear. Post-hoc analysis could be performed but will not be considered here.
+Lattice topology, once again, has an positive effect, where cyclic a negative.
 
 \begin{figure}[H]
 \centering
 
     \begin{subfigure}[t]{0.75\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Cyclic-5.pdf}
+        \includegraphics[width=\linewidth]{chapter-three/anova-Cyclic-5.pdf}
     \caption{Winning Ratio vs Number of Participations Cyclic Tournament Size 5.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.75\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Periodic-Lattice-5.pdf}
+        \includegraphics[width=\linewidth]{chapter-three/anova-Periodic-Lattice-5.pdf}
     \caption{Winning Ratio vs Number of Participations Periodic Lattice Tournament Size 5.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.75\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Round-Robin-5.pdf}
+        \includegraphics[width=\linewidth]{chapter-three/anova-Round-Robin-5.pdf}
     \caption{Winning Ratio vs Number of Participations Round Robin Tournament Size 5.}
     \end{subfigure}
 \caption{Winning Ratio vs Number of Participations Tournament Size 5.}
@@ -779,19 +746,19 @@ Round Robin      & 0.00098            & 0.10        & 0.74              \\ \hlin
 
     \begin{subfigure}[t]{0.75\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Cyclic-50.pdf}
+        \includegraphics[width=\linewidth]{chapter-three/anova-Cyclic-50.pdf}
     \caption{Winning Ratio vs Number of Participations Cyclic Tournament Size 50.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.75\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Periodic-Lattice-50.pdf}
+        \includegraphics[width=\linewidth]{chapter-three/anova-Periodic-Lattice-50.pdf}
     \caption{Winning Ratio vs Number of Participations Periodic Lattice Tournament Size 50.}
     \end{subfigure}
 \hfill
     \begin{subfigure}[t]{0.75\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{chapter-three/participation-ratio-violin-Round-Robin-50.pdf}
+        \includegraphics[width=\linewidth]{chapter-three/anova-Round-Robin-50.pdf}
     \caption{Winning Ratio vs Number of Participations Round Robin Tournament Size 50.}
     \end{subfigure}
 \caption{Winning Ratio vs Number of Participations Tournament Size 50.}
@@ -815,67 +782,75 @@ will be investigated.
 \label{sub:normalized_av_score}
 
 The normalized average score is calculated by dividing the average score per
-turn per opponent
-of each strategy with their participation counts. Then the average score
-is plotted against the strategies. As shown in both
-Figures~\ref{fig:average-score-five} and~\ref{fig:average-score-fifty}.
+turn per opponent of each strategy with their participation counts. The variation
+of the normalized average score, for each topology, has been studied and plotted.
+The plots can be found in the Appendix~\ref{append:variation-plots}. A normality
+test has been held, and the score is not normally distributed. Thus, a Kruskal
+Wallis test has been used for the analysis.
 
-For all six experiments the normalized average score seems to have a lot
-of variation. Which indicates each strategy performed differently at given
-points of the same experiment. These could be because of the opponent or the
-whole neighborhood.
+For all six experiments the normalized average score significantly differ between
+participation groups. There is a lot variation, indicating each strategy performed
+differently at given points of the same experiment. These could be because of the
+opponent or the whole neighborhood, a strategy was against.
+
+The strategies, have been ranked, similarly to ~\ref{sub:winning-ratio}, but
+this time based on normalized average ranking. Figures \ref{fig:score-rankings-five-c-l}~\ref{fig:score-rankings-five-c-r}
+~\ref{fig:score-rankings-five-l-r} and Figures~\ref{fig:score-rankings-fifty-c-l}
+~\ref{fig:score-rankings-fifty-c-r}~\ref{fig:score-rankings-fifty-l-r}, illustrate
+the line plots. In conclusion, for tournaments sizes 5, the top spots were dominated
+by Tricky Cooperator and Raider. For tournaments sizes 50, Forgetful Fool Me Once,
+PSO Gambler and Hard Tit For 2 Tats attract attention.
 
 \begin{figure}[H]
-\centering
-    \begin{subfigure}[t]{0.8\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Cyclic-5.pdf}
-    \caption{Normalized Average Score Cyclic Topology Size 5.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{0.8\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Periodic-Lattice-5.pdf}
-    \caption{Normalized Average Score Periodic Lattice Topology Size 5.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{0.8\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Round-Robin-5.pdf}
-    \caption{Normalized Average Score Round Robin Topology Size 5.}
-    \end{subfigure}
-\caption{Normalized Average Score for all Three Topologies Size 5.}
-\label{fig:average-score-five}
+  \centering
+      \includegraphics[width=\linewidth]{chapter-three/cyclic-lattice-5.pdf}
+  \caption{Cyclic vs Periodic Lattice Topologies Size 5.}
+  \label{fig:score-rankings-five-c-l}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-    \begin{subfigure}[t]{1\textwidth}
-    \centering
-        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Cyclic-50.pdf}
-    \caption{Normalized average score cycle s=50.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Periodic-Lattice-50.pdf}
-    \caption{Normalized average score cycle s=50.}
-    \end{subfigure}
-\hfill
-    \begin{subfigure}[t]{1\textwidth}\centering
-    \centering
-        \includegraphics[width=\linewidth]{chapter-three/normalised-score-Round-Robin-50.pdf}
-    \caption{Normalized Average Score Round Robin Topology Size 50.}
-    \end{subfigure}
-\caption{Normalized Average Score for all Three Topologies Size 50.}
-\label{fig:average-score-fifty}
+    \includegraphics[width=\linewidth]{chapter-three/cyclic-round-robin-5.pdf}\
+\caption{Cyclic vs Round Robin Topologies Size 5.}
+\label{fig:score-rankings-five-c-r}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\linewidth]{chapter-three/lattice-round-robin-5.pdf}\
+\caption{Periodic Lattice vs Round
+         Robin Topologies Size 5.}
+\label{fig:score-rankings-five-l-r}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\linewidth]{chapter-three/cyclic-lattice-50.pdf}
+\caption{Cyclic vs Periodic Lattice Topologies Size 50.}
+\label{fig:score-rankings-fifty-c-l}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\linewidth]{chapter-three/cyclic-round-robin-50.pdf}
+\caption{Cyclic vs Round Robin Topologies Size 50.}
+\label{fig:score-rankings-fifty-c-r}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\linewidth]{chapter-three/lattice-round-robin-50.pdf}
+\caption{Periodic Lattice vs Round Robin Topologies Size 50.}
+\label{fig:score-rankings-fifty-l-r}
 \end{figure}
 
 Not many conclusions can be made out of this. The high variation could indicate
 that the results are completely random. Unfortunately, this could mean that for
 any random situation there does not seem to be a strategy that could
 achieve a particularly high score although as described in Section~\ref{sub:winning-ratio}
-it is possible to ensure a good performance. In the following subsection, a linear
+it is possible to ensure a good performance. Also, the difference in the ranking,
+except Raider and PSO Gamber, could indicate that the wining ratio is proven
+to being a non satisfactory measure. In the following subsection, a linear
 regression model is build for more conclusions.
 
 
