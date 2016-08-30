@@ -36,7 +36,7 @@ in~\ref{fig:round_robin_structure}.
 				child { node {build single match()} } }
 		};
 	\end{tikzpicture}
-	\caption{Code structure for a Round Robin tournament.}
+	\caption{Code structure for a Round Robin tournament}
 	\label{fig:round_robin_structure}
 \end{figure}
 
@@ -134,7 +134,7 @@ be found below ~\ref{lst:test_spatial_tournament}.
 		self.assertEqual(anonymous_tournament.name, 'axelrod')
 	\end{minted}
 	\caption{Source code for TestSpatialTournament class, which is for testing the
-	spatial tournaments.}
+	spatial tournaments}
 	\label{lst:test_spatial_complete_tournament}
 \end{listing}
 
@@ -200,7 +200,7 @@ are compared to those of a round robin one.
 		self.assertEqual(results.good_partner_rating,
 		spatial_results.good_partner_rating)
 	\end{minted}
-	\caption{Source code for testing a complete spatial tournament.}
+	\caption{Source code for testing a complete spatial tournament}
 	\label{lst:test_spatial_tournament}
 \end{listing}
 
@@ -270,21 +270,21 @@ Figure~\ref{fig:networks}, shows an example of all the aforementioned topologies
 	\begin{subfigure}[h]{0.45\textwidth}
 		\centering
 		\input{chapters/cyclic_network.tex}
-		\caption{Cyclic network.}
+		\caption{Cyclic network}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[h]{0.52\textwidth}\centering
 		\centering
 		\input{chapters/periodic_lattice.tex}
-		\caption{Periodic lattice with degree 4 network.}
+		\caption{Periodic lattice with degree 4 network}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[h]{0.52\textwidth}\centering
 		\centering
 		\input{chapters/complete_network.tex}
-		\caption{A complete or round robin network.}
+		\caption{A complete or round robin network}
 	\end{subfigure}
-	\caption{Network topologies.}
+	\caption{Network topologies}
 	\label{fig:networks}
 \end{figure}
 
@@ -358,6 +358,10 @@ avenues of research.
 
 \subsection{Initial Analysis}
 \label{sub:initial_analysis}
+Hereafter, various strategies from the Axelrod- Python library have been referenced.
+Though for some a brief explanation is given, describing all 132, would be
+unreasonable. Therefore a table containing all strategies and their explanation
+(as documented by the Axelrod-Python library), can be found in the Appendix~\ref{append:strategies}.
 For each of the tournaments run, the following parameters are recorded:
 
 \begin{multicols}{3}
