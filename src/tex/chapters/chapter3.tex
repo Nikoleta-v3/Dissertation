@@ -798,13 +798,19 @@ differently at given points of the same experiment. These could be because of th
 opponent or the whole neighborhood, a strategy was against.
 
 The strategies, have been ranked, similarly to ~\ref{sub:winning-ratio}, but
-this time based on normalized average ranking. Figures \ref{fig:score-rankings-five-c-l}~\ref{fig:score-rankings-five-c-r}
+this time based on mean normalized average ranking. Figures \ref{fig:score-rankings-five-c-l}~\ref{fig:score-rankings-five-c-r}
 ~\ref{fig:score-rankings-five-l-r} and Figures~\ref{fig:score-rankings-fifty-c-l}
 ~\ref{fig:score-rankings-fifty-c-r}~\ref{fig:score-rankings-fifty-l-r}, illustrate
 the line plots. In conclusion, for tournaments sizes 5, the top spots were dominated
 by Tricky Cooperator and Raider. For tournaments sizes 50, Forgetful Fool Me Once,
-PSO Gambler and Hard Tit For 2 Tats attract attention.
-
+and Hard Tit For 2 Tats attract attention. All this strategies, have been ranked
+low in the previous subsection. Specifically, Tricky Cooperator and Hard Tit For 2 Tats,
+had a winning ratio of zero for specific topologies. This is an effect, of the
+strategies loosing to an opponent, but their opponent participated in more
+tournaments. Thus, their average score, divided by a bigger number, was lower.
+%This was weird, but Tricky Cooperator played in a few matched where he was out
+% performed by phi. So didn't get a win. But phi participated in more tournaments
+% and his normalized score was lower
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/cyclic-lattice-5.pdf}
@@ -852,10 +858,11 @@ Not many conclusions can be made out of this. The high variation could indicate
 that the results are completely random. Unfortunately, this could mean that for
 any random situation there does not seem to be a strategy that could
 achieve a particularly high score although as described in Section~\ref{sub:winning-ratio}
-it is possible to ensure a good performance. Also, the difference in the ranking,
-except Raider and PSO Gamber, could indicate that the wining ratio is proven
-to being a non satisfactory measure. In the following subsection, a linear
-regression model is build for more conclusions.
+it is possible to ensure a good performance. Also, there has been difference in
+the ranking, except Raider. The example of Tricky Cooperator and Hard Tit For 2 Tats,
+give enough reasons for the wining ratio and normalized score, being non satisfactory
+measures. In the following subsection, a linear regression model is build for
+more conclusions.
 
 
 \subsection{Regression Analysis}
