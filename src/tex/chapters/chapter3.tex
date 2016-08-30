@@ -984,23 +984,21 @@ A summary of all the analysis previously made, ~\ref{sub:initial_analysis} and
 ~\ref{sub:analyzing_the_effect_of_the_topologies}, is given in this section.
 Moreover, it lists topic for further research to be conducted.
 
-From the analysis that was performed in~\ref{sub:winning-ratio}, the wining ratio
-for each strategy for all 6 experiments indicated the following :
+In this chapter, it has been explained how the concept of spatial tournaments,
+has been produced, by adding to an already existed python library. The Axelrod-Python
+library. Secondly, an experiment using the new capabilities of the library has been
+conducted. In this experiment, some of the most common topologies have been used.
+They have been presented and analyzed, as well as the structure of the experiments.
 
-\begin{itemize}
-	\item For the size 5 experiments, the well performing strategies were Punisher,
-	      Raider and BackStabber
-	\item For the size 50 experiments, the well performing strategies were Nice
-	      Average Copier, Raider and Fool Me Once
-	\item BackStabber, which is one of the highest ranked strategies in the
-	      Axelrod-Python tournament. Did not win a single tournament in the cyclic
-	      tournament size 5 experiment
-	\item PSO Gambler, the current winner of the Axelrod-Python tournament had the
-	      highest winning ratio only in the Round Robin 50 experiment
-	\item For a Round Robin size 50, most of the strategies finished the experiment
-	      with winning ratio of zero.
-	\item Raider seems to perform highly
-\end{itemize}
+An initial analysis for the data, created from the experiment, was carried out.
+Followed by, an analysis for the results of the games themselves.
+Two measures have been used, the wining ratio and the normalized score. The
+wining ratio returned, that the following strategies have outperformed the rest.
+Raider, Backstabber and PSO Gambler. As for the normalized score, it indicated
+that Tricky Cooperator,  Raider, Hard Tit For 2 Tats and Fool Me Once, have been the
+highest ranked strategies. Even if, Raider has been repeating, strategies as
+Tricky Cooperator have been ranked completely differently by the two measures.
+Creating a conflict and indicating the both measures did poorly.
 
 An attempt to find any significant reason as to why these strategies outperform
 the rest gave the findings below:
@@ -1013,12 +1011,6 @@ the rest gave the findings below:
 	\item Both regression models for the winning ratio and the normalized average
 	      score returned that significantly there was no significant effect
 \end{itemize}
-
-In conclusion, the strategies winning ratio differs in every topology and
-tournament size.
-Between the two sizes experiments only Raider seems a repeating strategy in the
-high ranked winning ratios. Even so, valid arguments as to how to
-successful perform to any given experiment returned zero fundings.
 
 Comparing the results to any other work done in the literature is not possible.
 Because this this kind of experiments (which compare a large number of tournaments)
