@@ -2,11 +2,11 @@
 \label{chap:Four}
 
 \section{Introduction}
-In this chapter, experiments with more complex networks have been performed.
-An introduction to these networks and the reasons behind their selection has been
-covered in the begging of the chapter. The experiments structure, for each topology,
-have also been analyzed and illustrated with pseudo code. Finally, an analysis on
-the data produced for these experiments, has been performed.
+In this chapter, an experiment with more complex networks have been performed.
+An introduction to the methods used to create various networks has been
+covered in the begging of the chapter. The structure, for each method,
+have also been analyzed and illustrated with pseudo code. Finally, an analysis
+has been performed on the results that have been produced by the experiment.
 
 The issues raised in~\ref{chap:Three}, have been address in the current chapter,
 altering various approaches. For example, a measure of similarity between the
@@ -17,8 +17,7 @@ compared to winning ratio. Regression models for the median rank have been build
 and Kruskal Wallis analysis has been held. Furthermore, round robin in treated as
 a spatial tournament of a complete topology.
 
-\subsection{Networks}
-
+\subsection{Networks and Methods}
 A complex network is a graph with non-trivial topological features;
 features that can not occur in networks such as the ones studied in ~\ref{chap:Three}.
 Such features include, a heavy tail in the degree distribution, a high
@@ -35,11 +34,11 @@ studied :
 	\item Complete Graph, a graph with the properties of a round robin topology
 \end{itemize}
 
-Each of the experiment has a different set of parameters, thus the size of
-data produced by each experiment is different. The structure of each experiment
-is analyzed on the following subsection.
+Each of the models has a different set of parameters, thus the size of
+data produced by each is different. The structure of each model is analyzed on
+the following subsection.
 
-\subsection{Experiments Structure}
+\subsection{Models Structure}
 \label{sub:experiments-structure}
 \subsubsection{Small-world}
 
@@ -61,7 +60,6 @@ range from 2 to 50. Similarly for the initial size, it will range from 2
 to tournament size minus one. The chosen players are also shuffled and re placed
 on the graph. A pseudo code illustrating the structure of the experiment is shown
 in~\ref{small-world-experiment}:
-
 
 \begin{algorithm}
 	\caption{Small world Experiment}\label{small-world-experiment}
@@ -86,7 +84,6 @@ in~\ref{small-world-experiment}:
 \end{algorithm}
 
 \subsubsection{Random}
-
 For recreating a random network experiment, Erd\"{o}s–R\'{e}nyi model was used.
 The model is named after P. Erd\"{o}s and A. R\'{e}nyi, who introduced
 the model in 1959~\cite{Erdos1959}. It generates a random graph of \(n\)
