@@ -2,72 +2,77 @@
 \label{chap:Four}
 
 \section{Introduction}
-In this chapter, an experiment with more complex networks have been performed.
-An introduction to the methods used to create various networks has been
-covered in the begging of the chapter. The structure, for each method,
-have also been analyzed and illustrated with pseudo code. Finally, an analysis
-has been performed on the results that have been produced by the experiment.
+In this chapter, an additional experiment on the spatial topology of the IPD
+is performed using complex networks. The spatial tournaments will be created using
+three different methods. The methods will be explained and the network topologies used by them
+discussed. Following, an analysis on the data. Including classification methods
+based on cooperating ratio, network connectivity and clustering. Connectivity and
+clustering coefficient have been introduced in~\autoref{chap:Two}. The cooperating
+ratio is a concept provided by the Axelrod-Python library and is computed
+by diving the number of times a strategy cooperated against the of turns
+in a single tournament. Furthermore, regression models are built for the normalized rank.
 
-The issues raised in~\ref{chap:Three}, have been address in the current chapter,
-altering various approaches. For example, a measure of similarity between the
-strategies has been used. The measure used, is based on the average cooperating
-ratio of the strategies. Furthermore, median ranking of each strategy has been
-looked into, for it is believed to be a more appropriate measure of performance,
-compared to winning ratio. Regression models for the median rank have been build
-and Kruskal Wallis analysis has been held. Furthermore, round robin in treated as
-a spatial tournament of a complete topology.
+The issues raised in~\autoref{chap:Three}, will be addessed in the current chapter,
+altering various approaches. For example, median ranking is introduced as a more
+accurate performance measure and the round robin in treated as a spatial tournament
+of a complete topology.
 
-\subsection{Networks and Methods}
+\section{Networks and Methods}
+\label{sub:methods}
 A complex network is a graph with non-trivial topological features;
-features that can not occur in networks such as the ones studied in ~\ref{chap:Three}.
+features that can not occur in networks such as the ones studied in ~\autoref{chap:Three}.
 Such features include, a heavy tail in the degree distribution, a high
 clustering coefficient, and hierarchical structure. Complex networks are commonly
-used to study computer network, technological networks and social networks.
+used to study computer networks, technological networks and social networks~\ref{VanDerHofstad2009}.
 
-They will also be used in the experiment conducted in this dissertation. Small
-world and random graphs, and more specifically, the following networks are
-studied :
+They will also be used in the experiment conducted in this dissertation. Three
+different methods, for creating such networks and using them as topologies, have
+been used. Each of the methods adopts one of the following models to produce the
+required graphs.
 
 \begin{itemize}
-	\item Watts-Strogatz, a model for generating graphs with small-world properties
-	\item Erdős–Rényi, a model for generating random graphs
-	\item Complete Graph, a graph with the properties of a round robin topology
+	\item Watts-Strogatz, a model for generating graphs with small-world properties\cite{Watts1998}
+	\item Erdős–Rényi, a model for generating random graphs~\cite{Erdos1959}
+	\item Complete Graph, a graph with the properties of a round robin topology\cite{Harris2010}
 \end{itemize}
 
-Each of the models has a different set of parameters, thus the size of
-data produced by each is different. The structure of each model is analyzed on
+Each of the models has a different set of parameters and each of the methods
+produce different number of networks. The structure of each method is analyzed in
 the following subsection.
 
-\subsection{Models Structure}
+\subsection{Methods Structure}
 \label{sub:experiments-structure}
-\subsubsection{Small-world}
+\subsubsection{Method for small world networks}
 
-Watts Strogatz, is the small world graph generator model used in this experiment.
+In the method of small world networks, the Watts Strogatz model has been used
+for generating the required graphs.
 The Watts Strogatz model, was proposed by D. Watss and S. Strogatz,
-(whose name was used), in their work in 1998~\cite{Watts1998}.
-Their works was aimed to reproduce a network/graph, which was somewhere between
-a regular and a random network. To interpolate between regular and random
-networks, they considered a random rewiring procedure. Starting from a ring
-lattice with \(n\) vertices and \(k\) edges per vertex, each edge is being
-rewired, at random, with a probability of \(p\).
+in their work in 1998~\cite{Watts1998}. Their work has been focused on the reproduction
+of a network, which interpolated between a regular and a random network.
+To achieve this, they considered a random rewiring procedure with the following
+rules:
 
-Networkx, provides a function for the given model. The documentation for the
-Watts Strogatz function, can be found here
+\begin{itemize}
+	\item start from a ring lattice with \(n\) vertices and \(k\) the initial edges per vertex
+	\item rewire each edges with a probability of \(p\)
+\end{itemize}
+
+For the computational approach, \texttt{Networkx}~\cite{networkx} Python library provides the
+\texttt{watts\_strogatz\_graph} function. Documentation can be found here:
 \url{https://networkx.github.io/documentation/development/reference/generated/networkx.generators.random_graphs.watts_strogatz_graph.html#networkx.generators.random_graphs.watts_strogatz_graph}
-, and the given arguments are \(n\), \(k\) and \(p\). Moreover,
-the tournament size is not going to be deterministic, it will
-range from 2 to 50. Similarly for the initial size, it will range from 2
-to tournament size minus one. The chosen players are also shuffled and re placed
-on the graph. A pseudo code illustrating the structure of the experiment is shown
-in~\ref{small-world-experiment}:
+The method's structure is explained
+in the Algorithm~\ref{alg:small-world-method}. As shown, the tournament size is
+deterministic, ranging for 2 to 50. The initial edges per vertex, ranges from 2
+to tournament size minus 1. The random selection of players is repeated 100 times
+and each set of selected players is being shuffled for 10 repetitions.
 
 \begin{algorithm}
-	\caption{Small world Experiment}\label{small-world-experiment}
+	\caption{Method for small world networks}\label{alg:small-world-method}
 	\begin{algorithmic}
 		\Procedure{Small World}{}
 		\BState \emph{loop}:
 		\For {$\textit{tournament.size} \gets \textit{ 2 to 50}$}
-		\For {$\textit{initial.neighborhood.size} \gets \textit{1 to tournament.size-1}$}
+		\For {$\textit{initial.edges.per.vertex} \gets \textit{1 to tournament.size-1}$}
 		\For {$\textit{i} \gets \textit{ 0 to 10}$}
 		\State $player \gets \textit{random.strategies}$.
 		\For {$p \gets \textit{0 to 10}$}
@@ -83,27 +88,28 @@ in~\ref{small-world-experiment}:
 	\end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Random}
-For recreating a random network experiment, Erd\"{o}s–R\'{e}nyi model was used.
+\subsubsection{Method for random networks}
+In the method of random networks, the desired networks have been produced using the
+Erd\"{o}s R\'{e}nyi model.
 The model is named after P. Erd\"{o}s and A. R\'{e}nyi, who introduced
 the model in 1959~\cite{Erdos1959}. It generates a random graph of \(n\)
-vertices and chooses each of the possible edges with probability \(p\).
+vertices and each of the possible edges with probability \(p\).
 
-Once again, networkx provide a function to easily generate such graph
+Similarly, \texttt{Networkx} library provides the function \texttt{binomial\_graph}
+for generating such graphs. Documentation can be found here:
 \url{https://networkx.github.io/documentation/development/reference/generated/networkx.generators.random_graphs.binomial_graph.html#networkx.generators.random_graphs.binomial_graph}.
-The arguments taken but the function are \(n\)  and \(p\) as the probability for
-edge creation. Similarly, the tournament size is not going to be deterministic.
-The tournament size will range from 2 to 50. The chosen players are also shuffled
-and re placed on the graph. A pseudo code illustrating the structure of the
-experiment is shown in~\ref{random-experiment}:
+Algorithm~\ref{random-method}, illustrate the structure of the method for random
+networks. Similarly, the tournament size is not deterministic, instead it
+ranges from 2 to 50. A 100 sets of random players are created, and shuffled,
+for 10 repetitions.
 
 \begin{algorithm}
-	\caption{Random Experiment}\label{random-experiment}
+	\caption{Method for random networks}\label{random-method}
 	\begin{algorithmic}
 		\Procedure{Random}{}
 		\BState \emph{loop}:
 		\For {$\textit{tournament.size} \gets \textit{2 to 50}$}
-		\For {$\textit{i} \gets \textit{ 0 to 100}$}
+		\For {$\textit{i} \gets \textit{0 to 100}$}
 		\State $player \gets \textit{random.strategies}$.
 		\For {$p \gets \textit{0 to 10}$}
 		\State $G \gets \textit{create.erdos.renyi.graph}$.
@@ -117,17 +123,13 @@ experiment is shown in~\ref{random-experiment}:
 	\end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Complete}
-
-In the previous chapter, ~\ref{ch:Three}, the round robin experiment was
-conducted by the \texttt{RoundRobinTournament} class, in this experiment the
-\texttt{SpatialTournament} class is used.
-The following networx function is used(\url{https://networkx.github.io/documentation/development/reference/generated/networkx.generators.classic.complete_graph.html#networkx.generators.classic.complete_graph}).
-, to generate a complete graph. The following pseudo-code explain the structure
-of the experiment ~\ref{complete-experiment}.
+\subsubsection{Method for complete networks}
+The method for producing complete networks, uses the \texttt{complete\_graph} function
+from the \texttt{Networkx} library:\url{https://networkx.github.io/documentation/development/reference/generated/networkx.generators.classic.complete_graph.html#networkx.generators.classic.complete_graph}
+The structure of the method is illustrated by the Algorithm~\ref{complete-method}.
 
 \begin{algorithm}
-	\caption{Complex Experiments Rules}\label{complete-experiment}
+	\caption{Method for complete networks}\label{complete-method}
 	\begin{algorithmic}
 		\Procedure{Complete}{}
 		\BState \emph{loop}:
@@ -144,34 +146,57 @@ of the experiment ~\ref{complete-experiment}.
 	\end{algorithmic}
 \end{algorithm}
 
+\section{Data generation}
+The goal of this chapter is the observation of the strategies behavior when
+participating in spatial tournaments of any given topology. Here only three
+different types of complex networks will be used. Thus, the data set for this
+chapter is a collection of data generated by using the three aforementioned
+methods(~\autoref{sub:methods}). Executing these methods requires a high
+computational power, considering that over a 1000 of tournaments are
+simulated. Thus, they are executed in Raven.
+
+Furthermore, Hierarchical Data Format (HDF5) was used as the file format.
+HDF5 is a data model, library, and file format for storing and managing data~\ref{hdf5}.
+Python offers an HDF5 binding and HDF5 has various advantages, fitted for the needs
+of this chapter. For example, the large amounts of data will be easily stored
+and the data can be access without loading them on memory making the analysis
+faster.
+
+In ~\autoref{preliminary-analysis}, a preliminary analysis on the individual results of each method
+is performed. Followed, by in depth analysis to the whole data set in~\autoref{performance-analysis}.
+
 \section{Preliminary Analysis}
-In this section the analysis for the complex networks experiments is described.
-Starting with an analysis on the networks for all three topologies, following
-a preliminary analysis on the results of the experiments. The next subsection is
-focused on the classification of the strategies based on the cooperation rate.
+\label{preliminary-analysis}
+In this section, the outputs of the three methods are described individually.
+Starting with an analysis on the networks attributes they produce for topologies,
+following a preliminary analysis on the results of their given spatial tournaments.
+
+%The next subsection is focused on the classification of the strategies based on the cooperation rate.
 
 \subsection{Network Analysis}
 \label{sub:network-analysis}
-The networks of each experiment are studied. As introduced in ~\ref{chap:Two}, the
+The networks of each method are studied. As introduced in ~\autoref{chap:Two}, the
 connectivity and clustering concepts are summarized and reviewed. Due to the
-size of experiments and the time in hands, not all experiments managed to
-maximize their tournament sizes, as they have been described in~\ref{sub:experiments-structure}.
+size of experiments and time constraints, not all methods managed to
+maximize their tournament sizes, as they have been described in~\autoref{sub:experiments-structure}.
 
-More specifically, for the small world experiment, a total of 59051 graphs have
+More specifically, for the small world method, a total of 59051 graphs have
 been created. The maximum number of nodes achieved is 13. Moreover, the
-median degree, has been 4.75. Thus indicating that
+mean degree, has been 4.75. Thus indicating that
 in most tournaments, the average number of neighbors per strategy was 4.
-The maximum median degree is equal to 12. Further, the mean connectivity of the
-Watts Strogatz network is 3.40. Minimum value is 0 and maximum 9. Lastly,
-clustering coefficient ranges from 0 to 1, with a mean of 0.48.
+The maximum degree is equal to 12. Further,
+the mean connectivity of the small world network is 3.40, the minimum is 0 and the maximum 9.
+The clustering coefficient ranges from 0 to 1, with a mean of 0.48. A mean
+of 0.48, for the clustering coefficients, indicates that strategies have a
+neutral trend towards creating cliques (complete graphs).
 
 \begin{table}[!hbtp]
 	\centering
-	\begin{adjustbox}{width=0.6\textwidth}
+	\begin{adjustbox}{width=0.5\textwidth}
 		\small
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
-			\multicolumn{5}{|c|}{Small world Networks Summary Table}                  \\ \hline
+			\multicolumn{5}{|c|}{Small world Networks Summary Table}           \\ \hline
 			     & connectivity & clustering & degree & nodes                  \\ \hline
 			mean & 3.40         & 0.48       & 4.75   & 10.00                  \\ \hline
 			std  & 2.37         & 0.33       & 2.65   & \multicolumn{1}{c|}{-} \\ \hline
@@ -180,18 +205,16 @@ clustering coefficient ranges from 0 to 1, with a mean of 0.48.
 		\end{tabular}
 	\end{adjustbox}
 	\caption{Small world Summary Table}
-	\label{small-world-summary-table}
+	\label{table:small-world-summary-table}
 \end{table}
 
 Illustrating 59051 graphs for understanding the networks of the experiment, is
-an impossible task. For this reason, the summary table~\ref{small-world-summary-table}
-has been used. A mean of 0.48, for the clustering coefficients, indicates
-that strategies have a neutral trend towards creating cliques (complete graphs).
-Eight networks have been randomly selected and
-displayer here~\ref{small_networks_illustration}. Mainly to get an ideal of the
-look of the networks in this experiment.
+an impossible task. For this reason, the summary Table~\ref{table:small-world-summary-table}
+has been used. Furthermore, eight networks have been randomly selected and
+displayer in Figure~\ref{fig:small_networks_illustration}. Mainly to get an idea
+of the look of the networks in this method.
 
-\begin{figure}[htp!]
+\begin{figure}[!hbtp]
 	\centering
 	\begin{subfigure}[t]{0.30\textwidth}
 		\centering
@@ -229,23 +252,19 @@ look of the networks in this experiment.
 		\caption{Eleven nodes.}
 	\end{subfigure}
 	\caption{Various Watss Strogatz networks.}
-	\label{small_networks_illustration}
+	\label{fig:small_networks_illustration}
 \end{figure}
 
-Likewise for the Erd\"{o}s R\'{e}nyi network. The experiment did not manage to
+Likewise for the random networks method. The experiment did not manage to
 achieve the maximum tournament size that had been set. Instead, 21924 have been
-created and the maximum nodes number is equal to 29. As shown in table~\ref{binomial-summary-table},
-the mean number of nodes of the experiments has been 20 and the minimum 2. The
-minimum number of nodes differs to these of the small world experiment, where
-tournaments of two have not been able to be played. Probably, because a node
-was disconnected. Binomial seems to have handled that. This can been shown
-also by the connectivity, where the mean connectivity, of a random network, is
-approximately 8.26. Compared to the small world that has been fairly lower,
-approximately 3.
+created. As shown in Table~\ref{table:binomial-summary-table}, the mean number
+of nodes of the experiments has been 20, the minimum 2 and the maximum 29. The
+mean connectivity, of a random network, is approximately 8.26, the minimum
+0.00 and maximum 28.00.
 
 \begin{table}[!hbtp]
 	\centering
-	\begin{adjustbox}{width=0.6\textwidth}
+	\begin{adjustbox}{width=0.5\textwidth}
 		\small
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
@@ -258,16 +277,13 @@ approximately 3.
 		\end{tabular}
 	\end{adjustbox}
 	\caption{Random Summary Table}
-	\label{binomial-summary-table}
+	\label{table:binomial-summary-table}
 \end{table}
 
-Another differs between the two network experiments, have occurred in the
-clustering coefficient. The clustering coefficient, of the random networks has a
-mean value of 0.60. Thus, the strategies tend to form groups, more in this
-experiment. The mean node number is equal to 20 with a mean degree 11. Thus, in
-most of the tournaments that occurred, the strategy had to compete with 11 of it's
-neighbors. Once again, six random have been picked and are illustrated
-in ~\ref{random_networks_illustration}.
+The clustering coefficient, of the random networks has a mean value of 0.60. The
+mean node number is equal to 20 with a mean degree 11. Thus, in most of the
+tournaments that occurred, the strategy had to compete with 11 of it's neighbors.
+Once again, six random have been picked and are illustrated in Figure ~\ref{random_networks_illustration}.
 
 \begin{figure}[H]
 	\centering
@@ -310,18 +326,18 @@ in ~\ref{random_networks_illustration}.
 	\label{random_networks_illustration}
 \end{figure}
 
-Lastly, the complete networks experiment, was the only experiment where the
-tournament size ranges from 2 to 50. A total of 500 networks, with complete topology,
-have been constructed and played through. Table ~\ref{complete-summary-table}
+To conclude, the complete networks method was the only method where tournament
+of 50 players have been played. A total of 500 tournaments, with complete topology,
+have been constructed and played through. Table~\ref{table:complete-summary-table}
 summarizes, a few of the networks measures. For the complete networks, the measures
 could have been predicted, due to the 'all connected rule'. The connectivity
-coefficient it is equal to the degree. They vary from 1 to 49. One degree value
+coefficient is equal to the degree. They vary from 1 to 49. One degree value
 corresponds to the first network, with a minimum number of nodes 2, and 49 to
 the last networks, with a maximum number of 50 nodes.
 
 \begin{table}[!hbtp]
 	\centering
-	\begin{adjustbox}{width=0.6\textwidth}
+	\begin{adjustbox}{width=0.5\textwidth}
 		\small
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
@@ -334,12 +350,12 @@ the last networks, with a maximum number of 50 nodes.
 		\end{tabular}
 	\end{adjustbox}
 	\caption{Complete Summary Table}
-	\label{complete-summary-table}
+	\label{table:complete-summary-table}
 \end{table}
 
 The mean clustering coefficients is set at 0.99 Indicating strong clusters
 throughout the experiment, an anticipated result. Furthermore, eight random
-graphs are displayed in~\ref{complete_networks_illustration}.
+graphs are displayed in Figure~\ref{complete_networks_illustration}.
 
 \begin{figure}[!hbtp]
 	\centering
@@ -383,28 +399,25 @@ graphs are displayed in~\ref{complete_networks_illustration}.
 \end{figure}
 
 In this subsection, an initial summary of the overall graphs conducted, in
-each of the experiment has been held. The number of tournaments, as well as the
-tournament size differ. That is not a negative fact, what has been tried to
-achieved in the complex networks experiments, is more complex and random
-networks. In the following subsection, an initial analysis on the data produced
-by these experiments in held.
+each of the methods has been held. The number of tournaments, as well as the
+tournament size differ. In the following subsection, an initial analysis on the
+data produced by each of these methods individually is held.
 
 \subsection{Data Analysis}
-
-This subsection summarizes the data that have been extracted for the experiments.
+This subsection summarizes the data that have been extracted for the methods.
 Individual tables have been managed for each topology. The payoff matrix, for
-the game of the prisoners dilemmas, follows the payoffs as explained in~\ref{sub:prisoner-dilemma}.
+the game of the prisoners dilemmas, follows the payoffs as explained in~\autoref{sub:prisoner-dilemma}.
 Thus, punishment payoff is equal to 1 temptation to 5, reward is equal to 3 and
 the sucker's payoff is set to 0.
 
-For the small word, Watts Strogratx, experiment the description of the
-average score, average neighborhood score, cooperating ratio and neighborhood
-size are shown in~\ref{summary-small-data}. The average score and average
+For the small word method the description of the average score, average
+neighborhood score, cooperating ratio and neighborhood size are shown in
+Table~\ref{table:summary-small-data}. The average score and average
 neighborhood score, are fairly equal, both ranging form 0 to 5 with an average of
 2.4. This could indicate that all strategies performed similarly. The mean
 cooperation rating, is equal to 0.64. Thus, strategies behave mostly cooperative.
-Mean neighborhood size is 4, agrees with~\ref{sub:network-analysis}.
-Maximum neighbors is 9, so even if the maximum players has been 11, non strategy
+Mean neighborhood size is 4, which is agreement with~\autoref{sub:network-analysis}.
+Maximum neighbors is 9, so even if the maximum players has been 11, no strategy
 compete against 10 strategies.
 
 \begin{table}[!hbtp]
@@ -422,14 +435,14 @@ compete against 10 strategies.
 		\end{tabular}
 	\end{adjustbox}
 	\caption{Small world Data Summary Table}
-	\label{summary-small-data}
+	\label{table:summary-small-data}
 \end{table}
 
-For the random, Erd\"{o}s R\'{e}nyi, Table ~\ref{summary-random-data}, is
-an initial summary, for basic measure of the experiment. Similarly, the average score and average
+For the random method, Table~\ref{summary-random-data} is an initial summary,
+for basic measures of the tournaments. Similarly, the average score and average
 neighborhood score, are fairly equal. This time, the average neighborhood score,
 is slightly lower, 2.38, and the maximum average score achieved by a strategy
-is 4.99. Instead of the maximum of a 5. The mean cooperating ration, is higher
+is 4.99. Instead of the maximum of 5. The mean cooperating ratio, is higher
 than 0.50 again. Thus, strategies tend to cooperate and the neighborhood size,
 verifies the results of ~\ref{sub:network-analysis}.
 
@@ -451,17 +464,17 @@ verifies the results of ~\ref{sub:network-analysis}.
 	\label{summary-random-data}
 \end{table}
 
-Finally, for the complete experiment, Table ~\ref{summary-complete-data}. The
+Finally, for the complete experiment, Table ~\ref{table:summary-complete-data}. The
 average scores, are lower for this experiment. Both mean average scores are
 equal to 2.38. But the maximum average scores, strategies and neighbors, are
 below 4. On the other hand, the minimum score are non zero. The behavior of the
-scores can be explained by the topology. Complete experiment, is the experiment
-with highest number of games played. Considering that for each tournament
-\(n-1\) games take place. Thus, scoring zero is less possible, because the games
-you play are increased by far, and the overall score falls, because of the number
-of the opponents.
-Cooperating ratio, is similarly once again and the neighborhood size
-verify what was discussed in ~\ref{sub:network-analysis}.
+scores can be explained by the topology. In the complete topology experiment,
+the highest number of games are played. Considering that for each tournament
+\(n-1\) games take place. Thus, scoring zero is less likely, because the games
+you play are increased by far, and the overall score falls, because the number
+of games played are increased.
+Cooperating ratio, has a meam value of 0.63 and the neighborhood size
+verify what was discussed in ~\autoref{sub:network-analysis}.
 
 \begin{table}[!hbtp]
 	\centering
@@ -478,49 +491,76 @@ verify what was discussed in ~\ref{sub:network-analysis}.
 		\end{tabular}
 	\end{adjustbox}
 	\caption{Complete Data Summary Table}
-	\label{summary-complete-data}
+	\label{table:summary-complete-data}
 \end{table}
 
-In this subsection, a very brief summary was done to the data. In the section
-to follow, more important topics will be raised and an analysis of the best
-ranking strategies will take place.
+As it was shown, this section has been a preliminary on the outputs produced by
+the three methods. The complex networks they produce and their tournaments
+results have been discussed. In the section to follow, more important topics will
+be raised and an analysis on performance is undertaken.
 
-\subsection{Classification}
+\section{Performance Analysis}
+\label{performance-analysis}
+In this section, the three measure will be scrutinized, to assess performance of the
+strategies. These measures are the winning ratio, the normalized average score
+and the median rank. Before hands, the strategies are categorized based on their
+cooperating ratio and the network attributes to which they compete in. Moreover,
+various regression models have been constructed, for the median rank and lastly,
+the findings are summarized.
+
+\section{Classification}
 \label{sub:four-classification}
-As stated in [], the Axelrod-Python library (version 1.16.00), consists of 132.
-Reading though the documentation for each strategy, enough to be able to
-understand and distinguish, any similarities between their player, would be an
-unbearable task. Even so, another concept provided by the Axelrod- Python library
-is the cooperating ratio. The cooperating ratio, is the ratio of times
-a strategy cooperated, divided by the number of turns in a single tournament.
 
-Initially the data of all experiments have been combined, and afterwards have been
-grouped by each strategy. The average cooperating ratio for each strategy is then
-computed. Furthermore, by using the \(k\)-means algorithm, the boundaries for
-any given number of categories can be found. For the cooperation, five individual
-categories have been chosen. The lowest category representing the non - cooperative
-strategies, the middle category, the medium cooperatives and the highest
-the cooperative ones. The two remaining categories, represent the
-moderate and weak cooperation strategies respectively.
+For being able to conduct the analysis on performance two classifications are
+being performed. The two classification that will be conducted
+are based on:
+\begin{itemize}
+	\item The average cooperating ratio of the strategies
+	\item The networks connectivity and clustering coefficients on the networks
+	 			used for the spatial tournaments.
+\end{itemize}
 
-The results, for performing the algorithm, in each experiment can seen in Tables,
-~\ref{class} and a more detailed table, with the respective category of each
+This is done for the two following reasons. Firstly, as stated in~\autoref{chap:Two},
+the Axelrod-Python library (version 1.17.00), consists of 132. Reading though
+the documentation for each strategy to distinguish any similarities between
+the strategies, would be a challenging task. For this reason, the average cooperation
+rating will be used to classify the strategies into categories. Thus, strategies
+in the same category will be characterized as similar, based on their level of
+cooperation. Secondly, because the performance of the strategies needs to be assessed
+based on the topology of the spatial tournament, but networks used itself does
+not matter, the clustering and cooperation coefficient are used for a 2 dimensional
+clustering.
+
+The clustering will be performed using the popular \(k\)-means algorithm.
+\(k\)-means aims to store observations to k clusters. It stores k centroids
+that it used to define cluster. An observation is considered to be in a
+particular cluster if it is closer to that cluster's centroid than any other
+centroid. The best centroids are identified by:
+\begin{itemize}
+  \item assigning data points to clusters based on the current centroids
+  \item choosing centroids (points which are the center of a cluster) based on
+        the current assignment of data points to clusters.
+\end{itemize}
+
+For the average cooperation, five individual categories have been created.
+The boundaries of each class and the number of strategies in each category
+can been seen in Table~\ref{table:class}, a more detailed table, with the respective category of each
 strategy can be found in the Appendix~\ref{append:class-categories}.
 
 Overall six strategies are in the low category. Their average cooperating ration
 ranges between 0.00 and 0.20. In the weak category, the ratio is between
-0.23 and 0.40, and is consisted by 17 strategies. Twenty-eight strategies are
+0.23 and 0.40, and is consisted of 17 strategies. 28 strategies are
 in the mid category, with upper bound of ratio 0.57 and lower bound a 0.42.
 The moderate category, is for strategies which ratio is between 0.58 and 0.75.
 Lastly, the high category, with 48 strategies and a mean ratio of 0.87.
 
 \begin{table}[!hbtp]
 	\centering
-	\begin{adjustbox}{width=0.5\textwidth}
+	\begin{adjustbox}{width=0.4\textwidth}
 		\small
 		\begin{tabular}{|l|l|l|l|l|}
 			\hline
-			\multicolumn{5}{|c|}{Classification Table}              \\ \hline
+			\multicolumn{5}{|c|}{Classification Table}                        \\ \hline
 			Categories & count & \multicolumn{3}{l|}{cooperating ratio}        \\ \hline
 			         &    & min  & mean & max  \\ \hline
 			low      & 6  & 0.00 & 0.10 & 0.20 \\ \hline
@@ -534,31 +574,14 @@ Lastly, the high category, with 48 strategies and a mean ratio of 0.87.
 	\label{class}
 \end{table}
 
-The classification of the strategies will be a useful tool in the following
-subsection. For now the categories have been introduced and more details, for
-each strategy, can be found in the Appendix. This section have been for the
-preliminarily analysis. Where an overview of the networks and data have been
-conducted. In the section that follows, the analysis on performance is
-undertaken.
-
-\section{Performance Analysis}
-
-In this section, three measure will be scrutinized, to assess performance of the
-strategies. These measures are the winning ratio, the normalized average score
-and the median rank. Various regression models have been constructed, for
-the median rank and lastly, the findings are summarized.
-
-As aforementioned, our experiments did not manage to achieve maximum capability.
-Additionally, not all strategies participated in each of the experiments.
-Even so, the goal of this chapter remains the observation of the strategies,
-for any given topology. Thus, from here onwards the data that have been
-used, are a combination of the data sets produced by each experiment. The
-analysis is focused solidarily, on the overall performance of each strategy and
-the identification of any network attributes, affecting the performance.
+%The classification of the strategies will be a useful tool in the following
+%subsection. For now the categories have been introduced and more details, for
+%each strategy, can be found in the Appendix.
 
 \subsection{Winning Ratio}
-
-In this subsection, a ranking of the strategies has been carried out, based on
+In this subsection, the strategies are being assessed based on the winning ratio.
+The strategies have been ranked   
+a ranking of the strategies has been carried out, based on
 the winning ratio. Shown in Figure~\ref{wining-second-gen}, is a point plot illustrating the order
 of the strategies based on this rank. The highest ranked strategies, are
 Fool Me Forever, Grumpy, Ripoff, Cycler DDC and, with wining ratio
@@ -781,7 +804,8 @@ in Figure~\ref{gradual} Gradual.
 In this subsection, the best performed strategies, Nydegger, Cautious QLearner, Gradual,
 have been defined based on the median ranking. Furthermore, the difference in
 these strategies ranks have been studied, based on groups of network clustering,
-connectivity and cooperating ration. The results indicated, statistically significant
+connectivity and cooperating ratio.
+The results indicated, statistically significant
 difference. The following subsection focal point is building a regression model.
 
 \subsection{Regression}
