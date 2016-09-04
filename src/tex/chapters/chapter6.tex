@@ -1,0 +1,78 @@
+\chapter{Conclusions and Future Work}
+\label{chap:Six}
+
+In this chapter the conclusions of the experiments held in
+~\autoref{chap:Three} and in ~\autoref{chap:Four}, as well as the results
+of the genetic algorithm for training the new strategy, in ~\autoref{chap:Five}
+are presented. Furthermore, the potential areas of development are
+ideas are discussed.
+
+\section{Conclusions}
+\subsection{Affects of Topology}
+
+In ~\autoref{chap:Three} and in ~\autoref{chap:Four}, the effects of the spatial
+topology on the strategies of the Axelrod-Python library has been studied. These
+was done producing data by various types of spatial tournaments.
+
+In ~\autoref{chap:Three}, once the source code needed to run such tournament
+has been implemented, an initial experiment was conducted using simple network
+topologies. The resutls of the analysis showed that some of the high ranks strategies
+of the IPD, such as Raider and PSO Gambler made their appearance. Still their
+ranks differ based on the topology. The measure that was used was the winning
+ratio and the normalized score. The research as to why return that it could
+not be predicted. Even if topology did affect the strategies and the winners,
+how and was not necesseraly clean.
+
+In ~\autoref{chap:Three}, an new attempt to indentify the reasons behind performance
+was once again undergone. The median normalized rank was indentified to be a much better
+measure, but even so the results of the experiment have been once again random.
+PSO Gambler did achieve a high place on again. But the regression showed that
+only a few strategies could be predicted. And the rest seems to be affected
+by different predictors. This could be an effect of the game play of each strategy
+of even by the enviroment itself.
+
+Thus further reserach is needed for validate resutls
+\subsection{New LookerUp Strategy}
+
+In an attempt to indentify a winning streatygy in the spaital random experiment
+that have been conducted. The work of M Jones and his LookerUp strategy were mimiced.
+A new strategy using an objective function based on the median normalized score
+has been perforfm. Due to time costrainf the generations had to be stopped
+quick. Thus this were the resutls
+
+\section{Limitations and Further Research}
+\subsection{Limitations}
+
+In thisdissertation most of the code for the spatial topology, large parts of the gentic algorithm
+have to be implemented. Thus the time for runing the experiment has been descreaded.
+Most of the tournaments themself needed a lot time. Thus the the biggest constraing
+of this dissertation has been time.
+
+With futher time, the experiments in both chaoter could have been used for
+more number of player , tournaments sizes, repitions and networks. This would
+made possible for more data to be conducted and have more to run our analysis
+wiht a hope of better results.
+
+Data are evrything in the analysis. For exaple in hapter 3 only two specific
+tournament sizes have been used. ANd in chapter4 now all method reach maximum capacity.
+
+Futhermore more, for yhe genetic algorithm, time had been even less. The genetic
+alorgitm and the spaital tournaments made it impossible to run big ames, with
+manu players. more turns and repitions and more generations. Thus a better solutions
+as in the futher reaserach could possible be achieved
+
+- Time constrains.
+- Generate more data
+- Run more generations for genetic algorithm
+\subsubsection{Further Research}
+
+for further research, i would like to run more comple networks. even from the complex
+networks ionyl three types have been shoosen were thousand of graphs exists.
+
+THe regression models did not managed to explain any of the results. This could have been
+because of the lack of data. Even s, more regresiion could be perform such as
+forward elimination regression and logistic regression.
+
+- More complex networks
+- Regressions, forward regression and logistic regression
+- Make LookerUp compete in experiments
