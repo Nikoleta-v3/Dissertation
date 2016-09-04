@@ -1,0 +1,226 @@
+\chapter{Training Strategy using Genetic Algorithm}
+\section{Introduction}
+\label{sub:five-intro}
+This chapter covers an overview on the contribution of Professor M Jones
+in the Axelrod-Python library. Following the presentation of Axelrod-Python
+library at PyConUk 2015~\url{http://2016.pyconuk.org/}, he became a member of
+the Axelrod-Python team and contributed to the library a new strategy, the
+EvolvedLookerUp, which is currently ranked second in the Axlerod-Python tournament.
+EvolvedLookerUp is a LookerUp strategy that uses a lookup table generated using an
+evolutionary algorithm. The structure of the strategy and the evolution algorithm
+will be covered in the following section.
+
+Furthermore, the method developed by M Jones to train the EvolvedLookerUp
+will be redeveloped and used. Making it possible to train a new strategy, which
+will be competing against random opponents into various spatial tournaments,
+to outperform the rest.
+
+%A brief introduction to the genetic algorithm will also be covered.
+
+\section{The Lookup Evolve Algorithm}
+\label{sub:lookup-evolve-algorithm}
+As stated in ~\autoref{sub:five-intro}, the LookerUp strategies uses a lookup to
+determine the strategy's next move. In this section, the lookup table, as well as
+the LookerUp strategies are explained. Additionally, the mechanism used for the
+maximization of these strategies performance will be discussed.
+
+\subsection{The Lookup Table}
+The strategies of the Axelrod-Python library have access to their own history,
+through the \texttt{self.history} variable and the opponent's history though
+\texttt{opponent.history} variable. Many strategies choose their actions based
+on what happened on previous turns\footnote{Only two actions are possible in the
+IPD; to either Cooperate(C) or to Defect(D)}. This can be think of as a lookup table.
+In Jones work three different histories are taken into account:
+
+\begin{itemize}
+  \item the opponents two starting actions
+  \item the opponent's two recent actions
+  \item and the recent actions of the strategy.
+\end{itemize}
+
+Using Python's dictionaries the histories are considered as the keys and
+the action as the values. The keys are a 3-tuples consisting of the opponent's
+starting actions, the opponent's recent actions, and the strategy's recent actions.
+The lookup table contains 64 different keys, a key/value pairs example is
+illustrated in Listing~\ref{lst:lookup-table}.
+
+\begin{listing}[H]
+\usemintedstyle{tango}
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]
+{python}
+lookup_table = {
+    ...
+    ('CC', 'CC', 'DD') : 'D',
+    ('DD', 'CC', 'DD') : 'C',
+    ...
+}
+\end{minted}
+\caption{Example of lookup table}
+\label{lst:lookup-table}
+\end{listing}
+
+The lookup table is used a map for the player to choose the following action.
+A class for generating a strategy object which make use of the lookup tables
+to play an in the IPD game is described in the following subsection.
+
+\subsection{The LookerUp class}
+
+The LookerUp class, is generating a object for a given dictionary, lookup table.
+The source code of the class, as written by M Jones, is illustrated in the
+Listing~\ref{lst:lookerup}. As it is shown, the strategy taken as an argument
+a lookup table, if the history is smaller that 2 then the strategy always cooperate.
+Furthermore, if the history is greater than 2, then make key and by looking a the
+lookup table return action.
+
+\begin{listing}[H]
+\usemintedstyle{tango}
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightBlue,
+fontsize=\footnotesize,
+linenos
+]
+{python}
+class LookerUp(Player):
+
+    def __init__(self, lookup_table):
+        self.lookup_table = lookup_table
+
+
+    def strategy(self, opponent):
+        # If there isn't enough history to lookup an action, cooperate.
+        if len(self.history) < 2:
+            return C
+
+        # Get my own last two actions
+        my_history = ''.join(self.history[-2:])
+
+        # Do the same for the opponent.
+        opponent_history = ''.join(opponent.history[-2:])
+
+        # Get the opponents first two actions.
+        opponent_start = ''.join(opponent.history[:2])
+
+        # Put these three strings together in a tuple.
+        key = (opponent_start, my_history, opponent_history)
+
+        # Look up the action associated with that tuple in the lookup table.
+        action = self.lookup_table[key]
+
+        return action
+\end{minted}
+\caption{The LookerUp class source code}
+\label{lst:lookerup}
+\end{listing}
+
+The class is used to test the performance of the table. EvolverLookerup, is a
+later version of LookerUp, the difference is that EvolverLookerUp uses a satisfactory
+table, crafted by using an evolutionary algorithm. The process will be described
+in the following subsection.
+
+\subsection{Evolutionary Algorithm}
+
+The performance of a lookup table is measured as the average score the lookup
+strategy achieves in a round robin tournament against all strategies in the
+Axelrod-Python library. Though various optimization processes could have been
+used for the maximization of the objective function,
+the genetic algorithm was used. Genetic algorithm, is a commonly used adaptive
+algorithm for solving practical problems. An introduction in the genetic algorithm
+has been covered by M Mitchell~\cite{Mitchell1998}, and along various applications~\cite{Chang1994}
+it has been used in the field of Game Theory as well~\cite{Ismail2007}.
+
+The lookerup evolve algorithm, which is the algorithm that tries to maximize
+the performance using the genetic algorithm is described by the flow chart in
+Figure~\ref{fig:flookerup-evolve-flow}. The algorithm starts off by creating
+\(n\) number of random tables. These tables are then passed in genetic algorithm
+as the current tables.
+Once the genetic algorithm kicks off children are reproduced for every single pair
+of parents. The reproduction process included random crossovers as well as a
+mutation rate \(u\). Subsequently, the population is defined as the joint of
+parents and children.
+
+Each member of the population has to go through the scoring process. A different
+object of the LookerUp strategy is created for each of the lookup tables that
+exist in the population, and each object participates to a round robin tournament.
+Thereupon, the population is being sorted based on the average score per turn.
+Only the top \(b\) individuals are then selected to continue to the next generation.
+This is repeated until the number of generations reach the upper bound \(g\).
+
+The default values of the parameters in the lookerup evolve algorithm, are as
+follow:
+\begin{itemize}
+  \item \(n\) default value is equal to 5
+  \item \(u\) default value is equal to 0.1
+  \item \(b\) default value is equal to 10
+  \item \(g\) default value is equal to 100
+\end{itemize}
+
+\begin{figure}[!hbtp]
+		\input{chapters/lookerup.tex}
+		\caption{Lookerup Evolve Algorithm Flow Chart}
+  \label{fig:flookerup-evolve-flow}
+\end{figure}
+
+In this section an overview of M Jones works was implemented. The full version
+of the LookUpEvolver, his version of genetic algortitm and the lookerup evolve
+algorithm can be found here:\url{https://github.com/mojones/axelrod-evolver}.
+In the upcoming section how the lookerup evolve algorithm was altered and used
+for the spatial tournaments is being discussed.
+
+\section{The Spatial Lookup Evolve Algorithm}
+
+Inspired by the work done by M Jones, as was described in ~\autoref{sub:lookup-evolve-algorithm},
+the lookup evolve algorithm will be used to train a new strategy. The goal is to
+train a strategy, which will have an overall 'good' performance for any given
+spatial tournament.
+
+Large parts of the lookup evolve algorithm code that have already written
+can be used. The main difference in this new spatial algorithm is the objective
+function of the genetic algorithm.
+\subsection{Objective Function}
+
+In the approach of the spatial lookup evolve algorithm, one of the main differences
+occurs in the objective function in the scoring process.
+Instead of the average score in a round robin tournament,
+the median normalizes rank, as introduced in ~\autoref{chap:Four}, for a spatial
+tournament is taken into account.
+
+A similar approach to the one described in ~\autoref{chap:Four} is taken.
+For this reason, the objective function will be the median rank a strategy
+achieved, after participating in \(p\) random spatial tournaments of random
+different topologies. The tournament sizes as well as the players participating
+in these tournaments are completely random. The topologies can be that of a Watts Strogatz, a Erd\"{o}s
+R\'{e}nyi or a complete graph. In Figure~\ref{fig:scoring-spatial-evolve}, a flow chart illustrating the idea of
+how this are being scored is shown.
+
+\begin{figure}[!hbtp]
+		\input{chapters/objective.tex}
+		\caption{Scoring Process for Spatial Lookup Evolve Algorithm}
+  \label{fig:scoring-spatial-evolve}
+\end{figure}
+
+Furthermore, for every given generation the current tables are being re scored.
+Due the randomness that the soring process includes, for the same lookup different
+score could occur.
+r every given generation the current tables are being scored again and again.
+Because of the random factors we have introduced in the objective function,
+the objective function stops being deterministic. To avoid this two different types
+of obejectives are created based on the strategies list.
+
+\subsubsection{Non Deterministic}
+\subsubsection{Deterministic}
+
+\subsection{Parameters}
+
+\section{Results}
