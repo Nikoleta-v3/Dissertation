@@ -1,1 +1,25 @@
 \chapter{Summary}
+
+Since 1984, when a simple Iterated Prisoner's Dilemma(IPD) computer tournament was
+conducted with 16 participants, various IPD tournaments have been and new strategies
+are constantly developed. This has inspired scientists to create a new Python
+library, for reproducing all the various works done on the topic of the IPD. This
+library is called Axelrod-Python library and further it continuously holds
+an IPD tournament with the strategy that have been implemented(currently 132).
+
+Axelrod-Python library, soon became a powerful tool for the Game Theory society.
+Even so, the library was lacking the ability of creating tournaments of various
+topologies apart of a round robin one. During this dissertation, this was implemented
+by contributing to the library's source code. Specifically, tournaments will a
+network topologies: spatial tournaments. Instantly, new questions were raised.
+How does the topology of the tournament affect the performance of the existed
+strategies of the library and does any of this strategies perform well in
+different tournaments of different topologies ?
+
+To answer this questions throughly, experiments have been conducted. In these
+experiments simple and complex networks respectively have been used as topologies
+to generate numerous of spatial tournaments. This was done to identify the effects
+of the topologies on the 132 strategies of the library. Furthermore, non of 132
+Axelrod-Python library strategies was characterized as an overall satisfactory
+strategy thought the experiments. For this reason an new strategy has been trained
+using an evolutionary approach.
