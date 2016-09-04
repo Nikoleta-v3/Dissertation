@@ -12,8 +12,10 @@
 
 \usepackage[export]{adjustbox}
 
+
 % long tables
 \usepackage{longtable}
+
 
 % Package to manage appendix
 \usepackage[toc]{appendix}
@@ -96,8 +98,12 @@
 % A package for vector graphics
 \usepackage{tikz}
 \usetikzlibrary{graphs,graphs.standard}
+%for lattice
 \usetikzlibrary{matrix, calc}
-
+% for flowcharts
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{varwidth}
+\usetikzlibrary{positioning}
 % A package for algorithms
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
@@ -142,8 +148,8 @@
 \input{chapters/chapter2.tex}
 \input{chapters/chapter3.tex}
 \input{chapters/chapter4.tex}
+\input{chapters/chapter5.tex}
 \input{chapters/chapter6.tex}
-
 
 \addcontentsline{toc}{chapter}{References}
 \printbibliography[title=References]

@@ -1,0 +1,38 @@
+\tikzstyle{process} = [rectangle, minimum width=0.5cm, minimum height=1cm, text centered, draw=black,text width=4.5cm]
+\tikzstyle{decision} = [diamond, minimum width=0.5cm,text width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{center}
+\begin{tikzpicture}[scale=3, node distance=1.5cm, auto, execute at begin node={\begin{varwidth}{40em}},
+                    execute at end node={\end{varwidth}}]
+
+\node (before) [process] { ..... };
+\node (pro4) [process, below of=before, fill=blue!80] {\small \textbf{Score Population}};
+
+\node (sample) [process, below of=pro4] {\small Sample Players};
+
+\node (decision) [decision, below of=pro4, yshift=-2.5cm] {\small Random Integer \(t\)};
+
+\node (small) [process, below left=of decision, yshift=-0.4cm] {\small Watts Strogatz};
+
+\node (random) [process, below of= decision, yshift=-2.5cm] {\small Erd\"{o}s R\'{e}nyi};
+
+\node (complete) [process, below right=of decision, yshift=-0.4cm] {\small Complete};
+
+\node (ranks1) [process, below of=random, yshift=-1.5cm] {\small Single Tournament Ranks};
+
+\node (ranks2) [process, below of=ranks1, yshift=-1.5cm] {\small Median Normalized Ranks};
+%Lines
+\draw [arrow] (before) -- (pro4);
+\draw [arrow] (pro4) -- (sample);
+\draw [arrow] (sample) -- (decision);
+\draw [arrow] (decision) -- node[anchor=west] {\(t\) = 0} (small);
+\draw [arrow] (decision) -- node[anchor=west] {\(t\) = 1} (complete);
+\draw [arrow] (decision) -- node[anchor=west] {\(t\) = 2} (random);
+\draw [arrow] (small) -- (ranks1);
+\draw [arrow] (random) -- (ranks1);
+\draw [arrow] (complete) -- (ranks1);
+\draw [arrow] (ranks1) -|([xshift=-0.25cm]pro2.south west)|- node[anchor=south] {repetitions $<$ \(p\)} (sample);
+\draw [arrow] (ranks1) -- node[anchor=west] {repetitions = \(p\)} (ranks2);
+\end{tikzpicture}
+\end{center}

@@ -1,0 +1,48 @@
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=2cm, minimum height=1cm,text centered, draw=black, fill=black!40]
+\tikzstyle{process} = [rectangle, minimum width=0.5cm, minimum height=1cm, text centered, draw=black,text width=13cm]
+\tikzstyle{decision} = [diamond, minimum width=0.5cm,text width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{center}
+\begin{tikzpicture}[scale=3, node distance=1.5cm, auto, execute at begin node={\begin{varwidth}{40em}},
+                    execute at end node={\end{varwidth}}]
+
+% start flow chart
+\node (start) [startstop] {Start};
+% get first tables
+\node (in1) [process, below of=start , fill=black!5] {\small \textbf{Current Tables} = \(n\) Random Generated Lookup Tables};
+% start genetic
+\node (pro1) [process, below of=in1, fill=blue!80] {\small \textbf{Start Genetic Algorithm}};
+% parents
+\node (pro2) [process, below of=pro1, fill=black!5] {\small \textbf{Parents} = Current Tables + \(n\) Random Generated Lookup Tables};
+% kids
+\node (in2) [process, below of=pro2, fill=black!5] {\small \textbf{Children} = all possible combinations of Parents};
+%population
+\node (pro3) [process, below of=in2, fill=black!5] {\small \textbf{Population} = Parents + Children};
+%score them
+\node (pro4) [process, below of=pro3, fill=blue!80] {\small \textbf{Score Population}};
+%score them details
+\node (pro5) [process, below of=pro4, fill=black!5] {\small LookerUp (for each lookup table) plays in a round robin tournament};
+%ranked population
+\node (in3) [process, below of=pro5, fill=blue!80] {\small \textbf{Ranked Population, based on average score}};
+%keep rank
+\node(pro6) [process, below of=in3, fill=black!5] {\small \textbf{Current Tables} = \(b\) number of individuals};
+%check number of generation
+\node (dec1) [decision, below of=pro6, yshift=-1.5cm] {\small Generations = \(g\)};
+%stop
+\node (stop) [startstop, below of=dec1, yshift=-1.5cm] {Stop};
+% LINES
+\draw [arrow] (start) -- (in1);
+\draw [arrow] (in1) -- (pro1);
+\draw [arrow] (pro1) -- (pro2);
+\draw [arrow] (pro2) -- (in2);
+\draw [arrow] (in2) -- (pro3);
+\draw [arrow] (pro3) -- (pro4);
+\draw [arrow] (pro4) -- (pro5);
+\draw [arrow] (pro5) -- (in3);
+\draw [arrow] (in3) -- (pro6);
+\draw [arrow] (pro6) -- (dec1);
+\draw [arrow] (dec1) -|([xshift=-0.25cm]pro2.south west)|- node[anchor=east] {yes}(pro2);
+\draw [arrow] (dec1) -- node[anchor=east] {no} (stop);
+\end{tikzpicture}
+\end{center}
