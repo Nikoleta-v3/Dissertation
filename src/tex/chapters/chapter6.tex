@@ -4,26 +4,39 @@
 In this chapter the conclusions of the experiments held in
 ~\autoref{chap:Three} and in ~\autoref{chap:Four}, as well as the results
 of the genetic algorithm for training the new strategy, in ~\autoref{chap:Five}
-are presented. Furthermore, the potential areas of development are
-ideas are discussed.
+are presented. Furthermore, the potential areas of development are discussed.
 
 \section{Conclusions}
 \subsection{Affects of Topology}
 
 In ~\autoref{chap:Three} and in ~\autoref{chap:Four}, the effects of the spatial
-topology on the strategies of the Axelrod-Python library has been studied. These
-was done producing data by various types of spatial tournaments.
+topology on the strategies of the Axelrod-Python library has been studied. This
+has been implemented by producing data from various types of spatial tournaments.
 
-In ~\autoref{chap:Three}, once the source code needed to run such tournament
-has been implemented, an initial experiment was conducted using simple network
-topologies. The resutls of the analysis showed that some of the high ranks strategies
-of the IPD, such as Raider and PSO Gambler made their appearance. Still their
-ranks differ based on the topology. The measure that was used was the winning
-ratio and the normalized score. The research as to why return that it could
-not be predicted. Even if topology did affect the strategies and the winners,
-how and was not necesseraly clean.
+In ~\autoref{chap:Three}, initially the source code needed to perform spatial tournaments
+has been implemented by contributing to the Axelrod-Python library. There after,
+an initial experiment was conducted using simple network topologies.
+The results of the analysis showed that some of the high ranks strategies
+of the IPD tournament conducted by the Axelrod-Python library using a round robin
+topology, such as Raider and PSO Gambler made appearance on the highest ranked
+strategies of the experiment. The performance in the initial experiments have been
+measured using the wining ratio and the normalized average score. The rest of
+the highest strategies have been different based on the networks used for the
+experiment.The research, as to why these strategies have been scoring higher than
+the rest return non significant findings. Thus the results showed that the ranking
+could not be predicted, based on the experiments data. The fact that topology
+was affecting the performances was clear but not the trend behind it was not necessarily
+defined. Also, wining ratio and normalized score were characterized as poor measures
+as there have been conflicts between the results.
 
-In ~\autoref{chap:Three}, an new attempt to indentify the reasons behind performance
+In ~\autoref{chap:Four}, an new experiment have been implemented, this time using
+more sophisticated networks. A new attempt to identify the topology's effects
+was held. In this attempt an new measure of performance was introduced. The median
+normalized ranked was used instead of the two previous. The only strategy that had
+made an appearance once again between the high ranks has been the PSO Gambler.
+ 
+
+attempt to indentify the reasons behind performance
 was once again undergone. The median normalized rank was indentified to be a much better
 measure, but even so the results of the experiment have been once again random.
 PSO Gambler did achieve a high place on again. But the regression showed that
