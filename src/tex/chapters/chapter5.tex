@@ -1,4 +1,4 @@
-\chapter{Training Strategy using Genetic Algorithm}
+\chapter{Training Strategy using Evolutionary Algorithm}
 \section{Introduction}
 \label{sub:five-intro}
 This chapter covers an overview on the contribution of Professor M Jones
@@ -11,9 +11,8 @@ evolutionary algorithm. The structure of the strategy and the evolution algorith
 will be covered in the following section.
 
 Furthermore, the method developed by M Jones to train the EvolvedLookerUp
-will be redeveloped and used. Making it possible to train a new strategy, which
-will be competing against random opponents into various spatial tournaments,
-to outperform the rest.
+will be redeveloped and used. Making it possible to train a new strategy
+by competing against random opponents into various spatial tournaments.
 
 %A brief introduction to the genetic algorithm will also be covered.
 
@@ -29,7 +28,8 @@ The strategies of the Axelrod-Python library have access to their own history,
 through the \texttt{self.history} variable and the opponent's history though
 \texttt{opponent.history} variable. Many strategies choose their actions based
 on what happened on previous turns\footnote{Only two actions are possible in the
-IPD; to either Cooperate(C) or to Defect(D)}. This can be think of as a lookup table.
+IPD; to either Cooperate(C) or to Defect(D).}. This rule, of determining once actions
+based on a history can be think of as a lookup table.
 In Jones work three different histories are taken into account:
 
 \begin{itemize}
@@ -67,18 +67,22 @@ lookup_table = {
 \label{lst:lookup-table}
 \end{listing}
 
-The lookup table is used a map for the player to choose the following action.
-A class for generating a strategy object which make use of the lookup tables
-to play an in the IPD game is described in the following subsection.
+The lookup table corresponds to a guideline which the strategy determines it's following action.
+A class for generating a strategy object, which  will take into account a lookup tables,
+for playing the IPD game is described in the following subsection.
 
 \subsection{The LookerUp class}
 
-The LookerUp class, is generating a object for a given dictionary, lookup table.
+The LookerUp class, is generating a object for a given lookup table.
 The source code of the class, as written by M Jones, is illustrated in the
 Listing~\ref{lst:lookerup}. As it is shown, the strategy taken as an argument
-a lookup table, if the history is smaller that 2 then the strategy always cooperate.
-Furthermore, if the history is greater than 2, then make key and by looking a the
-lookup table return action.
+a lookup table and therefore plays by following these regulations:
+\begin{itemize}
+  \item If history is smaller than 2, then  always cooperate
+  \item if history is greater than 2, create key
+  \item check lookup table for corresponding key and value
+  \item return value as action
+\end{itemize}
 
 \begin{listing}[H]
 \usemintedstyle{tango}
@@ -130,12 +134,12 @@ table, crafted by using an evolutionary algorithm. The process will be described
 in the following subsection.
 
 \subsection{Evolutionary Algorithm}
-
+\label{sub:evolutionary-algorithm}
 The performance of a lookup table is measured as the average score the lookup
 strategy achieves in a round robin tournament against all strategies in the
 Axelrod-Python library. Though various optimization processes could have been
 used for the maximization of the objective function,
-the genetic algorithm was used. Genetic algorithm, is a commonly used adaptive
+the genetic algorithm was preferred. Genetic algorithm, is a commonly used adaptive
 algorithm for solving practical problems. An introduction in the genetic algorithm
 has been covered by M Mitchell~\cite{Mitchell1998}, and along various applications~\cite{Chang1994}
 it has been used in the field of Game Theory as well~\cite{Ismail2007}.
@@ -173,7 +177,7 @@ follow:
 \end{figure}
 
 In this section an overview of M Jones works was implemented. The full version
-of the LookUpEvolver, his version of genetic algortitm and the lookerup evolve
+of the LookUpEvolver, his implementation of the genetic algorithm and the lookerup evolve
 algorithm can be found here:\url{https://github.com/mojones/axelrod-evolver}.
 In the upcoming section how the lookerup evolve algorithm was altered and used
 for the spatial tournaments is being discussed.
@@ -191,36 +195,149 @@ function of the genetic algorithm.
 \subsection{Objective Function}
 
 In the approach of the spatial lookup evolve algorithm, one of the main differences
-occurs in the objective function in the scoring process.
-Instead of the average score in a round robin tournament,
-the median normalizes rank, as introduced in ~\autoref{chap:Four}, for a spatial
-tournament is taken into account.
+occurs in the objective function in the scoring process. Instead of the average
+score in a round robin tournament, the median normalizes rank, as introduced
+in ~\autoref{chap:Four}, for a spatial tournament is taken into account.
 
-A similar approach to the one described in ~\autoref{chap:Four} is taken.
-For this reason, the objective function will be the median rank a strategy
-achieved, after participating in \(p\) random spatial tournaments of random
-different topologies. The tournament sizes as well as the players participating
-in these tournaments are completely random. The topologies can be that of a Watts Strogatz, a Erd\"{o}s
-R\'{e}nyi or a complete graph. In Figure~\ref{fig:scoring-spatial-evolve}, a flow chart illustrating the idea of
-how this are being scored is shown.
+Using a similar approach to the one described in ~\autoref{chap:Four}, the objective
+function will be the median rank a strategy achieved, after participating in \(p\)
+random spatial tournaments of random different topologies. The tournament sizes
+as well as the players participating in these tournaments are completely random.
+The topologies can be that of a Watts Strogatz, a Erd\"{o}s
+R\'{e}nyi or a complete graph. In Figure~\ref{fig:objective}, a flow chart
+illustrates the idea of how this was implemented. Before and after the scoring
+process the nodes are the same as have been seen in Figure~\ref{fig:flookerup-evolve-flow}.
 
 \begin{figure}[!hbtp]
 		\input{chapters/objective.tex}
 		\caption{Scoring Process for Spatial Lookup Evolve Algorithm}
-  \label{fig:scoring-spatial-evolve}
+  \label{fig:objective}
 \end{figure}
 
 Furthermore, for every given generation the current tables are being re scored.
-Due the randomness that the soring process includes, for the same lookup different
-score could occur.
-r every given generation the current tables are being scored again and again.
-Because of the random factors we have introduced in the objective function,
-the objective function stops being deterministic. To avoid this two different types
-of obejectives are created based on the strategies list.
+Due the randomness that the scoring process includes and the fact that some
+of the Axelrod-Python strategies are sophisticated, different scores for the
+same lookup tables could occurs. Thus, the objective functions stops being
+deterministic. For overcoming this two different types of objectives are created
+based on the strategies list.
 
 \subsubsection{Non Deterministic}
+
+The difference in these two objectives functions occurs in the population
+of the strategies. More specifically, for the non deterministic objective function
+the population of strategies, from where the sample for participants for
+the spatial games is being subtract, contains all 132 strategies of the
+Axlerod-Python. The sample for each repetition \(p\) is randomly picked. For the
+non deterministic objective two sample sizes have been used. One from
+15 to 50 players and 5 to 15 strategies.
+
 \subsubsection{Deterministic}
+
+For overcoming the non deterministic function, in the deterministic objective
+the population of strategies is now altered. This population will contain only
+the deterministic strategies of the Axelrod-Python library. The library provides
+easy access to them and they have been identified as the following ten strategies:
+\begin{itemize}
+   \item Alternator
+   \item Anti Tit For Tat
+   \item Bully
+   \item Cooperator
+   \item Cycler DC
+   \item Defector
+   \item Suspicious Tit For Tat
+   \item Tit For Tat
+   \item Win-Shift Lose-Stay
+   \item Win-Stay Lose-Shift
+\end{itemize}
+
+Thus the sample size this time will range between 5 to 10. Both of these
+objectives are used for individual runs of the spatial lookup evolve algorithm.
 
 \subsection{Parameters}
 
+One can notice by the default values of the evolutionary algorithm parameters,
+described in \autoref{sub:evolutionary-algorithm}, in each generation
+144 lookup tables needed to be scored. Considering that each lookup table needs
+to participate in \(p\) different spatial tournaments the time to implement
+each generation is growing massively. The spatial lookup evolve algorithm
+has been compiled in Raven, even so it still required a lot of time and due time
+constraints of this dissertation these values had to altered. The new values
+that have been used, alongside the values of the new parameters introduced
+by the spatial version of the algorithm are listed here:
+\begin{itemize}
+    \item \(n\) default value is equal to 2
+    \item \(u\) default value is equal to 0.1
+    \item \(b\) default value is equal to 2
+    \item \(g\) default value is equal to 5000
+\end{itemize}
+
+By setting \(n\) to 2 and by keeping only the 2 top of each generations only
+20 lookup tables are being scored for each generation. Furthermore, the generations
+have been set to 5000 though the results analyzed in the following subsection
+have been from earlier generations. The time limit for each algorithm was set at
+70 hours. The entire spatial scoring structure that
+has been explained throughly during this subsection is illustrated in Figure~\ref{fig:spatial-evolve}.
+
+\begin{figure}[H]
+		\input{chapters/spatialevolve.tex}
+		\caption{Complete Scoring Process for Spatial Lookup Evolve Algorithm}
+  \label{fig:spatial-evolve}
+\end{figure}
+
 \section{Results}
+In this sections the results of the spatial lookup evolve algorithm are briefly
+presented. The results are divided into three categories based on the strategies
+population and on the sample size. For each, the number of generations the algorithm
+achieved, the lowest median normalized ranks as well as the mean and the standard
+deviation of the specific generation are given in Table~\ref{results-genet}.
+
+For the deterministic function the best strategy, with a score of 0.77 median normalized
+rank, was achieved at the 319 generation. For the same generation the mean score
+has been 0.57 with a standard deviation of 0.20. For the non deterministic function
+and a sample size ranging from 5 to 15 the best lookup table has been achieved at
+the 201 generation.
+
+\begin{table}[!hbtp]
+\centering
+\begin{adjustbox}{width=1.1\textwidth}
+\small
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{6}{|c|}{Results}                                                                                                                                                                                              \\ \hline
+                                       & lookup values      & generation                                                                                         & score    & mean rank  & standard deviation               \\ \hline
+  Deterministic                         & \begin{tabular}[c]{@{}l@{}}DDDDCDDDDCDCDCDDDCDCCDDCDDCCCDDC\\ CDCDCDCCDDCCCCDCDCCCCCCCDDCCDCCD\end{tabular} & 319  & 0.777778 & 0.57                    & 0.20                            \\ \hline
+  \begin{tabular}[c]{@{}l@{}}Non-deterministic\\ sample size(5-15)\end{tabular} & \begin{tabular}[c]{@{}l@{}}CDDCCDDDCDCDCDDDCDCDCCCCDCDDDCCC\\ DCDDDCDCDDCCDCDCCCDDCDDCCCDCCDDC\end{tabular} & 201 & 0.769231 & 0.36                    & 0.23                            \\ \hline
+  \begin{tabular}[c]{@{}l@{}}Non-deterministic\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}DDDCCDDCCCCCDCCDDDCCCCCDDCCDDCDCC\\ CDDCDCDCDDCCCDCCCDCCCDDCDDDDDCD\end{tabular} & 400 & 0.6875   & 0.45                    & 0.17                            \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{Results for Spatial Lookup Evolve Algorithm for Median Normalized Rank}
+\label{results-genet}
+\end{table}
+
+\begin{table}[!hbtp]
+\centering
+\begin{adjustbox}{width=1.1\textwidth}
+\small
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\multicolumn{5}{|c|}{Results}                                                                                                                                                                                              \\ \hline
+                                     & lookup values                                                                                               & score    & mean rank of generation & standar deviation of generation \\ \hline
+Non-deterministic, sample size(5-15)  & \begin{tabular}[c]{@{}l@{}}DDDDDCCDCDCDDCCDCCDDCCCDDCDCDCDC\\ CCCCCCDCDCDDDDCCDCDCDDDDDCDDDDCD\end{tabular} & 0.692308 & 0.27                    & 0.23                            \\ \hline
+                                     & \begin{tabular}[c]{@{}l@{}}CCDCDCDDDCCDDCDCDCDDCCDCDDCDDDCD\\ CDCCDCCDDDDDCCCDCCDDDCDCDDDCCCDD\end{tabular} & 0.692308 & 0.29                    & 0.24                            \\ \hline
+                                     & \begin{tabular}[c]{@{}l@{}}DCCCDDCCCDDCDDDDDDCDDCCDCCDDCDDD\\ DDDDCDDDDCCDDDDCCDCCCDDDCCCCCCCC\end{tabular} & 0.692308 & 0.27                    & 0.23                            \\ \hline
+Non-deterministic, sample size(15-50) & \begin{tabular}[c]{@{}l@{}}CDCCDDCDDDCCCDDDDCDCDCCDDCDCCDDD\\ DCDCCDCCCDDDCDDCDCDCDDCCCCCCDDDC\end{tabular} & 0.478261 & 0.18                    & 0.17                            \\ \hline
+\end{tabular}
+\end{adjustbox}
+\caption{Results for Spatial Lookup Evolve Algorithm for Median Normalized Rank}
+\label{results-min-geten}
+\end{table}
+
+\section{Further Results}
+
+-random with minimum
+
+-binomial all
+
+-small all
+
+-complete all
