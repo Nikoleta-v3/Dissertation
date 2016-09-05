@@ -3,7 +3,7 @@
 \tikzstyle{arrow} = [thick,->,>=stealth]
 
 \begin{center}
-\begin{tikzpicture}[scale=3, node distance=1.5cm, auto, execute at begin node={\begin{varwidth}{40em}},
+\begin{tikzpicture}[scale=2, node distance=1.5cm, auto, execute at begin node={\begin{varwidth}{40em}},
                     execute at end node={\end{varwidth}}]
 
 \node (before) [process] { ..... };
@@ -22,6 +22,8 @@
 \node (ranks1) [process, below of=random, yshift=-1.5cm] {\small Single Tournament Ranks};
 
 \node (ranks2) [process, below of=ranks1, yshift=-1.5cm] {\small Median Normalized Ranks};
+
+\node (after) [process, below of=ranks2] { ..... };
 %Lines
 \draw [arrow] (before) -- (pro4);
 \draw [arrow] (pro4) -- (sample);
@@ -32,7 +34,8 @@
 \draw [arrow] (small) -- (ranks1);
 \draw [arrow] (random) -- (ranks1);
 \draw [arrow] (complete) -- (ranks1);
-\draw [arrow] (ranks1) -|([xshift=-0.25cm]pro2.south west)|- node[anchor=south] {repetitions $<$ \(p\)} (sample);
-\draw [arrow] (ranks1) -- node[anchor=west] {repetitions = \(p\)} (ranks2);
+\draw [arrow] (ranks1) -|([xshift=-0.25cm]pro2.south west)|- node[anchor=south] {repetitions $< =$ \(p\)} (sample);
+\draw [arrow] (ranks1) -- node[anchor=west] {repetitions $>$ \(p\)} (ranks2);
+\draw [arrow] (ranks2) -- (after);
 \end{tikzpicture}
 \end{center}
