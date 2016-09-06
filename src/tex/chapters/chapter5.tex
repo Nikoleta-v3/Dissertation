@@ -8,7 +8,7 @@ the Axelrod-Python team and contributed to the library a new strategy, the
 EvolvedLookerUp, which is currently ranked second in the Axlerod-Python tournament.
 EvolvedLookerUp is a LookerUp strategy that uses a lookup table generated using an
 evolutionary algorithm. The structure of the strategy and the evolution algorithm
-will be covered in the following section.
+will be covered in the following sections.
 
 Furthermore, the method developed by M Jones to train the EvolvedLookerUp
 will be redeveloped and used. Making it possible to train a new strategy
@@ -38,11 +38,11 @@ In Jones work three different histories are taken into account:
   \item and the recent actions of the strategy.
 \end{itemize}
 
-Using Python's dictionaries the histories are considered as the keys and
-the action as the values. The keys are a 3-tuples consisting of the opponent's
+Using Python's dictionaries the histories can be considered as keys and
+the action as the values. Thus, the keys are a 3-tuples consisting of the opponent's
 starting actions, the opponent's recent actions, and the strategy's recent actions.
-The lookup table contains 64 different keys, a key/value pairs example is
-illustrated in Listing~\ref{lst:lookup-table}.
+The lookup table in total contains 64 different keys and a key/value pairs example
+is illustrated in Listing~\ref{lst:lookup-table}.
 
 \begin{listing}[H]
 \usemintedstyle{tango}
@@ -75,7 +75,7 @@ for playing the IPD game is described in the following subsection.
 
 The LookerUp class, is generating a object for a given lookup table.
 The source code of the class, as written by M Jones, is illustrated in the
-Listing~\ref{lst:lookerup}. As it is shown, the strategy taken as an argument
+Listing~\ref{lst:lookerup}. As shown, the strategy taken as an argument
 a lookup table and therefore plays by following these regulations:
 \begin{itemize}
   \item If history is smaller than 2, then  always cooperate
@@ -161,7 +161,7 @@ Thereupon, the population is being sorted based on the average score per turn.
 Only the top \(b\) individuals are then selected to continue to the next generation.
 This is repeated until the number of generations reach the upper bound \(g\).
 
-The default values of the parameters in the lookerup evolve algorithm, are as
+The default values of the parameters in the lookerup evolve algorithm are as
 follow:
 \begin{itemize}
   \item \(n\) default value is equal to 5
@@ -214,17 +214,19 @@ process the nodes are the same as have been seen in Figure~\ref{fig:flookerup-ev
   \label{fig:objective}
 \end{figure}
 
+
 Furthermore, for every given generation the current tables are being re scored.
 Due the randomness that the scoring process includes and the fact that some
 of the Axelrod-Python strategies are sophisticated, different scores for the
 same lookup tables could occurs. Thus, the objective functions stops being
-deterministic. For overcoming this two different types of objectives are created
-based on the strategies list.
+deterministic.
+
+In addition, two different cases will be studied based on the strategies list.
 
 \subsubsection{Non Deterministic}
 
-The difference in these two objectives functions occurs in the population
-of the strategies. More specifically, for the non deterministic objective function
+The difference in these two cases occurs in the population of the strategies.
+More specifically, for the non deterministic objective function
 the population of strategies, from where the sample for participants for
 the spatial games is being subtract, contains all 132 strategies of the
 Axlerod-Python. The sample for each repetition \(p\) is randomly picked. For the
