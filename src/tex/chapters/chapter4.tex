@@ -4,10 +4,9 @@
 \section{Introduction}
 In this chapter, an additional experiment on the spatial topology of the IPD
 is performed using complex networks. The spatial tournaments will be created using
-three different methods. The methods will be explained and the network topologies used by them
-discussed. Following, an analysis on the data. Including classification methods
-based on cooperating ratio, network connectivity and clustering. Connectivity and
-clustering coefficient have been introduced in~\autoref{chap:Two}. The cooperating
+three different methods. The methods will be explained and the network topologies produced by them
+discussed. Followed, by an analysis on the data, including classification methods
+based on cooperating ratio, network connectivity and clustering. The cooperating
 ratio is a concept provided by the Axelrod-Python library and is computed
 by dividing the number of times a strategy cooperated against the number of turns
 in a single tournament. Furthermore, regression models are built for the normalized rank.
@@ -59,7 +58,7 @@ rules:
 
 For the computational approach, \texttt{Networkx}~\cite{networkx} Python library provides the
 \texttt{watts\_strogatz\_graph} function. Documentation can be found here:
-\url{https://networkx.github.io/documentation/development/reference/generated/networkx.generators.random_graphs.watts_strogatz_graph.html#networkx.generators.random_graphs.watts_strogatz_graph}
+\url{https://networkx.github.io/documentation/development/reference/generated/networkx.generators.random_graphs.watts_strogatz_graph.html#networkx.generators.random_graphs.watts_strogatz_graph}.
 The method's structure is explained
 in the Algorithm~\ref{alg:small-world-method}. As shown, the tournament size is
 deterministic, ranging for 2 to 50. The initial edges per vertex, ranges from 2
@@ -168,14 +167,12 @@ is performed. Followed, by in depth analysis to the whole data set in~\autoref{p
 \section{Preliminary Analysis}
 \label{preliminary-analysis}
 In this section, the outputs of the three methods are described individually.
-Starting with an analysis on the networks attributes they produce for topologies,
+Starting with an analysis on the networks attributes that have been produced as topologies,
 following a preliminary analysis on the results of their given spatial tournaments.
-
-%The next subsection is focused on the classification of the strategies based on the cooperation rate.
 
 \subsection{Network Analysis}
 \label{sub:network-analysis}
-The networks of each method are studied. As introduced in ~\autoref{chap:Two}, the
+The networks of each method are studied. As introduced in ~\autoref{sub:graph-theory}, the
 connectivity and clustering concepts are summarized and reviewed. Due to the
 size of experiments and time constraints, not all methods managed to
 maximize their tournament sizes, as they have been described in~\autoref{sub:experiments-structure}.
@@ -204,7 +201,7 @@ neutral trend towards creating cliques (complete graphs).
 			max  & 9.00         & 1.00       & 12.00  & 13.00                   \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Small world Summary Table}
+	\caption{Small world summary table}
 	\label{table:small-world-summary-table}
 \end{table}
 
@@ -219,39 +216,39 @@ of the look of the networks in this method.
 	\begin{subfigure}[t]{0.30\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/small__networks_3.pdf}
-		\caption{Three nodes.}
+		\caption{Three nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/small__networks_4.pdf}
-		\caption{Four nodes.}
+		\caption{Four nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/small__networks_6.pdf}
-		\caption{Six nodes.}
+		\caption{Six nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/small__networks_7.pdf}
-		\caption{Seven nodes.}
+		\caption{Seven nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/small__networks_8.pdf}
-		\caption{Eight nodes.}
+		\caption{Eight nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/small__networks_11.pdf}
-		\caption{Eleven nodes.}
+		\caption{Eleven nodes}
 	\end{subfigure}
-	\caption{Various Watss Strogatz networks.}
+	\caption{Various Watss Strogatz networks}
 	\label{fig:small_networks_illustration}
 \end{figure}
 
@@ -276,7 +273,7 @@ mean connectivity, of a random network, is approximately 8.26, the minimum
 			max  & 28.00        & 1.00       & 28.00  & 29.00                  \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Random Summary Table}
+	\caption{Random summary table}
 	\label{table:binomial-summary-table}
 \end{table}
 
@@ -290,39 +287,39 @@ Once again, six random have been picked and are illustrated in Figure ~\ref{rand
 	\begin{subfigure}[t]{0.30\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/random_2.pdf}
-		\caption{Two nodes.}
+		\caption{Two nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/random_5.pdf}
-		\caption{Five nodes.}
+		\caption{Five nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/random_8.pdf}
-		\caption{Eight nodes.}
+		\caption{Eight nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/random_14.pdf}
-		\caption{Fourteen nodes.}
+		\caption{Fourteen nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/random_16.pdf}
-		\caption{Sixteen nodes.}
+		\caption{Sixteen nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/random_22.pdf}
-		\caption{Twenty-two nodes.}
+		\caption{Twenty-two nodes}
 	\end{subfigure}
-	\caption{Various Erd\"{o}s R\'{e}nyi networks.}
+	\caption{Various Erd\"{o}s R\'{e}nyi networks}
 	\label{random_networks_illustration}
 \end{figure}
 
@@ -349,7 +346,7 @@ the last networks, with a maximum number of 50 nodes.
 			max  & 49.00        & 1.00       & 49.00  & 50.00                  \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Complete Summary Table}
+	\caption{Complete summary table}
 	\label{table:complete-summary-table}
 \end{table}
 
@@ -362,39 +359,39 @@ graphs are displayed in Figure~\ref{complete_networks_illustration}.
 	\begin{subfigure}[t]{0.30\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/complete_6.pdf}
-		\caption{Six nodes.}
+		\caption{Six nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/complete_10.pdf}
-		\caption{Ten nodes.}
+		\caption{Ten nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/complete_15.pdf}
-		\caption{Fifteen nodes.}
+		\caption{Fifteen nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/complete_28.pdf}
-		\caption{Twenty-eight nodes.}
+		\caption{Twenty-eight nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/complete_33.pdf}
-		\caption{Thirty-three nodes.}
+		\caption{Thirty-three nodes}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.30\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-four/complete_50.pdf}
-		\caption{FIfty nodes.}
+		\caption{FIfty nodes}
 	\end{subfigure}
-	\caption{Various Complete networks.}
+	\caption{Various Complete networks}
 	\label{complete_networks_illustration}
 \end{figure}
 
@@ -404,8 +401,9 @@ tournament size differ. In the following subsection, an initial analysis on the
 data produced by each of these methods individually is held.
 
 \subsection{Data Analysis}
-This subsection summarizes the data that have been extracted for the methods.
-Individual tables have been managed for each topology. The payoff matrix, for
+This subsection summarizes the results of the tournaments that have been extracted
+for the methods.
+Individual tables have been managed for each method. The payoff matrix, for
 the game of the prisoners dilemmas, follows the payoffs as explained in~\autoref{sub:prisoner-dilemma}.
 Thus, punishment payoff is equal to 1 temptation to 5, reward is equal to 3 and
 the sucker's payoff is set to 0.
@@ -413,9 +411,8 @@ the sucker's payoff is set to 0.
 For the small word method the description of the average score, average
 neighborhood score, cooperating ratio and neighborhood size are shown in
 Table~\ref{table:summary-small-data}. The average score and average
-neighborhood score, are fairly equal, both ranging from 0 to 5 with an average of
-2.4. This could indicate that all strategies performed similarly. The mean
-cooperation rating, is equal to 0.64. Thus, strategies behave mostly cooperative.
+neighborhood score, are fairly equal, both ranging from 0 ($e$, $pi$) to 5 (Fool Me Forever, Bully)
+with an average of 2.4. The mean cooperation rating, is equal to 0.64. Thus, strategies behave mostly cooperative.
 Mean neighborhood size is 4, which is agreement with~\autoref{sub:network-analysis}.
 Maximum neighbors is 9, so even if the maximum players has been 11, no strategy
 compete against 10 strategies.
@@ -441,10 +438,11 @@ compete against 10 strategies.
 For the random method, Table~\ref{summary-random-data} is an initial summary,
 for basic measures of the tournaments. Similarly, the average score and average
 neighborhood score, are fairly equal. This time, the average neighborhood score,
-is slightly lower, 2.38, and the maximum average score achieved by a strategy
-is 4.99. Instead of the maximum of 5. The mean cooperating ratio, is higher
-than 0.50 again. Thus, strategies tend to cooperate and the neighborhood size,
-verifies the results of ~\ref{sub:network-analysis}.
+is slightly lower, 2.38. The minimum average score achieved is 0 ($phi$, $e$, Cycle Hunter)
+and the maximum 4.99, again by $e$ and $phi$. Obviously these average scores were achieved in
+different tournaments. The mean cooperating ratio, is higher than 0.50.
+Thus, strategies tend to cooperate and the neighborhood size, verifies the results
+of ~\autoref{sub:network-analysis}.
 
 \begin{table}[!hbtp]
 	\centering
@@ -455,8 +453,8 @@ verifies the results of ~\ref{sub:network-analysis}.
 			\multicolumn{5}{|c|}{Random Data Summary Table}                                      \\ \hline
 			     & average score & average neighborhood & cooperating ratio & neighborhood size \\ \hline
 			mean & 2.38          & 2.38                 & 0.63              & 11.00             \\ \hline
-			std  & 0.48          & 0.24                 & 0.25              & 6.57              \\ \hline
-			min  & 0.00          & 0.00                 & 0.00              & 1.00              \\ \hline
+			std  & 0.44          & 0.24                 & 0.25              & 6.57              \\ \hline
+			min  & 0.00          & 0.06                 & 0.00              & 1.00              \\ \hline
 			max  & 5.00          & 4.99                 & 1.00              & 28.00             \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
@@ -467,13 +465,13 @@ verifies the results of ~\ref{sub:network-analysis}.
 Finally, for the complete experiment, Table ~\ref{table:summary-complete-data}. The
 average scores, are lower for this experiment. Both mean average scores are
 equal to 2.38. But the maximum average scores, strategies and neighbors, are
-below 4. On the other hand, the minimum score are non zero. The behavior of the
-scores can be explained by the topology. In the complete topology experiment,
+below 4. On the other hand, the minimum score are non zero. Specifically,
+the minimum average score is equal to 0.55 (Cycler CCD) and the maximum 3.98, Calculator.
+The behavior of the scores can be explained by the topology. In the complete topology experiment,
 the highest number of games are played. Considering that for each tournament
 \(n-1\) games take place. Thus, scoring zero is less likely, because the games
-you play are increased by far, and the overall score falls, because the number
-of games played are increased.
-Cooperating ratio, has a meam value of 0.63 and the neighborhood size
+you play are increased by far, and the overall score falls for the same reason.
+Cooperating ratio, has a mean value of 0.63 and the neighborhood size
 verify what was discussed in ~\autoref{sub:network-analysis}.
 
 \begin{table}[!hbtp]
@@ -485,19 +483,18 @@ verify what was discussed in ~\autoref{sub:network-analysis}.
 			\multicolumn{5}{|c|}{Complete Data Summary Table}                                      \\ \hline
 			     & average score & average neighborhood & cooperating ratio & neighborhood size \\ \hline
 			mean & 2.38          & 2.38                 & 0.63              & 32.70             \\ \hline
-			std  & 0.13          & 0.35                 & 0.23              & 11.90             \\ \hline
-			min  & 0.54          & 0.55                 & 0.00              & 1.00              \\ \hline
-			max  & 3.58          & 3.89                 & 1.00              & 49.00             \\ \bottomrule
+			std  & 0.35          & 0.13                 & 0.23              & 11.90             \\ \hline
+			min  & 0.55          & 0.54                 & 0.00              & 1.00              \\ \hline
+			max  & 3.89          & 3.58                 & 1.00              & 49.00             \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
 	\caption{Complete Data Summary Table}
 	\label{table:summary-complete-data}
 \end{table}
 
-As it was shown, this section has been a preliminary on the outputs produced by
-the three methods. The complex networks they produce and their tournaments
-results have been discussed. In the section to follow, more important topics will
-be raised and an analysis on performance is undertaken.
+This section has been a preliminary analysis on the outcomes produced by
+the three methods. In the upcoming section, more important topics are
+raised and an analysis on performance is undertaken.
 
 \section{Performance Analysis}
 \label{performance-analysis}
@@ -507,9 +504,6 @@ and the median rank. Before hands, the strategies are categorized based on their
 average cooperating ratio and the network attributes to which they compete in. Moreover,
 various regression models have been constructed for the median rank, and lastly,
 the findings are summarized.
-
-As a reminder, some strategies will be referenced in the following pages. A
-documentation of the strategies can be found in Appendix~\ref{append:strategies}.
 
 \section{Classification}
 \label{sub:classification}
@@ -522,7 +516,7 @@ being performed. The two classification that will be conducted are based on:
 \end{itemize}
 
 This is done for the two following reasons. Firstly, as stated in~\autoref{chap:Two},
-the Axelrod-Python library (version 1.17.00), consists of 132. Reading though
+the Axelrod-Python library (version 1.7.0), consists of 132. Reading though
 the documentation for each strategy to distinguish any similarities between
 the strategies, would be a challenging task. For this reason, the average cooperation
 rating will be used to classify the strategies into categories. Thus, strategies
@@ -532,7 +526,7 @@ based on the topology of the spatial tournament, but networks used itself does
 not matter, the clustering and cooperation coefficient are used for a 2 dimensional
 clustering.
 
-The clustering will be performed using the popular \(k\)-means algorithm.
+The clustering will be performed using the popular \(k\)-means algorithm~\cite{kmeans}.
 \(k\)-means aims to store observations to k clusters. It stores k centroids
 that it used to define cluster. An observation is considered to be in a
 particular cluster if it is closer to that cluster's centroid than any other
@@ -562,7 +556,7 @@ Lastly, the high category, with 48 strategies and a mean ratio of 0.87.
 		\begin{tabular}{cccccccccc}
 				\toprule
 			\multicolumn{5}{|c|}{Classification Table}                        \\ \hline
-			Categories & count & \multicolumn{3}{l|}{cooperating ratio}        \\ \hline
+			Categories & count & \multicolumn{3}{l}{cooperating ratio}        \\ \hline
 			         &    & min  & mean & max  \\ \hline
 			low      & 6  & 0.00 & 0.10 & 0.20 \\ \hline
 			weak     & 17 & 0.23 & 0.32 & 0.40 \\ \hline
@@ -571,7 +565,7 @@ Lastly, the high category, with 48 strategies and a mean ratio of 0.87.
 			high     & 48 & 0.76 & 0.87 & 1.00 \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Classification Table}
+	\caption{Classification table for cooperating ratio}
 	\label{table:class}
 \end{table}
 
@@ -599,7 +593,7 @@ moderate connectivity of 75649 observation. Lastly, mid connectivity includes
 			Low connectivity      & 8100   & 3.00 & 3.00 & 3.00 \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Classification Table Connectivity and Clustering}
+	\caption{Classification table for network attributes}
 	\label{table:clusters}
 \end{table}
 
@@ -726,7 +720,7 @@ On the other hand, the highest ranked strategies are the following:
 Both PSO Gambler and Gradual are well performed strategies in the Axlerod-Python
 tournament. Furthermore, apart from PSO Gamber, which is a moderate cooperative
 strategy, the rest are characterized as high cooperators. Further research on
-the cooperation ration will be executed in the following subsection.
+the cooperation ratio will be executed in the following subsection.
 
 To investigate the effect of networks topologies in the findings, a Kruskal Wallis test
 has been executed. The existence of a statistically significant difference between
