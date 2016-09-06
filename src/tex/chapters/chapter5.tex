@@ -226,17 +226,16 @@ In addition, two different cases will be studied based on the strategies list.
 \subsubsection{Non Deterministic}
 
 The difference in these two cases occurs in the population of the strategies.
-More specifically, for the non deterministic objective function
+More specifically, for the non deterministic case
 the population of strategies, from where the sample for participants for
 the spatial games is being subtract, contains all 132 strategies of the
 Axlerod-Python. The sample for each repetition \(p\) is randomly picked. For the
-non deterministic objective two sample sizes have been used. One from
-15 to 50 players and 5 to 15 strategies.
+non deterministic case two sample sizes have been used. One from
+15 to 50 players and the other one from 5 to 15 strategies.
 
 \subsubsection{Deterministic}
 
-For overcoming the non deterministic function, in the deterministic objective
-the population of strategies is now altered. This population will contain only
+For the deterministic case the population will contain only
 the deterministic strategies of the Axelrod-Python library. The library provides
 easy access to them and they have been identified as the following ten strategies:
 \begin{itemize}
@@ -262,7 +261,7 @@ described in \autoref{sub:evolutionary-algorithm}, in each generation
 144 lookup tables needed to be scored. Considering that each lookup table needs
 to participate in \(p\) different spatial tournaments the time to implement
 each generation is growing massively. The spatial lookup evolve algorithm
-has been compiled in Raven, even so it still required a lot of time and due time
+has been compiled in Raven, even so it still required a lot of time. Due to time
 constraints of this dissertation these values had to altered. The new values
 that have been used, alongside the values of the new parameters introduced
 by the spatial version of the algorithm are listed here:
@@ -275,10 +274,12 @@ by the spatial version of the algorithm are listed here:
 
 By setting \(n\) to 2 and by keeping only the 2 top of each generations only
 20 lookup tables are being scored for each generation. Furthermore, the generations
-have been set to 5000 though the results analyzed in the following subsection
-have been from earlier generations. The time limit for each algorithm was set at
-70 hours. The entire spatial scoring structure that
+have been set to 5000 though the results obtained and introduced in the following
+subsection have been from earlier generations. The time limit for each algorithm
+was set at 70 hours. The entire spatial scoring structure that
 has been explained throughly during this subsection is illustrated in Figure~\ref{fig:spatial-evolve}.
+Moreover, the source code for implementing the spatial version of the algorithm
+are found here: \url{https://github.com/Nikoleta-v3/axelrod-evolver/tree/general-spatial}.
 
 \begin{figure}[H]
 		\input{chapters/spatialevolve.tex}
@@ -293,14 +294,14 @@ population and on the sample size. For each, the keys of the lookup table,
 the lowest median normalized ranks and the generation it was achieved are given
 in Table~\ref{results-genet}.
 
-For the deterministic function the best strategy, with a score of 0.77 median normalized
+For the deterministic case the best strategy, with a score of 0.77 median normalized
 rank, was achieved at the 319\nth generation. For the same generation the mean score
-has been 0.57 with a standard deviation of 0.20. For the non deterministic function
+has been 0.57 with a standard deviation of 0.20. For the non deterministic case
 and a sample size ranging from 5 to 15 the best lookup table has been achieved at
 the 201\st generation. The best score was estimated at 0.769, with a mean population
 of 0.36 and a standard deviation of 0.23. Finally, for the non deterministic with
 a range of sample size between 15 and 50, the lowest median rank has been 0.68.
-Thus, for a non deterministic function the corresponding lookup table generates
+Thus, for a non deterministic case the specific lookup table generates
 the best performed strategy so far.
 
 \begin{table}[H]
@@ -320,12 +321,12 @@ the best performed strategy so far.
 \label{results-genet}
 \end{table}
 
-For comparison reason an extra algorithm has been performed. This time the
+For comparison reasons an extra algorithm has been performed. This time the
 objective function has been measured as the minimum normalized score and was carried
-out for only the non deterministic function.The results
+out for only the non deterministic case.The results
 that were generated from this run are given by the Table~\ref{results-min-geten}.
-The overall results have been lower than before. The finest score has been achieved for a sample
-size of 15 to 50 and returned an minimum normalized score of 0.478.
+The overall results have been lower than before. The finest score has been achieved for
+a sample size of 15 to 50 and returned an minimum normalized score of 0.478.
 
 \begin{table}[H]
 \centering
@@ -355,12 +356,18 @@ been perform for each of the networks individually.
 \section{Further Results}
 
 In this section some additional results of the spatial lookup evolve algorithm
-are discussed. In the previous sections that stricture of the algorithm has been
-explained, and because a similar approach of the Chapter 4 has been tried to
-be kept the networks used in the scoring process have been randomly picked between
-small world, random and complete. In this section each of network participated in the algorithm
-and the individual results are studied. This was implemented mainly for comparison reasons.
-Tables 1 and 2 illustrate the results.
+are discussed. In the previous section the networks used in the scoring process
+have been randomly picked between small world, random and complete networks.
+In this section the algorithm has been implemented each of network and their
+individual results are studied. This was implemented mainly for further results and
+a possible identification of a well perform strategy for an individual topology.
+Table~\ref{deter-indiv} and Table~\ref{no-deter-indiv} summarize the results.
+
+For the deterministic case where the topology of the spatial tournaments has been
+a Watts Strogatz networks, the first rate lookup table achieved a median normalized
+score of 0, in the 635\nth generation. Moreover, for the Erd\"\{o\}sR\'\{e\}nyi
+topology the finest lookup table has a score of 0.5 in the 1399\nth generation, similar
+to the complete on where the lowest rank achieved has been 0.555556.
 
 \begin{table}[H]
 \centering
@@ -375,10 +382,10 @@ Erd\"\{o\}sR\'\{e\}nyi & \begin{tabular}[c]{@{}l@{}}CCCDDCCCDCDCCCCDDCCCCDDDDCCD
 Complete               & \begin{tabular}[c]{@{}l@{}}DDCCCCDDDDDDCCDCCDDDCDDDCCDDDDCC\\ DCCDDCDCCCCDCCDDDCCDCCDCDCCCCCCC\end{tabular} & 1299       & 0.555556 \\ \hline
 \end{tabular}
 \end{adjustbox}
-\caption{My caption}
-\label{my-label}
+\caption{Results of Deterministic Players for Watts Strogatz, Erd\"\{o\}sR\'\{e\}nyi and Complete Networks}
+\label{deter-indiv}
 \end{table}
 
-The achievement in this section is to see that a strategy has been trained
-probably for at least one of the topologies. Thus gives evidence that
-at least one of networks achieved that then so could the rest. it we had more time.
+The achievement in this section has been in the deterministic players case where
+a median rank of 0 has been attained. This give evidence that at least one of
+networks has this capability. Thus, further research is inspired to be conduced.
