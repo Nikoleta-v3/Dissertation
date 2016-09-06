@@ -294,35 +294,32 @@ the lowest median normalized ranks and the generation it was achieved are given
 in Table~\ref{results-genet}.
 
 For the deterministic case the best strategy, with a score of 0.77 median normalized
-rank, was achieved at the 319\nth generation. For the same generation the mean score
-has been 0.57 with a standard deviation of 0.20. For the non deterministic case
+rank, was achieved at the 319\nth generation. For the non deterministic case
 and a sample size ranging from 5 to 15 the best lookup table has been achieved at
-the 201\st generation. The best score was estimated at 0.769, with a mean population
-of 0.36 and a standard deviation of 0.23. Finally, for the non deterministic with
-a range of sample size between 15 and 50, the lowest median rank has been 0.68.
-Thus, for a non deterministic case the specific lookup table generates
-the best performed strategy so far.
+the 201\st generation. The best score was estimated at 0.769. Finally, for the
+non deterministic with a range of sample size between 15 and 50, the lowest median rank has been 0.68.
+Thus, for a non deterministic case the specific lookup table generates the best performed strategy so far.
 
 \begin{table}[H]
 \centering
 \begin{adjustbox}{width=0.9\textwidth}
 \small
-\begin{tabular}{|l|l|l|l|}
-\hline
-\multicolumn{4}{|c|}{Results}                                                                                                                                                                                              \\ \hline
+\begin{tabular}{cccccccccc}
+    \toprule
+\multicolumn{4}{|c|}{\textbf{Results}}                                                                                                                                                                                              \\ \hline
                                        & lookup values      & generation                                                                                         & score                                                   \\ \hline
   Deterministic                         & \begin{tabular}[c]{@{}l@{}}DDDDCDDDDCDCDCDDDCDCCDDCDDCCCDDC\\ CDCDCDCCDDCCCCDCDCCCCCCCDDCCDCCD\end{tabular} & 319  & 0.777778                                                     \\ \hline
   \begin{tabular}[c]{@{}l@{}}Non-deterministic\\ sample size(5-15)\end{tabular} & \begin{tabular}[c]{@{}l@{}}CDDCCDDDCDCDCDDDCDCDCCCCDCDDDCCC\\ DCDDDCDCDDCCDCDCCCDDCDDCCCDCCDDC\end{tabular} & 201 & 0.769231               \\ \hline
-  \begin{tabular}[c]{@{}l@{}}Non-deterministic\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}DDDCCDDCCCCCDCCDDDCCCCCDDCCDDCDCC\\ CDDCDCDCDDCCCDCCCDCCCDDCDDDDDCD\end{tabular} & 148 & 0.6875                  \\ \hline
+  \begin{tabular}[c]{@{}l@{}}Non-deterministic\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}DDDCCDDCCCCCDCCDDDCCCCCDDCCDDCDCC\\ CDDCDCDCDDCCCDCCCDCCCDDCDDDDDCD\end{tabular} & 148 & 0.6875                  \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{Results for Spatial Lookup Evolve Algorithm for Median Normalized Rank}
+\caption{Results for spatial lookup evolve algorithm for median normalized rank}
 \label{results-genet}
 \end{table}
 
-For comparison reasons an extra algorithm has been performed. This time the
+For further research an extra algorithm has been performed. This time the
 objective function has been measured as the minimum normalized score and was carried
-out for only the non deterministic case.The results
+out for only the non deterministic case. The results
 that were generated from this run are given by the Table~\ref{results-min-geten}.
 The overall results have been lower than before. The finest score has been achieved for
 a sample size of 15 to 50 and returned an minimum normalized score of 0.478.
@@ -331,17 +328,17 @@ a sample size of 15 to 50 and returned an minimum normalized score of 0.478.
 \centering
 \begin{adjustbox}{width=0.8\textwidth}
 \small
-\begin{tabular}{|l|l|l|l|}
-\hline
-\multicolumn{4}{|c|}{Results}                                                                                                                                                                                             \\ \hline
+\begin{tabular}{cccccccccc}
+    \toprule
+\multicolumn{4}{|c|}{\textbf{Results}}                                                                                                                                                                                             \\ \hline
                                      & lookup values  & generation   & score                                                                                                                                              \\ \hline
 \begin{tabular}[c]{@{}l@{}}Non-deterministic\\ sample size(5-15)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}DDDDDCCDCDCDDCCDCCDDCCCDDCDCDCDC\\ CCCCCCDCDCDDDDCCDCDCDDDDDCDDDDCD\end{tabular} & 47 & 0.692308                  \\ \hline
                                      & \begin{tabular}[c]{@{}l@{}}CCDCDCDDDCCDDCDCDCDDCCDCDDCDDDCD\\ CDCCDCCDDDDDCCCDCCDDDCDCDDDCCCDD\end{tabular}  & 13 & 0.692308                                                             \\ \hline
                                      & \begin{tabular}[c]{@{}l@{}}DCCCDDCCCDDCDDDDDDCDDCCDCCDDCDDD\\ DDDDCDDDDCCDDDDCCDCCCDDDCCCCCCCC\end{tabular}  & 8 & 0.692308                                                             \\ \hline
-\begin{tabular}[c]{@{}l@{}}Non-deterministic\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}CDCCDDCDDDCCCDDDDCDCDCCDDCDCCDDD\\ DCDCCDCCCDDDCDDCDCDCDDCCCCCCDDDC\end{tabular} & 49 & 0.478261                     \\ \hline
+\begin{tabular}[c]{@{}l@{}}Non-deterministic\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}CDCCDDCDDDCCCDDDDCDCDCCDDCDCCDDD\\ DCDCCDCCCDDDCDDCDCDCDDCCCCCCDDDC\end{tabular} & 49 & 0.478261                     \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{Results for Spatial Lookup Evolve Algorithm for Minimum Normalized Rank}
+\caption{Results for spatial lookup evolve algorithm for minimum normalized rank}
 \label{results-min-geten}
 \end{table}
 
@@ -372,16 +369,16 @@ to the complete on where the lowest rank achieved has been 0.555556.
 \centering
 \begin{adjustbox}{width=0.8\textwidth}
 \small
-\begin{tabular}{|l|l|l|l|}
-\hline
+\begin{tabular}{cccccccccc}
+    \toprule
 \multicolumn{4}{|c|}{\textbf{Deterministic Results}}                                                                                                         \\ \hline
                        & lookup                                                                                                      & generation & score    \\ \hline
 Watts Strogatz         & \begin{tabular}[c]{@{}l@{}}CDCCCDDDCCCDCCCDDDCDCDCCDCCCDCDCC\\ DCCDDDDCCCDDCDDCDDDDDDCCDDDDCDC\end{tabular} & 635        & 0.00     \\ \hline
-Erd\"\{o\}sR\'\{e\}nyi & \begin{tabular}[c]{@{}l@{}}CCCDDCCCDCDCCCCDDCCCCDDDDCCDCDCDD\\ DDCCCCCDDCCCDDCDCCDCDCDDDCDCDCC\end{tabular} & 1399       & 0.5      \\ \hline
+Erd\"\{o\}s R\'\{e\}nyi & \begin{tabular}[c]{@{}l@{}}CCCDDCCCDCDCCCCDDCCCCDDDDCCDCDCDD\\ DDCCCCCDDCCCDDCDCCDCDCDDDCDCDCC\end{tabular} & 1399       & 0.5      \\ \hline
 Complete               & \begin{tabular}[c]{@{}l@{}}DDCCCCDDDDDDCCDCCDDDCDDDCCDDDDCC\\ DCCDDCDCCCCDCCDDDCCDCCDCDCCCCCCC\end{tabular} & 1299       & 0.555556 \\ \hline
 \end{tabular}
 \end{adjustbox}
-\caption{Results of Deterministic Players for Watts Strogatz, Erd\"\{o\}sR\'\{e\}nyi and Complete Networks}
+\caption{Results of Deterministic Players for Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and Complete Networks}
 \label{deter-indiv}
 \end{table}
 
