@@ -41,14 +41,15 @@ effects the results.
 
 Furthermore, another aspect needed to be taken into account is the network
 topology underlying the tournament. In 1992 Nowak's and May's paper \cite{Nowak1992},
-spatial tournament are introduced. In which the players are placed on an two-
-dimensional spatial array and allowed to play a game with only the immediate neighbors.
-Thus, squares that are adjoint. An example of this is shown in Figure~\ref{fig:nowak-example}.
+spatial tournaments are introduced. In their version of a spatial tournament,
+the players are placed on an two-dimensional spatial array and allowed to play a
+game with only the immediate neighbors. Thus, squares that are adjoint.
+An example of this is shown in Figure~\ref{fig:nowak-example}.
 
 \begin{figure}[!hbtp]
 	\centering
 		\input{chapters/spatial-array.tex}
-		\caption{Topology of Nowak's Tournament}
+		\caption{Topology of Nowak's tournament}
   \label{fig:nowak-example}
 \end{figure}
 
@@ -85,10 +86,10 @@ There are two players that simultaneously have to decide to whether Cooperate (C
 or Defect (D) with each other, without exchanging information.
 
 \begin{itemize}
-  \item If both players choose to cooperate they will both receive a reward (R)
+  \item If both players choose to cooperate they will both receive a reward (\(R\))
   \item If a player defects and the other cooperates then the defector receives
-  a temptation payoff (T) and the cooperator a sucker payoff (S)
-  \item If both players defect they will both receive a penalty (P)
+  a temptation payoff (\(T\)) and the cooperator a sucker payoff (\(S\))
+  \item If both players defect they will both receive a penalty (\(P\))
 \end{itemize}
 
 Figure~\ref{fig:pd_payoff} illustrates the payoffs matrix.
@@ -101,23 +102,24 @@ Figure~\ref{fig:pd_payoff} illustrates the payoffs matrix.
 \end{figure}
 
 Taking into account the assumptions that both players are rational
-and that there is no way of communication between them. No matter what the
-other player does, defecting will be their dominant choice as it yields a higher
-payoff than cooperation.
-Thus a pure Nash Equilibrium exists when both players defect. Even though, both
-players would do better if they were to cooperate.Thus creating the dilemma.
+and that there is no way of communication between them. No matter what the choice
+of the other players,  defecting will always be the dominant choice as it yields
+a higher payoff than cooperation.
+Thus, a pure Nash Equilibrium exists when both players defect. Even though, both
+players would do better if they were to cooperate; creating the dilemma.
 
 Furthermore, for this to hold there are some extra assumptions for the
-relationship of the four outcomes. The T temptation to defect has to offer the
-highest payoff for a player and the worst he could get has to be the sucker S.
+relationship of the four outcomes. The \(T\) temptation to defect has to offer the
+highest payoff to a player and the lowest the player could achieve has to be the sucker's
+payoff \(S\).
 Likewise, the reward for mutual cooperation should exceed that of mutual
-defection P. Thus the next condition is~\ref{firstassum}:
+defection \(P\). Thus the next condition is~\ref{firstassum}:
 
 \begin{equation}\label{firstassum}
  T > R > P > S
 \end{equation}
 
-Moreover, it is assumed that the average of T and S is less than the reward for
+Moreover, it is assumed that the average of \(T\) and \(S\) is less than the reward for
 mutual cooperation~\ref{secondassum} :
 
 \begin{equation}\label{secondassum}
@@ -131,7 +133,7 @@ the players interact for an infinite number of times.
 
 \section{Problem Description}
 Axelrod's tournaments set a seed for generations of tournaments in the
-Prisoner's using computer modeling. Research has shown that by altering the
+Prisoner's Dilemma using computer modeling. Research has shown that by altering the
 environment of a tournament the effectiveness of some strategies can change
 radically. An aspect that has been investigated as to how the tournament results
 can bee affected was the topology. Nowak and May \cite{Nowak1992} introduced the spatial topology
@@ -161,8 +163,8 @@ Moore's neighborhood eight cells. As shown in Figure~\ref{fig:neighborhood}.
 		\input{chapters/Moore.tex}
 		\caption{Moore's neighborhood}
 	\end{subfigure}
-  \caption{Possible neighborhoods. (a) A von Neuman's networ where each node has four neighbors.
-  (b) A Moore's network where each node has eight neighbors}
+  \caption{Possible neighborhoods (a) A von Neuman's neighborhood where each node has four neighbors
+  (b) A Moore's neighborhood where each node has eight neighbors}
   \label{fig:neighborhood}
 \end{figure}
 
@@ -176,18 +178,17 @@ an edge.
 
 Another disadvantage of the aforementioned work is that it lacked in terms of
 best practice of reproducibility \cite{Axelrod1980a,Axelrod1980b,Stephens2002,Chong2004,Stewart2013}.
-Due the work done by the Axelrod library \cite{axelrodproject}.
-An open source python package which allows for the easy
-reproducibility of experiments. As it allow to reproduce an IPD tournament and
-chose between 132 strategies already given by the library. Code written for the
-purpose of this dissertation has been contributed to the library: see
-\url{https://github.com/Axelrod-Python}.
+Due the work done by the Axelrod library \cite{axelrodproject} in the following research
+the experiments are easily reproduced. As the library allows to produce an IPD
+tournament and chose between 132 strategies already given by the library.
+Code written for the purpose of this dissertation has been contributed to the
+library: see \url{https://github.com/Axelrod-Python}.
 
 \section{Analysis Tools}
 Due to the high computational cost of the analysis considered, Cardiff
 University's super computer, Raven, is used~\cite{raven}. All the scripts and pbs
 file, for producing data with Raven can be found on can be found on github:
-\url{https://github.com/Nikoleta-v3/jobs}.Furthermore, all data produced for
+\url{https://github.com/Nikoleta-v3/jobs}. Furthermore, all data produced for
 this work is archived using zenodo and can be readily downloaded. Details are
 available in Appendix~\ref{appendix}.
 
