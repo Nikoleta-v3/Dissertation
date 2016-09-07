@@ -83,32 +83,44 @@ For this dissertation a total of three experiments have been carried out and
 each of the experiments included separately stages. Firstly, the source code of implementing
 each had to be written. Secondly, running each experiment for producing required data.
 For the data to be created a large number of spatial
-tournament and an evolutionary algorithm had to be performed. Finally, an
+tournaments and an evolutionary algorithm had to be performed. Finally, an
 analysis had to held for each outcome. All these three steps individually required
-an amount of time, thus the biggest constrain for this dissertation has been time.
+an amount of time and computational resources, thus the biggest constrain for
+this dissertation has been time.
 
 Due to this constrain a lot of the parameters, such as tournaments turn, repetitions,
 tournament's size etc. had to be set to minimum. For example, in \autoref{chap:Three},
-the tournament size has been deterministically chosen and in \autoref{chap:Four}
+the tournament size has been deterministically chosen. In \autoref{chap:Four}
 not all methods achieved their maximum capabilities and in \autoref{chap:Five} the
 genetic algorithm had a time limit of 70 hours.
 
 \subsubsection{Further Research}
 
 Due the limitations as described in \autoref{sub:limitations}, some further
-research ideas include the reproducting of these experiments by setting the
-parameters to maximum. For example the number of repititions could be set to 100
-and the tournament size could range for 2 to 132. As well as the genei
+research ideas include the reproduction of these experiments by setting the
+parameters to maximum. For example the number of repetitions could be set to 100
+and the tournament size could range for 2 to 132. This holds for the evolutionary
+algorithm as well.
 
+Moreover, there are various of types of complex networks but studying them all
+is impossible. Though, a new experiment could be conducted where the topology
+could be randomly selected from a pool of greater than 3 complex networks. The
+regression models in this dissertation did not manage to explain any of the results.
+This could have been because of the lack of data. Even so, further regression
+analysis could have been perform. Both forward elimination model and a logistic
+regression could be exceptional choices.
 
-
-for further research, i would like to run more comple networks. even from the complex
-networks ionyl three types have been shoosen were thousand of graphs exists.
-
-THe regression models did not managed to explain any of the results. This could have been
-because of the lack of data. Even s, more regresiion could be perform such as
-forward elimination regression and logistic regression.
-
-- More complex networks
-- Regressions, forward regression and logistic regression
-- Make LookerUp compete in experiments
+Furthermore, the IPD tournament itself included various types and concepts that
+have been studied throughly the years. Some of the have been briefly discussed
+in the initial chapters. Concepts such as noise, probabilistic endings and evolutionary
+tournaments. Some further ideas include the implementation of these types in the
+spatial tournaments. A spatial tournament could easily include noise, thus altering
+the actions of some strategies randomly. A spatial probabilistic ending tournament,
+would mean a tournament where for where the length of each tournament is not
+constant for all encounters: after each turn the tournament ends with a given
+probability. Finally, an spatial evolutionary tournament have been studied before,
+and it has been the origin approach followed by Nowak in 1992, where strategies
+would alter their game play based on the winner of their generation. An evolutionary
+tournament could shred some light to various questions. Such as: would the
+tournaments achieve a ESS and whether cooperation or defection would emerge as
+the dominant action.
