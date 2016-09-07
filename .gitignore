@@ -1,6 +1,7 @@
 *.DS_Store
 *checkpoint.ipynb
 
+*.fls
 *.aux
 *.glo
 *.idx
@@ -26,4 +27,7 @@
 *.synctex.gz
 *bcf
 *fdb_latexmk
-*fls
+
+src/tex/_minted-main/
+src/tex/main.pdf
+src/tex/main.run.xml

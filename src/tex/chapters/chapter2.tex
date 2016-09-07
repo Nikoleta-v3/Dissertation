@@ -97,8 +97,8 @@ Some review tournaments are listed on the Table~\ref{tab:tournaments}:
             1979     & \cite{Axelrod1980a}        & 13                   & Standard  \\
             1979     & \cite{Axelrod1980b}        & 64                   & Standard  \\
             1984     & \cite{Axelrod1981}         & 64                   & Evolutionary\\
-            1991     & \cite{The2016}          & 13                   & Noisy     \\
-            2005     & \cite{Chong2004} & 223                  & Varied    \\
+            1991     & \cite{The2016}             & 13                   & Noisy     \\
+            2005     & \cite{Chong2004}           & 223                  & Varied    \\
             2012     & \cite{Stewart2012}         & 13                   & Standard   \\
             \bottomrule
         \end{tabular}
@@ -184,7 +184,7 @@ These graphs compose only a small fraction of graphs that exist. In this
 dissertation we will consider a list of graphs.
  %add list when i actually know
 
-\section{Axelrod Python Library}
+\section{Axelrod-Python Library}
 
 The Axelrod library \cite{axelrodproject} is an open source Python package that allows for
 reproducible game theoretic research into the Iterated Prisoner's Dilemma
@@ -202,9 +202,10 @@ Strategies are implemented as classes which have a single method, \texttt{strate
 It only takes one argument, which is the opponent's previous moves and returns
 an action. These actions can be either to cooperate C or to defect D. At thins
 moment the Axelrod library consists of 131 strategies.Can be found in the Appendix.
-As an example we can see in Figure  the source code for the
+As an example we can see in Listing~\ref{lst:tit_for_tat} the source code for the
 famous strategy Tit for Tat.
 
+\begin{listing}[H]
 \usemintedstyle{tango}
 \begin{minted}
 [
@@ -249,10 +250,11 @@ class TitForTat(Player):
             return D
         return C
 \end{minted}
-%\caption{Tit for Tat source code.}
+\caption{Tit for Tat source code.}
+\label{lst:tit_for_tat}
+\end{listing}
 
-
-Additionally, tournament is a class responsible for coordinating the play of
+Additionally, the tournament class is responsible for coordinating the play of
 generated matches. It achieves that by calling a match generator class which
 returns all the single match parameters, such as turns, the game and the noise.
 Axelrod has the capability to write out the results into a csv file and also out
@@ -302,15 +304,15 @@ linenos
 
 \begin{figure}[h]
 \centering
-    \begin{subfigure}[t]{0.55\textwidth}
+    \begin{subfigure}[t]{0.7\textwidth}
     \centering
-        \includegraphics[width=\linewidth]{axl.png}
+        \includegraphics[width=\linewidth]{chapter-two/axl.png}
     \caption{Ranked violin plot}
     \end{subfigure}
 \hfill
-    \begin{subfigure}[t]{0.50\textwidth}\centering
+    \begin{subfigure}[t]{0.70\textwidth}\centering
     \centering
-        \includegraphics[width=\linewidth]{axl1.png}
+        \includegraphics[width=\linewidth]{chapter-two/axl1.png}
     \caption{Payoffs}
     \end{subfigure}
 ~
@@ -319,7 +321,44 @@ linenos
 \label{fig:axelrodplots}
 \end{figure}
 
-More details for the documentation of the library can be found here :
+More details for the documentation of the library can be found here:
 \url{https://axelrod.readthedocs.io/en/latest/index.html}.
 Because is an open source library it makes it easy to contribute to it and
 make modifications needed for this dissertation.
+
+The project involves various research topics related to the IPD, these include
+Noisy tournaments, Probabilistic ending, Spatial tournaments, strategies from
+different works and authors and the capability of reproducing any of these given
+tournaments. This led to a publication to be achieved earlier in 2016~\cite{Knight2016}.
+
+\section{Graph Theory}
+Graph theory is a branch of mathematics that deals with geometric configurations
+known as graphs~\cite{10.2307/1170318}. Graphs can be used to
+model many types of relations, and have been used in various fields such as
+educational research~\cite{10.2307/1170318}, crowd and markets~\cite{Easley2010},
+computer science, engineering~\cite{Singh2014} etc. In 1992, following the work
+of Nowak~\cite{Nowak1992,Nowak1993}, Graph Theory found it's way into Game Theory.
+
+Fundamentally, a graph consists of a set of vertices/nodes, and a set of edges, where
+an edge is something that connects two vertices/nodes in the graph. A graph is a pair
+$(V,E)$, where \(V\) is a finite set and \(E\) is a binary relation on \(V\). \(V\)
+is called a vertex set whose elements are called vertices. \(E\) is a collection
+of edges, where an edge is a pair $(u,v)$ with $u,v$ in \(V\)~\cite{Sadavare2012}.
+
+Some of the basic formal concepts from graph theory include the degrees of
+nodes, the connectivity and the clustering coefficient. The degrees of nodes is
+defined as the number of edges which connect a node~\cite{Sadavare2012}.
+
+Moreover, as stated by Saramaki~\cite{Saramaki2007}, a large number of networks
+show a tendency for link formation between neighboring vertices. This tendency is
+called clustering and it reflects the clustering of edges into tightly connected
+neighborhoods.
+
+Node connectivity, as defined by Esfahanian~\cite{Esfahanian}, is equal to the
+minimum number of nodes that must be removed to disconnect the graph or render
+it trivial. In a disconnect graph there is a list one unreachable node.
+
+Graphs are commonly uses to simulated complicated and close to real world systems.
+The term networks is used to define a graph in which attributes, such as names or
+players, are associated with the nodes. Various types of networks exist. The
+networks studied in this dissertation are being defined in the upcoming chapters.
