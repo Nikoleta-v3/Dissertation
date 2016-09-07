@@ -70,7 +70,7 @@ Figure~\ref{fig:spatial_structure}
 		};
 	\end{tikzpicture}
 	\caption{Code structure for when Round Robin and Spatial tournaments are
-	implemented.}
+	implemented}
 	\label{fig:spatial_structure}
 \end{figure}
 
@@ -133,7 +133,7 @@ class TestSpatialTournament(unittest.TestCase):
         self.assertEqual(anonymous_tournament.name, 'axelrod')
 \end{minted}
 \caption{Source code for TestSpatialTournament class, which is for testing the
-         spatial tournaments.}
+         spatial tournaments}
 \label{lst:test_spatial_complete_tournament}
 \end{listing}
 
@@ -197,7 +197,7 @@ linenos
         self.assertEqual(results.good_partner_matrix,
                                         spatial_results.good_partner_matrix)
         self.assertEqual(results.good_partner_rating,
-	                                        spatial_results.good_partner_rating)
+					spatial_results.good_partner_rating)
 \end{minted}
 \caption{Source code for testing a complete spatial tournament}
 \label{lst:test_spatial_tournament}
@@ -294,7 +294,7 @@ considered for the corresponding analysis.
 Subsequently, the strategies are allocated on the graph, based
 on the topology, and they compete with their neighbors in a IPD tournament.
 For the cyclic and lattice topology, once the first game is complete,
-the strategies are randomly shuffled and allocated on a graph again. This aims
+the strategies are randomly shuffled and allocated on the graph again. This aims
 to ensure that their particular position on the network is taken in to account.
 This shuffle is repeated 10 times. The selection of strategies is repeated 100 times
 and each tournament of an IPD consists of 200 turns and 10 repetitions.
@@ -380,16 +380,16 @@ The mean average score does not seem to differ for size equal to 50, which is at
 2.39. Though, in the experiment with a size of fifty a strategy
 achieved an average score of 0 ($phi$). The maximum average score is equal to
 5 (Meta Minority). Additionally the average score of the neighbors ranges
-from 0.05 to 4.71. Concerning the graph measures, as explained in ~\autoref{chap:Two},
+from 0.05 to 4.71. Concerning the graph measures, as explained in ~\autoref{sub:graph-theory},
 clustering coefficient is zero and connectivity fixed to 2.
 
 \begin{table}[!hbtp]
 	\centering
 	\begin{adjustbox}{width=1\textwidth}
 		\small
-		\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
-			\toprule
-			Cyclic & \multicolumn{3}{c|}{tournament size 5 and 50} & \multicolumn{3}{c|}{tournament size 5} & \multicolumn{3}{c|}{tournament size 50}                             \\\midrule
+		\begin{tabular}{cccccccccc}
+				\toprule
+			Cyclic & \multicolumn{3}{|c|}{tournament size 5 and 50} & \multicolumn{3}{c|}{tournament size 5} & \multicolumn{3}{c}{tournament size 50}                             \\\midrule
 
 			     & (R,P,S,T) & degree & connectivity & average score & average neighbors score & clustering & average score & average neighbors score & clustering \\\midrule
 			mean & (3,1,0,5) & 2.0    & 2.0          & 2.45          & 2.45                    & 0.00       & 2.39          & 2.39                    & 0.00       \\\midrule
@@ -398,7 +398,7 @@ clustering coefficient is zero and connectivity fixed to 2.
 			max  & (3,1,0,5) & 2.0    & 2.0          & 4.95          & 4.39                    & 0.00       & 5.00          & 4.71                    & 0.00       \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Summary table for topology circle.}
+	\caption{Summary table for topology circle}
 	\label{sum-cicle}
 \end{table}
 
@@ -418,9 +418,9 @@ groups, complete subgraphs.
 	\centering
 	\begin{adjustbox}{width=1\textwidth}
 		\small
-		\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
-			\toprule
-			Lattice & \multicolumn{3}{c|}{tournament size 5 and 50} & \multicolumn{3}{c|}{tournament size 5} & \multicolumn{3}{c|}{tournament size 50}                            \\ \midrule
+		\begin{tabular}{cccccccccc}
+				\toprule
+			Lattice & \multicolumn{3}{|c|}{tournament size 5 and 50} & \multicolumn{3}{c|}{tournament size 5} & \multicolumn{3}{c}{tournament size 50}                            \\ \midrule
 			     & (R,P,S,T) & degree & connectivity & average score & average neighbors score & clustering & average score & average neighbors score & clustering \\ \midrule
 			mean & (3,1,0,5) & 4.0    & 4.0          & 2.45          & 2.44                    & 1.0        & 2.39          & 2.39                    & 0.5        \\ \midrule
 			std  & (0,0,0,0) & 0.0    & 0.0          & 0.57          & 0.36                    & 0.0        & 0.59          & 0.33                    & 0.00       \\ \midrule
@@ -428,7 +428,7 @@ groups, complete subgraphs.
 			max  & (3,1,0,5) & 4.0    & 4.0          & 4.24          & 3.15                    & 1.0        & 4.97          & 3.61                    & 0.5        \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Summary table for the lattice topology.}
+	\caption{Summary table for the lattice topology}
 	\label{sum-lattice}
 \end{table}
 
@@ -444,18 +444,18 @@ score is 2.39 with a standard deviation of 0.335.
 	\centering
 	\begin{adjustbox}{width=0.5\textwidth}
 		\small
-	\begin{tabular}{|l|l|l|}
-		\hline
-		Round Robin & \multicolumn{1}{c|}{tournament size 5} & \multicolumn{1}{c|}{tournament size 50} \\ \hline
+		\begin{tabular}{ccccc}
+				\toprule
+		Round Robin & \multicolumn{1}{|c|}{tournament size 5} & \multicolumn{1}{c}{tournament size 50} \\ \hline
 
 		            & average score                          & average score                           \\ \hline
 		mean        & 2.44                                   & 2.39                                    \\ \hline
 		std         & 0.57                                   & 0.33                                    \\ \hline
 		min         & 0.52                                   & 1.52                                    \\ \hline
-		max         & 4.24                                   & 3.33                                    \\ \hline
+		max         & 4.24                                   & 3.33                                    \\ \bottomrule
 	\end{tabular}
 \end{adjustbox}
-	\caption{Summary table for round robin topology.}
+	\caption{Summary table for round robin topology}
 	\label{sum-rr}
 \end{table}
 
@@ -497,7 +497,7 @@ won no tournaments. These strategies are shown in Table~\ref{winning-ratio-zero-
 		\small
 		\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|@{}}
 			\hline
-			Strategies list     & \multicolumn{1}{c|}{Description}                                                                                     \\ \hline
+			\textbf{Strategies list}     & \multicolumn{1}{c|}{\textbf{Description}}                                                                                     \\ \hline
 			ALLCorALLD          & Simply repeats its last move, and so mimics ALLC or ALLD after round one.                                            \\ \hline
 			Tricky Cooperator   & Almost always cooperates, but will try to trick the opponent by defecting.                                           \\ \hline
 			ThueMorseInverse    & Defects or cooperates according to the Thue-Morse sequence (Inverse of ThueMorse).                                   \\ \hline
@@ -509,7 +509,7 @@ won no tournaments. These strategies are shown in Table~\ref{winning-ratio-zero-
 		\end{tabular}
 	\end{adjustbox}
 	\caption{Strategies with winning ratio 0 in the cyclic experiment with tournament
-	size 5.}
+	size 5}
 	\label{winning-ratio-zero-cyclic-five}
 \end{table}
 
@@ -524,7 +524,7 @@ strategies and a simple explanation of them can be found in Table~\ref{winning-r
 		\centering
 		\begin{tabular}{|l|l|}
 			\hline
-			Strategies list         & \multicolumn{1}{c|}{Description}                                                                              \\ \hline
+			\textbf{Strategies list}     & \multicolumn{1}{c|}{\textbf{Description}}                                                                             \\ \hline
 			Bully                   & A player that behaves opposite to Tit For Tat, including first move.                                          \\ \hline
 			Fortress4               & A finite state machine player~\cite{Moore1977}                                                                \\ \hline
 			Hard Go By Majority: 5  & \begin{tabular}[c]{@{}l@{}}A player examines the history of the opponent: if the opponent has more defections \\ than cooperations then the player defects. Here the player has a memory of 5.\end{tabular}                                            \\ \hline
@@ -533,7 +533,7 @@ strategies and a simple explanation of them can be found in Table~\ref{winning-r
 		\end{tabular}
 	\end{adjustbox}
 	\caption{Strategies with winning ratio 0 in the periodic lattice experiment with
-	tournament size 5.}
+	tournament size 5}
 	\label{winning-ratio-zero-lattice-five}
 \end{table}
 
@@ -551,7 +551,7 @@ topology are as follows:
 	      Memory one. Followed by Cycler CCD with 0.44, Limited Retaliate(0.05/20)
 	      and Stochastic WSLS with 0.43 winning ratio
 	\item Round Robin topology with a winning ratio of 1 : Raider, Gradual, Limited
-	      Retaliate(0.05/20) and BackStabber.
+	      Retaliate(0.05/20) and BackStabber
 \end{itemize}
 
 In every topology the highest ranking strategy is different.
@@ -568,7 +568,7 @@ the number of tournaments participated the higher probabilities of winning at
 least one. This could explain the existence of only non zero winning ratios.
 
 The strategies with the highest winning ratio for each respective topologies are
-as follow :
+as follow:
 
 \begin{itemize}
 	\item Cyclic topology with a winning ratio of 0.038 Soft Go By Majority:10.
@@ -607,19 +607,20 @@ For now Raider strategy seems to be a well performed strategy for any
 given random situation.
 
 Illustration of the ratios for each experiment in ascending order can be found
-in Appendix A, Figure~\ref{fig:winning-fifty} and Figure~\ref{fig:winning-five}.
+in Appendix~\ref{append:wining-ratio-further-plot},
+Figure~\ref{fig:winning-fifty} and Figure~\ref{fig:winning-five}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/lines-cyclic-lattice-5.pdf}
-	\caption{Cyclic vs Periodic Lattice Topologies Size 5.}
+	\caption{Cyclic vs Periodic Lattice topologies size 5}
 	\label{fig:winning-rankings-five-c-l}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/lines-cyclic-round-robin-5.pdf}\
-	\caption{Cyclic vs Round Robin Topologies Size 5.}
+	\caption{Cyclic vs Round Robin topologies size 5}
 	\label{fig:winning-rankings-five-c-r}
 \end{figure}
 
@@ -627,28 +628,28 @@ in Appendix A, Figure~\ref{fig:winning-fifty} and Figure~\ref{fig:winning-five}.
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/lines-lattice-round-robin-5.pdf}\
 	\caption{Periodic Lattice vs Round
-	Robin Topologies Size 5.}
+	Robin topologies size 5}
 	\label{fig:winning-rankings-five-l-r}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/lines-cyclic-lattice-50.pdf}
-	\caption{Cyclic vs Periodic Lattice Topologies Size 50.}
+	\caption{Cyclic vs Periodic Lattice topologies size 50}
 	\label{fig:winning-rankings-fifty-c-l}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/lines-cyclic-round-robin-50.pdf}
-	\caption{Cyclic vs Round Robin Topologies Size 50.}
+	\caption{Cyclic vs Round Robin topologies size 50}
 	\label{fig:winning-rankings-fifty-c-r}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/lines-lattice-round-robin-50.pdf}
-	\caption{Periodic Lattice vs Round Robin Topologies Size 50.}
+	\caption{Periodic Lattice vs Round Robin topologies size 50}
 	\label{fig:winning-rankings-fifty-l-r}
 \end{figure}
 
@@ -669,7 +670,7 @@ Primarily, the normality of the ration has been tested. For all 6 experiments,
 the winning ratio, is not normally distributed. As all \(p\) values are
 less that 0.05. Thus, a non parametric test has been used instead. The equivelent
 non parametric ANOVA test is the Kruskal Wallis test. The python library
-\texttt{scipy}, provided the functions necessary for the tests.
+scipy, provided the functions necessary for the tests.
 
 The results, for a tournament of size equal to 5, the difference
 of ratios between the participations groups is significant (\(p\) values
@@ -690,21 +691,21 @@ Lattice topology, once again, has an positive effect, where cyclic a negative.
 	\begin{subfigure}[t]{0.75\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{chapter-three/anova-Cyclic-5.pdf}
-		\caption{Winning Ratio vs Number of Participations Cyclic Tournament Size 5.}
+		\caption{Winning ratio vs number of participations cyclic tournament size 5}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.75\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-three/anova-Periodic-Lattice-5.pdf}
-		\caption{Winning Ratio vs Number of Participations Periodic Lattice Tournament Size 5.}
+		\caption{Winning ratio vs number of participations periodic lattice tournament size 5}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.75\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-three/anova-Round-Robin-5.pdf}
-		\caption{Winning Ratio vs Number of Participations Round Robin Tournament Size 5.}
+		\caption{Winning ratio vs number of participations round robin tournament size 5}
 	\end{subfigure}
-	\caption{Winning Ratio vs Number of Participations Tournament Size 5.}
+	\caption{Winning ratio vs number of participations tournaments size 5}
 	\label{fig:winning-ratio-participations-five}
 \end{figure}
 
@@ -714,21 +715,21 @@ Lattice topology, once again, has an positive effect, where cyclic a negative.
 	\begin{subfigure}[t]{0.75\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{chapter-three/anova-Cyclic-50.pdf}
-		\caption{Winning Ratio vs Number of Participations Cyclic Tournament Size 50.}
+		\caption{Winning ratio vs number of participations cyclic tournament size 50}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.75\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-three/anova-Periodic-Lattice-50.pdf}
-		\caption{Winning Ratio vs Number of Participations Periodic Lattice Tournament Size 50.}
+		\caption{Winning ratio vs number of participations periodic lattice tournament size 50}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[t]{0.75\textwidth}\centering
 		\centering
 		\includegraphics[width=\linewidth]{chapter-three/anova-Round-Robin-50.pdf}
-		\caption{Winning Ratio vs Number of Participations Round Robin Tournament Size 50.}
+		\caption{Winning ratio vs number of participations round robin tournament size 50}
 	\end{subfigure}
-	\caption{Winning Ratio vs Number of Participations Tournament Size 50.}
+	\caption{Winning ratio vs number of participations tournaments size 50.}
 	\label{fig:winning-ratio-participations-fifty}
 \end{figure}
 
@@ -772,14 +773,14 @@ tournaments. Thus, their average score, divided by a bigger number, was lower.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/cyclic-lattice-5.pdf}
-	\caption{Cyclic vs Periodic Lattice Topologies Size 5.}
+	\caption{Cyclic vs Periodic Lattice topologies size 5}
 	\label{fig:score-rankings-five-c-l}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/cyclic-round-robin-5.pdf}\
-	\caption{Cyclic vs Round Robin Topologies Size 5.}
+	\caption{Cyclic vs Round Robin topologies size 5}
 	\label{fig:score-rankings-five-c-r}
 \end{figure}
 
@@ -787,28 +788,28 @@ tournaments. Thus, their average score, divided by a bigger number, was lower.
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/lattice-round-robin-5.pdf}\
 	\caption{Periodic Lattice vs Round
-	Robin Topologies Size 5.}
+	Robin topologies size 5}
 	\label{fig:score-rankings-five-l-r}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/cyclic-lattice-50.pdf}
-	\caption{Cyclic vs Periodic Lattice Topologies Size 50.}
+	\caption{Cyclic vs Periodic Lattice topologies size 50}
 	\label{fig:score-rankings-fifty-c-l}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/cyclic-round-robin-50.pdf}
-	\caption{Cyclic vs Round Robin Topologies Size 50.}
+	\caption{Cyclic vs Round Robin topologies size 50}
 	\label{fig:score-rankings-fifty-c-r}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter-three/lattice-round-robin-50.pdf}
-	\caption{Periodic Lattice vs Round Robin Topologies Size 50.}
+	\caption{Periodic Lattice vs Round Robin topologies size 50}
 	\label{fig:score-rankings-fifty-l-r}
 \end{figure}
 
@@ -845,17 +846,17 @@ shown here:
 	\centering
 	\begin{adjustbox}{width=1\textwidth}
 		\small
-		\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|l|l|l|@{}}
-			\toprule
-			Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & \(R\) - square \\ \midrule
-			        &         & coef   & p    & coef   & p    & coef       & p     & coef   & p    & coef       & p     &       \\ \midrule
+		\begin{tabular}{ccccccccccccc}
+				\toprule
+			Size 		& \multicolumn{1}{|l|}{Topology} & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & \(R\) - square \\ \midrule
+			        &         & coef   & \(p\)    & coef   & \(p\)    & coef       & \(p\)     & coef   & \(p\)    & coef       & \(p\)     &       \\ \midrule
 			size 5  & Cyclic  & 0.0344 & 0.00 & 0.0688 & 0.00 & 3.239e-06  & 0.651 & 0.0    & NA   & 0.0006     & 0.00  & 0.007 \\ \midrule
 			        & Lattice & 0.0108 & 0.00 & 0.0431 & 0.00 & 7.447e-06  & 0.159 & 0.0108 & 0.00 & -0.0002    & 0.036 & 0.001 \\ \midrule
 			size 50 & Cyclic  & 0.0043 & 0.00 & 0.0087 & 0.00 & -1.386e-06 & 0.00  & 0      & NA   & -8.156e-07 & 0.216 & 0.002 \\ \midrule
 			        & Lattice & 0.0008 & 0.00 & 0.0031 & 0.00 & -4.549e-07 & 0.00  & 0.0004 & 0.00 & 2.005e-05  & 0.00  & 0.022 \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Regression Results for Winning Ratio Model.}
+	\caption{Regression results for winning ratio model}
 	\label{regression-winning}
 \end{table}
 
@@ -891,17 +892,17 @@ individually. The results of models are shown below, Table~\ref{regression-avera
 	\centering
 	\begin{adjustbox}{width=1\textwidth}
 		\small
-		\begin{tabular}{@{}|l|l|l|l|l|l|l|l|l|l|l|l|l|@{}}
-			\toprule
-			Size & Topology & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{connectivity} & \multicolumn{2}{l|}{participations} & \(R\) - square \\ \midrule
-			        &         & coef   & p    & coef   & p    & coef       & p     & coef   & p    & coef       & p    &       \\ \midrule
+		\begin{tabular}{ccccccccccccc}
+				\toprule
+			Size 		& \multicolumn{1}{|l|}{Topology} & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & \(R\) - square \\ \midrule
+			        &         & coef   & \(p\)    & coef   & \(p\)    & coef       & \(p\)     & coef   & \(p\)    & coef       & \(p\)     &       \\ \midrule
 			size 5  & Cyclic  & 0.028  & 0.00 & 0.0559 & 0.00 & -3.763e-06 & 0.043 & 0.0    & NA   & -0.0016    & 0.00 & 0.457 \\ \midrule
 			        & Lattice & 0.0064 & 0.00 & 0.0256 & 0.00 & 1.079e-05  & 0.00  & 0.0064 & 0.00 & -0.0016    & 0.00 & 0.549 \\ \midrule
 			size 50 & Cyclic  & 0.0025 & 0.00 & 0.0051 & 0.00 & -2.168e-07 & 0.00  & 0      & NA   & -1.602e-05 & 0.00 & 0.120 \\ \midrule
 			        & Lattice & 0.0006 & 0.00 & 0.0024 & 0.00 & 1.033e-06  & 0.00  & 0.0003 & 0.00 & -1.601e-05 & 0.00 & 0.216 \\ \bottomrule
 		\end{tabular}
 	\end{adjustbox}
-	\caption{Regression Results for Average Score Model.}
+	\caption{Regression results for average score model}
 	\label{regression-average}
 \end{table}
 
@@ -926,7 +927,7 @@ performance of the model is moderate.
 
 For both models and all set of 6 experiments some predictors can be characterized
 as significant. More than one factors have a \(p\) value less than a 0.05, the \(alpha\)
-that has been set. Even so, the coefficient and the overall R square values are
+that has been set. Even so, the coefficient and the overall \(R\) square values are
 quite low. This in fact indicates
 that none of the characteristics of the networks seem to have an effect on
 performance. This is potentially expected due to the simplistic nature of the
