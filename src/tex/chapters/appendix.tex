@@ -149,8 +149,12 @@ category, as explained in ~\ref{sub:four-classification}, are illustrated.
 In this section, as shown in Table~\ref{reg}, are the results for applying the regression
 model to each of the 132 strategies.
 
-\begin{tabular}{rlrrrrrrrrrrrrrrrrrrr}
-\hline
+\begin{table}[!hbtp]
+	\centering
+	\begin{adjustbox}{width=2\textwidth, angle=90}
+		\small
+		\begin{tabular}{rll}
+				\toprule
 		 & strategies & Intercept & average neighborhood score  & normalized average score & connectivity & clustering 	& cooperating ratio 	& tournament size 	& frequency & neighborhood size &	\(p\) value Intercept & \(p\) value average neighborhood score &\(p\) value normalized average score & \(p\) value connectivity & \(p\) value clustering & \(p\) value cooperating ratio & \(p\) value tournament size 	&\(p\) value frequency & \(p\) value neighborhood size 	\(R\) square \\
    0 & SolutionB1                  &  0.00000 &  0.13709 &   109.70915 & -0.00046 &  0.00467 &  -0.12860 &  0.00063 &  0.00002 &  0.00645 & 0.00301 & 0.00000 & 0.03190 & 0.74588 & 0.70654 & 0.00003 & 0.31654 & 0.00000 & 0.00004 & 0.03126 \\
    1 & Tit For 2 Tats              &  0.00000 & -0.03230 & -1851.87746 &  0.00343 &  0.03786 &   0.41737 & -0.00044 &  0.00007 & -0.00334 & 0.00000 & 0.00105 & 0.00000 & 0.03666 & 0.00294 & 0.00000 & 0.56929 & 0.00000 & 0.06365 & 0.01809 \\
@@ -285,9 +289,11 @@ model to each of the 132 strategies.
  130 & Once Bitten                 &  0.24780 &  3.58427 &   -62.68202 & -0.04451 &  0.24780 & -20.22944 &  0.20329 &  2.23021 & -0.04451 & 0.19479 & 0.27550 & 0.32834 & 0.35744 & 0.19479 & 0.07363 & 0.15730 & 0.19479 & 0.35744 & 0.84958 \\
  131 & Fortress4                   &  0.76643 &  4.52475 &   -61.64729 & -0.26415 &  0.76643 & -67.42118 &  0.50228 &  4.59856 & -0.26415 & 0.68830 & 0.86181 & 0.33633 & 0.68779 & 0.68830 & 0.55752 & 0.68937 & 0.68830 & 0.68779 & 0.80052 \\
 \hline
-\label{reg}
 \end{tabular}
-
+\end{adjustbox}
+\label{reg}
+\caption{Results of regression for each strategy}
+\end{table}
 \chapter{Second Appendix Title}
 
 \lipsum[1-2]
