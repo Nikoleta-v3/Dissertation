@@ -1,6 +1,7 @@
 *.DS_Store
 *checkpoint.ipynb
 
+*.fls
 *.aux
 *.glo
 *.idx
@@ -30,4 +31,4 @@
 
 src/tex/_minted-main/
 src/tex/main.pdf
-src/text/main.run.xml
+src/tex/main.run.xml

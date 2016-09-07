@@ -1,3 +1,67 @@
 \chapter{Executive Summary}
+This dissertation investigates the aspect of network topology for the popular
+Iterated Prisoner's Dilemma tournaments, a particular topic of  Game
+Theory, and it is performed by taking advantage of the Axelrod-Python library.
+From the mathematical aspects, this dissertation covers, Graph Theory,
+Machine Learning, Clustering and the Genetic Algorithm.
 
-\lipsum[1-9]
+This dissertation was completed during the taught program of Operational Research
+and Applies Statistics of Cardiff University, under the supervision of Dr Vince
+Knight.
+
+In the 1980s, a tournament for the game of Iterated Prisoners Dilemma, spawned to
+life a new area of research for Game Theory. Various scientists, from different
+research fields, have ever since contributed to this research with concepts
+such as noise, altered set of rules, probabilistic endings, further strategies and etc.
+In 1992 a new aspect was introduced: tournaments on different topologies.
+In this new topology, players did not interact will all the players, but instead
+were allocated on to networks and would interact with all the players to whom they have a
+connection. This dissertation has focused on understanding the aspects of
+this new topology, by using network analysis.
+
+The research was made possible due a particular source Python package, the
+Axelrod- Python library. The library was developed specifically for
+reproducing the research into the Iterated Prisoner's Dilemma. The implementation
+of spatial tournaments has a been an addition to the capabilities of the library,
+which was materialized during this dissertation. % I have no idea if this makes sense by it sounds sophisticated *^*
+
+Throughout the research there are two underlying strands: data generation (carried
+out by running a large number of tournaments) and data analysis.
+Two experiments have been conducted. The first experiment, has been an initial
+experiment trying to understand the spatial structure and find proper measures
+of performance accuracy. Simple networks have been used for the tournament
+topologies. Particularly, there have been three types of tournaments.
+The first, a spatial tournament with a periodic lattice topology, the
+second a spatial tournament of a cyclic topology and a round robin tournament.
+
+The second experiment, was held to understand in depth the affects of the
+topology. Complex networks have been used as the tournaments topologies for the
+reason that they are a more realistic illustrations of real life systems.
+Specifically, the data have been produced using three different methods for
+generating a large number of complex networks. These networks could have small world,
+random or complete network properties. For each network a spatial tournament has
+been played and the results of those tournaments have been analyzed. Their analysis
+was aimed to identify the affects of the topologies and possibly classify whether
+a strategy of the Axelrod-Python library could have an overall satisfactory performance
+thought out all this spatial tournaments.
+
+Considering the results of the analysis held, an attempt to create a new strategy
+is held in the following chapter. This new strategy has origins of an already existence
+strategy in the Alexrod-Python library. Compared to the original version the new
+strategy has been trained, using a genetic algorithm, to aim for a satisfactory
+performance in the spatial Iterated Prisoner's Dilemma.
+
+From the research conducted to this point the following conclusions are made.
+The spatial topology has effects on the strategies, as the results were different
+from those of a round robin topology, and each topology has a different affect. An attempt
+to predict the performance of the strategies return no significant results. Though
+it is believed by producing further data with various additional complex networks
+more validate points could emerge. Furthermore, the research of the new strategy
+returned that for specific topologies an accomplished strategy exists.
+Nonetheless, that did not hold for all the examined topologies. Thus,
+with more time at hands the sophisticated look up for such strategies would be
+continued.
+
+Finally, the topic of the IPD included various other topics and type of tournaments.
+Such as noisy, probabilistic endings and evolutionary tournaments. Some further
+ideas include experiments with various of these types of tournaments combined.

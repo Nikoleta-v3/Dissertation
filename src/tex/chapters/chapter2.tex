@@ -2,23 +2,23 @@
 \label{chap:Two}
 
 Following the initial work done by Axelrod, there are many other papers that
-have tried to tackle the PD and make their conclusions on cooperation in both a
+have tried to tackle the PD and make their conclusions in both a
 theoretical and real life setting. In this chapter a review of some of this work
-done in the IPD competitions, in spatial and evolutionary game theory will be
-carried out.
+done in the IPD competitions, spatial and evolutionary tournaments will be carried out.
+As well as an introduction to some basic Graph Theory.
 
 \section{Tournaments}
 
 In order to identify the condition under which cooperation could emerge
-in the game of the Prisoner's Dilemma better, Robert Axelrod held a tournament
+in the game of the Prisoner's Dilemma, Robert Axelrod held a tournament
 in 1980. He invited a number of well-known game theorists to submit strategies
-for a computer tournament.  Each strategy has to specify whether to cooperate or
+for a computer tournament. Each strategy had to specify whether to cooperate or
 defect based on the history of previous moves made by both players.
-Strategies played again
-each other as well as a further Random strategy, that would randomly choose
-between C and D and with its own twin (same strategy). The tournament was a
-round robin with the payoff matrix~\ref{fig:pd_payoff}. All entries knew the
-exact length (200 moves) of each game. To improve the reliability of the scores
+Strategies competed against each other, against a Random strategy that would
+randomly choose between C and D and against their own twins (same strategy).
+The tournament was of a round robin topology
+with a payoff matrix as shown in Figure~\ref{fig:pd_payoff}. All entries knew the
+exact length (200 moves) of each game and for further improvement to the reliability of the scores
 the entire round robin tournament was repeated five times. Fourteen strategies were
 submitted and by the end Tit for Tat was announced the winner. Surprisingly in
 the second tournament held where 64 strategies competed and all submitters had
@@ -59,13 +59,13 @@ while the lowest ones ones would diminish. In most of these simulations, the
 success of Tit-for-Tat was confirmed because the population would end up with
 some mutually cooperating strategies prevailed by Tit-for-Tat.
 
-There have been other tournaments, based off of Axelrod’s, exploring different
+There have been various other tournaments, based off of Axelrod’s, exploring different
 environments and submitting new strategies. Boyd \& Lorderbaum \cite{Lorberbaum1994}
 state that no pure
 strategy is evolutionary stable because each can be invaded by the joint effect
 of two invading strategies when long term interaction occurs in th repeated game
 and future moves are discounted. In 1991 Bendor, Kramer and Stout \cite{The2016}
-introduced noise to the IPD. Where noisy randomly flip the choice made by a
+introduced noise to the IPD. Noise randomly flips the choice made by a
 strategy. The results of their tournament was that the strategies that were more
 generous, cooperated more than their opponents did, were more effective than Tit
 for Tat. Moreover, Kerts 2011 conducted a tournament where the payoff matrix was
@@ -74,7 +74,7 @@ altered though satisfying the conditions \ref{firstassum}, \ref{secondassum}.
 Furthermore, two more notable tournaments took place in 2005 and 2012.
 In the 2005 IPD competition a team from the University of Southampton participated
 using a group of strategies which won the top three propositions. These strategies
-were designed in such why that thought a predetermined sequence of five to ten
+were designed in such way that thought a predetermined sequence of five to ten
 moves would recognize each other. Once the two Southampton players recognized
 each other they would take up the roles of a ruler and a slave. The ruler
 would always cooperate where the slave would defect in order to maximize the
@@ -97,13 +97,13 @@ Some review tournaments are listed on the Table~\ref{tab:tournaments}:
             1979     & \cite{Axelrod1980a}        & 13                   & Standard  \\
             1979     & \cite{Axelrod1980b}        & 64                   & Standard  \\
             1984     & \cite{Axelrod1981}         & 64                   & Evolutionary\\
-            1991     & \cite{The2016}          & 13                   & Noisy     \\
-            2005     & \cite{Chong2004} & 223                  & Varied    \\
+            1991     & \cite{The2016}             & 13                   & Noisy     \\
+            2005     & \cite{Chong2004}           & 223                  & Varied    \\
             2012     & \cite{Stewart2012}         & 13                   & Standard   \\
             \bottomrule
         \end{tabular}
     \end{center}
-    \caption{An overview of a selection of published tournaments.}\label{tab:tournaments}
+    \caption{An overview of a selection of published tournaments}\label{tab:tournaments}
 \end{table}
 
 In this section the work done for tournaments in the IPD has been cited and analyzed.
@@ -117,18 +117,18 @@ case is that of the spatial structure tournaments.
 Further research was spawn in 1992 as to how the Prisoner's Dilemma could shade
 some insight into physics and biology. Where Nowak and May believed exist potential
 dynamics of spatially extended systems. Their tournament was a simple and purely
-deterministic spatial version of the PD in a two dimensional lattice. With
-players having no memory of the previous rounds and no strategical elaboration.
+deterministic spatial version of the PD in a two dimensional lattice. The
+players had no memory of the previous rounds and no strategical elaboration.
 Thus, the players could either always cooperate or defect. In each round each
 player interact with the immediate neighbor. \footnote{In Nowak's and May's
 experiment, the result's hold for all three cases that  the player interacts with
 4, 6 and 8 neighbors.} They used an evolution rule that after each round
 round the nodes with the lowest score in their neighborhood would copy the
 strategy of the player with the highest score. This was done to study which
-behavior, defection or cooperation , would last. The conclusion was that co-operational
+behavior, defection or cooperation, would last. The conclusion was that co-operational
 behavior is possible in the PD by using a spatial topology. Nowak produced more
 work on the topic on papers of his such as \cite{Nowak1993} (Nowak 1994).
-In his subsequent papers Nowak et al. (1994a,b)  different spatial structures
+In his subsequent papers different spatial structures
 where studied. Including triangular and cubic lattices and a random grid.
 It turned out that cooperation can be maintained in spatial models even
 for some randomness.
@@ -161,12 +161,12 @@ random player in his next move, base on a function that consider the utility of
 the player. It was characterized as a most realistic scenario.
 
 Real life interactions are more likely to be like any given graph depending on
-the industry than a complete graph. Fatha et all \cite{Szabo2007}, have
-considered a numerous of graphs, such as :
+the industry than a complete graph. Szabo, Fatha et all \cite{Szabo2007}, have
+considered a numerous of graphs, such as:
 
 \begin{itemize}
-  \item Lattice, the interaction network is defined by the sites of a lattice.
-   the distance between a pair does not exceed a given value.
+  \item Lattice, the interaction network is defined by the sites of a lattice,
+   where the distance between a pair does not exceed a given value.
    The most frequently used structure is the square lattice with von Neumann
    neighborhood and Moore neighborhood.
   \item Small word, a graph that is created from a square lattice by randomly
@@ -181,10 +181,11 @@ considered a numerous of graphs, such as :
 The major theme of their review was how the graph structure of interactions could
 modify long term behavioral patterns emerging in evolutionary games.
 These graphs compose only a small fraction of graphs that exist. In this
-dissertation we will consider a list of graphs.
- %add list when i actually know
+dissertation, small world, random, complete, cyclic and periodic lattice networks
+are being studied.
 
-\section{Axelrod Python Library}
+
+\section{Axelrod-Python Library}
 
 The Axelrod library \cite{axelrodproject} is an open source Python package that allows for
 reproducible game theoretic research into the Iterated Prisoner's Dilemma
@@ -199,11 +200,12 @@ the design of new strategies and interactions between them, as well as
 conducting tournaments and ecological simulations for populations of strategies.
 
 Strategies are implemented as classes which have a single method, \texttt{strategy()}.
-It only takes one argument, which is the opponent's previous moves and returns
-an action. These actions can be either to cooperate C or to defect D. At thins
-moment the Axelrod library consists of 131 strategies.Can be found in the Appendix.
-As an example we can see in Figure  the source code for the
-famous strategy Tit for Tat.
+It takes as arguments the opponent's and the strategy's previous moves and returns
+an action. These actions can be either to cooperate C or to defect D. At this
+moment the Axelrod library consists of 132 strategies. They can be found in the
+Appendix~\ref{append:strategies}.
+As an example in Listing~\ref{lst:tit_for_tat} the source code for the
+popular strategy Tit for Tat is shown.
 
 \begin{listing}[H]
 \usemintedstyle{tango}
@@ -250,16 +252,17 @@ class TitForTat(Player):
             return D
         return C
 \end{minted}
-\caption{Tit for Tat source code.}
+\caption{Tit for Tat source code}
+\label{lst:tit_for_tat}
 \end{listing}
 
-Additionally, tournament is a class responsible for coordinating the play of
+Additionally, the tournament class is responsible for coordinating the play of
 generated matches. It achieves that by calling a match generator class which
 returns all the single match parameters, such as turns, the game and the noise.
 Axelrod has the capability to write out the results into a csv file and also out
 put plots with the ranks of the strategies.
 
-Furthermore, a basic tournament of 200 turns, 100 repetitions and the 131
+Furthermore, a basic tournament of 200 turns, 100 repetitions and the 132
 strategies that exist in the library is being produced continuously. The current
 winner is called PSO gambler and it is a look up strategy. It uses a lookup
 table with probability numbers generated using a Particle Swarm Optimisation
@@ -272,7 +275,7 @@ starting actions, the opponent's recent actions, and our recent action) to
 decide whether to cooperate (C) or defect (D). The actions for each key were
 generated using an evolutionary algorithm.
 
-To reproduce a basic tournament with the 131 strategies using Axelrod :
+To reproduce a basic tournament with the 132 strategies using Axelrod:
 
 \begin{listing}[ht]
 \begin{minted}
@@ -295,13 +298,12 @@ linenos
 >>> p.show()
 \end{minted}
 \caption{A simple set of commands to create a basic tournament. The
-    output is shown in Figure~\ref{fig:axelrodplots}.}
+    output is shown in Figure~\ref{fig:axelrodplots}}
 \end{listing}
 
- Here are illustrated the results of the last tournament :
- \newpage
+ Here are illustrated the results of the latest tournament:
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
     \begin{subfigure}[t]{0.7\textwidth}
     \centering
@@ -315,12 +317,50 @@ linenos
     \caption{Payoffs}
     \end{subfigure}
 ~
-\caption{Result Plots. (a) Ranked violin plot, the mean utility of each player.
-(b) Payoffs, the pair wise utilities of each player.}
+\caption{Result Plots. (a) Ranked violin plot, the mean utility of each player
+(b) Payoffs, the pair wise utilities of each player}
 \label{fig:axelrodplots}
 \end{figure}
 
-More details for the documentation of the library can be found here :
+More details for the documentation of the library can be found here:
 \url{https://axelrod.readthedocs.io/en/latest/index.html}.
 Because is an open source library it makes it easy to contribute to it and
 make modifications needed for this dissertation.
+
+The project involves various research topics related to the IPD, these include
+Noisy tournaments, Probabilistic ending, Spatial tournaments, strategies from
+different works and authors and the capability of reproducing any of these given
+tournaments. This led to a publication to be achieved earlier in 2016~\cite{Knight2016}.
+
+\section{Graph Theory}
+\label{sub:graph-theory}
+Graph theory is a branch of mathematics that deals with geometric configurations
+known as graphs~\cite{10.2307/1170318}. Graphs can be used to
+model many types of relations, and have been used in various fields such as
+educational research~\cite{10.2307/1170318}, crowds and markets~\cite{Easley2010},
+computer science, engineering~\cite{Singh2014} etc. In 1992, following the work
+of Nowak~\cite{Nowak1992,Nowak1993}, Graph Theory found it's way into Game Theory.
+
+Fundamentally, a graph consists of a set of vertices/nodes, and a set of edges, where
+an edge is something that connects two vertices/nodes in the graph. A graph is a pair
+$(V,E)$, where \(V\) is a finite set and \(E\) is a binary relation on \(V\). \(V\)
+is called a vertex set whose elements are called vertices. \(E\) is a collection
+of edges, where an edge is a pair $(u,v)$ with $u,v$ in \(V\)~\cite{Sadavare2012}.
+
+Some of the basic formal concepts from graph theory include the degrees of
+nodes, the connectivity and the clustering coefficient. The degrees of nodes is
+defined as the number of edges which connect a node~\cite{Sadavare2012}.
+
+Moreover, as stated by Saramaki~\cite{Saramaki2007}, a large number of networks
+show a tendency for link formation between neighboring vertices. This tendency is
+called clustering and it reflects the clustering of edges into tightly connected
+neighborhoods.
+
+Node connectivity, as defined by Esfahanian~\cite{Esfahanian}, is equal to the
+minimum number of nodes that must be removed to disconnect the graph or render
+it trivial. In a disconnect graph there is a least one unreachable node.
+
+Graphs are commonly uses to simulated complicated and close to real world systems.
+The term networks is used to define a graph in which attributes, such as names or
+players, are associated with the nodes. Various types of networks exist. The
+networks studied in this dissertation are being defined in the upcoming chapters.

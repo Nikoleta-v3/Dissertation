@@ -95,6 +95,16 @@
 
 % A package for vector graphics
 \usepackage{tikz}
+\usetikzlibrary{graphs,graphs.standard}
+\usetikzlibrary{matrix, calc}
+
+% A package for algorithms
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 
 % A package for algorithms
 \usepackage{algorithm}
@@ -128,11 +138,11 @@
 \pagestyle{normal} %set header-footer style rest of report
 
 
-%\input{chapters/chapter1.tex}
-%\input{chapters/chapter2.tex}
-%\input{chapters/chapter3.tex}
+\input{chapters/chapter1.tex}
+\input{chapters/chapter2.tex}
+\input{chapters/chapter3.tex}
 \input{chapters/chapter4.tex}
-
+\input{chapters/chapter6.tex}
 
 
 \addcontentsline{toc}{chapter}{References}

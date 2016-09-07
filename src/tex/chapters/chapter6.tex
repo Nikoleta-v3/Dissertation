@@ -1,0 +1,127 @@
+\chapter{Conclusions and Future Work}
+\label{chap:Six}
+
+In this chapter the conclusions of the experiments held in
+~\autoref{chap:Three} and in ~\autoref{chap:Four}, as well as the results
+of the genetic algorithm for training the new strategy, in ~\autoref{chap:Five}
+are presented. Furthermore, the potential areas of development are discussed.
+
+\section{Conclusions}
+\subsection{Affects of Topology}
+
+In ~\autoref{chap:Three} and in ~\autoref{chap:Four}, the effects of the spatial
+topology on the strategies of the Axelrod-Python library have been studied. This
+has been implemented by producing data from various types of spatial tournaments.
+
+In ~\autoref{chap:Three}, initially the source code needed to perform spatial tournaments
+has been implemented by contributing to the Axelrod-Python library. Thereafter,
+an initial experiment was conducted using simple network topologies.
+The results of the analysis showed that some of the high ranking strategies
+of the IPD tournament conducted by the Axelrod-Python library using a round robin
+topology, such as Raider and PSO Gambler made appearance on the highest ranked
+strategies of the experiment. The performance in the initial experiments have been
+measured using the wining ratio and the normalized average score. The rest of
+the highest strategies have been different based on the networks used for the
+experiment. The research, as to why these strategies have been scoring higher than
+the rest return non significant findings. Thus, the results showed that the ranking
+could not be predicted, based on the based on the generated data. The fact that topology
+was affecting the performances was clear but the trend behind it was not necessarily
+visible. Also, wining ratio and normalized score were characterized as poor measures
+as there have been conflicts between their results.
+
+In ~\autoref{chap:Four}, a new experiment have been implemented, this time using
+more sophisticated networks. A new attempt to identify the topology's effects
+was held. In this attempt a new measure of performance was introduced. The median
+normalized ranked was used instead of the two previous ones. The only strategy that had
+made an appearance once again between the high ranks has been the PSO Gambler and
+finest strategy of all has been Gradual. Gradual is among the top strategies in
+Axelrod library. Furthermore, an attempt to identify the reasons behind performance
+was once again undertaken.
+
+The strategies this time have been classified based on their median cooperating
+ratio throughout the experiment. The top ranked strategies have all a median cooperating
+ratio higher than 0.50, indicating that cooperators
+dominated the first spots. Even so, some of the lowest ranking strategies have
+also been characterized as high cooperators. Thus, cooperating is not the only
+factor which helped their performance. A further classification has also been
+produced using the network's attributes. Five classes have been created using
+the connectivity and clustering coefficients. A test to whether the normalized
+score was significant different between these groups have been performed and it
+returned that there is indeed statistically significant difference.
+
+Building a regression model has been the immediate step to identify further factors.
+The regression showed that apart from cooperating ratio, connectivity and the
+average neighborhood score also affected the median ranking. Even so, the overall model
+had a low \(R\) square value, thus the results cannot be deemed significant. By testing
+the model to each of the strategies individual, two strategies shown that 80\% of
+their variation can be explained by the model. Whether this could be possible
+for the rest of the strategies is not clear. This could have been an effect of
+the strategies game play or even of the environment they happened to participate in.
+
+\subsection{New LookerUp Strategy}
+
+Throughout the experiments that have been conducted the top ranking strategies
+have seem to be different based on the experiment and the topology. In an attempt
+of identifying an overall successful strategy for a spatial tournament of
+a random topology was held in ~\autoref{chap:Five}. The are various networks
+that could have been studied during this chapter, but for keeping in line with
+the approach of \autoref{chap:Four}, the topology was a random selection between
+the following networks: Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and complete networks.
+
+For achieving the goal that have been set for this chapter, the work of
+M Jones and his LookerUp strategy was mimicked. The results of newly performed
+evolutionary algorithm returned that a LookerUp strategy that could outperform
+the median rank of Gradual was not able to be found for the given number of generations
+our algorithm managed to run. Even so, by performing some extra algorithms for further
+cases, such as for each topology individually, returned that a winning strategy for
+a spatial tournament under specific conditions could emerge.
+
+\section{Limitations and Further Research}
+\subsection{Limitations}
+\label{sub:limitations}
+For this dissertation a total of three experiments have been carried out and
+each of the experiments included separate stages. Firstly, the source code of implementing
+each had to be written. Secondly, running each experiment to produce the required data.
+For the data to be created a large number of spatial
+tournaments and an evolutionary algorithm had to be performed. Finally, an
+analysis had to held for each outcome. All these three steps individually required
+an amount of time and computational resources, thus the biggest constraint for
+this dissertation has been time.
+
+Due to this constraint a lot of the parameters, such as tournaments turn, repetitions,
+tournament's size etc. had to be set to minimum. For example, in \autoref{chap:Three},
+the tournament size has been deterministically chosen. In \autoref{chap:Four}
+not all methods achieved their maximum capabilities and in \autoref{chap:Five} the
+genetic algorithm had a time limit of 70 hours.
+
+\subsubsection{Further Research}
+
+Due the limitations described in \autoref{sub:limitations}, some further
+research ideas include the reproduction of these experiments by setting the
+parameters to maximum. For example the number of repetitions could be set to 100
+and the tournament size could range for 2 to 132. This holds for the evolutionary
+algorithm as well. Where the algorithm could be performed for a higher time limit.
+
+Moreover, there are various of types of complex networks but studying them all
+is impossible. Though, a new experiment could be conducted where the topology
+could be randomly selected from a pool of greater than 3 complex networks. The
+regression models in this dissertation did not manage to identify any correlation
+between the topology and the performance.
+This could have been because of the lack of data. Even so, further regression
+analysis could have been perform. Both a forward elimination model and a logistic
+regression could be exceptional choices.
+
+Furthermore, the IPD tournament itself included various types and concepts that
+have been studied throughly the years. Some of the have been briefly discussed
+in the initial chapters. Concepts such as noise, probabilistic endings and evolutionary
+tournaments. Some further ideas include the implementation of these types in the
+spatial tournaments. A spatial tournament could easily include noise, thus altering
+the actions of some strategies randomly. A spatial probabilistic ending tournament,
+would mean a tournament where for where the length of each tournament is not
+constant for all encounters: after each turn the tournament ends with a given
+probability. Finally, an spatial evolutionary tournament have been studied before,
+and it has been the origin approach followed by Nowak in 1992, where strategies
+would alter their game play based on the winner of their generation. An evolutionary
+tournament could shred some light to various questions. Such as: would the
+tournaments achieve a evolutionary stable strategy and whether cooperation or defection would emerge as
+the dominant action.
