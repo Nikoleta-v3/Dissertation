@@ -7,7 +7,7 @@
                     execute at end node={\end{varwidth}}]
 
 \node (before) [process] { ..... };
-\node (pro4) [process, below of=before, fill=blue!80] {\small \textbf{Score Population}};
+\node (pro4) [process, below of=before, fill=blue!50] {\small \textbf{Score Population}};
 
 \node (sample) [process, below of=pro4] {\small Sample Players};
 
@@ -34,7 +34,7 @@
 \draw [arrow] (small) -- (ranks1);
 \draw [arrow] (random) -- (ranks1);
 \draw [arrow] (complete) -- (ranks1);
-\draw [arrow] (ranks1) -|([xshift=-0.25cm]pro2.south west)|- node[anchor=south] {repetitions $< =$ \(p\)} (sample);
+\draw [arrow] (ranks1) -|([xshift=-0.25cm]pro2.south west)|- node[anchor=south] {repetitions $\leqslant$ \(p\)} (sample);
 \draw [arrow] (ranks1) -- node[anchor=west] {repetitions $>$ \(p\)} (ranks2);
 \draw [arrow] (ranks2) -- (after);
 \end{tikzpicture}

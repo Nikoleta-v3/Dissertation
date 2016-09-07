@@ -10,25 +10,25 @@
 % start flow chart
 \node (start) [startstop] {Start};
 % get first tables
-\node (in1) [process, below of=start , fill=black!5] {\small \textbf{Current Tables} = \(n\) Random Generated Lookup Tables};
+\node (in1) [process, below of=start , fill=black!5] {\small \textbf{Current Tables} $\leftarrow$ \(n\) Random Generated Lookup Tables};
 % start genetic
-\node (pro1) [process, below of=in1, fill=blue!80] {\small \textbf{Start Genetic Algorithm}};
+\node (pro1) [process, below of=in1, fill=blue!50] {\small \textbf{Start Genetic Algorithm}};
 % parents
-\node (pro2) [process, below of=pro1, fill=black!5] {\small \textbf{Parents} = Current Tables + \(n\) Random Generated Lookup Tables};
+\node (pro2) [process, below of=pro1, fill=black!5] {\small \textbf{Parents} $\leftarrow$ Current Tables + \(n\) Random Generated Lookup Tables};
 % kids
-\node (in2) [process, below of=pro2, fill=black!5] {\small \textbf{Children} = all possible combinations of Parents};
+\node (in2) [process, below of=pro2, fill=black!5] {\small \textbf{Children} $\leftarrow$ all possible combinations of Parents};
 %population
-\node (pro3) [process, below of=in2, fill=black!5] {\small \textbf{Population} = Parents + Children};
+\node (pro3) [process, below of=in2, fill=black!5] {\small \textbf{Population} $\leftarrow$ Parents + Children};
 %score them
-\node (pro4) [process, below of=pro3, fill=blue!80] {\small \textbf{Score Population}};
+\node (pro4) [process, below of=pro3, fill=blue!50] {\small \textbf{Score Population}};
 %score them details
 \node (pro5) [process, below of=pro4, fill=black!5] {\small LookerUp (for each lookup table) plays in a round robin tournament};
 %ranked population
-\node (in3) [process, below of=pro5, fill=blue!80] {\small \textbf{Ranked Population, based on average score}};
+\node (in3) [process, below of=pro5, fill=blue!50] {\small \textbf{Ranked Population, based on average score}};
 %keep rank
-\node(pro6) [process, below of=in3, fill=black!5] {\small \textbf{Current Tables} = \(b\) number of individuals};
+\node(pro6) [process, below of=in3, fill=black!5] {\small \textbf{Current Tables} $\leftarrow$ \(b\) number of individuals};
 %check number of generation
-\node (dec1) [decision, below of=pro6, yshift=-1.5cm] {\small Generations $<=$ \(g\)};
+\node (dec1) [decision, below of=pro6, yshift=-1.5cm] {\small Generations $\leqslant$ \(g\)};
 %stop
 \node (stop) [startstop, below of=dec1, yshift=-1.5cm] {Stop};
 % LINES
