@@ -287,6 +287,7 @@ are found here: \url{https://github.com/Nikoleta-v3/axelrod-evolver/tree/general
 \end{figure}
 
 \section{Results}
+\label{sub:results}
 In this sections the results of the spatial lookup evolve algorithm are briefly
 presented. The results are divided into three categories based on the strategies
 population and on the sample size. For each, the keys of the lookup table,
@@ -345,23 +346,34 @@ a sample size of 15 to 50 and returned an minimum normalized score of 0.478.
 In this section the lookup tables that have been produced by the spatial lookup
 evolve algorithm from each case that has been implemented were presented and discussed.
 The finest lookup table for measuring the median normalized rank has been estimated
-at 0.68. Furthermore, a new case of objective function has also been implemented
-for comparison reasons. Additionally, in the following section the algorithm has
-been perform for each of the networks individually.
+at 0.68 and for the second trial, where the minimum normalized rank was taken into
+account, the algorithm returned a score of 0.478.
+
+In the experiment performed and analyzed in \autoref{chap:Four}, Gradual has been
+the finest performed strategy based on the median normalized rank. The strategy in
+particularly achieved a median normalized rank of 0.23. In both trials of the
+spatial evolve algorithm it can been seen that the LookerUp strategy did not
+manage to score less than that. Even so, the algorithm was performed for a small
+number of generations.
+
+The following section, briefly summarizes the results returned by the algorithm
+for performing some extra cases. This has been done mainly for comparison reasons
+and in these cases each of the three complex networks are studied individually.
 
 \section{Further Results}
 
 In this section some additional results of the spatial lookup evolve algorithm
 are discussed. In the previous section the networks used in the scoring process
 have been randomly picked between small world, random and complete networks.
-In this section the algorithm has been implemented each of network and their
-individual results are studied. This was implemented mainly for further results and
-a possible identification of a well perform strategy for an individual topology.
-Table~\ref{deter-indiv} and Table~\ref{no-deter-indiv} summarize the results.
+In this section the algorithm has been performed for each of networks individually
+using the objective function of the median normalized rank.
+
+This was implemented mainly to identify whether a well performed strategy
+exists for a specific spatial tournament. Table~\ref{deter-indiv} and Table~\ref{non-deter-indiv} summarize the results.
 
 For the deterministic case where the topology of the spatial tournaments has been
 a Watts Strogatz networks, the first rate lookup table achieved a median normalized
-score of 0, in the 635\nth generation. Moreover, for the Erd\"\{o\}sR\'\{e\}nyi
+score of 0, in the 635\nth generation. Moreover, for the Erd\"\{o\}s R\'\{e\}nyi
 topology the finest lookup table has a score of 0.5 in the 1399\nth generation, similar
 to the complete on where the lowest rank achieved has been 0.555556.
 
@@ -378,10 +390,45 @@ Erd\"\{o\}s R\'\{e\}nyi & \begin{tabular}[c]{@{}l@{}}CCCDDCCCDCDCCCCDDCCCCDDDDCC
 Complete               & \begin{tabular}[c]{@{}l@{}}DDCCCCDDDDDDCCDCCDDDCDDDCCDDDDCC\\ DCCDDCDCCCCDCCDDDCCDCCDCDCCCCCCC\end{tabular} & 1299       & 0.555556 \\ \hline
 \end{tabular}
 \end{adjustbox}
-\caption{Results of Deterministic Players for Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and Complete Networks}
+\caption{Results using only deterministic strategies for Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and complete networks}
 \label{deter-indiv}
 \end{table}
 
-The achievement in this section has been in the deterministic players case where
-a median rank of 0 has been attained. This give evidence that at least one of
-networks has this capability. Thus, further research is inspired to be conduced.
+Furthermore, the results for the non deterministic strategies population are
+shown in Table~\ref{non-deter-indiv}. For a sample size between 5 to 15 the
+finest scores are 0.818 for the Watts Strogatz network, 0.714 for the Erd\"\{o\}s R\'\{e\}nyi
+network and 0.769 for the complete. Similarly, for a sample size of 15 to 50.
+For the Watts Strogatz network the lowest median rank has been 0.810, for the Erd\"\{o\}s R\'\{e\}nyi
+network 0.656 and finally 0.739 for the complete. Significant higher, now that the
+sophisticated strategies have been added to the tournaments.
+
+\begin{table}[H]
+  \centering
+  \begin{adjustbox}{width=0.8\textwidth}
+  \small
+  \begin{tabular}{cccccccccc}
+      \toprule
+\multicolumn{5}{|c|}{\textbf{Non Deterministic Results}}                                                                                                                                       \\ \hline
+                        & sample size & lookup                                                                                                      & generation & score                     \\ \hline
+Watts Strogatz          & 5- 15       & \begin{tabular}[c]{@{}l@{}}DDDDCCCCDCDDCDCDCCDCCDCDCCDCCCCC\\ DCCDCDCCCCDCDCCDDDCCCCCCDDCDCCDD\end{tabular} & 199        & 0.818                     \\ \hline
+                        & 15 - 50     & \begin{tabular}[c]{@{}l@{}}DDCCCDDCDCDDCDCCDCCDDCCDCCDDCDCD\\ CDDCCDDDCCCDCDCDCDDDDCDDDDDCCDDC\end{tabular} & 59         & 0.810                     \\ \hline
+Erd\"\{o\}s R\'\{e\}nyi & 5 - 15      & \begin{tabular}[c]{@{}l@{}}DCCDDCDDDCDDCDDCCDDDDDDCDDDCCCDC\\ CCCDCDCDDDDCCDCDCCDDCCCDDDCCDDCC\end{tabular} & 302        & 0.714                     \\ \hline
+                        & 15 - 50     & \begin{tabular}[c]{@{}l@{}}DCCDDDDCCCCDDDCCDDCDCCDCCDCCCCCC\\ CDCDDDDCDDDDDCDDCCCCCDCCCCCDCDDC\end{tabular} & 11         & 0.656                     \\ \hline
+Complete                & 5 - 15      & \begin{tabular}[c]{@{}l@{}}CCDCCDDDDCCCCCDDDDDCCDCCDCCCCCDD\\ DCCDCCCDCCDDDCDDDDDDCDDDCDDCDDCD\end{tabular} & 202        & \multicolumn{1}{r}{0.769} \\ \hline
+                        & 15 - 50     & \begin{tabular}[c]{@{}l@{}}CCCDDCDCCDCDCDDCDCDDCCCDCDCDDCCC\\ DDDDDDCCCDCCDDDDCDCDDDCCCDDDCDCC\end{tabular} & 13         & 0.736                     \\ \bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Results using all 132 strategies for Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and complete networks}
+\label{non-deter-indiv}
+\end{table}
+
+In conclusion, the average scores did not differ much for the results returned
+in ~\autoref{sub:results} and most of the LookerUp strategies did not manage to
+beat the median rank of Gradual. This holds for all but one. The achievement
+of this section has been that for a spatial tournament of a small world topology,
+where the players list has been that of the deterministic strategies of the
+Axlerod library a winning strategy has managed to be trained. The lookup table returned
+a median normalized score of 0, thus the strategy has been winning the spatial tournaments.
+These results hints that winning strategies for spatial tournaments do exist.
+To further research this the spatial algorithm would have to be re performed
+for a larger number of generations.
