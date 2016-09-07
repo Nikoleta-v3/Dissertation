@@ -28,16 +28,16 @@ through the \texttt{self.history} variable and the opponent's history though
 \texttt{opponent.history} variable. Many strategies choose their actions based
 on what happened on previous turns\footnote{Only two actions are possible in the
 IPD; to either Cooperate(C) or to Defect(D).}. This rule, of determining once actions
-based on a history can be think of as a lookup table.
-In Jones work three different histories are taken into account:
+based on a history can be though of as a lookup table.
+In Jones's work three different histories are taken into account:
 
 \begin{itemize}
-  \item the opponents two starting actions
-  \item the opponent's two recent actions
-  \item and the recent actions of the strategy.
+  \item the opponent's two starting actions
+  \item the opponent's two most recent actions
+  \item and the two most recent actions of the strategy.
 \end{itemize}
 
-Using Python's dictionaries the histories can be considered as keys and
+Using Python's dictionaries (a hash table) the histories can be considered as keys and
 the action as the values. Thus, the keys are a 3-tuples consisting of the opponent's
 starting actions, the opponent's recent actions, and the strategy's recent actions.
 The lookup table in total contains 64 different keys and a key/value pairs example
@@ -66,21 +66,21 @@ lookup_table = {
 \label{lst:lookup-table}
 \end{listing}
 
-The lookup table corresponds to a guideline which the strategy determines it's following action.
+The lookup table corresponds to a guideline with which the strategy determines it's following action.
 A class for generating a strategy object, which  will take into account a lookup tables,
 for playing the IPD game is described in the following subsection.
 
 \subsection{The LookerUp class}
 
-The LookerUp class, is generating a object for a given lookup table.
-The source code of the class, as written by M Jones, is illustrated in the
-Listing~\ref{lst:lookerup}. As shown, the strategy taken as an argument
+The LookerUp class generates a player instance for a given lookup table.
+The source code of the class, as written by M Jones, is illustrated in
+Listing~\ref{lst:lookerup}. As shown, the strategy takes as an argument
 a lookup table and therefore plays by following these regulations:
 \begin{itemize}
-  \item If history is smaller than 2, then  always cooperate
-  \item if history is greater than 2, create key
-  \item check lookup table for corresponding key and value
-  \item return value as action
+  \item If the history is smaller than 2, then  always cooperate
+  \item If the history is greater than 2, create key
+  \item Check lookup table for corresponding key and value
+  \item Return value as action
 \end{itemize}
 
 \begin{listing}[H]
@@ -128,18 +128,18 @@ class LookerUp(Player):
 \end{listing}
 
 The class is used to test the performance of the table. EvolverLookerup, is a
-later version of LookerUp, the difference is that EvolverLookerUp uses a satisfactory
+trained version of LookerUp, the difference is that EvolverLookerUp uses a satisfactory
 table, crafted by using an evolutionary algorithm. The process will be described
 in the following subsection.
 
 \subsection{Evolutionary Algorithm}
 \label{sub:evolutionary-algorithm}
-The performance of a lookup table is measured as the average score the lookup
+The performance of a lookup table is measured as the average score the lookerup
 strategy achieves in a round robin tournament against all strategies in the
-Axelrod-Python library. Though various optimization processes could have been
+Axelrod-Python library. Although various optimization processes could have been
 used for the maximization of the objective function,
 the genetic algorithm was preferred. Genetic algorithm, is a commonly used adaptive
-algorithm for solving practical problems. An introduction in the genetic algorithm
+algorithm for solving practical problems. An introduction to genetic algorithm
 has been covered by M Mitchell~\cite{Mitchell1998}, and along various applications~\cite{Chang1994}
 it has been used in the field of Game Theory as well~\cite{Ismail2007}.
 
@@ -154,11 +154,11 @@ mutation rate \(u\). Subsequently, the population is defined as the joint of
 parents and children.
 
 Each member of the population has to go through the scoring process. A different
-object of the LookerUp strategy is created for each of the lookup tables that
-exist in the population, and each object participates to a round robin tournament.
+instance of the LookerUp strategy is created for each of the lookup tables that
+exist in the population, and each instance participates to a round robin tournament.
 Thereupon, the population is being sorted based on the average score per turn.
 Only the top \(b\) individuals are then selected to continue to the next generation.
-This is repeated until the number of generations reach the upper bound \(g\).
+This is repeated until the number of generations reach some upper bound \(g\).
 
 The default values of the parameters in the lookerup evolve algorithm are as
 follow:
@@ -175,11 +175,12 @@ follow:
   \label{fig:flookerup-evolve-flow}
 \end{figure}
 
-In this section an overview of M Jones works was implemented. The full version
+In this section an overview of M Jones works was presented. The full version
 of the LookUpEvolver, his implementation of the genetic algorithm and the lookerup evolve
 algorithm can be found here:\url{https://github.com/mojones/axelrod-evolver}.
-In the upcoming section how the lookerup evolve algorithm was altered and used
-for the spatial tournaments is being discussed.
+In the upcoming section how the lookerup evolve algorithm was altered and used,
+to not optimize a strategy for a given tournament but for any tournament on
+any topology is discussed.
 
 \section{The Spatial Lookup Evolve Algorithm}
 
@@ -196,55 +197,56 @@ function of the genetic algorithm.
 In the approach of the spatial lookup evolve algorithm, one of the main differences
 occurs in the objective function in the scoring process. Instead of the average
 score in a round robin tournament, the median normalizes rank, as introduced
-in ~\autoref{chap:Four}, for a spatial tournament is taken into account.
+in ~\autoref{chap:Four}, over a number of randomly sampled spatial tournaments
+is used.
 
 Using a similar approach to the one described in ~\autoref{chap:Four}, the objective
 function will be the median rank a strategy achieved, after participating in \(p\)
 random spatial tournaments of random different topologies. The tournament sizes
 as well as the players participating in these tournaments are completely random.
-The topologies can be that of a Watts Strogatz, a Erd\"{o}s
-R\'{e}nyi or a complete graph. In Figure~\ref{fig:objective}, a flow chart
-illustrates the idea of how this was implemented. Before and after the scoring
+The topologies can be that obtained using the Watts Strogatz, a Erd\"{o}s
+R\'{e}nyi model and/or a complete graph. In Figure~\ref{fig:objective}, a flow chart
+illustrates how this was implemented. Before and after the scoring
 process the nodes are the same as have been seen in Figure~\ref{fig:flookerup-evolve-flow}.
 
 \begin{figure}[!hbtp]
 		\input{chapters/objective.tex}
-		\caption{Scoring Process for Spatial Lookup Evolve Algorithm}
+		\caption{Scoring process for the spatial lookup evolve algorithm}
   \label{fig:objective}
 \end{figure}
 
-
-Furthermore, for every given generation the current tables are being re scored.
-Due the randomness that the scoring process includes different scores for the
-same lookup tables could occurs. Thus, the objective functions stops being
-deterministic. In fact, there is high variation between the generations median
-normalized ranking. The variation could be dealt with by running the the algorithm
+Furthermore, for every given generation the current tables are re scored.
+Due to the randomness of the tournament topologies as well as the tournaments
+themselves (due to random players) the objective function is highly stochastic.
+In fact, there is high variation between the generations median
+normalized ranking. The variation could be dealt with by running the algorithm
 for a large number of repetitions, unfortunately due to computational cost this
 is not possible. Thus, in an attempt to at least decrease the variation two different
 cases are being studied based on the strategies list.
 \begin{itemize}
-  \item Sophisticated: includes both sophisticated and deterministic strategies
-  \item Deterministic: includes only deterministic strategies
+  \item The entire strategy space.
+  \item A reduced strategy space: containing only strategies that are deterministic
+        and have memory depth between 0 and 1. This are referred to in the
+        Axelrod-Python library as "basic"'
 \end{itemize}
 
 
-\subsubsection{Sophisticated}
+\subsubsection{Entire strategy space}
 
-The difference in these two cases occurs in the population of the strategies.
-More specifically, for the non deterministic case
+More specifically, for this case
 the population of strategies, from where the sample for participants for
 the spatial games is being subtract, contains all 132 strategies of the
 Axlerod-Python. Most of the strategies of the library are sophisticated, thus
 the variation is greater.
 
-The sample for each repetition \(p\) is randomly picked. For the
-non deterministic case two sample sizes have been used. One from
+The sample size for each repetition \(p\) is randomly picked. For the
+entire strategy space case two sample sizes have been used. One from
 15 to 50 players and the other one from 10 to 15 strategies.
 
-\subsubsection{Deterministic}
+\subsubsection{Reduced strategy space}
 
-For the deterministic case the population will contain only
-the deterministic strategies of the Axelrod-Python library. The library provides
+For this case the population will contain only
+the basic strategies of the Axelrod-Python library. The library provides
 easy access to them and they have been identified as the following ten strategies:
 \begin{itemize}
    \item Alternator
@@ -264,7 +266,7 @@ objectives are used for individual runs of the spatial lookup evolve algorithm.
 
 \subsection{Parameters}
 
-One can notice by the default values of the evolutionary algorithm parameters,
+One can notice by default values of the evolutionary algorithm parameters,
 described in \autoref{sub:evolutionary-algorithm}, in each generation
 144 lookup tables needed to be scored. Considering that each lookup table needs
 to participate in \(p\) different spatial tournaments the time to implement
@@ -281,32 +283,31 @@ by the spatial version of the algorithm are listed here:
 \end{itemize}
 
 By setting \(n\) to 2 and by keeping only the 2 top of each generations only
-20 lookup tables are being scored for each generation. The time limit for each algorithm
-was set at 70 hours. The entire spatial scoring structure that
-has been explained throughly during this subsection is illustrated in Figure~\ref{fig:spatial-evolve}.
-Moreover, the source code for implementing the spatial version of the algorithm
-are found here: \url{https://github.com/Nikoleta-v3/axelrod-evolver/tree/general-spatial}.
+20 lookup tables are being scored for each generation. The entire spatial scoring structure that
+has been explained thoroughly during this subsection is illustrated in Figure~\ref{fig:spatial-evolve}.
+Moreover, the source code for implementing the spatial versions of the algorithm
+can be found here: \url{https://github.com/Nikoleta-v3/axelrod-evolver/tree/general-spatial}.
 
 \begin{figure}[H]
 		\input{chapters/spatialevolve.tex}
-		\caption{Complete Scoring Process for Spatial Lookup Evolve Algorithm}
+		\caption{Complete scoring process for spatial lookup evolve algorithm}
   \label{fig:spatial-evolve}
 \end{figure}
 
 \section{Results}
 \label{sub:results}
-In this sections the results of the spatial lookup evolve algorithm are briefly
+In this sections the results of the spatial lookup evolve algorithm are
 presented. The results are divided into three categories based on the strategies
 population and on the sample size. For each, the keys of the lookup table,
-the lowest median normalized ranks and the generation it was achieved are given
+the lowest median normalized ranks and the generation it was are given
 in Table~\ref{results-genet}.
 
-For the deterministic case the best strategy, with a score of 0.77 median normalized
-rank, was achieved at the 319\nth generation. For the non deterministic case
+For the reduced strategy space case the best strategy, with a score of 0.77 median normalized
+rank, was achieved at the 319\nth generation. For the entire strategy space case
 and a sample size ranging from 10 to 15 the best lookup table has been achieved at
 the 201\st generation. The best score was estimated at 0.769. Finally, for the
-non deterministic with a range of sample size between 15 and 50, the lowest median rank has been 0.68.
-Thus, for a non deterministic case the specific lookup table generates the best performed strategy so far.
+entire strategy space with a range of sample size between 15 and 50, the lowest median rank has been 0.68.
+Thus, for an entire strategy space the specific lookup table generates the best performing strategy so far.
 
 \begin{table}[H]
 \centering
@@ -316,9 +317,9 @@ Thus, for a non deterministic case the specific lookup table generates the best 
     \toprule
 \multicolumn{4}{|c|}{\textbf{Results}}                                                                                                                                                                                              \\ \hline
                                        & lookup values      & generation                                                                                         & score                                                   \\ \hline
-  Deterministic                         & \begin{tabular}[c]{@{}l@{}}DDDDCDDDDCDCDCDDDCDCCDDCDDCCCDDC\\ CDCDCDCCDDCCCCDCDCCCCCCCDDCCDCCD\end{tabular} & 319  & 0.777778                                                     \\ \hline
-  \begin{tabular}[c]{@{}l@{}}Sophisticated\\ sample size(5-15)\end{tabular} & \begin{tabular}[c]{@{}l@{}}CDDCCDDDCDCDCDDDCDCDCCCCDCDDDCCC\\ DCDDDCDCDDCCDCDCCCDDCDDCCCDCCDDC\end{tabular} & 201 & 0.769231               \\ \hline
-  \begin{tabular}[c]{@{}l@{}}Sophisticated\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}DDDCCDDCCCCCDCCDDDCCCCCDDCCDDCDCC\\ CDDCDCDCDDCCCDCCCDCCCDDCDDDDDCD\end{tabular} & 148 & 0.6875                  \\ \bottomrule
+  reduced strategy space               & \begin{tabular}[c]{@{}l@{}}DDDDCDDDDCDCDCDDDCDCCDDCDDCCCDDC\\ CDCDCDCCDDCCCCDCDCCCCCCCDDCCDCCD\end{tabular} & 319  & 0.777778                                                     \\ \hline
+  \begin{tabular}[c]{@{}l@{}}entire strategy space\\ sample size(5-15)\end{tabular} & \begin{tabular}[c]{@{}l@{}}CDDCCDDDCDCDCDDDCDCDCCCCDCDDDCCC\\ DCDDDCDCDDCCDCDCCCDDCDDCCCDCCDDC\end{tabular} & 201 & 0.769231               \\ \hline
+  \begin{tabular}[c]{@{}l@{}}entire strategy space\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}DDDCCDDCCCCCDCCDDDCCCCCDDCCDDCDCC\\ CDDCDCDCDDCCCDCCCDCCCDDCDDDDDCD\end{tabular} & 148 & 0.6875                  \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
 \caption{Results for spatial lookup evolve algorithm for median normalized rank}
@@ -326,10 +327,10 @@ Thus, for a non deterministic case the specific lookup table generates the best 
 \end{table}
 
 Figure~\ref{fig:line-plots-median}, illustrates the aforementioned stochasticity
-in the objective function and how tournament with only deterministic players
+in the objective function and how tournament with only basic players
 overcomes the variation. The deterministic case, had a stable trend and was
 ended after 300 generations. It is suspected that for a larger number of generations
-this stable trend would eventually change. For the sophisticated cases it is
+this stable trend would eventually change. For the entire strategy space cases it is
 clear that the value of the objective function has a large deviation.
 
 \begin{figure}[H]
@@ -337,19 +338,19 @@ clear that the value of the objective function has a large deviation.
 	\begin{subfigure}[H]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{chapter-five/line-plot-1.pdf}
-		\caption{Deterministic}
+		\caption{Only basic strategies}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[H]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{chapter-five/line-plot-2.pdf}
-		\caption{Sophisticated Size 10-15}
+		\caption{All strategies, sample size 10-15}
 	\end{subfigure}
   \hfill
   \begin{subfigure}[H]{0.45\textwidth}
     \centering
     \includegraphics[width=\linewidth]{chapter-five/line-plot-3.pdf}
-    \caption{Sophisticated Size 15-50}
+    \caption{All strategies, sample size 15-50}
   \end{subfigure}
 	\caption{Lines plot for the median normalized rank variation during the
           evolutionary algorithm}
@@ -371,10 +372,10 @@ a sample size of 15 to 50 and returned an minimum normalized score of 0.478.
     \toprule
 \multicolumn{4}{|c|}{\textbf{Results}}                                                                                                                                                                                             \\ \hline
                                      & lookup values  & generation   & score                                                                                                                                              \\ \hline
-\begin{tabular}[c]{@{}l@{}}Sophisticated\\ sample size(5-15)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}DDDDDCCDCDCDDCCDCCDDCCCDDCDCDCDC\\ CCCCCCDCDCDDDDCCDCDCDDDDDCDDDDCD\end{tabular} & 47 & 0.692308                  \\ \hline
+\begin{tabular}[c]{@{}l@{}}entire strategy space\\ sample size(5-15)\end{tabular}   & \begin{tabular}[c]{@{}l@{}}DDDDDCCDCDCDDCCDCCDDCCCDDCDCDCDC\\ CCCCCCDCDCDDDDCCDCDCDDDDDCDDDDCD\end{tabular} & 47 & 0.692308                  \\ \hline
                                      & \begin{tabular}[c]{@{}l@{}}CCDCDCDDDCCDDCDCDCDDCCDCDDCDDDCD\\ CDCCDCCDDDDDCCCDCCDDDCDCDDDCCCDD\end{tabular}  & 13 & 0.692308                                                             \\ \hline
                                      & \begin{tabular}[c]{@{}l@{}}DCCCDDCCCDDCDDDDDDCDDCCDCCDDCDDD\\ DDDDCDDDDCCDDDDCCDCCCDDDCCCCCCCC\end{tabular}  & 8 & 0.692308                                                             \\ \hline
-\begin{tabular}[c]{@{}l@{}}Sophisticated\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}CDCCDDCDDDCCCDDDDCDCDCCDDCDCCDDD\\ DCDCCDCCCDDDCDDCDCDCDDCCCCCCDDDC\end{tabular} & 49 & 0.478261                     \\ \bottomrule
+\begin{tabular}[c]{@{}l@{}}entire strategy space\\ sample size(15-50)\end{tabular}& \begin{tabular}[c]{@{}l@{}}CDCCDDCDDDCCCDDDDCDCDCCDDCDCCDDD\\ DCDCCDCCCDDDCDDCDCDCDDCCCCCCDDDC\end{tabular} & 49 & 0.478261                     \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
 \caption{Results for spatial lookup evolve algorithm for minimum normalized rank}
@@ -382,9 +383,9 @@ a sample size of 15 to 50 and returned an minimum normalized score of 0.478.
 \end{table}
 
 In Figure~\ref{fig:line-plot-min}, the course of the minimum normalized rank
-for the sophisticated cases is shown. For a sample size of 10 to 15, throughout
-the algorithm the variation does not stop to cease. On the other hand, for a sample
-size of, the minimum normalized score falls to a stable state approximately
+for the entire strategy space cases is shown. For the run with a sample size of 10 to 15, there was
+high variation of the minimum normalized score throughout. On the other hand, for a sample
+size of 15 to 50, the minimum normalized score falls to a stable state approximately
 after the 200\nth generation.
 
 \begin{figure}[H]
@@ -392,13 +393,13 @@ after the 200\nth generation.
 	\begin{subfigure}[H]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{chapter-five/line-plot-4.pdf}
-		\caption{Sophisticated Size 10-15}
+		\caption{All strategies, sample size 10 to 15}
 	\end{subfigure}
   \hfill
   \begin{subfigure}[H]{0.45\textwidth}
     \centering
     \includegraphics[width=\linewidth]{chapter-five/line-plot-5.pdf}
-    \caption{Sophisticated Size 15-50}
+    \caption{All strategies, sample size 15 to 50}
   \end{subfigure}
 	\caption{Lines plot for the minimum normalized rank variation during the
           evolutionary algorithm}
@@ -416,10 +417,12 @@ the best performed strategy based on the median normalized rank. The strategy in
 particularly achieved a median normalized rank of 0.23. In both trials of the
 spatial evolve algorithm it can been seen that the LookerUp strategy did not
 manage to score less than that. Even so, the algorithm was performed for a small
-number of generations.
+number of generations. It would be valuable to perform all the experiments of
+\autoref{chap:Four} with these newly trained strategies however time constraints have not
+permitted this.
 
 The following section, briefly summarizes the results returned by the algorithm
-for performing some extra cases. This has been done mainly for comparison reasons
+for some extra cases. This has been done mainly for comparison reasons
 and in these cases each of the three complex networks are studied individually.
 
 \section{Further Results}
@@ -433,11 +436,11 @@ using the objective function of the median normalized rank.
 This was implemented mainly to identify whether a well performed strategy
 exists for a specific spatial tournament. Table~\ref{deter-indiv} and Table~\ref{non-deter-indiv} summarize the results.
 
-For the deterministic case where the topology of the spatial tournaments has been
-a Watts Strogatz networks, the first rate lookup table achieved a median normalized
+For the reduced strategy space case where the topology of the spatial tournaments has been
+a Watts Strogatz network, the first rate lookup table achieved a median normalized
 score of 0, in the 635\nth generation. Moreover, for the Erd\"\{o\}s R\'\{e\}nyi
-topology the best lookup table has a score of 0.5 in the 1399\nth generation, similar
-to the complete on where the lowest rank achieved has been 0.555556.
+topology the best lookup table has a score of 0.5 in the 1399\nth generation, similarly
+to the complete network where the lowest rank achieved was 0.556.
 
 \begin{table}[H]
 \centering
@@ -445,24 +448,24 @@ to the complete on where the lowest rank achieved has been 0.555556.
 \small
 \begin{tabular}{cccccccccc}
     \toprule
-\multicolumn{4}{|c|}{\textbf{Deterministic Results}}                                                                                                         \\ \hline
+\multicolumn{4}{|c|}{\textbf{Reduced strategy space}}                                                                                                         \\ \hline
                        & lookup                                                                                                      & generation & score    \\ \hline
 Watts Strogatz         & \begin{tabular}[c]{@{}l@{}}CDCCCDDDCCCDCCCDDDCDCDCCDCCCDCDCC\\ DCCDDDDCCCDDCDDCDDDDDDCCDDDDCDC\end{tabular} & 635        & 0.00     \\ \hline
 Erd\"\{o\}s R\'\{e\}nyi & \begin{tabular}[c]{@{}l@{}}CCCDDCCCDCDCCCCDDCCCCDDDDCCDCDCDD\\ DDCCCCCDDCCCDDCDCCDCDCDDDCDCDCC\end{tabular} & 1399       & 0.5      \\ \hline
 Complete               & \begin{tabular}[c]{@{}l@{}}DDCCCCDDDDDDCCDCCDDDCDDDCCDDDDCC\\ DCCDDCDCCCCDCCDDDCCDCCDCDCCCCCCC\end{tabular} & 1299       & 0.555556 \\ \hline
 \end{tabular}
 \end{adjustbox}
-\caption{Results using only deterministic strategies for Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and complete networks}
+\caption{Results using only the basic strategies for Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and complete networks}
 \label{deter-indiv}
 \end{table}
 
-Furthermore, the results for the non deterministic strategies population are
+Furthermore, the results for the entire strategy space population are
 shown in Table~\ref{non-deter-indiv}. For a sample size between 10 to 15 the
 best scores are 0.818 for the Watts Strogatz network, 0.714 for the Erd\"\{o\}s R\'\{e\}nyi
 network and 0.769 for the complete. Similarly, for a sample size of 15 to 50.
 For the Watts Strogatz network the lowest median rank has been 0.810, for the Erd\"\{o\}s R\'\{e\}nyi
 network 0.656 and finally 0.739 for the complete. Significant higher, now that the
-sophisticated strategies have been added to the tournaments.
+all strategies have been added to the tournaments.
 
 \begin{table}[H]
   \centering
@@ -470,7 +473,7 @@ sophisticated strategies have been added to the tournaments.
   \small
   \begin{tabular}{cccccccccc}
       \toprule
-\multicolumn{5}{|c|}{\textbf{Sophisticated Results}}                                                                                                                                       \\ \hline
+\multicolumn{5}{|c|}{\textbf{Entire strategy space}}                                                                                                                                       \\ \hline
                         & sample size & lookup                                                                                                      & generation & score                     \\ \hline
 Watts Strogatz          & 10- 15       & \begin{tabular}[c]{@{}l@{}}DDDDCCCCDCDDCDCDCCDCCDCDCCDCCCCC\\ DCCDCDCCCCDCDCCDDDCCCCCCDDCDCCDD\end{tabular} & 199        & 0.818                     \\ \hline
                         & 15 - 50     & \begin{tabular}[c]{@{}l@{}}DDCCCDDCDCDDCDCCDCCDDCCDCCDDCDCD\\ CDDCCDDDCCCDCDCDCDDDDCDDDDDCCDDC\end{tabular} & 59         & 0.810                     \\ \hline
@@ -484,14 +487,12 @@ Complete                & 10 - 15      & \begin{tabular}[c]{@{}l@{}}CCDCCDDDDCCC
 \label{non-deter-indiv}
 \end{table}
 
-
 In conclusion, the average scores did not differ much for the results returned
 in ~\autoref{sub:results} and most of the LookerUp strategies did not manage to
 beat the median rank of Gradual. This holds for all but one. The achievement
 of this section has been that for a spatial tournament of a small world topology,
-where the players list has been that of the deterministic strategies of the
-Axlerod library a winning strategy has managed to be trained. The lookup table returned
-a median normalized score of 0, thus the strategy has been winning the spatial tournaments.
+where only the basic strategies participated a winning strategy has managed to be trained.
+The lookup table returned a median normalized score of 0, thus the strategy has been winning the spatial tournaments.
 These results are a proof of concept that winning strategies for spatial tournaments
 do exist. To further research this the spatial algorithm would have to be re performed
 for a larger number of generations.
