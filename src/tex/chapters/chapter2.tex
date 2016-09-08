@@ -19,7 +19,7 @@ randomly choose between C and D and against their own twins (same strategy).
 The tournament was of a round robin topology
 with a payoff matrix as shown in Figure~\ref{fig:pd_payoff}. All entries knew the
 exact length (200 moves) of each game and for further improvement to the reliability of the scores
-the entire round robin tournament was repeated five times. Fourteen strategies were
+the entire round robin tournament was repeated five times. 13 strategies were
 submitted and by the end Tit for Tat was announced the winner. Surprisingly in
 the second tournament held where 64 strategies competed and all submitters had
 full knowledge of what have happened in the first tournament, Tit for Tat
@@ -51,7 +51,7 @@ evolution. In 1973, Maynard and Price introduced the concept of Evolutionary
 Stable Strategy (ESS), which is an extension of a Nash Equilibrium. If a
 population of the same strategies cannot be invaded by any alternative strategy
 that is initially rare then that strategy is an ESS. In his third tournament
-Axelrod \cite{Axelrod1981} using the same set of strategies (63),
+Axelrod \cite{Axelrod1981} using the same set of strategies (64),
 the tournaments introduced a dynamical rule that mimics Darwinian selection.
 In this evolutionary computer tournament after a round robin game the score for
 each player was evaluated, and the strategies with high score would be adapted
@@ -82,9 +82,9 @@ payoff of the ruler. If the opponent was recognized to not being one of the team
 then the Southampton player would always choose to defect to minimize the score
 of the opponent \cite{Li2011}. Lastly, the Stewart- Plotkin \cite{Stewart2012}
 tournament which
-consisted of nineteen strategies, including a new set of strategies; the Zero-
-determinant(ZD) strategies. The ZD are strategies for the stochastic iterated
-prisoner's dilemma, discovered by Press and Dyson in 2012 \cite{Press2012a}.
+consisted of 19 strategies, including a new set of strategies; the Zero-determinant
+(ZD) strategies. The ZD are strategies for the stochastic IPD,
+discovered by Press and Dyson in 2012 \cite{Press2012a}.
 The ZD apply a linear relationship between their own payoff and that of the opponent.
 Some review tournaments are listed on the Table~\ref{tab:tournaments}:
 
@@ -108,13 +108,13 @@ Some review tournaments are listed on the Table~\ref{tab:tournaments}:
 
 In this section the work done for tournaments in the IPD has been cited and analyzed.
 Starting with the the work of Axelrod, the reasons the tournaments where organized
-and what where the fundings. Moreover, some research that has been generated the following
+and what where the findings. Moreover, some research that has been generated the following
 years are stated. Below, a specialized case of these research will be studied. That
 case is that of the spatial structure tournaments.
 
 \section{Spatial Structure Tournaments}
 
-Further research was spawn in 1992 as to how the Prisoner's Dilemma could shade
+Further research was spawn in 1992 as to how the PD could shade
 some insight into physics and biology. Where Nowak and May believed exist potential
 dynamics of spatially extended systems. Their tournament was a simple and purely
 deterministic spatial version of the PD in a two dimensional lattice. The
@@ -127,7 +127,7 @@ round the nodes with the lowest score in their neighborhood would copy the
 strategy of the player with the highest score. This was done to study which
 behavior, defection or cooperation, would last. The conclusion was that co-operational
 behavior is possible in the PD by using a spatial topology. Nowak produced more
-work on the topic on papers of his such as \cite{Nowak1993} (Nowak 1994).
+work on the topic on papers of his such as \cite{Nowak1993}.
 In his subsequent papers different spatial structures
 where studied. Including triangular and cubic lattices and a random grid.
 It turned out that cooperation can be maintained in spatial models even
@@ -140,10 +140,10 @@ Tat and  Anti Tit for Tat. This was followed  by the work of
 all compares the spatial model with a randomly mixed model.
 A more complex strategy that they have tested was PAVLOV. A win-stay,
 lose-switch strategy.  According to their
-fundings, there is more cooperative behavior in a spatial structure tournament
+findings, there is more cooperative behavior in a spatial structure tournament
 and evolution is more less chaotic than in unstructured populations. Also as
 stated, generous variants of PAVLOV are found to be very successful
-strategies in playing the Iterated Prisoner's Dilemma.
+strategies in playing the IPD.
 
 Spatial topology has been defined by most scholars as a square lattice where
 the nodes - players only interact with their neighborhoods. Including connections
@@ -154,7 +154,7 @@ that a round robin tournament itself is the complete graph on all players
 no authors defined the topology as a graph, apart from \cite{Meng2015}.
 
 In \cite{Meng2015}, an interesting approach was used. They presented a new
-spatial prisoner's dilemma game model in which the neighborhood size was
+spatial PD game model in which the neighborhood size was
 increased onto two interdependent lattices. They implement the utility by
 integrating the payoff correlations between two lattices. A player would mimic a
 random player in his next move, base on a function that consider the utility of
@@ -266,10 +266,10 @@ Furthermore, a basic tournament of 200 turns, 100 repetitions and the 132
 strategies that exist in the library is being produced continuously. The current
 winner is called PSO gambler and it is a look up strategy. It uses a lookup
 table with probability numbers generated using a Particle Swarm Optimisation
-(PSO) algorithm, the sourse code can be found here :
- \url{http://axelrod.readthedocs.io/en/latest/_modules/axelrod/strategies/gambler.html?highlight=Gambler})
- and a description of how this strategy was trained is given here:
- \url{https://gist.github.com/GDKO/60c3d0fd423598f3c4e4}.
+(PSO) algorithm, the sourse code can be found here:
+\url{http://axelrod.readthedocs.io/en/latest/_modules/axelrod/strategies/gambler.html?highlight=Gambler})
+and a description of how this strategy was trained is given here:
+\url{https://gist.github.com/GDKO/60c3d0fd423598f3c4e4}.
 It uses a 64-key lookup table (keys are 3-tuples consisting of the opponent's
 starting actions, the opponent's recent actions, and our recent action) to
 decide whether to cooperate (C) or defect (D). The actions for each key were
@@ -294,6 +294,8 @@ linenos
 >>> tournament = axelrod.Tournament(strategies)
 >>> results = tournament.play()
 >>> plot = axelrod.Plot(results)
+>>> p = plot.boxplot()
+>>> p.show()
 >>> p = plot.payoff()
 >>> p.show()
 \end{minted}
@@ -317,7 +319,7 @@ linenos
     \caption{Payoffs}
     \end{subfigure}
 ~
-\caption{Result Plots. (a) Ranked violin plot, the mean utility of each player
+\caption{Result Plots (a) Ranked violin plot, the mean utility of each player
 (b) Payoffs, the pair wise utilities of each player}
 \label{fig:axelrodplots}
 \end{figure}
