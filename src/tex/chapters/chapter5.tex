@@ -153,10 +153,7 @@ Figure~\ref{fig:flookerup-evolve-flow}. The algorithm starts off by creating
 as the current tables.
 Once the genetic algorithm kicks off children are reproduced for every single pair
 of parents. The reproduction process included random crossovers as well as a
-mutation rate \(u\). Subsequently, the population is defined as the joint of
-parents and children.
-
-\subsubsection{For Example:}
+mutation rate \(u\).
 
 All the lookup tables, as described in ~\autoref{sub:lookup-tables}, contain
 a total of 64 keys. During the algorithm the tables are being sorted thus
@@ -171,11 +168,15 @@ In Figure ~\ref{fig:example} this is illustrated only for the first pair of
 parents.
 \begin{itemize}
   \item Choose a crossover point at randomly
-  \item Produces children by gluing the parents together
-  \item Randomly change a chromosome of the children with mutation rate \(u\)
+  \item Produce first child by combining first parent's chromosomes before crossover and second parent's
+        after crossover
+  \item Produce second child by combining first parent's chromosomes after crossover and second parent's
+        before crossover
+  \item Randomly flip a chromosome of the children with mutation rate \(u\)
 \end{itemize}
 
 \newpage
+Subsequently, the population is defined as the joint of parents and children.
 Each member of the population has to go through the scoring process. A different
 instance of the LookerUp strategy is created for each of the lookup tables that
 exist in the population, and each instance participates to a round robin tournament.
