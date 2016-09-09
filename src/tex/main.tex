@@ -16,7 +16,6 @@
 % long tables
 \usepackage{longtable}
 
-
 % Package to manage appendix
 \usepackage[toc]{appendix}
 
@@ -128,6 +127,8 @@
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 
+% A package to insert pdf files
+\usepackage{pdfpages}
 % ----------------------------------------------------------------------------
 % The actual report
 % ----------------------------------------------------------------------------
@@ -137,6 +138,8 @@
 \newgeometry{a4paper, top=25.4mm, bottom=25.4mm, right=25.4mm, left=25.4mm}
 \input{title}
 \restoregeometry
+
+\includepdf[pages={1}]{Dissertation_Declaration_Page.pdf}
 
 \frontmatter
 \pagestyle{chapterstyle} %set header-footer style for front matter
