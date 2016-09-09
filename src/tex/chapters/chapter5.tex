@@ -1,4 +1,5 @@
 \chapter{Training Strategy using Evolutionary Algorithm}
+\label{chap:Five}
 \section{Introduction}
 \label{sub:five-intro}
 This chapter covers an overview on the contribution of Dr M Jones
@@ -23,9 +24,11 @@ the LookerUp strategies are explained. Additionally, the mechanism used for the
 maximization of these strategies performance will be discussed.
 
 \subsection{The Lookup Table}
+\label{sub:lookup-tables}
 The strategies of the Axelrod-Python library have access to their own history,
 through the \texttt{self.history} variable and the opponent's history though
-\texttt{opponent.history} variable. Many strategies choose their actions based
+\texttt{opponent.}
+\texttt{history} variable. Many strategies choose their actions based
 on what happened on previous turns\footnote{Only two actions are possible in the
 IPD; to either Cooperate(C) or to Defect(D).}. This rule, of determining once actions
 based on a history can be though of as a lookup table.
@@ -153,6 +156,26 @@ of parents. The reproduction process included random crossovers as well as a
 mutation rate \(u\). Subsequently, the population is defined as the joint of
 parents and children.
 
+\subsubsection{For Example:}
+
+All the lookup tables, as described in ~\autoref{sub:lookup-tables}, contain
+a total of 64 keys. During the algorithm the tables are being sorted thus
+the keys to the tables are always going to be exactly the same. Due to this,
+an easier representation of the lookup table emerges by keeping only the values
+of the lookup table as a string.
+
+In the example illustrated in Figure ~\ref{fig:example}, the initial population
+is made from 4 parents. The chromosomes are made of the 64 values of each parent/table.
+Furthermore, for each possible pair of parent the following procedure is repeating.
+In Figure ~\ref{fig:example} this is illustrated only for the first pair of
+parents.
+\begin{itemize}
+  \item Choose a crossover point at randomly
+  \item Produces children by gluing the parents together
+  \item Randomly change a chromosome of the children with mutation rate \(u\)
+\end{itemize}
+
+\newpage
 Each member of the population has to go through the scoring process. A different
 instance of the LookerUp strategy is created for each of the lookup tables that
 exist in the population, and each instance participates to a round robin tournament.
@@ -169,12 +192,19 @@ follow:
   \item \(g\) default value is equal to 100
 \end{itemize}
 
-\begin{figure}[!hbtp]
+\begin{figure}[H]
+		\input{chapters/example.tex}
+	\caption{Example of genetic algorithm applied to the lookup tables}
+  \label{fig:example}
+\end{figure}
+
+\begin{figure}[H]
 		\input{chapters/lookerup.tex}
 		\caption{Lookerup Evolve Algorithm Flow Chart}
   \label{fig:flookerup-evolve-flow}
 \end{figure}
 
+\newpage
 In this section an overview of M Jones works was presented. The full version
 of the LookUpEvolver, his implementation of the genetic algorithm and the lookerup evolve
 algorithm can be found here:\url{https://github.com/mojones/axelrod-evolver}.
@@ -227,7 +257,7 @@ cases are being studied based on the strategies list.
   \item The entire strategy space.
   \item A reduced strategy space: containing only strategies that are deterministic
         and have memory depth between 0 and 1. This are referred to in the
-        Axelrod-Python library as "basic"'
+        Axelrod-Python library as "basic".
 \end{itemize}
 
 
@@ -328,7 +358,7 @@ Thus, for an entire strategy space the specific lookup table generates the best 
 
 Figure~\ref{fig:line-plots-median}, illustrates the aforementioned stochasticity
 in the objective function and how tournament with only basic players
-overcomes the variation. The deterministic case, had a stable trend and was
+overcomes the variation. The reduced strategy space case, had a stable trend and was
 ended after 300 generations. It is suspected that for a larger number of generations
 this stable trend would eventually change. For the entire strategy space cases it is
 clear that the value of the objective function has a large deviation.
@@ -337,19 +367,19 @@ clear that the value of the objective function has a large deviation.
 	\centering
 	\begin{subfigure}[H]{0.45\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{chapter-five/line-plot-1.pdf}
+		\includegraphics[width=\linewidth]{chapter-five/random-men-der.pdf}
 		\caption{Only basic strategies}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[H]{0.45\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{chapter-five/line-plot-2.pdf}
+		\includegraphics[width=\linewidth]{chapter-five/random-men-long.pdf}
 		\caption{All strategies, sample size 10-15}
 	\end{subfigure}
   \hfill
   \begin{subfigure}[H]{0.45\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{chapter-five/line-plot-3.pdf}
+    \includegraphics[width=\linewidth]{chapter-five/random-men-short.pdf}
     \caption{All strategies, sample size 15-50}
   \end{subfigure}
 	\caption{Lines plot for the median normalized rank variation during the
@@ -359,7 +389,7 @@ clear that the value of the objective function has a large deviation.
 
 For further research an extra algorithm has been performed. This time the
 objective function has been measured as the minimum normalized score and was carried
-out for only the non deterministic case. The results
+out for only the entire strategy space. The results
 that were generated from this run are given by the Table~\ref{results-min-geten}.
 The overall results have been lower than before. The best score has been achieved for
 a sample size of 15 to 50 and returned an minimum normalized score of 0.478.
@@ -392,13 +422,13 @@ after the 200\nth generation.
 	\centering
 	\begin{subfigure}[H]{0.45\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{chapter-five/line-plot-4.pdf}
+		\includegraphics[width=\linewidth]{chapter-five/random-min-long.pdf}
 		\caption{All strategies, sample size 10 to 15}
 	\end{subfigure}
   \hfill
   \begin{subfigure}[H]{0.45\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{chapter-five/line-plot-5.pdf}
+    \includegraphics[width=\linewidth]{chapter-five/random-min-short.pdf}
     \caption{All strategies, sample size 15 to 50}
   \end{subfigure}
 	\caption{Lines plot for the minimum normalized rank variation during the
@@ -426,7 +456,7 @@ for some extra cases. This has been done mainly for comparison reasons
 and in these cases each of the three complex networks are studied individually.
 
 \section{Further Results}
-
+\label{sub:futher-results}
 In this section some additional results of the spatial lookup evolve algorithm
 are discussed. In the previous section the networks used in the scoring process
 have been randomly picked between small world, random and complete networks.
@@ -438,7 +468,7 @@ exists for a specific spatial tournament. Table~\ref{deter-indiv} and Table~\ref
 
 For the reduced strategy space case where the topology of the spatial tournaments has been
 a Watts Strogatz network, the first rate lookup table achieved a median normalized
-score of 0, in the 635\nth generation. Moreover, for the Erd\"\{o\}s R\'\{e\}nyi
+score of 0, in the 635\nth generation. Moreover, for the Erd\"{o}s R\'{e}nyi
 topology the best lookup table has a score of 0.5 in the 1399\nth generation, similarly
 to the complete network where the lowest rank achieved was 0.556.
 
@@ -451,19 +481,19 @@ to the complete network where the lowest rank achieved was 0.556.
 \multicolumn{4}{|c|}{\textbf{Reduced strategy space}}                                                                                                         \\ \hline
                        & lookup                                                                                                      & generation & score    \\ \hline
 Watts Strogatz         & \begin{tabular}[c]{@{}l@{}}CDCCCDDDCCCDCCCDDDCDCDCCDCCCDCDCC\\ DCCDDDDCCCDDCDDCDDDDDDCCDDDDCDC\end{tabular} & 635        & 0.00     \\ \hline
-Erd\"\{o\}s R\'\{e\}nyi & \begin{tabular}[c]{@{}l@{}}CCCDDCCCDCDCCCCDDCCCCDDDDCCDCDCDD\\ DDCCCCCDDCCCDDCDCCDCDCDDDCDCDCC\end{tabular} & 1399       & 0.5      \\ \hline
+Erd\"{o}s R\'{e}nyi    & \begin{tabular}[c]{@{}l@{}}CCCDDCCCDCDCCCCDDCCCCDDDDCCDCDCDD\\ DDCCCCCDDCCCDDCDCCDCDCDDDCDCDCC\end{tabular} & 1399       & 0.5      \\ \hline
 Complete               & \begin{tabular}[c]{@{}l@{}}DDCCCCDDDDDDCCDCCDDDCDDDCCDDDDCC\\ DCCDDCDCCCCDCCDDDCCDCCDCDCCCCCCC\end{tabular} & 1299       & 0.555556 \\ \hline
 \end{tabular}
 \end{adjustbox}
-\caption{Results using only the basic strategies for Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and complete networks}
+\caption{Results using only the basic strategies for Watts Strogatz, Erd\"{o}s R\'{e}nyi and complete networks}
 \label{deter-indiv}
 \end{table}
 
 Furthermore, the results for the entire strategy space population are
 shown in Table~\ref{non-deter-indiv}. For a sample size between 10 to 15 the
-best scores are 0.818 for the Watts Strogatz network, 0.714 for the Erd\"\{o\}s R\'\{e\}nyi
+best scores are 0.818 for the Watts Strogatz network, 0.714 for the Erd\"{o}s R\'{e}nyi
 network and 0.769 for the complete. Similarly, for a sample size of 15 to 50.
-For the Watts Strogatz network the lowest median rank has been 0.810, for the Erd\"\{o\}s R\'\{e\}nyi
+For the Watts Strogatz network the lowest median rank has been 0.810, for the Erd\"{o}s R\'{e}nyi
 network 0.656 and finally 0.739 for the complete. Significant higher, now that the
 all strategies have been added to the tournaments.
 
@@ -477,15 +507,23 @@ all strategies have been added to the tournaments.
                         & sample size & lookup                                                                                                      & generation & score                     \\ \hline
 Watts Strogatz          & 10- 15       & \begin{tabular}[c]{@{}l@{}}DDDDCCCCDCDDCDCDCCDCCDCDCCDCCCCC\\ DCCDCDCCCCDCDCCDDDCCCCCCDDCDCCDD\end{tabular} & 199        & 0.818                     \\ \hline
                         & 15 - 50     & \begin{tabular}[c]{@{}l@{}}DDCCCDDCDCDDCDCCDCCDDCCDCCDDCDCD\\ CDDCCDDDCCCDCDCDCDDDDCDDDDDCCDDC\end{tabular} & 59         & 0.810                     \\ \hline
-Erd\"\{o\}s R\'\{e\}nyi & 10 - 15      & \begin{tabular}[c]{@{}l@{}}DCCDDCDDDCDDCDDCCDDDDDDCDDDCCCDC\\ CCCDCDCDDDDCCDCDCCDDCCCDDDCCDDCC\end{tabular} & 302        & 0.714                     \\ \hline
+Erd\"{o}s R\'{e}nyi     & 10 - 15      & \begin{tabular}[c]{@{}l@{}}DCCDDCDDDCDDCDDCCDDDDDDCDDDCCCDC\\ CCCDCDCDDDDCCDCDCCDDCCCDDDCCDDCC\end{tabular} & 302        & 0.714                     \\ \hline
                         & 15 - 50     & \begin{tabular}[c]{@{}l@{}}DCCDDDDCCCCDDDCCDDCDCCDCCDCCCCCC\\ CDCDDDDCDDDDDCDDCCCCCDCCCCCDCDDC\end{tabular} & 11         & 0.656                     \\ \hline
 Complete                & 10 - 15      & \begin{tabular}[c]{@{}l@{}}CCDCCDDDDCCCCCDDDDDCCDCCDCCCCCDD\\ DCCDCCCDCCDDDCDDDDDDCDDDCDDCDDCD\end{tabular} & 202        & \multicolumn{1}{r}{0.769} \\ \hline
                         & 15 - 50     & \begin{tabular}[c]{@{}l@{}}CCCDDCDCCDCDCDDCDCDDCCCDCDCDDCCC\\ DDDDDDCCCDCCDDDDCDCDDDCCCDDDCDCC\end{tabular} & 13         & 0.736                     \\ \bottomrule
 \end{tabular}
 \end{adjustbox}
-\caption{Results using all 132 strategies for Watts Strogatz, Erd\"\{o\}s R\'\{e\}nyi and complete networks}
+\caption{Results using all 132 strategies for Watts Strogatz, Erd\"{o}s R\'{e}nyi and complete networks}
 \label{non-deter-indiv}
 \end{table}
+
+In the Appendix~\ref{append:genetic-variation} the line plots of the score variation
+for the further results are illustrated. Figure~\ref{fig:line-plots-individuals-all-short}
+shows that even for the for the reduced strategy space case variation exists but
+significantly less than those of the entire strategy space.
+Figure~\ref{fig:line-plots-individuals-all-short} and Figure~\ref{fig:line-plots-individuals-all-long}
+illustrate the plots for the entire strategy space, where similarly to \autoref{sub:results}
+have a high variation.
 
 In conclusion, the average scores did not differ much for the results returned
 in ~\autoref{sub:results} and most of the LookerUp strategies did not manage to
