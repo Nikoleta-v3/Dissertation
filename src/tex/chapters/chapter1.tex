@@ -2,18 +2,18 @@
 Game theory is a set of analytical tools and solution concepts, which provide
 explanatory and predicting power in interactive decision situations, when the
 aims, goals and preferences of the participating players are potentially in
-conflict, Szabo and Fath (2007) \cite{Szabo2007}. The Prisoner's Dilemma(PD) is a well
+conflict, Szabo and Fath (2007) \cite{Szabo2007}. The Prisoner's Dilemma (PD) is a well
 known example in Game Theory and in recent years has become the gold standard of
 understanding evolution of co-operative behavior \cite{Lorberbaum1994}.
 Thus, it has been a topic of focus in various fields, such as biology,
 sociology, ecology and psychology.
 
-In the example of the Prisoner's Dilemma(PD) two criminals have been arrested
+In the example of the PD two criminals have been arrested
 and interrogated, with no way of communicating, by the police. They are given
 only two choices, to either cooperate with each other or to defect.
 Consider that the prisoners would be put back in their cells and would be asked
 the same question tomorrow. Furthermore, let this happen repeatably. This is
-referred to as the Iterated Prisoner's Dilemma(IPD) an example that has been a
+referred to as the Iterated Prisoner's Dilemma (IPD) an example that has been a
 rich source of research material since the 1950s but has earned much interest in
 the 1980s due to the work done by the political scientist Robert Axelrod
 \cite{Axelrod1980a, Axelrod1980b, Axelrod1981}.
@@ -32,8 +32,7 @@ A large volume of literature emerged on the topic following this, including some
 criticism about these initial tournaments. Scientists questioned whether the
 conditions that the first tournament took place favored Tit for Tat~\cite{RePEc:mtp:titles:0262023636}.
 An argument was that the initial tournaments though they included
-a 1\% chance of players misunderstanding their opponent's move in any round
-,they did not examine noise. Noise is the probability
+a 1\% chance of players misunderstanding their opponent's move in any round, they did not examine noise. Noise is the probability
 that the player will submit the wrong move. David and Vivian Kraines \cite{kraines-1989a}
 stated that, Tit for Tat performed rather poorly when noise was introduced in the tournament.
 Another aspect, is the payoff matrix, which according to Kretz \cite{Kretz2011},
@@ -75,7 +74,8 @@ use a genetic algorithm to train a strategy that performs well in any given
 topology.
 
 \section{The Prisoner's Dilemma}
-The PD was originally formulated in Merril \cite{Flood1958},
+\label{sub:prisoner-dilemma}
+The PD was originally formulated by the Merrils \cite{Flood1958},
 who were working on the Flood-Desher Experiment at the RAND cooperation in 1950.
 Later in 1950, the mathematician Albert W. Tucker presented the first formal
 representation of the PD, titled  A Two-Person Dilemma in a seminar at
@@ -103,7 +103,7 @@ Figure~\ref{fig:pd_payoff} illustrates the payoffs matrix.
 
 Taking into account the assumptions that both players are rational
 and that there is no way of communication between them. No matter what the choice
-of the other players,  defecting will always be the dominant choice as it yields
+of the other player, defecting will always be the dominant choice as it yields
 a higher payoff than cooperation.
 Thus, a pure Nash Equilibrium exists when both players defect. Even though, both
 players would do better if they were to cooperate; creating the dilemma.
@@ -192,7 +192,7 @@ file, for producing data with Raven can be found on can be found on github:
 this work is archived using zenodo and can be readily downloaded. Details are
 available in Appendix~\ref{append:data}.
 
-For the data analysis the following libraries have been used:
+For the data analysis the following Python libraries have been used:
 
 \begin{multicols}{2}
 	\begin{itemize}
@@ -218,7 +218,7 @@ This dissertation is organized into 6 Chapters. Following this introduction:
 				and the strategies performance is studied, by using various complex
 				networks as the spatial tournaments topology
   \item In~\autoref{chap:Five} using a sophisticated evolutionary algorithm a
-				new strategy is trained following the work conducted by Professor M Jones
+				new strategy is trained following the work conducted by Dr M Jones
 				for his currently wining strategy EvolvedLookerUp
   \item In~\autoref{chap:Six} the results of this dissertation, as well as some
 				further ideas for research are presented

@@ -3,24 +3,24 @@
 \tikzstyle{arrow} = [thick,->,>=stealth]
 
 \begin{center}
-\begin{tikzpicture}[scale=3, node distance=1.5cm, auto, execute at begin node={\begin{varwidth}{40em}},
+\begin{tikzpicture}[scale=2, node distance=1.5cm, auto, execute at begin node={\begin{varwidth}{40em}},
                     execute at end node={\end{varwidth}}]
 
 
 \node (before) [process] { ..... };
 
 %scoring process begins
-\node (pro4) [process, below of=before, fill=blue!80] {\small \textbf{Score Population}};
+\node (pro4) [process, below of=before, fill=blue!50] {\small \textbf{Score Population}};
 
 %choose strategies population
-\node (players) [decision, below of=pro4, yshift=-2cm] {\small Population \\ Strategies};
+\node (players) [decision, below of=pro4, yshift=-1.5cm] {\small Population \\ Strategies};
 % two options
 \node (list1) [process, below left=of players] {\small Basic Strategies};
 \node (list2) [process, below right=of players]  {\small All Strategies};
 % both go through sampling with different bounds
-\node (sample) [process, below of=players, yshift=-3.5cm] {\small Sample Players};
+\node (sample) [process, below of=players, yshift=-2.5cm] {\small Sample Players};
 
-\node (decision) [decision, below of=pro4, yshift=-10cm] {\small Random Integer \(t\)};
+\node (decision) [decision, below of=pro4, yshift=-8.5cm] {\small Random Integer \(t\)};
 
 \node (small) [process, below left=of decision, yshift=-0.4cm] {\small Watts Strogatz};
 
@@ -30,7 +30,7 @@
 
 \node (ranks1) [process, below of=random, yshift=-1.5cm] {\small Single Tournament Ranks};
 
-\node (ranks2) [process, below of=ranks1, yshift=-1.5cm] {\small Median Normalized Ranks};
+\node (ranks2) [process, below of=ranks1, yshift=-1cm] {\small Median Normalized Ranks};
 
 \node (after) [process, below of=ranks2] { ..... };
 
@@ -48,7 +48,7 @@
 \draw [arrow] (small) -- (ranks1);
 \draw [arrow] (random) -- (ranks1);
 \draw [arrow] (complete) -- (ranks1);
-\draw [arrow] (ranks1) -|([xshift=-1.5cm]sample.south west)|- node[anchor=south] {repetitions $<$ \(p\)} (sample);
+\draw [arrow] (ranks1) -|([xshift=-1.7cm]sample.south west)|- node[anchor=south] {repetitions $<$ \(p\)} (sample);
 \draw [arrow] (ranks1) -- node[anchor=west] {repetitions $\leqslant$ \(p\)} (ranks2);
 \draw [arrow] (ranks2) -- (after);
 \end{tikzpicture}

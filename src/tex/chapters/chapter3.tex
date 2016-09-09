@@ -2,6 +2,7 @@
 \label{chap:Three}
 
 \section{Introduction}
+\label{sub:intro-three}
 In this chapter some initial experiments and their results are discussed.
 These experiments have been performed using three chosen topologies and two
 different sizes of tournaments. Emphasis is given in the analysis of the
@@ -16,12 +17,13 @@ As analyzed in \autoref{chap:Two}, the Axelrod library uses a
 class itself calls upon another class, the \texttt{Match Generator}, which is
 responsible for generating matches.
 In the case of a standard round robin, there is a \texttt{RoundRobinTournament} class
-and a \texttt{RoundRobinMatches} class that generates matche parameters for each 2 player
+and a \texttt{RoundRobin
+Matches} class that generates matches parameters for each 2 player
 tuple. The parameters and the indices of the pair are used
 by the \texttt{build\_single\_match} method. A generator that lives within the
 match generator class.
 For a round robin tournament the structure of the code is illustrated
-in~\ref{fig:round_robin_structure}.
+in Figure~\ref{fig:round_robin_structure}.
 
 \begin{figure}
 	\centering
@@ -39,15 +41,15 @@ in~\ref{fig:round_robin_structure}.
 	\label{fig:round_robin_structure}
 \end{figure}
 
-In order to implement a Spatial topology tournament a similar approach is
+In order to implement a spatial topology tournament a similar approach is
 needed. Firstly a new \texttt{Match Generator} class was written.  The
 \texttt{SpatialMatches} is a class that generates spatially-structured matches.
 In these matches, players interact only with their neighbors rather than the
 entire population. According to \cite{Archdeacon1996} graphs can be represented
 in many different ways, one of which is by lists of edges.  Due to a various
-number of python packages that are used for graph manipulation,
+number of Python packages that are used for graph manipulation,
 a more generalized representation of the edges has be selected. Thus edges
-are passed as an argument and \texttt{SpatialMatches} only creates matches
+are passed as a list argument and \texttt{SpatialMatches} only creates matches
 between the
 ending nodes of these edges. Finally the class \texttt{SpatialTournament} runs
 the spatial tournament. A representation of the code structure now, that the
@@ -221,6 +223,13 @@ reviewed by members of the core team. This applies to the spatial tournament as 
 In Figure~\ref{fig:github} a conversation containing comments and corrections
 can be seen.
 
+O. Campbell and M. Harper are 2 of the 4 core contributors of the library.
+Their work, with other contributors, including myself, has had an impact on
+the Game Theory community.
+
+In the next section an overview and a summary of the initial experiments
+performed is given.
+
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[H]{1\textwidth}
@@ -239,14 +248,8 @@ can be seen.
 	\label{fig:github}
 \end{figure}
 
-O. Campbell and M. Harper are 2 of the 4 core contributors of the library.
-Their work, with other contributors, including myself, has had an impact on
-the Game Theory community.
 
-In the next section an overview and a summary of the initial experiments
-performed is given.
-
-\subsection{Experiment and the three topologies}
+\subsection{Initial experiment and the three topologies}
 In this chapter three simple spatial topologies are considered, all with
 deterministic neighborhood size. These will be used to begin to understand how
 topology can affect the outcome of tournaments
@@ -328,7 +331,7 @@ avenues of research.
 
 \subsection{Initial Analysis}
 \label{sub:initial_analysis}
-Hereafter, various strategies from the Axelrod- Python library have been referenced.
+Hereafter, various strategies from the Axelrod-Python library have been referenced.
 Though for some a brief explanation is given, describing all 132, would be
 unreasonable. Therefore a table containing all strategies and their explanation
 (as documented by the Axelrod-Python library), can be found in the Appendix~\ref{append:strategies}.
@@ -385,7 +388,7 @@ clustering coefficient is zero and connectivity fixed to 2.
 
 \begin{table}[!hbtp]
 	\centering
-	\begin{adjustbox}{width=1\textwidth}
+	\begin{adjustbox}{width=1\textwidth, height=0.15\textwidth}
 		\small
 		\begin{tabular}{cccccccccc}
 				\toprule
@@ -416,7 +419,7 @@ groups, complete subgraphs.
 
 \begin{table}[!hbtp]
 	\centering
-	\begin{adjustbox}{width=1\textwidth}
+	\begin{adjustbox}{width=1\textwidth, height=0.15\textwidth}
 		\small
 		\begin{tabular}{cccccccccc}
 				\toprule
@@ -442,7 +445,7 @@ score is 2.39 with a standard deviation of 0.335.
 
 \begin{table}[H]
 	\centering
-	\begin{adjustbox}{width=0.5\textwidth}
+	\begin{adjustbox}{width=0.5\textwidth,height=0.15\textwidth}
 		\small
 		\begin{tabular}{ccccc}
 				\toprule
@@ -459,8 +462,8 @@ score is 2.39 with a standard deviation of 0.335.
 	\label{sum-rr}
 \end{table}
 
-In this section the structure of the source code for implementing the Spatial
-Tournament, by adding to the Axelrod-Python library was analyzed. Furthermore,
+In this section the structure of the source code for implementing the spatial
+tournament, by adding to the Axelrod-Python library was analyzed. Furthermore,
 using the verified code, various experiments were conducted with different
 topologies
 and number of players participating in each tournament. An overview of the
@@ -476,7 +479,7 @@ Forcing the strategies to perform in a uniform number is
 not an option because the random effect is needed for validation of the
 results. For a measure of
 performance, instead of using the number of tournaments won, the analysis will
-be using the ratio of wins in~\autoref{sub:winning-ratio}.
+be using the ratio of wins in~\autoref{sub:winning_ratio}.
 The winning ratio is defined as the number of tournaments a strategy was ranked
 first divided by the number of tournaments the strategy competed in.
 Additionally, the normalized average score each strategy
@@ -486,7 +489,7 @@ attempt to identify the important factors relevant to performance in various
 topologies.
 
 \subsection{Winning Ratio}
-\label{sub:winning-ratio}
+\label{sub:winning_ratio}
 In the experiment where the strategies compete on a cyclic network, 124 strategies
 out of the 132 have a winning ratio greater than zero. In other words, 8 strategies
 won no tournaments. These strategies are shown in Table~\ref{winning-ratio-zero-cyclic-five}:
@@ -501,7 +504,7 @@ won no tournaments. These strategies are shown in Table~\ref{winning-ratio-zero-
 			ALLCorALLD          & Simply repeats its last move, and so mimics ALLC or ALLD after round one.                                            \\ \hline
 			Tricky Cooperator   & Almost always cooperates, but will try to trick the opponent by defecting.                                           \\ \hline
 			ThueMorseInverse    & Defects or cooperates according to the Thue-Morse sequence (Inverse of ThueMorse).                                   \\ \hline
-			SolutionB5          & A finite state machine strategy, described in~\cite{Ashlock2015}                               \\ \hline
+			SolutionB5          & A finite state machine strategy, described in~\cite{Ashlock2015}  																									 \\ \hline
 			Hard Tit For 2 Tats & A variant of Tit For Two Tats that uses a longer history for retaliation.                                            \\ \hline
 			BackStabber         & Forgives the first 3 defections but on the fourth,will defect forever. Defects on the last 2 rounds unconditionally. \\ \hline
 			Prober              & Plays D, D, C, C initially. Defects forever if opponent cooperated in moves 2 and 3. Otherwise plays TFT.            \\ \hline
@@ -662,15 +665,15 @@ size 50, [270, 280, 290, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410,
 experiments were classified as [1, 2, 3, 4, 5, 6, 7, 8, 9] and
 [27, 28, 29, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 57],
 respectively. The winning ratios were plotted against participation number
-in Figures~\ref{fig:winning-ratio-participations-five} and~\ref{fig:winning-ratio-participations-fifty}.
+in Figure~\ref{fig:winning-ratio-participations-five} and Figure~\ref{fig:winning-ratio-participations-fifty}.
 An ANOVA analysis was used to analyze the importance of the
 differences in the winning ratios among the participating groups.
 
 Primarily, the normality of the ration has been tested. For all 6 experiments,
 the winning ratio, is not normally distributed. As all \(p\) values are
 less that 0.05. Thus, a non parametric test has been used instead. The equivelent
-non parametric ANOVA test is the Kruskal Wallis test. The python library
-scipy, provided the functions necessary for the tests.
+non parametric ANOVA test is the Kruskal Wallis test. The Python library
+\texttt{scipy}, provided the functions necessary for the tests.
 
 The results, for a tournament of size equal to 5, the difference
 of ratios between the participations groups is significant (\(p\) values
@@ -679,7 +682,7 @@ are violin plots of the winning ratio against number of participations.
 A positive trend can be spotted for the lattice and a negative for the cyclic
 and round robin topologies.
 
-Equivalently, in ~\ref{fig:winning-ratio-participations-fifty}, violin plots for
+Equivalently, in Figure~\ref{fig:winning-ratio-participations-fifty}, violin plots for
 tournament size 50 are displayed. For all three topologies, there is there  a s
 statistically significant difference. The specific groups that different are not
 clear. Post-hoc analysis could be performed but will not be considered here.
@@ -753,12 +756,12 @@ The plots can be found in the Appendix~\ref{append:variation-plots}. A normality
 test has been held, and the score is not normally distributed. Thus, a Kruskal
 Wallis test has been used for the analysis.
 
-For all six experiments the normalized average score significantly differ between
+For all six experiments the normalized average score significantly differs between
 participation groups. There is a lot variation, indicating each strategy performed
 differently at given points of the same experiment. These could be because of the
 opponent or the whole neighborhood, a strategy was against.
 
-The strategies, have been ranked, similarly to ~\autoref{sub:winning-ratio}, but
+The strategies, have been ranked, similarly to ~\autoref{sub:winning_ratio}, but
 this time based on mean normalized average ranking. Figures \ref{fig:score-rankings-five-c-l}~\ref{fig:score-rankings-five-c-r}
 ~\ref{fig:score-rankings-five-l-r} and Figures~\ref{fig:score-rankings-fifty-c-l}
 ~\ref{fig:score-rankings-fifty-c-r}~\ref{fig:score-rankings-fifty-l-r}, illustrate
@@ -767,8 +770,9 @@ by Tricky Cooperator and Raider. For tournaments sizes 50, Forgetful Fool Me Onc
 and Hard Tit For 2 Tats attract attention. All this strategies, have been ranked
 low in the previous subsection. Specifically, Tricky Cooperator and Hard Tit For 2 Tats,
 had a winning ratio of zero for specific topologies. This is an effect, of the
-strategies loosing to an opponent, but their opponent participating in more
-tournaments. Thus, their average score, divided by a bigger number, was lower.
+strategies loosing to a well performed opponent which participates in more tournaments.
+Thus, the well performed opponent's average score, divided by a bigger number
+of participations, is lower.
 
 \begin{figure}[H]
 	\centering
@@ -816,10 +820,10 @@ tournaments. Thus, their average score, divided by a bigger number, was lower.
 Not many conclusions can be made out of this. The high variation could indicate
 that the results are completely random. Unfortunately, this could mean that for
 any random situation there does not seem to be a strategy that could
-achieve a particularly high score although as described in~\autoref{sub:winning-ratio}
+achieve a particularly high score although as described in~\autoref{sub:winning_ratio}
 it is possible to ensure a good performance. Also, there has been difference in
-the ranking, except for Raider. The example of Tricky Cooperator and Hard Tit For 2 Tats,
-give enough reasons for the wining ratio and normalized score, being non satisfactory
+the ranking, except for Raider. The conflict between the results of Tricky Cooperator and Hard Tit For 2 Tats,
+give enough reasons to classify the wining ratio and  the normalized score as non satisfactory
 measures. In the following subsection, a linear regression model is built as
 considered to confirm and expand on these findings.
 
@@ -844,11 +848,11 @@ shown here:
 
 \begin{table}[!hbtp]
 	\centering
-	\begin{adjustbox}{width=1\textwidth}
+	\begin{adjustbox}{width=1\textwidth, height=0.15\textwidth}
 		\small
 		\begin{tabular}{ccccccccccccc}
 				\toprule
-			Size 		& \multicolumn{1}{|l|}{Topology} & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & \(R\) - square \\ \midrule
+			Size 		& \multicolumn{1}{|l|}{Topology} & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & \(R\) square \\ \midrule
 			        &         & coef   & \(p\)    & coef   & \(p\)    & coef       & \(p\)     & coef   & \(p\)    & coef       & \(p\)     &       \\ \midrule
 			size 5  & Cyclic  & 0.0344 & 0.00 & 0.0688 & 0.00 & 3.239e-06  & 0.651 & 0.0    & NA   & 0.0006     & 0.00  & 0.007 \\ \midrule
 			        & Lattice & 0.0108 & 0.00 & 0.0431 & 0.00 & 7.447e-06  & 0.159 & 0.0108 & 0.00 & -0.0002    & 0.036 & 0.001 \\ \midrule
@@ -871,8 +875,8 @@ are less than 0.05 but are affected with an insignificant amount, less that 0.1.
 Participations seems to have a negative effect on the lattice size 5 experiment
 but a positive one for the cyclic size 5 and lattice size 50.
 
-Overall, all \(R\) - square values  are really low. With the highest value of
-\(R\)- square being 0.022 for lattice size 50. Thus, the performance of the
+Overall, all \(R\) square values  are really low. With the highest value of
+\(R\) square being 0.022 for lattice size 50. Thus, the performance of the
 model can be characterized as insignificant,
 
 The second model using the normalized average score is the following.
@@ -890,11 +894,11 @@ individually. The results of models are shown below, Table~\ref{regression-avera
 
 \begin{table}[H]
 	\centering
-	\begin{adjustbox}{width=1\textwidth}
+	\begin{adjustbox}{width=1\textwidth, height=0.15\textwidth}
 		\small
 		\begin{tabular}{ccccccccccccc}
 				\toprule
-			Size 		& \multicolumn{1}{|l|}{Topology} & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & \(R\) - square \\ \midrule
+			Size 		& \multicolumn{1}{|l|}{Topology} & \multicolumn{2}{l|}{Intercept} & \multicolumn{2}{l|}{degree} & \multicolumn{2}{l|}{average neighborhood score} & \multicolumn{2}{l|}{clustering} & \multicolumn{2}{l|}{participations} & \(R\) square \\ \midrule
 			        &         & coef   & \(p\)    & coef   & \(p\)    & coef       & \(p\)     & coef   & \(p\)    & coef       & \(p\)     &       \\ \midrule
 			size 5  & Cyclic  & 0.028  & 0.00 & 0.0559 & 0.00 & -3.763e-06 & 0.043 & 0.0    & NA   & -0.0016    & 0.00 & 0.457 \\ \midrule
 			        & Lattice & 0.0064 & 0.00 & 0.0256 & 0.00 & 1.079e-05  & 0.00  & 0.0064 & 0.00 & -0.0016    & 0.00 & 0.549 \\ \midrule
@@ -914,13 +918,13 @@ For the cyclic topology, average neighborhood score and participations have nega
 coefficient. For example a decrease in participations by one would increase
 the average score by 0.0016. Degree on the other hand has a positive coefficient
 and connectivity has no effect at all. Furthermore the model for size 5 has
-a \(R\) - square value of 0.457, thus it only explains 0.4 variation of the data which is
+a \(R\) square value of 0.457, thus it only explains 0.4 variation of the data which is
 quite low. For size 50 it is even lower at only 0.12.
 
 Finally, for the lattice topology only participations have a negative coefficient.
 Thus the only factor with a reverse influence on average score in the lattice topology.
 Connectivity is a significant predictor as well with a coefficient 0.0064 and
-0.0003 respectively. Though the \(R\) - square value is still  small,
+0.0003 respectively. Though the \(R\) square value is still  small,
 with a value 0.547 and 0.216 respectively.
 Even if there are predictors with a significant \(p\) value, the overall
 performance of the model is moderate.
@@ -937,7 +941,7 @@ correspond to randomly matching up strategies.
 
 \section{Summary}
 \label{sub:summary}
-A summary of all the analysis previously made, ~\autoref{sub:initial_analysis} and
+A summary of all the analysis previously made, ~\autoref{sub:intro-three} and
 ~\autoref{sub:analyzing_the_effect_of_the_topologies}, is given in this section.
 Moreover, it lists topic for further research to be conducted.
 
@@ -953,7 +957,7 @@ Two measures have been used, the wining ratio and the normalized score. The
 wining ratio returned, that the following strategies have outperformed the rest.
 Raider, Backstabber and PSO Gambler. As for the normalized score, it indicated
 that Tricky Cooperator,  Raider, Hard Tit For 2 Tats and Fool Me Once, have been the
-highest ranked strategies. Even if, Raider has been repeating, strategies as
+highest ranked strategies. Even if, Raider has been repeating, strategies like
 Tricky Cooperator have been ranked completely differently by the two measures.
 Creating a conflict and indicating that these measures are perhaps not adequate
 (this will be expanded on in~\autoref{chap:Four}).
